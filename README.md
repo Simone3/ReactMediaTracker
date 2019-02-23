@@ -1,2 +1,2 @@
-# ReactMediaTracker
-React Native remake of an university project. WIP
+# React Media Tracker
+React Native remake of a university project - WIP
