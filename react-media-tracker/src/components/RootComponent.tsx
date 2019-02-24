@@ -1,19 +1,14 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
-import { MediaListComponent } from "./generic_media";
-import { MediaItem } from '../model';
+import { MediaListContainer, AddMediaContainer } from "../containers";
 
-export default class RootComponent extends Component {
-
-	private data: MediaItem[] = [
-		new MediaItem('Test1'),
-		new MediaItem('Test2'),
-		new MediaItem('Test3')];
+export class RootComponent extends Component {
 	
 	render() {
 		return (
 			<View style={styles.container}>
-				<MediaListComponent itemsList={this.data}/>
+				<AddMediaContainer/>
+				<MediaListContainer/>
 			</View>
 		);
 	}

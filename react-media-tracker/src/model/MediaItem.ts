@@ -1,7 +1,7 @@
 /**
  * A generic media item model
  */
-export default class MediaItem {
+export class MediaItem {
 
 	/**
 	 * Unique ID
@@ -11,11 +11,12 @@ export default class MediaItem {
 	/**
 	 * Name
 	 */
-	name: string = "";
+	name: string;
 
-	constructor(key: string) {
+	constructor(key: string = '-1', name: string = '') {
 
 		this.key = key;
+		this.name = name;
 	}
 }
 

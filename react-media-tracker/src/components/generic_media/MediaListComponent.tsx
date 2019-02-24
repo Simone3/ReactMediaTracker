@@ -6,7 +6,7 @@ import { MediaItem } from '../../model';
 /**
  * Presentational component to display a generic media item list
  */
-export default class MediaListComponent extends Component<Props> {
+export class MediaListComponent extends Component<MediaListComponentProps> {
 
 	render() {
 
@@ -20,9 +20,9 @@ export default class MediaListComponent extends Component<Props> {
 }
 
 /**
- * Component props
+ * MediaListComponent's props
  */
-class Props {
+export class MediaListComponentProps {
 
 	/**
 	 * The media items to be displayed

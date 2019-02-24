@@ -1,2 +1,3 @@
-export { default as MediaRowComponent } from './MediaRowComponent';
-export { default as MediaListComponent } from './MediaListComponent';
+export * from './MediaRowComponent';
+export * from './MediaListComponent';
+export * from './AddMediaComponent';

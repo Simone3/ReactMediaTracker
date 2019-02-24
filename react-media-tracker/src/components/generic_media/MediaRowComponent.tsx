@@ -5,20 +5,20 @@ import { MediaItem } from '../../model';
 /**
  * Presentational component to display a generic media item row
  */
-export default class MediaRowComponent extends Component<Props> {
+export class MediaRowComponent extends Component<MediaRowComponentProps> {
 
 	render() {
 
 		return (
-			<Text>{this.props.item.key}</Text>
+			<Text>{this.props.item.key} - {this.props.item.name}</Text>
 		);
 	}
 }
 
 /**
- * Component props
+ * MediaRowComponent's props
  */
-class Props {
+export class MediaRowComponentProps {
 
 	/**
 	 * The media item linked with the row
