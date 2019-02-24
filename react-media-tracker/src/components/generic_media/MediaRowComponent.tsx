@@ -10,7 +10,7 @@ export default class MediaRowComponent extends Component<Props> {
 	render() {
 
 		return (
-			<Text>{this.props.data.key}</Text>
+			<Text>{this.props.item.key}</Text>
 		);
 	}
 }
@@ -23,11 +23,11 @@ class Props {
 	/**
 	 * The media item linked with the row
 	 */
-	data: MediaItem;
+	item: MediaItem;
 
-	constructor(data: MediaItem) {
+	constructor(item: MediaItem) {
 
-		this.data = data;
+		this.item = item;
 	}
 }
 

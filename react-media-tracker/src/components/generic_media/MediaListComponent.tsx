@@ -6,20 +6,31 @@ import { MediaItem } from '../../model';
 /**
  * Presentational component to display a generic media item list
  */
-export default class MediaListComponent extends Component {
-
-	private data: MediaItem[] = [
-		new MediaItem('Test1'),
-		new MediaItem('Test2'),
-		new MediaItem('Test3')];
+export default class MediaListComponent extends Component<Props> {
 
 	render() {
 
 		return (
 			<FlatList
-				data={this.data}
-				renderItem={({item}) => <MediaRowComponent data={item}></MediaRowComponent>}
+				data={this.props.itemsList}
+				renderItem={({item}) => <MediaRowComponent item={item}></MediaRowComponent>}
 			/>
 		);
+	}
+}
+
+/**
+ * Component props
+ */
+class Props {
+
+	/**
+	 * The media items to be displayed
+	 */
+	itemsList: MediaItem[];
+
+	constructor(itemsList: MediaItem[]) {
+
+		this.itemsList = itemsList;
 	}
 }
