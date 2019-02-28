@@ -1,10 +1,13 @@
-import React, {Component} from 'react';
+import React, {Component, ReactNode} from 'react';
 import { StyleSheet, View } from 'react-native';
 import { MediaListContainer, AddMediaContainer } from "../containers";
 
+/**
+ * Presentational component that contains all other components
+ */
 export class RootComponent extends Component {
 	
-	render() {
+	render(): ReactNode {
 		return (
 			<View style={styles.container}>
 				<AddMediaContainer/>

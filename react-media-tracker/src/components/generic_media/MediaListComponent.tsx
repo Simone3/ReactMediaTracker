@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ReactNode} from 'react';
 import { FlatList } from 'react-native';
 import { MediaRowComponent } from "./";
 import { MediaItem } from '../../model';
@@ -8,7 +8,7 @@ import { MediaItem } from '../../model';
  */
 export class MediaListComponent extends Component<MediaListComponentProps> {
 
-	render() {
+	render(): ReactNode {
 
 		return (
 			<FlatList
@@ -22,15 +22,10 @@ export class MediaListComponent extends Component<MediaListComponentProps> {
 /**
  * MediaListComponent's props
  */
-export class MediaListComponentProps {
+export type MediaListComponentProps = {
 
 	/**
 	 * The media items to be displayed
 	 */
 	itemsList: MediaItem[];
-
-	constructor(itemsList: MediaItem[]) {
-
-		this.itemsList = itemsList;
-	}
 }

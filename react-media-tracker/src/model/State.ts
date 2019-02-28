@@ -8,7 +8,7 @@ export class State {
 	/**
 	 * List of media items to be displayed
 	 */
-	mediaItems: MediaItem[] = [];
+	readonly mediaItems: MediaItem[] = [];
 }
 
 

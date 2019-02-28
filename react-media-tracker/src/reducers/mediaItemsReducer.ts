@@ -3,7 +3,9 @@ import { ADD_MEDIA, AddMediaAction } from '../actions';
 
 let nextId: number = 0;
 
-// TODO is there a way to enforce "mediaItems" type (State field)?
+/**
+ * Reducer for the media items list portion of the Redux state
+ */
 export const mediaItems = (state: MediaItem[] = [], action: any) => {
 
 	switch(action.type) {

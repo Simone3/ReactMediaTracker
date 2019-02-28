@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ReactNode} from 'react';
 import { Button } from 'react-native';
 import { MediaItem } from '../../model';
 
@@ -7,7 +7,7 @@ import { MediaItem } from '../../model';
  */
 export class AddMediaComponent extends Component<AddMediaComponentProps> {
 
-	render() {
+	render(): ReactNode {
 
 		return (
 			<Button
@@ -47,15 +47,10 @@ export class AddMediaComponent extends Component<AddMediaComponentProps> {
 /**
  * AddMediaComponent's props
  */
-export class AddMediaComponentProps {
+export type AddMediaComponentProps = {
 
 	/**
 	 * The callback for media item creation
 	 */
 	onSubmit: (newMediaItem: MediaItem) => void;
-
-	constructor(onSubmit: (newMediaItem: MediaItem) => void) {
-
-		this.onSubmit = onSubmit;
-	}
-}
+};

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, ReactNode} from 'react';
 import { Text } from 'react-native';
 import { MediaItem } from '../../model';
 
@@ -7,7 +7,7 @@ import { MediaItem } from '../../model';
  */
 export class MediaRowComponent extends Component<MediaRowComponentProps> {
 
-	render() {
+	render(): ReactNode {
 
 		return (
 			<Text>{this.props.item.key} - {this.props.item.name}</Text>
@@ -18,17 +18,11 @@ export class MediaRowComponent extends Component<MediaRowComponentProps> {
 /**
  * MediaRowComponent's props
  */
-export class MediaRowComponentProps {
+export type MediaRowComponentProps = {
 
 	/**
 	 * The media item linked with the row
 	 */
 	item: MediaItem;
-
-	constructor(item: MediaItem) {
-
-		this.item = item;
-	}
-}
-
+};
 

@@ -8,6 +8,9 @@ const mapStateToProps: MapStateToProps = (state) => ({
   itemsList: state.mediaItems
 });
 
+/**
+ * Container component that handles Redux state for MediaListComponent
+ */
 export const MediaListContainer = connect(
   mapStateToProps,
   null
