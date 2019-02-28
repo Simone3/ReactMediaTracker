@@ -20,7 +20,9 @@
     "@types/react-redux": "^7.0.1",
     "@types/redux": "^3.6.0",
     "babel-preset-expo": "^5.0.0",
-    "typescript": "^3.3.3333"
+    "typesafe-actions": "^3.2.1",
+    "typescript": "^3.3.3333",
+    "utility-types": "^3.4.1"
   },
   "private": true
 }
