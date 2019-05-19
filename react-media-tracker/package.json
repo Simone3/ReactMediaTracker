@@ -15,14 +15,13 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.3.3",
-    "@types/react": "^16.8.4",
-    "@types/react-native": "^0.57.38",
-    "@types/react-redux": "^7.0.1",
-    "@types/redux": "^3.6.0",
+    "@types/react": "^16.8.17",
+    "@types/react-native": "^0.57.57",
+    "@types/react-redux": "^7.0.9",
     "babel-preset-expo": "^5.0.0",
-    "typesafe-actions": "^3.2.1",
-    "typescript": "^3.3.3333",
-    "utility-types": "^3.4.1"
+    "typesafe-actions": "^4.3.0",
+    "typescript": "^3.4.5",
+    "utility-types": "^3.7.0"
   },
   "private": true
 }
