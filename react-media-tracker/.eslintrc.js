@@ -25,7 +25,10 @@ module.exports = {
             allowOverrideWithoutParam: true,
             allowImplementsWithoutParam: true,
             allowAugmentsExtendsWithoutParam: true
-		}
+		},
+		react: {
+			version: 'detect'
+		},
     },
 	rules: {
 
@@ -140,7 +143,7 @@ module.exports = {
 		'no-useless-escape': 2,
 		'no-useless-return': 2,
 		'no-void': 2,
-		'no-warning-comments': 2,
+		'no-warning-comments': 1,
 		'no-with': 2,
 		radix: 2,
 		'vars-on-top': 2,
@@ -375,7 +378,7 @@ module.exports = {
 		'import/no-absolute-path': 'off',
 		'import/no-dynamic-require': 2,
 		'import/no-internal-modules': [ 2, {
-			"allow": [ "request-promise-native/errors" ]
+			'allow': [ 'request-promise-native/errors' ]
 		} ],
 		'import/no-webpack-loader-syntax': 'off',
 		'import/no-self-import': 'off',
@@ -388,9 +391,8 @@ module.exports = {
 		'import/no-named-as-default': 2,
 		'import/no-named-as-default-member': 2,
 		'import/no-deprecated': 2,
-		'import/no-extraneous-dependencies': 2,
+		// 'import/no-extraneous-dependencies': 2, (in conflict with the two package.json, for absolute imports...)
 		'import/no-mutable-exports': 2,
-		'import/no-unused-modules': 2,
 		
 		'import/unambiguous': 2,
 		'import/no-commonjs': 'off',
