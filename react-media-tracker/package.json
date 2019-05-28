@@ -1,0 +1,39 @@
+{
+  "name": "react-media-tracker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.8.3",
+    "react-native": "0.59.8",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/runtime": "7.4.5",
+    "@types/jest": "24.0.13",
+    "@types/react": "16.8.18",
+    "@types/react-native": "0.57.58",
+    "@types/react-redux": "^7.0.9",
+    "@types/react-test-renderer": "16.8.1",
+    "@types/redux": "^3.6.0",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "babel-jest": "24.8.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jsdoc": "^7.0.2",
+    "eslint-plugin-react": "^7.13.0",
+    "jest": "24.8.0",
+    "metro-react-native-babel-preset": "0.54.1",
+    "react-test-renderer": "16.8.3",
+    "typescript": "3.4.5"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
