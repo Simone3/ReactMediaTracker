@@ -1,5 +1,10 @@
-import { delay, put, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { FETCH_CATEGORIES, receiveCategories, requestCategories } from 'app/actions/category';
+import { config } from 'app/config/config';
+import { restJsonInvoker } from 'app/controllers/back-end/rest-json-invoker';
+import { GetAllCategoriesResponse } from 'app/models/api/category';
+import { CategoryInternal } from 'app/models/internal/category';
+import { miscUtils } from 'app/utilities/misc-utils';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -9,19 +14,27 @@ const fetchCategoriesSaga = function * (): SagaIterator {
 
 	yield put(requestCategories());
 
-	yield delay(2000);
+	// TODO Move this to a controller
+	const getCategoriesResponse: GetAllCategoriesResponse = yield call(restJsonInvoker.invoke, {
+		method: 'GET',
+		url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.get ], {
+			userId: config.tempToDelete.userId
+		}),
+		responseBodyClass: GetAllCategoriesResponse
+	});
 
-	yield put(receiveCategories([{
-		id: '1',
-		name: `MockCat-${Math.floor(Math.random() * 100000)}`,
-		mediaType: 'MOVIE',
-		color: '#0000ff'
-	}, {
-		id: '2',
-		name: `MockCat-${Math.floor(Math.random() * 100000)}`,
-		mediaType: 'BOOK',
-		color: '#00ff00'
-	}]));
+	// TODO Move this to a mapper
+	const categories: CategoryInternal[] = [];
+	for(const cat of getCategoriesResponse.categories) {
+		categories.push({
+			id: cat.uid,
+			color: cat.color,
+			mediaType: cat.mediaType,
+			name: cat.name
+		});
+	}
+
+	yield put(receiveCategories(categories));
 };
 
 /**
