@@ -49,7 +49,7 @@ module.exports = {
 		'no-await-in-loop': 0,
 		'no-compare-neg-zero': 2,
 		'no-cond-assign': [ 2, 'always' ],
-		'no-console': 2,
+		'no-console': 'off',
 		'no-constant-condition': 2,
 		'no-control-regex': 2,
 		'no-debugger': 2,
