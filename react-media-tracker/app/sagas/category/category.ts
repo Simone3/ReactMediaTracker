@@ -17,7 +17,7 @@ const fetchCategoriesSaga = function * (): SagaIterator {
 	// TODO Move this to a controller
 	const getCategoriesResponse: GetAllCategoriesResponse = yield call(restJsonInvoker.invoke, {
 		method: 'GET',
-		url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.get ], {
+		url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.getAll ], {
 			userId: config.tempToDelete.userId
 		}),
 		responseBodyClass: GetAllCategoriesResponse
