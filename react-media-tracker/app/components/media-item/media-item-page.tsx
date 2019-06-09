@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { CategoryListContainer } from 'app/containers/category/category-list';
+import { StyleSheet, View, Text } from 'react-native';
 
 const styles = StyleSheet.create({
 	container: {
@@ -12,10 +11,17 @@ const styles = StyleSheet.create({
 });
 
 /**
- * Presentational component that contains all other components
+ * Test component
  */
-export class RootComponent extends Component {
+export class MediaItemPageComponent extends Component {
 	
+	/**
+	 * React Navigation settings
+	 */
+	public static navigationOptions = {
+		title: 'Media Items'
+	};
+
 	/**
 	 * @override
 	 */
@@ -23,7 +29,7 @@ export class RootComponent extends Component {
 		
 		return (
 			<View style={styles.container}>
-				<CategoryListContainer/>
+				<Text>This is the Media Items page!</Text>
 			</View>
 		);
 	}
