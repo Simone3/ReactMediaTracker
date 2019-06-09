@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View, Button } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
 import { CategoryRowComponent } from 'app/components/category/category-row';
 
@@ -24,16 +24,18 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 	/**
 	 * @override
 	 */
+	public componentDidMount(): void {
+
+		this.props.requestFetchCategories();
+	}
+
+	/**
+	 * @override
+	 */
 	public render(): ReactNode {
 
 		return (
 			<View>
-				<Button
-					onPress={() => {
-						this.props.requestFetchCategories();
-					}}
-					title='Load Categories Test'
-				/>
 				{this.renderCategories()}
 			</View>
 		);
