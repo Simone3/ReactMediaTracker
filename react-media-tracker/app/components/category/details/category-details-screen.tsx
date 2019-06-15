@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { CommonProps } from 'app/components/common/common';
+import { CategoryFormComponent } from 'app/components/category/details/category-form';
 
 const styles = StyleSheet.create({
 	container: {
@@ -32,7 +33,7 @@ export class CategoryDetailsScreenComponent extends Component<CommonProps> {
 		
 		return (
 			<View style={styles.container}>
-				<Text>Hi, I&apos;m the Category Form!</Text>
+				<CategoryFormComponent/>
 			</View>
 		);
 	}
