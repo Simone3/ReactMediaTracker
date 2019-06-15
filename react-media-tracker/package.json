@@ -11,6 +11,7 @@
     "class-transformer": "^0.2.3",
     "class-transformer-validator": "^0.7.1",
     "class-validator": "^0.9.1",
+    "formik": "^1.5.7",
     "react": "16.8.3",
     "react-native": "0.59.8",
     "react-native-config": "^0.11.7",
@@ -18,7 +19,8 @@
     "react-navigation": "^3.11.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1",
-    "redux-saga": "^1.0.2"
+    "redux-saga": "^1.0.2",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
