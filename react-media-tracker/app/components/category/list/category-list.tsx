@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
-import { CategoryRowComponent } from 'app/components/category/category-row';
+import { CategoryRowComponent } from 'app/components/category/list/category-row';
 
 /**
  * Presentational component to display the list of user categories
