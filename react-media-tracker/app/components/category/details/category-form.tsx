@@ -1,5 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { Formik } from 'formik';
+import { string, object } from 'yup';
 import { CategoryFormViewComponent } from './category-form-view';
 
 /**
@@ -12,6 +13,10 @@ export class CategoryFormComponent extends Component {
 	 */
 	public render(): ReactNode {
 		
+		const validationSchema = object().shape({
+			name: string().required('Name is required')
+		});
+
 		return (
 			<Formik
 				onSubmit={(result) => {
@@ -19,6 +24,7 @@ export class CategoryFormComponent extends Component {
 				}}
 				component={CategoryFormViewComponent}
 				initialValues={{}}
+				validationSchema={validationSchema}
 			/>
 		);
 	}

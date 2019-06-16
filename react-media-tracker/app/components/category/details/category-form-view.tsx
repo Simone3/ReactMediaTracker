@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { View, Button, TextInput } from 'react-native';
+import { View, Button, TextInput, Text } from 'react-native';
 import { FormikProps, FormikValues, Field, FieldProps } from 'formik';
 
 /**
@@ -13,14 +13,15 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 	public render(): ReactNode {
 		
 		const {
-			handleSubmit
+			handleSubmit,
+			errors,
+			isValid
 		} = this.props;
 
 		return (
 			<View>
-				<Field
-					name='name'
-					render={({ field }: FieldProps) => {
+				<Field name='name'>
+					{({ field }: FieldProps) => {
 						return (
 							<TextInput
 								onChangeText={field.onChange(field.name)}
@@ -30,10 +31,14 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 							/>
 						);
 					}}
-				/>
+				</Field>
+				{errors.name &&
+					<Text style={{ fontSize: 10, color: 'red' }}>{errors.name}</Text>
+				}
 				<Button
 					title='Save'
 					onPress={handleSubmit}
+					disabled={!isValid}
 				/>
 			</View>
 		);
