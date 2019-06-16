@@ -11,19 +11,6 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 	/**
 	 * @override
 	 */
-	public constructor(props: CategoryListComponentInput & CategoryListComponentOutput) {
-
-		super(props);
-
-		this.renderCategories = this.renderCategories.bind(this);
-		this.renderNone = this.renderNone.bind(this);
-		this.renderLoading = this.renderLoading.bind(this);
-		this.renderList = this.renderList.bind(this);
-	}
-
-	/**
-	 * @override
-	 */
 	public componentDidMount(): void {
 
 		this.props.requestFetchCategories();

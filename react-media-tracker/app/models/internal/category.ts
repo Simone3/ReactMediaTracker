@@ -1,7 +1,14 @@
+import { ValuesOf } from 'app/utilities/helper-types';
+
+/**
+ * Array of all media types, internal type just for display properties
+ */
+export const MEDIA_TYPES_INTERNAL: [ 'BOOK', 'MOVIE', 'TV_SHOW', 'VIDEOGAME' ] = [ 'BOOK', 'MOVIE', 'TV_SHOW', 'VIDEOGAME' ];
+
 /**
  * A category media type, internal type just for display properties
  */
-export type MediaTypeInternal = 'BOOK' | 'MOVIE' | 'TV_SHOW' | 'VIDEOGAME';
+export type MediaTypeInternal = ValuesOf<typeof MEDIA_TYPES_INTERNAL>;
 
 /**
  * The internal representation of a media item category, internal type just for display properties
