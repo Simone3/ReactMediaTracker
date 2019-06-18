@@ -16,7 +16,8 @@ export class CategoryFormComponent extends Component {
 		
 		const validationSchema = object().shape({
 			name: string().required('Name is required'),
-			mediaType: string().oneOf(MEDIA_TYPES_INTERNAL, 'Invalid Media Type').required('Media Type is required')
+			mediaType: string().oneOf(MEDIA_TYPES_INTERNAL, 'Invalid Media Type').required('Media Type is required'),
+			color: string().required('Color is required')
 		});
 
 		return (

@@ -17,6 +17,7 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 			<View>
 				{this.nameField()}
 				{this.mediaTypeField()}
+				{this.colorField()}
 				{this.errors()}
 				{this.saveButton()}
 			</View>
@@ -65,6 +66,36 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 									<Picker.Item key={mediaType} label={mediaType} value={mediaType} />
 								);
 							})}
+						</Picker>
+					);
+				}}
+			</Field>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the color component
+	 */
+	private colorField(): ReactNode {
+
+		return (
+			<Field name='color'>
+				{({ field }: FieldProps) => {
+					return (
+						<Picker
+							selectedValue={field.value}
+							style={{ height: 50, width: 200 }}
+							onValueChange={field.onChange(field.name)}>
+							<Picker.Item label='' value='' />
+							<Picker.Item label='blue' value='#3c82eb' />
+							<Picker.Item label='red' value='#f25a5a' />
+							<Picker.Item label='green' value='#74eb74' />
+							<Picker.Item label='orange' value='#ee9b52' />
+							<Picker.Item label='yellow' value='#f5e064' />
+							<Picker.Item label='purple' value='#e75fe7' />
+							<Picker.Item label='cyan' value='#4bead7' />
+							<Picker.Item label='grey' value='#6e6d66' />
 						</Picker>
 					);
 				}}
