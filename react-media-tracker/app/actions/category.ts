@@ -5,6 +5,13 @@ export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 
+export const LOAD_NEW_CATEGORY = 'LOAD_NEW_CATEGORY';
+export const LOAD_CATEGORY = 'LOAD_CATEGORY';
+
+export const SAVE_CATEGORY = 'SAVE_CATEGORY';
+export const START_SAVING_CATEGORY = 'START_SAVING_CATEGORY';
+export const COMPLETE_SAVING_CATEGORY = 'COMPLETE_SAVING_CATEGORY';
+
 /**
  * The fetch categories action
  */
@@ -28,8 +35,45 @@ export type ReceiveCategoriesAction = Action & {
 };
 
 /**
- * Generator for the fetch categories action, which takes care of dispatching the request categories action, retrieves the categories and then dispatches
- * the receive categories action
+ * The load new category action
+ */
+export type LoadNewCategoryAction = Action & {
+	
+};
+
+/**
+ * The load existing category action
+ */
+export type LoadCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The save category action
+ */
+export type SaveCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The start saving category action
+ */
+export type StartSavingCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The complete saving category action
+ */
+export type CompleteSavingCategoryAction = Action & {
+	
+};
+
+/**
+ * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
  * @returns the action
  */
 export const fetchCategories = (): FetchCategoriesAction => {
@@ -40,7 +84,7 @@ export const fetchCategories = (): FetchCategoriesAction => {
 };
 
 /**
- * Generator for the request categories action, which starts a categories fetch
+ * Generator for the request categories action, which marks the start of the categories list fetching operation
  * @returns the action
  */
 export const requestCategories = (): RequestCategoriesAction => {
@@ -51,7 +95,7 @@ export const requestCategories = (): RequestCategoriesAction => {
 };
 
 /**
- * Generator for the receive categories action, which ends a categories fetch with the actual categories
+ * Generator for the receive categories action, which marks the end of the categories list fetching operation
  * @param categories the fetched categories, possibly an empty array
  * @returns the action
  */
@@ -60,5 +104,66 @@ export const receiveCategories = (categories: CategoryInternal[]): ReceiveCatego
 	return {
 		type: RECEIVE_CATEGORIES,
 		categories: categories
+	};
+};
+
+/**
+ * Generator for the load new category action, which resets the category details state to the initial values
+ * @returns the action
+ */
+export const loadNewCategory = (): LoadNewCategoryAction => {
+	
+	return {
+		type: LOAD_NEW_CATEGORY
+	};
+};
+
+/**
+ * Generator for the load existing category action, which sets the category details state
+ * @param category the category data
+ * @returns the action
+ */
+export const loadCategory = (category: CategoryInternal): LoadCategoryAction => {
+	
+	return {
+		type: LOAD_CATEGORY,
+		category: category
+	};
+};
+
+/**
+ * Generator for the save category action, which causes the start saving category action, the async category store and then the complete saving category action
+ * @param category the category data
+ * @returns the action
+ */
+export const saveCategory = (category: CategoryInternal): SaveCategoryAction => {
+	
+	return {
+		type: SAVE_CATEGORY,
+		category: category
+	};
+};
+
+/**
+ * Generator for the start saving category action, which marks the start of the category saving operation
+ * @param category the category data
+ * @returns the action
+ */
+export const startSavingCategory = (category: CategoryInternal): StartSavingCategoryAction => {
+	
+	return {
+		type: START_SAVING_CATEGORY,
+		category: category
+	};
+};
+
+/**
+ * Generator for the complete saving category action, which marks the end of the category saving operation
+ * @returns the action
+ */
+export const completeSavingCategory = (): CompleteSavingCategoryAction => {
+	
+	return {
+		type: COMPLETE_SAVING_CATEGORY
 	};
 };

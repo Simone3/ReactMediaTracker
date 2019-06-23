@@ -1,4 +1,4 @@
-import { CategoriesListState, CategoryInternal } from 'app/models/internal/category';
+import { CategoriesListState, CategoryDetailsState } from 'app/models/internal/category';
 
 /**
  * The global application state (handled by Redux)
@@ -11,7 +11,7 @@ export class State {
 	public readonly categories!: CategoriesListState;
 
 	/**
-	 * The currently selected category
+	 * Portion of the state with the category details information
 	 */
-	public readonly selectedCategory?: CategoryInternal;
+	public readonly categoryDetails!: CategoryDetailsState;
 }

@@ -36,3 +36,21 @@ export type CategoriesListState = {
 	 */
 	readonly isFetching: boolean;
 }
+
+export type CategoryDetailsState = {
+
+	/**
+	 * The category data
+	 */
+	readonly category: CategoryInternal;
+
+	/**
+	 * Flag to tell if the app is currently saving the category details
+	 */
+	readonly isSaving: boolean;
+
+	/**
+	 * Flag to tell if the app has completed saving the category details
+	 */
+	readonly saveCompleted: boolean;
+}

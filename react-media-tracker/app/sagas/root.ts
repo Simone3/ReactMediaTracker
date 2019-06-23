@@ -1,5 +1,5 @@
 import { all, call } from '@redux-saga/core/effects';
-import { watchFetchCategoriesSaga } from 'app/sagas/category/category';
+import { watchFetchCategoriesSaga, watchSaveCategorySaga } from 'app/sagas/category/category';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -7,6 +7,7 @@ import { SagaIterator } from 'redux-saga';
  */
 export const rootSaga = function * (): SagaIterator {
 	yield all([
-		call(watchFetchCategoriesSaga)
+		call(watchFetchCategoriesSaga),
+		call(watchSaveCategorySaga)
 	]);
 };
