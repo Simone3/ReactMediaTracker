@@ -1,4 +1,4 @@
-import { loadNewCategory, saveCategory } from 'app/actions/category';
+import { invalidateCategories, loadNewCategory, saveCategory } from 'app/actions/category';
 import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/category/details/category-form';
 import { State } from 'app/models/internal/state';
 import { connect } from 'react-redux';
@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoryFormComponentOutput => 
 		},
 		saveCategory: (category) => {
 			dispatch(saveCategory(category));
+		},
+		requestCategoriesListReload: () => {
+			dispatch(invalidateCategories());
 		}
 	};
 };

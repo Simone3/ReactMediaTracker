@@ -1,4 +1,4 @@
-import { ReceiveCategoriesAction, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category';
+import { INVALIDATE_CATEGORIES, ReceiveCategoriesAction, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
 
@@ -7,7 +7,8 @@ import { Action } from 'redux';
  */
 const initialCategories: CategoriesListState = {
 	items: [],
-	isFetching: false
+	isFetching: false,
+	requiresReload: false
 };
 
 /**
@@ -24,7 +25,8 @@ export const categories = (state: CategoriesListState = initialCategories, actio
 
 			return {
 				...state,
-				isFetching: true
+				isFetching: true,
+				requiresReload: false
 			};
 		}
 	
@@ -36,6 +38,14 @@ export const categories = (state: CategoriesListState = initialCategories, actio
 				...state,
 				isFetching: false,
 				items: receiveCategoriesAction.categories
+			};
+		}
+
+		case INVALIDATE_CATEGORIES: {
+
+			return {
+				...state,
+				requiresReload: true
 			};
 		}
 

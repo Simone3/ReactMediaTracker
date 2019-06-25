@@ -19,6 +19,17 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 	/**
 	 * @override
 	 */
+	public componentDidUpdate(): void {
+
+		if(this.props.requiresReload) {
+
+			this.props.requestFetchCategories();
+		}
+	}
+
+	/**
+	 * @override
+	 */
 	public render(): ReactNode {
 
 		return (
@@ -100,6 +111,11 @@ export type CategoryListComponentInput = {
 	 * Flag to show the loading screen
 	 */
 	isLoading: boolean;
+
+	/**
+	 * Flag to request a new list reload
+	 */
+	requiresReload: boolean;
 }
 
 /**

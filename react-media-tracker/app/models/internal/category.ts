@@ -35,6 +35,11 @@ export type CategoriesListState = {
 	 * Flag to tell if the app is currently waiting for the categories list
 	 */
 	readonly isFetching: boolean;
+
+	/**
+	 * Flag to tell if the categories list was mark as invalid, i.e. requires a reload
+	 */
+	readonly requiresReload: boolean;
 }
 
 export type CategoryDetailsState = {

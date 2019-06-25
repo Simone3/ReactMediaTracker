@@ -26,6 +26,7 @@ export const CategoryFormComponent = withNavigation(class CategoryFormComponentI
 
 		if(this.props.saveCompleted) {
 
+			this.props.requestCategoriesListReload();
 			this.props.navigation.goBack();
 		}
 	}
@@ -118,4 +119,9 @@ export type CategoryFormComponentOutput = {
 	 * Triggered when the component requests the category save operation
 	 */
 	saveCategory: (category: CategoryInternal) => void;
+
+	/**
+	 * Triggered when the component requests the categories list to be invalidated, e.g. because it changed one of them
+	 */
+	requestCategoriesListReload: () => void;
 }

@@ -4,6 +4,7 @@ import { Action } from 'redux';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const INVALIDATE_CATEGORIES = 'INVALIDATE_CATEGORIES';
 
 export const LOAD_NEW_CATEGORY = 'LOAD_NEW_CATEGORY';
 export const LOAD_CATEGORY = 'LOAD_CATEGORY';
@@ -32,6 +33,13 @@ export type RequestCategoriesAction = Action & {
 export type ReceiveCategoriesAction = Action & {
 	
 	categories: CategoryInternal[];
+};
+
+/**
+ * The invalidate categories action
+ */
+export type InvalidateCategoriesAction = Action & {
+	
 };
 
 /**
@@ -104,6 +112,17 @@ export const receiveCategories = (categories: CategoryInternal[]): ReceiveCatego
 	return {
 		type: RECEIVE_CATEGORIES,
 		categories: categories
+	};
+};
+
+/**
+ * Generator for the invalidate categories action, which marks the categories list as invalid, i.e. they require a reload
+ * @returns the action
+ */
+export const invalidateCategories = (): InvalidateCategoriesAction => {
+
+	return {
+		type: INVALIDATE_CATEGORIES
 	};
 };
 

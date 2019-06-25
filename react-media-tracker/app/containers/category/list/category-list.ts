@@ -8,7 +8,8 @@ const mapStateToProps = (state: State): CategoryListComponentInput => {
 	
 	return {
 		categories: state.categories.items,
-		isLoading: state.categories.isFetching
+		isLoading: state.categories.isFetching,
+		requiresReload: state.categories.requiresReload
 	};
 };
 
