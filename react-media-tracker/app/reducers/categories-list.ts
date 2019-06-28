@@ -1,5 +1,5 @@
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, START_DELETING_CATEGORY } from 'app/actions/category/const';
-import { ReceiveCategoriesAction } from 'app/actions/category/types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
+import { CompleteFetchingCategoriesAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
 
@@ -23,7 +23,7 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 	
 	switch(action.type) {
 
-		case REQUEST_CATEGORIES: {
+		case START_FETCHING_CATEGORIES: {
 
 			return {
 				...state,
@@ -32,9 +32,9 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			};
 		}
 	
-		case RECEIVE_CATEGORIES: {
+		case COMPLETE_FETCHING_CATEGORIES: {
 
-			const receiveCategoriesAction = action as ReceiveCategoriesAction;
+			const receiveCategoriesAction = action as CompleteFetchingCategoriesAction;
 			
 			return {
 				...state,

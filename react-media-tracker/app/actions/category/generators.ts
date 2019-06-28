@@ -1,6 +1,6 @@
 import { CategoryInternal } from 'app/models/internal/category';
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, SAVE_CATEGORY, START_DELETING_CATEGORY, START_SAVING_CATEGORY } from './const';
-import { CompleteDeletingCategoryAction, CompleteSavingCategoryAction, DeleteCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, ReceiveCategoriesAction, RequestCategoriesAction, SaveCategoryAction, StartDeletingCategoryAction, StartSavingCategoryAction } from './types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, SAVE_CATEGORY, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
+import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, SaveCategoryAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -14,25 +14,25 @@ export const fetchCategories = (): FetchCategoriesAction => {
 };
 
 /**
- * Generator for the request categories action, which marks the start of the categories list fetching operation
+ * Generator for the start fetching categories action, which marks the start of the categories list fetching operation
  * @returns the action
  */
-export const requestCategories = (): RequestCategoriesAction => {
+export const startFetchingCategories = (): StartFetchingCategoriesAction => {
 	
 	return {
-		type: REQUEST_CATEGORIES
+		type: START_FETCHING_CATEGORIES
 	};
 };
 
 /**
- * Generator for the receive categories action, which marks the end of the categories list fetching operation
+ * Generator for the complete fetching categories action, which marks the end of the categories list fetching operation
  * @param categories the fetched categories, possibly an empty array
  * @returns the action
  */
-export const receiveCategories = (categories: CategoryInternal[]): ReceiveCategoriesAction => {
+export const completeFetchingCategories = (categories: CategoryInternal[]): CompleteFetchingCategoriesAction => {
 	
 	return {
-		type: RECEIVE_CATEGORIES,
+		type: COMPLETE_FETCHING_CATEGORIES,
 		categories: categories
 	};
 };

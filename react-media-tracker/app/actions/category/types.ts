@@ -9,16 +9,16 @@ export type FetchCategoriesAction = Action & {
 };
 
 /**
- * The request categories action
+ * The start fetching categories action
  */
-export type RequestCategoriesAction = Action & {
+export type StartFetchingCategoriesAction = Action & {
 	
 };
 
 /**
- * The receive categories action
+ * The complete fetching categories action
  */
-export type ReceiveCategoriesAction = Action & {
+export type CompleteFetchingCategoriesAction = Action & {
 	
 	categories: CategoryInternal[];
 };
