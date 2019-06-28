@@ -55,7 +55,8 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 
 		const {
 			categories,
-			loadCategoryDetails
+			loadCategoryDetails,
+			deleteCategory
 		} = this.props;
 
 		return (
@@ -68,6 +69,9 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 							edit={() => {
 								loadCategoryDetails(item);
 								navigationService.navigate(AppRoutes.CategoryDetails);
+							}}
+							delete={() => {
+								deleteCategory(item);
 							}}>
 						</CategoryRowComponent>
 					);
@@ -101,4 +105,10 @@ export type CategoriesListComponentOutput = {
 	 * @param category the category to edit
 	 */
 	loadCategoryDetails: (category: CategoryInternal) => void;
+
+	/**
+	 * Callback to delete a category
+	 * @param category the category to delete
+	 */
+	deleteCategory: (category: CategoryInternal) => void;
 }

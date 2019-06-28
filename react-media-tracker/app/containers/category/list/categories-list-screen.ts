@@ -6,9 +6,11 @@ import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: State): CategoriesListScreenComponentInput => {
 	
+	const listState = state.categoriesList;
+
 	return {
-		isFetching: state.categoriesList.isFetching,
-		requiresReload: state.categoriesList.requiresReload
+		isLoading: listState.isFetching || listState.isDeleting,
+		requiresReload: listState.requiresReload
 	};
 };
 

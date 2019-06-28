@@ -22,7 +22,8 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 
 		const {
 			category,
-			edit
+			edit,
+			delete: deleteCallback
 		} = this.props;
 
 		return (
@@ -33,6 +34,10 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 				<Button
 					title='Edit'
 					onPress={edit}
+				/>
+				<Button
+					title='Del'
+					onPress={deleteCallback}
 				/>
 			</View>
 		);
@@ -59,5 +64,10 @@ export type CategoryRowComponentOutput = {
 	 * Callback to edit the category
 	 */
 	edit: () => void;
+	
+	/**
+	 * Callback to delete the category
+	 */
+	delete: () => void;
 };
 

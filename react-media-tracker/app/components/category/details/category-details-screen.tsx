@@ -47,7 +47,7 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 
 			return null;
 		}
-		else if(this.props.isSaving) {
+		else if(this.props.isLoading) {
 			
 			return this.renderLoading();
 		}
@@ -86,9 +86,9 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 export type CategoryDetailsScreenComponentInput = {
 
 	/**
-	 * Flag to tell if the category is currently being saved. If true, shows the loading indicator.
+	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
-	isSaving: boolean;
+	isLoading: boolean;
 
 	/**
 	 * Flag to tell if the category was successfully saved. If true, navigates back the stack.

@@ -67,3 +67,26 @@ export type StartSavingCategoryAction = Action & {
 export type CompleteSavingCategoryAction = Action & {
 	
 };
+
+/**
+ * The delete category action
+ */
+export type DeleteCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The start deleting category action
+ */
+export type StartDeletingCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The complete deleting category action
+ */
+export type CompleteDeletingCategoryAction = Action & {
+	
+};

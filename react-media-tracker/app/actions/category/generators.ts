@@ -1,6 +1,6 @@
 import { CategoryInternal } from 'app/models/internal/category';
-import { COMPLETE_SAVING_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, SAVE_CATEGORY, START_SAVING_CATEGORY } from './const';
-import { CompleteSavingCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, ReceiveCategoriesAction, RequestCategoriesAction, SaveCategoryAction, StartSavingCategoryAction } from './types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, SAVE_CATEGORY, START_DELETING_CATEGORY, START_SAVING_CATEGORY } from './const';
+import { CompleteDeletingCategoryAction, CompleteSavingCategoryAction, DeleteCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, ReceiveCategoriesAction, RequestCategoriesAction, SaveCategoryAction, StartDeletingCategoryAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -106,5 +106,42 @@ export const completeSavingCategory = (): CompleteSavingCategoryAction => {
 	
 	return {
 		type: COMPLETE_SAVING_CATEGORY
+	};
+};
+
+/**
+ * Generator for the delete category action, which causes the start deleting category action, the async category removal and then the complete deleting category action
+ * @param category the category data
+ * @returns the action
+ */
+export const deleteCategory = (category: CategoryInternal): DeleteCategoryAction => {
+	
+	return {
+		type: DELETE_CATEGORY,
+		category: category
+	};
+};
+
+/**
+ * Generator for the start deleting category action, which marks the start of the category deleting operation
+ * @param category the category data
+ * @returns the action
+ */
+export const startDeletingCategory = (category: CategoryInternal): StartDeletingCategoryAction => {
+	
+	return {
+		type: START_DELETING_CATEGORY,
+		category: category
+	};
+};
+
+/**
+ * Generator for the complete deleting category action, which marks the end of the category deleting operation
+ * @returns the action
+ */
+export const completeDeletingCategory = (): CompleteDeletingCategoryAction => {
+	
+	return {
+		type: COMPLETE_DELETING_CATEGORY
 	};
 };

@@ -1,4 +1,4 @@
-import { COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category/const';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, START_DELETING_CATEGORY } from 'app/actions/category/const';
 import { ReceiveCategoriesAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
@@ -9,6 +9,7 @@ import { Action } from 'redux';
 const initialCategories: CategoriesListState = {
 	categories: [],
 	isFetching: false,
+	isDeleting: false,
 	requiresReload: false
 };
 
@@ -48,6 +49,23 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			return {
 				...state,
 				requiresReload: true
+			};
+		}
+
+		case COMPLETE_DELETING_CATEGORY: {
+		
+			return {
+				...state,
+				isDeleting: false,
+				requiresReload: true
+			};
+		}
+
+		case START_DELETING_CATEGORY: {
+
+			return {
+				...state,
+				isDeleting: true
 			};
 		}
 

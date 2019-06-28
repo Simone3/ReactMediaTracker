@@ -47,6 +47,11 @@ export type CategoriesListState = {
 	readonly isFetching: boolean;
 
 	/**
+	 * Flag to tell if the app is currently waiting for a category to be deleted
+	 */
+	readonly isDeleting: boolean;
+
+	/**
 	 * Flag to tell if the categories list was marked as invalid, i.e. it requires a reload
 	 */
 	readonly requiresReload: boolean;

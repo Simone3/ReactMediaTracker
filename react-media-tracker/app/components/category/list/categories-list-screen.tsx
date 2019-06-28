@@ -68,7 +68,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	public render(): ReactNode {
 		
-		if(this.props.isFetching) {
+		if(this.props.isLoading) {
 
 			return this.renderLoading();
 		}
@@ -115,9 +115,9 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 export type CategoriesListScreenComponentInput = {
 	
 	/**
-	 * Flag to tell if the categories list is currently being fetched. If true, shows the loading screen.
+	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
-	isFetching: boolean;
+	isLoading: boolean;
 
 	/**
 	 * Flag to tell if the categories list was invalidated. If true, requests a new reload.
