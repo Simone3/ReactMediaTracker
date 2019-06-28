@@ -1,4 +1,5 @@
-import { INVALIDATE_CATEGORIES, ReceiveCategoriesAction, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category';
+import { INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category/const';
+import { ReceiveCategoriesAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
 
@@ -6,7 +7,7 @@ import { Action } from 'redux';
  * The initial state for the categories list
  */
 const initialCategories: CategoriesListState = {
-	items: [],
+	categories: [],
 	isFetching: false,
 	requiresReload: false
 };
@@ -17,7 +18,7 @@ const initialCategories: CategoriesListState = {
  * @param action an action
  * @returns the new state
  */
-export const categories = (state: CategoriesListState = initialCategories, action: Action): CategoriesListState => {
+export const categoriesList = (state: CategoriesListState = initialCategories, action: Action): CategoriesListState => {
 	
 	switch(action.type) {
 
@@ -37,7 +38,7 @@ export const categories = (state: CategoriesListState = initialCategories, actio
 			return {
 				...state,
 				isFetching: false,
-				items: receiveCategoriesAction.categories
+				categories: receiveCategoriesAction.categories
 			};
 		}
 

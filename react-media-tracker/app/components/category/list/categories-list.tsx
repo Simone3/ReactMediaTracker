@@ -6,27 +6,8 @@ import { CategoryRowComponent } from 'app/components/category/list/category-row'
 /**
  * Presentational component to display the list of user categories
  */
-export class CategoryListComponent extends Component<CategoryListComponentInput & CategoryListComponentOutput> {
+export class CategoriesListComponent extends Component<CategoriesListComponentInput & CategoriesListComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public componentDidMount(): void {
-
-		this.props.requestFetchCategories();
-	}
-
-	/**
-	 * @override
-	 */
-	public componentDidUpdate(): void {
-
-		if(this.props.requiresReload) {
-
-			this.props.requestFetchCategories();
-		}
-	}
-
 	/**
 	 * @override
 	 */
@@ -45,11 +26,7 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 	 */
 	private renderCategories(): ReactNode {
 
-		if(this.props.isLoading) {
-
-			return this.renderLoading();
-		}
-		else if(this.props.categories.length > 0) {
+		if(this.props.categories.length > 0) {
 
 			return this.renderList();
 		}
@@ -69,25 +46,28 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 	}
 
 	/**
-	 * Helper method to render the loading screen
-	 * @returns the node portion
-	 */
-	private renderLoading(): ReactNode {
-
-		return <Text>Loading...</Text>;
-	}
-
-	/**
 	 * Helper method to render categories list
 	 * @returns the node portion
 	 */
 	private renderList(): ReactNode {
 
+		const {
+			categories,
+			editCategory
+		} = this.props;
+
 		return (
 			<FlatList
-				data={this.props.categories}
+				data={categories}
 				renderItem={({ item }) => {
-					return <CategoryRowComponent category={item}></CategoryRowComponent>;
+					return (
+						<CategoryRowComponent
+							category={item}
+							onEdit={() => {
+								editCategory(item);
+							}}>
+						</CategoryRowComponent>
+					);
 				}}
 				keyExtractor={(item) => {
 					return item.id;
@@ -98,33 +78,23 @@ export class CategoryListComponent extends Component<CategoryListComponentInput 
 }
 
 /**
- * CategoryListComponent's input props
+ * CategoriesListComponent's input props
  */
-export type CategoryListComponentInput = {
+export type CategoriesListComponentInput = {
 
 	/**
 	 * The categories to be displayed
 	 */
 	categories: CategoryInternal[];
-
-	/**
-	 * Flag to show the loading screen
-	 */
-	isLoading: boolean;
-
-	/**
-	 * Flag to request a new list reload
-	 */
-	requiresReload: boolean;
 }
 
 /**
- * CategoryListComponent's output props
+ * CategoriesListComponent's output props
  */
-export type CategoryListComponentOutput = {
+export type CategoriesListComponentOutput = {
 
 	/**
-	 * Triggered when the component requests the updated list of categories
+	 * The callback to edit a category
 	 */
-	requestFetchCategories: () => void;
+	editCategory: (category: CategoryInternal) => void;
 }

@@ -1,17 +1,13 @@
-import { COMPLETE_SAVING_CATEGORY, LoadCategoryAction, LOAD_CATEGORY, LOAD_NEW_CATEGORY, StartSavingCategoryAction, START_SAVING_CATEGORY } from 'app/actions/category';
-import { CategoryDetailsState } from 'app/models/internal/category';
+import { COMPLETE_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, START_SAVING_CATEGORY } from 'app/actions/category/const';
+import { LoadCategoryAction, StartSavingCategoryAction } from 'app/actions/category/types';
+import { CategoryDetailsState, DEFAULT_CATEGORY } from 'app/models/internal/category';
 import { Action } from 'redux';
 
 /**
  * The initial state for the category details
  */
 const initialCategoryDetails: CategoryDetailsState = {
-	category: {
-		id: '',
-		name: '',
-		color: '',
-		mediaType: 'BOOK'
-	},
+	category: undefined,
 	isSaving: false,
 	saveCompleted: false
 };
@@ -26,19 +22,22 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 	
 	switch(action.type) {
 
-		case LOAD_NEW_CATEGORY: {
+		case LOAD_NEW_CATEGORY_DETAILS: {
 
 			return {
-				...initialCategoryDetails
+				...state,
+				saveCompleted: false,
+				category: DEFAULT_CATEGORY
 			};
 		}
 	
-		case LOAD_CATEGORY: {
+		case LOAD_CATEGORY_DETAILS: {
 
 			const loadCategoryAction = action as LoadCategoryAction;
 			
 			return {
 				...state,
+				saveCompleted: false,
 				category: loadCategoryAction.category
 			};
 		}
@@ -59,7 +58,8 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 			return {
 				...state,
 				isSaving: false,
-				saveCompleted: true
+				saveCompleted: true,
+				category: undefined
 			};
 		}
 

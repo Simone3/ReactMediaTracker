@@ -1,84 +1,6 @@
 import { CategoryInternal } from 'app/models/internal/category';
-import { Action } from 'redux';
-
-export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
-export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
-export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
-export const INVALIDATE_CATEGORIES = 'INVALIDATE_CATEGORIES';
-
-export const LOAD_NEW_CATEGORY = 'LOAD_NEW_CATEGORY';
-export const LOAD_CATEGORY = 'LOAD_CATEGORY';
-
-export const SAVE_CATEGORY = 'SAVE_CATEGORY';
-export const START_SAVING_CATEGORY = 'START_SAVING_CATEGORY';
-export const COMPLETE_SAVING_CATEGORY = 'COMPLETE_SAVING_CATEGORY';
-
-/**
- * The fetch categories action
- */
-export type FetchCategoriesAction = Action & {
-	
-};
-
-/**
- * The request categories action
- */
-export type RequestCategoriesAction = Action & {
-	
-};
-
-/**
- * The receive categories action
- */
-export type ReceiveCategoriesAction = Action & {
-	
-	categories: CategoryInternal[];
-};
-
-/**
- * The invalidate categories action
- */
-export type InvalidateCategoriesAction = Action & {
-	
-};
-
-/**
- * The load new category action
- */
-export type LoadNewCategoryAction = Action & {
-	
-};
-
-/**
- * The load existing category action
- */
-export type LoadCategoryAction = Action & {
-	
-	category: CategoryInternal;
-};
-
-/**
- * The save category action
- */
-export type SaveCategoryAction = Action & {
-	
-	category: CategoryInternal;
-};
-
-/**
- * The start saving category action
- */
-export type StartSavingCategoryAction = Action & {
-	
-	category: CategoryInternal;
-};
-
-/**
- * The complete saving category action
- */
-export type CompleteSavingCategoryAction = Action & {
-	
-};
+import { COMPLETE_SAVING_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, RECEIVE_CATEGORIES, REQUEST_CATEGORIES, SAVE_CATEGORY, START_SAVING_CATEGORY } from './const';
+import { CompleteSavingCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, ReceiveCategoriesAction, RequestCategoriesAction, SaveCategoryAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -130,10 +52,10 @@ export const invalidateCategories = (): InvalidateCategoriesAction => {
  * Generator for the load new category action, which resets the category details state to the initial values
  * @returns the action
  */
-export const loadNewCategory = (): LoadNewCategoryAction => {
+export const loadNewCategoryDetails = (): LoadNewCategoryDetailsAction => {
 	
 	return {
-		type: LOAD_NEW_CATEGORY
+		type: LOAD_NEW_CATEGORY_DETAILS
 	};
 };
 
@@ -142,10 +64,10 @@ export const loadNewCategory = (): LoadNewCategoryAction => {
  * @param category the category data
  * @returns the action
  */
-export const loadCategory = (category: CategoryInternal): LoadCategoryAction => {
+export const loadCategoryDetails = (category: CategoryInternal): LoadCategoryDetailsAction => {
 	
 	return {
-		type: LOAD_CATEGORY,
+		type: LOAD_CATEGORY_DETAILS,
 		category: category
 	};
 };

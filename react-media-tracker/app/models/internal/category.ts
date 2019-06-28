@@ -22,14 +22,24 @@ export type CategoryInternal = {
 }
 
 /**
- * Portion of the global state with the categories list information
+ * The default initial category
+ */
+export const DEFAULT_CATEGORY: CategoryInternal = {
+	id: '',
+	name: '',
+	color: '',
+	mediaType: 'BOOK'
+};
+
+/**
+ * Portion of the state with the categories list information
  */
 export type CategoriesListState = {
 
 	/**
 	 * The list of available categories
 	 */
-	readonly items: CategoryInternal[];
+	readonly categories: CategoryInternal[];
 
 	/**
 	 * Flag to tell if the app is currently waiting for the categories list
@@ -37,17 +47,20 @@ export type CategoriesListState = {
 	readonly isFetching: boolean;
 
 	/**
-	 * Flag to tell if the categories list was mark as invalid, i.e. requires a reload
+	 * Flag to tell if the categories list was marked as invalid, i.e. it requires a reload
 	 */
 	readonly requiresReload: boolean;
 }
 
+/**
+ * Portion of the state with the category details information
+ */
 export type CategoryDetailsState = {
 
 	/**
 	 * The category data
 	 */
-	readonly category: CategoryInternal;
+	readonly category?: CategoryInternal;
 
 	/**
 	 * Flag to tell if the app is currently saving the category details

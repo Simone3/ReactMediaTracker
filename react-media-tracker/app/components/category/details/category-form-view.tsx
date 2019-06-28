@@ -4,7 +4,7 @@ import { FormikProps, FormikValues, Field, FieldProps } from 'formik';
 import { MEDIA_TYPES_INTERNAL } from 'app/models/internal/category';
 
 /**
- * Presentational component that contains all category form input fields
+ * Presentational component that contains all category form input fields, all handled by the Formik container component
  */
 export class CategoryFormViewComponent extends Component<FormikProps<FormikValues>> {
 

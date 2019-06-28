@@ -1,5 +1,5 @@
-import { CategoryDetailsScreenComponent } from 'app/components/category/details/category-details-screen';
-import { CategoryListScreenComponent } from 'app/components/category/list/category-list-screen';
+import { CategoryDetailsScreenContainer } from 'app/containers/category/details/category-details-screen';
+import { CategoriesListScreenContainer } from 'app/containers/category/list/categories-list-screen';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 /**
@@ -14,8 +14,8 @@ export const AppRoutes = {
  * The application navigator
  */
 const AppNavigator = createStackNavigator({
-	[AppRoutes.CategoryList]: CategoryListScreenComponent,
-	[AppRoutes.CategoryDetails]: CategoryDetailsScreenComponent
+	[AppRoutes.CategoryList]: CategoriesListScreenContainer,
+	[AppRoutes.CategoryDetails]: CategoryDetailsScreenContainer
 }, {
 	initialRouteName: AppRoutes.CategoryList
 });

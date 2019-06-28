@@ -8,7 +8,7 @@ export class State {
 	/**
 	 * Portion of the state with the categories list information
 	 */
-	public readonly categories!: CategoriesListState;
+	public readonly categoriesList!: CategoriesListState;
 
 	/**
 	 * Portion of the state with the category details information

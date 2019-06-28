@@ -1,5 +1,7 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
-import { completeSavingCategory, FETCH_CATEGORIES, receiveCategories, requestCategories, SaveCategoryAction, SAVE_CATEGORY, startSavingCategory } from 'app/actions/category';
+import { FETCH_CATEGORIES, SAVE_CATEGORY } from 'app/actions/category/const';
+import { completeSavingCategory, receiveCategories, requestCategories, startSavingCategory } from 'app/actions/category/generators';
+import { SaveCategoryAction } from 'app/actions/category/types';
 import { config } from 'app/config/config';
 import { categoryController } from 'app/controllers/entities/category';
 import { CategoryInternal } from 'app/models/internal/category';
