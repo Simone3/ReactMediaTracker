@@ -2,6 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
 import { CategoryRowComponent } from 'app/components/category/list/category-row';
+import { navigationService } from 'app/utilities/navigation-service';
+import { AppRoutes } from 'app/containers/navigation';
 
 /**
  * Presentational component to display the list of user categories
@@ -53,7 +55,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 
 		const {
 			categories,
-			editCategory
+			loadCategoryDetails
 		} = this.props;
 
 		return (
@@ -64,7 +66,8 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 						<CategoryRowComponent
 							category={item}
 							edit={() => {
-								editCategory(item);
+								loadCategoryDetails(item);
+								navigationService.navigate(AppRoutes.CategoryDetails);
 							}}>
 						</CategoryRowComponent>
 					);
@@ -94,8 +97,8 @@ export type CategoriesListComponentInput = {
 export type CategoriesListComponentOutput = {
 
 	/**
-	 * The callback to edit a category
+	 * Callback to load the given category details
 	 * @param category the category to edit
 	 */
-	editCategory: (category: CategoryInternal) => void;
+	loadCategoryDetails: (category: CategoryInternal) => void;
 }

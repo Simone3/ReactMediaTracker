@@ -1,6 +1,8 @@
-import { CategoriesListComponent, CategoriesListComponentInput } from 'app/components/category/list/categories-list';
+import { loadCategoryDetails } from 'app/actions/category/generators';
+import { CategoriesListComponent, CategoriesListComponentInput, CategoriesListComponentOutput } from 'app/components/category/list/categories-list';
 import { State } from 'app/models/internal/state';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: State): CategoriesListComponentInput => {
 	
@@ -9,10 +11,19 @@ const mapStateToProps = (state: State): CategoriesListComponentInput => {
 	};
 };
 
+const mapDispatchToProps = (dispatch: Dispatch): CategoriesListComponentOutput => {
+
+	return {
+		loadCategoryDetails: (category) => {
+			dispatch(loadCategoryDetails(category));
+		}
+	};
+};
+
 /**
  * Container component that handles Redux state for CategoriesListComponent
  */
 export const CategoriesListContainer = connect(
 	mapStateToProps,
-	null
+	mapDispatchToProps
 )(CategoriesListComponent);

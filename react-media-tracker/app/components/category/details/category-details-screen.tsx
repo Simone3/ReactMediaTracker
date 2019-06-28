@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { CategoryFormContainer } from 'app/containers/category/details/category-form';
-import { NavigationInjectedProps } from 'react-navigation';
+import { navigationService } from 'app/utilities/navigation-service';
 
 const styles = StyleSheet.create({
 	container: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
  * "view category data" sections
  */
-export class CategoryDetailsScreenComponent extends Component<NavigationInjectedProps & CategoryDetailsScreenComponentInput & CategoryDetailsScreenComponentOutput> {
+export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScreenComponentInput & CategoryDetailsScreenComponentOutput> {
 	
 	/**
 	 * React Navigation settings
@@ -35,7 +35,7 @@ export class CategoryDetailsScreenComponent extends Component<NavigationInjected
 
 			// When save is completed, invalidate the list to trigger a reload and go back to the list
 			this.props.invalidateCategoriesList();
-			this.props.navigation.goBack();
+			navigationService.back();
 		}
 	}
 

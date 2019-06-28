@@ -1,6 +1,14 @@
 import React, { Component, ReactNode } from 'react';
-import { Text } from 'react-native';
+import { Text, Button, View, StyleSheet } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	}
+});
 
 /**
  * Presentational component to display a generic category row
@@ -14,15 +22,19 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 
 		const {
 			category,
-			edit: onEdit
+			edit
 		} = this.props;
 
 		return (
-			<Text
-				style={{ color: category.color }}
-				onPress={onEdit}>
-				{category.mediaType} - {category.name}
-			</Text>
+			<View style={styles.container}>
+				<Text style={{ color: category.color }}>
+					{category.mediaType} - {category.name}
+				</Text>
+				<Button
+					title='Edit'
+					onPress={edit}
+				/>
+			</View>
 		);
 	}
 }
@@ -44,7 +56,7 @@ export type CategoryRowComponentInput = {
 export type CategoryRowComponentOutput = {
 
 	/**
-	 * The callback to edit the category
+	 * Callback to edit the category
 	 */
 	edit: () => void;
 };

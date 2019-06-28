@@ -1,9 +1,9 @@
 import React, { Component, ReactNode } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { AppRoutes } from 'app/containers/navigation';
-import { NavigationInjectedProps } from 'react-navigation';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/category';
+import { navigationService } from 'app/utilities/navigation-service';
 
 const styles = StyleSheet.create({
 	container: {
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
  */
-export class CategoriesListScreenComponent extends Component<NavigationInjectedProps & CategoriesListScreenComponentInput & CategoriesListScreenComponentOutput> {
+export class CategoriesListScreenComponent extends Component<CategoriesListScreenComponentInput & CategoriesListScreenComponentOutput> {
 	
 	/**
 	 * React Navigation settings
@@ -86,17 +86,12 @@ export class CategoriesListScreenComponent extends Component<NavigationInjectedP
 		
 		return (
 			<View style={styles.container}>
-				<CategoriesListContainer
-					editCategory={(category) => {
-						this.props.loadCategoryDetails(category);
-						this.props.navigation.navigate(AppRoutes.CategoryDetails);
-					}}
-				/>
+				<CategoriesListContainer/>
 				<TouchableOpacity
 					style={styles.fab}
 					onPress={() => {
 						this.props.loadNewCategoryDetails();
-						this.props.navigation.navigate(AppRoutes.CategoryDetails);
+						navigationService.navigate(AppRoutes.CategoryDetails);
 					}}>
 					<Text style={styles.text}>+</Text>
 				</TouchableOpacity>
