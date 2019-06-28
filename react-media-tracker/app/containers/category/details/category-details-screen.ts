@@ -8,7 +8,7 @@ const mapStateToProps = (state: State): CategoryDetailsScreenComponentInput => {
 	
 	return {
 		isSaving: state.categoryDetails.isSaving,
-		saveCompleted: state.categoryDetails.saveCompleted
+		wasSaved: state.categoryDetails.saveCompleted
 	};
 };
 

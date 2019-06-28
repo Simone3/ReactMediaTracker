@@ -120,12 +120,12 @@ export class CategoriesListScreenComponent extends Component<NavigationInjectedP
 export type CategoriesListScreenComponentInput = {
 	
 	/**
-	 * Flag to show the loading screen
+	 * Flag to tell if the categories list is currently being fetched. If true, shows the loading screen.
 	 */
 	isFetching: boolean;
 
 	/**
-	 * Flag to request a new list reload
+	 * Flag to tell if the categories list was invalidated. If true, requests a new reload.
 	 */
 	requiresReload: boolean;
 }
@@ -147,6 +147,7 @@ export type CategoriesListScreenComponentOutput = {
 
 	/**
 	 * Callback to load the details of an existing category
+	 * @param category the existing category
 	 */
 	loadCategoryDetails: (category: CategoryInternal) => void;
 }

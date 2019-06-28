@@ -14,7 +14,7 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 
 		const {
 			category,
-			onEdit
+			edit: onEdit
 		} = this.props;
 
 		return (
@@ -46,6 +46,6 @@ export type CategoryRowComponentOutput = {
 	/**
 	 * The callback to edit the category
 	 */
-	onEdit: () => void;
+	edit: () => void;
 };
 

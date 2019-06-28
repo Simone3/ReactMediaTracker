@@ -63,7 +63,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 					return (
 						<CategoryRowComponent
 							category={item}
-							onEdit={() => {
+							edit={() => {
 								editCategory(item);
 							}}>
 						</CategoryRowComponent>
@@ -83,7 +83,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 export type CategoriesListComponentInput = {
 
 	/**
-	 * The categories to be displayed
+	 * The categories list to be displayed
 	 */
 	categories: CategoryInternal[];
 }
@@ -95,6 +95,7 @@ export type CategoriesListComponentOutput = {
 
 	/**
 	 * The callback to edit a category
+	 * @param category the category to edit
 	 */
 	editCategory: (category: CategoryInternal) => void;
 }

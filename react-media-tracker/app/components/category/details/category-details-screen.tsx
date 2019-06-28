@@ -31,7 +31,7 @@ export class CategoryDetailsScreenComponent extends Component<NavigationInjected
 	 */
 	public componentDidUpdate(): void {
 
-		if(this.props.saveCompleted) {
+		if(this.props.wasSaved) {
 
 			// When save is completed, invalidate the list to trigger a reload and go back to the list
 			this.props.invalidateCategoriesList();
@@ -44,7 +44,7 @@ export class CategoryDetailsScreenComponent extends Component<NavigationInjected
 	 */
 	public render(): ReactNode {
 	
-		if(this.props.saveCompleted) {
+		if(this.props.wasSaved) {
 
 			return null;
 		}
@@ -87,14 +87,14 @@ export class CategoryDetailsScreenComponent extends Component<NavigationInjected
 export type CategoryDetailsScreenComponentInput = {
 
 	/**
-	 * If true, the loading screen is shown
+	 * Flag to tell if the category is currently being saved. If true, shows the loading indicator.
 	 */
 	isSaving: boolean;
 
 	/**
-	 * If true, the component automatically navigates back
+	 * Flag to tell if the category was successfully saved. If true, navigates back the stack.
 	 */
-	saveCompleted: boolean;
+	wasSaved: boolean;
 }
 
 /**
@@ -103,7 +103,7 @@ export type CategoryDetailsScreenComponentInput = {
 export type CategoryDetailsScreenComponentOutput = {
 
 	/**
-	 * Triggered when the component requests the categories list to be invalidated, e.g. because it changed one of them
+	 * Callback to invalidate the categories list, e.g. because the component changed one of them
 	 */
 	invalidateCategoriesList: () => void;
 }

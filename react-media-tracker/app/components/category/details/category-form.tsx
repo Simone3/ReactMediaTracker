@@ -50,7 +50,8 @@ export type CategoryFormComponentInput = {
 export type CategoryFormComponentOutput = {
 
 	/**
-	 * Triggered when the component requests the category save operation
+	 * Callback to save the category
+	 * @param category the category to be saved
 	 */
 	saveCategory: (category: CategoryInternal) => void;
 }
