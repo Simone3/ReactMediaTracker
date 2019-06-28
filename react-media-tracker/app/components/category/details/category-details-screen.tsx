@@ -33,8 +33,7 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 
 		if(this.props.wasSaved) {
 
-			// When save is completed, invalidate the list to trigger a reload and go back to the list
-			this.props.invalidateCategoriesList();
+			// When save is completed, go back to the list
 			navigationService.back();
 		}
 	}
@@ -102,8 +101,4 @@ export type CategoryDetailsScreenComponentInput = {
  */
 export type CategoryDetailsScreenComponentOutput = {
 
-	/**
-	 * Callback to invalidate the categories list, e.g. because the component changed one of them
-	 */
-	invalidateCategoriesList: () => void;
 }

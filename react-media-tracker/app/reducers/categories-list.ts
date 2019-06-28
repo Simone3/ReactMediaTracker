@@ -1,4 +1,4 @@
-import { INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category/const';
+import { COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, RECEIVE_CATEGORIES, REQUEST_CATEGORIES } from 'app/actions/category/const';
 import { ReceiveCategoriesAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
@@ -42,8 +42,9 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			};
 		}
 
-		case INVALIDATE_CATEGORIES: {
-
+		case INVALIDATE_CATEGORIES:
+		case COMPLETE_SAVING_CATEGORY: {
+		
 			return {
 				...state,
 				requiresReload: true
