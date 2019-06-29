@@ -41,7 +41,7 @@ class CategoryBackEndController implements CategoryController {
 		
 		const response = await restJsonInvoker.invoke({
 			method: 'GET',
-			url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.getAll ], {
+			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories' ], {
 				userId: config.tempToDelete.userId
 			}),
 			responseBodyClass: GetAllCategoriesResponse
@@ -63,7 +63,7 @@ class CategoryBackEndController implements CategoryController {
 	
 			await restJsonInvoker.invoke({
 				method: 'PUT',
-				url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.update ], {
+				url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/:id' ], {
 					userId: config.tempToDelete.userId,
 					id: category.id
 				}),
@@ -79,7 +79,7 @@ class CategoryBackEndController implements CategoryController {
 	
 			await restJsonInvoker.invoke({
 				method: 'POST',
-				url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.add ], {
+				url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories' ], {
 					userId: config.tempToDelete.userId
 				}),
 				requestBody: request,
@@ -95,7 +95,7 @@ class CategoryBackEndController implements CategoryController {
 
 		await restJsonInvoker.invoke({
 			method: 'DELETE',
-			url: miscUtils.buildUrl([ config.backEnd.baseUrl, config.backEnd.categories.delete ], {
+			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/:id' ], {
 				userId: config.tempToDelete.userId,
 				id: categoryId
 			}),
