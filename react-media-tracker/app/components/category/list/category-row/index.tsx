@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { Text, Button, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
 import { styles } from 'app/components/category/list/category-row/styles';
+import { i18n } from 'app/lang/lang';
 
 /**
  * Presentational component to display a generic category row
@@ -25,7 +26,7 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 					{category.mediaType} - {category.name}
 				</Text>
 				<Button
-					title='Edit'
+					title={i18n.t('category.list.edit')}
 					onPress={edit}
 				/>
 				<Button
