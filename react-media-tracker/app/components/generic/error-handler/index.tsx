@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { AppError } from 'app/models/internal/error';
 import FlashMessage, { showMessage } from 'react-native-flash-message';
 import { View } from 'react-native';
+import { styles } from 'app/components/generic/error-handler/styles';
 
 /**
  * Simple wrapper presentational component that handles global errors
@@ -34,7 +35,7 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 	public render(): ReactNode {
 
 		return (
-			<View style={{ flex: 1 }}>
+			<View style={styles.container}>
 				{this.props.children}
 				<FlashMessage position='bottom' />
 			</View>

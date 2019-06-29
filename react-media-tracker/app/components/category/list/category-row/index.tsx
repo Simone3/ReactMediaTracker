@@ -1,14 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { Text, Button, View, StyleSheet } from 'react-native';
+import { Text, Button, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'row',
-		justifyContent: 'space-between'
-	}
-});
+import { styles } from 'app/components/category/list/category-row/styles';
 
 /**
  * Presentational component to display a generic category row

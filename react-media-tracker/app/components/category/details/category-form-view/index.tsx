@@ -2,6 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { View, Button, TextInput, Text, Picker } from 'react-native';
 import { FormikProps, FormikValues, Field, FieldProps } from 'formik';
 import { MEDIA_TYPES_INTERNAL } from 'app/models/internal/category';
+import { styles } from 'app/components/category/details/category-form-view/styles';
 
 /**
  * Presentational component that contains all category form input fields, all handled by the Formik container component
@@ -58,7 +59,7 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 					return (
 						<Picker
 							selectedValue={field.value}
-							style={{ height: 50, width: 200 }}
+							style={styles.picker}
 							onValueChange={field.onChange(field.name)}>
 							<Picker.Item key='EMPTY' label='' value='' />
 							{MEDIA_TYPES_INTERNAL.map((mediaType) => {
@@ -85,7 +86,7 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 					return (
 						<Picker
 							selectedValue={field.value}
-							style={{ height: 50, width: 200 }}
+							style={styles.picker}
 							onValueChange={field.onChange(field.name)}>
 							<Picker.Item label='' value='' />
 							<Picker.Item label='blue' value='#3c82eb' />
@@ -118,7 +119,11 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 			return Object.keys(errors).map((field) => {
 
 				return (
-					<Text key={field} style={{ fontSize: 10, color: 'red' }}>{errors[field]}</Text>
+					<Text
+						key={field}
+						style={styles.errorMessage}>
+						{errors[field]}
+					</Text>
 				);
 			});
 		}

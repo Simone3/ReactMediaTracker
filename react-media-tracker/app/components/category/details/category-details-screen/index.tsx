@@ -1,17 +1,8 @@
 import React, { Component, ReactNode } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { CategoryFormContainer } from 'app/containers/category/details/category-form';
 import { navigationService } from 'app/utilities/navigation-service';
-
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 100,
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	}
-});
+import { styles } from 'app/components/category/details/category-details-screen/styles';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and

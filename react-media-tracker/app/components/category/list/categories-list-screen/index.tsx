@@ -1,34 +1,10 @@
 import React, { Component, ReactNode } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import { AppRoutes } from 'app/containers/generic/navigation';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/category';
 import { navigationService } from 'app/utilities/navigation-service';
-
-const styles = StyleSheet.create({
-	container: {
-		marginTop: 100,
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	},
-	fab: {
-		height: 50,
-		width: 50,
-		borderRadius: 200,
-		position: 'absolute',
-		bottom: 20,
-		right: 20,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#686cc3'
-	},
-	text: {
-		fontSize: 30,
-		color: 'white'
-	}
-});
+import { styles } from 'app/components/category/list/categories-list-screen/styles';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
