@@ -1,8 +1,10 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { FETCH_CATEGORIES } from 'app/actions/category/const';
-import { completeFetchingCategories, startFetchingCategories } from 'app/actions/category/generators';
+import { completeFetchingCategories, failFetchingCategories, startFetchingCategories } from 'app/actions/category/generators';
+import { setError } from 'app/actions/error/generators';
 import { categoryController } from 'app/controllers/entities/category';
 import { CategoryInternal } from 'app/models/internal/category';
+import { AppError } from 'app/models/internal/error';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -12,9 +14,18 @@ const fetchCategoriesSaga = function * (): SagaIterator {
 
 	yield put(startFetchingCategories());
 
-	const categories: CategoryInternal[] = yield call(categoryController.getAllCategories);
-	
-	yield put(completeFetchingCategories(categories));
+	try {
+
+		const categories: CategoryInternal[] = yield call(categoryController.getAllCategories);
+		
+		yield put(completeFetchingCategories(categories));
+	}
+	catch(error) {
+
+		yield put(failFetchingCategories());
+		
+		yield put(setError(AppError.BACKEND_CATEGORY_FETCH.withDetails(error)));
+	}
 };
 
 /**

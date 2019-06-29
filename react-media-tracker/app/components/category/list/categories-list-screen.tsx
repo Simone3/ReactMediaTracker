@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
-import { AppRoutes } from 'app/containers/navigation';
+import { AppRoutes } from 'app/containers/generic/navigation';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/category';
 import { navigationService } from 'app/utilities/navigation-service';

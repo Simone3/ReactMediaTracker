@@ -1,3 +1,4 @@
+import { AppError } from 'app/models/internal/error';
 import { NavigationActions, NavigationContainerComponent, NavigationParams } from 'react-navigation';
 
 /**
@@ -15,7 +16,7 @@ class NavigationService {
 		
 		if(this.navigator) {
 
-			throw new Error('Cannot initialize navigation service twice');
+			throw AppError.GENERIC.withDetails('Cannot initialize navigation service twice');
 		}
 
 		this.navigator = navigator;
@@ -30,7 +31,7 @@ class NavigationService {
 
 		if(!this.navigator) {
 
-			throw new Error('Navigation service was not initialized');
+			throw AppError.GENERIC.withDetails('Navigation service was not initialized');
 		}
 
 		this.navigator.dispatch(
@@ -48,7 +49,7 @@ class NavigationService {
 
 		if(!this.navigator) {
 
-			throw new Error('Navigation service was not initialized');
+			throw AppError.GENERIC.withDetails('Navigation service was not initialized');
 		}
 
 		this.navigator.dispatch(

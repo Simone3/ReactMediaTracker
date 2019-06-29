@@ -1,4 +1,4 @@
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, INVALIDATE_CATEGORIES, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, INVALIDATE_CATEGORIES, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
 import { CompleteFetchingCategoriesAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/category';
 import { Action } from 'redux';
@@ -43,12 +43,29 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			};
 		}
 
+		case FAIL_FETCHING_CATEGORIES: {
+
+			return {
+				...state,
+				isFetching: false,
+				categories: []
+			};
+		}
+
 		case INVALIDATE_CATEGORIES:
 		case COMPLETE_SAVING_CATEGORY: {
 		
 			return {
 				...state,
 				requiresReload: true
+			};
+		}
+
+		case START_DELETING_CATEGORY: {
+
+			return {
+				...state,
+				isDeleting: true
 			};
 		}
 
@@ -61,11 +78,11 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			};
 		}
 
-		case START_DELETING_CATEGORY: {
-
+		case FAIL_DELETING_CATEGORY: {
+		
 			return {
 				...state,
-				isDeleting: true
+				isDeleting: false
 			};
 		}
 

@@ -1,6 +1,6 @@
 import { CategoryInternal } from 'app/models/internal/category';
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, SAVE_CATEGORY, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
-import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, SaveCategoryAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, SAVE_CATEGORY, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
+import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, SaveCategoryAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -25,7 +25,7 @@ export const startFetchingCategories = (): StartFetchingCategoriesAction => {
 };
 
 /**
- * Generator for the complete fetching categories action, which marks the end of the categories list fetching operation
+ * Generator for the complete fetching categories action, which marks the successful end of the categories list fetching operation
  * @param categories the fetched categories, possibly an empty array
  * @returns the action
  */
@@ -34,6 +34,17 @@ export const completeFetchingCategories = (categories: CategoryInternal[]): Comp
 	return {
 		type: COMPLETE_FETCHING_CATEGORIES,
 		categories: categories
+	};
+};
+
+/**
+ * Generator for the complete fetching categories action, which marks the unsuccessful end of the categories list fetching operation
+ * @returns the action
+ */
+export const failFetchingCategories = (): FailFetchingCategoriesAction => {
+	
+	return {
+		type: FAIL_FETCHING_CATEGORIES
 	};
 };
 
@@ -99,13 +110,24 @@ export const startSavingCategory = (category: CategoryInternal): StartSavingCate
 };
 
 /**
- * Generator for the complete saving category action, which marks the end of the category saving operation
+ * Generator for the complete saving category action, which marks the successful end of the category saving operation
  * @returns the action
  */
 export const completeSavingCategory = (): CompleteSavingCategoryAction => {
 	
 	return {
 		type: COMPLETE_SAVING_CATEGORY
+	};
+};
+
+/**
+ * Generator for the complete saving category action, which marks the unsuccessful end of the category saving operation
+ * @returns the action
+ */
+export const failSavingCategory = (): FailSavingCategoryAction => {
+	
+	return {
+		type: FAIL_SAVING_CATEGORY
 	};
 };
 
@@ -136,12 +158,23 @@ export const startDeletingCategory = (category: CategoryInternal): StartDeleting
 };
 
 /**
- * Generator for the complete deleting category action, which marks the end of the category deleting operation
+ * Generator for the complete deleting category action, which marks the successful end of the category deleting operation
  * @returns the action
  */
 export const completeDeletingCategory = (): CompleteDeletingCategoryAction => {
 	
 	return {
 		type: COMPLETE_DELETING_CATEGORY
+	};
+};
+
+/**
+ * Generator for the complete deleting category action, which marks the unsuccessful end of the category deleting operation
+ * @returns the action
+ */
+export const failDeletingCategory = (): FailDeletingCategoryAction => {
+	
+	return {
+		type: FAIL_DELETING_CATEGORY
 	};
 };

@@ -1,8 +1,10 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { DELETE_CATEGORY } from 'app/actions/category/const';
-import { completeDeletingCategory, startDeletingCategory } from 'app/actions/category/generators';
+import { completeDeletingCategory, failDeletingCategory, startDeletingCategory } from 'app/actions/category/generators';
 import { DeleteCategoryAction } from 'app/actions/category/types';
+import { setError } from 'app/actions/error/generators';
 import { categoryController } from 'app/controllers/entities/category';
+import { AppError } from 'app/models/internal/error';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -13,9 +15,18 @@ const deleteCategorySaga = function * (action: DeleteCategoryAction): SagaIterat
 
 	yield put(startDeletingCategory(action.category));
 
-	yield call(categoryController.deleteCategory, action.category.id);
-	
-	yield put(completeDeletingCategory());
+	try {
+
+		yield call(categoryController.deleteCategory, action.category.id);
+		
+		yield put(completeDeletingCategory());
+	}
+	catch(error) {
+
+		yield put(failDeletingCategory());
+		
+		yield put(setError(AppError.BACKEND_CATEGORY_DELETE.withDetails(error)));
+	}
 };
 
 /**

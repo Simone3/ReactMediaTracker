@@ -6,6 +6,7 @@ export type Config = {
 		userId: string;
 	};
 	backEnd: {
+		defaultTimeoutMilliseconds: number;
 		baseUrl: string;
 		categories: {
 			getAll: string;

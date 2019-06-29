@@ -1,4 +1,4 @@
-import { COMPLETE_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, START_SAVING_CATEGORY } from 'app/actions/category/const';
+import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, START_SAVING_CATEGORY } from 'app/actions/category/const';
 import { LoadCategoryAction, StartSavingCategoryAction } from 'app/actions/category/types';
 import { CategoryDetailsState, DEFAULT_CATEGORY } from 'app/models/internal/category';
 import { Action } from 'redux';
@@ -60,6 +60,14 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 				isSaving: false,
 				saveCompleted: true,
 				category: undefined
+			};
+		}
+	
+		case FAIL_SAVING_CATEGORY: {
+
+			return {
+				...state,
+				isSaving: false
 			};
 		}
 

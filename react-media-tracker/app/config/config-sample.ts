@@ -8,6 +8,7 @@ export const sampleConfig: Config = {
 		userId: '<temp_user_id>'
 	},
 	backEnd: {
+		defaultTimeoutMilliseconds: 5000,
 		baseUrl: '<backend_server_url>',
 		categories: {
 			getAll: '/users/:userId/categories',

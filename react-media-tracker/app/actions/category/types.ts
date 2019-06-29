@@ -24,6 +24,13 @@ export type CompleteFetchingCategoriesAction = Action & {
 };
 
 /**
+ * The fail fetching categories action
+ */
+export type FailFetchingCategoriesAction = Action & {
+	
+};
+
+/**
  * The invalidate categories action
  */
 export type InvalidateCategoriesAction = Action & {
@@ -69,6 +76,13 @@ export type CompleteSavingCategoryAction = Action & {
 };
 
 /**
+ * The fail saving category action
+ */
+export type FailSavingCategoryAction = Action & {
+	
+};
+
+/**
  * The delete category action
  */
 export type DeleteCategoryAction = Action & {
@@ -88,5 +102,12 @@ export type StartDeletingCategoryAction = Action & {
  * The complete deleting category action
  */
 export type CompleteDeletingCategoryAction = Action & {
+	
+};
+
+/**
+ * The fail deleting category action
+ */
+export type FailDeletingCategoryAction = Action & {
 	
 };

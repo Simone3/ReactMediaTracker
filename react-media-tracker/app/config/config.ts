@@ -1,5 +1,6 @@
 import { devConfig } from 'app/config/config-dev';
 import { Config } from 'app/config/type-config';
+import { AppError } from 'app/models/internal/error';
 import ReactNativeConfig from 'react-native-config';
 
 /**
@@ -24,7 +25,7 @@ switch(environment) {
 		break;
 
 	default:
-		throw new Error(`MEDIA_TRACKER_APP_ENV property is not set or is not recognized: ${environment}`);
+		throw AppError.GENERIC.withDetails(`MEDIA_TRACKER_APP_ENV property is not set or is not recognized: ${environment}`);
 }
 
 /**

@@ -1,8 +1,10 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { SAVE_CATEGORY } from 'app/actions/category/const';
-import { completeSavingCategory, startSavingCategory } from 'app/actions/category/generators';
+import { completeSavingCategory, failSavingCategory, startSavingCategory } from 'app/actions/category/generators';
 import { SaveCategoryAction } from 'app/actions/category/types';
+import { setError } from 'app/actions/error/generators';
 import { categoryController } from 'app/controllers/entities/category';
+import { AppError } from 'app/models/internal/error';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -13,9 +15,18 @@ const saveCategorySaga = function * (action: SaveCategoryAction): SagaIterator {
 
 	yield put(startSavingCategory(action.category));
 
-	yield call(categoryController.saveCategory, action.category);
-	
-	yield put(completeSavingCategory());
+	try {
+
+		yield call(categoryController.saveCategory, action.category);
+		
+		yield put(completeSavingCategory());
+	}
+	catch(error) {
+
+		yield put(failSavingCategory());
+		
+		yield put(setError(AppError.BACKEND_CATEGORY_SAVE.withDetails(error)));
+	}
 };
 
 /**
