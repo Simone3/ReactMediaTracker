@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { AppRoutes } from 'app/containers/generic/navigation';
+import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/category';
 import { navigationService } from 'app/utilities/navigation-service';
@@ -68,7 +68,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 					style={styles.fab}
 					onPress={() => {
 						this.props.loadNewCategoryDetails();
-						navigationService.navigate(AppRoutes.CategoryDetails);
+						navigationService.navigate(AppScreens.CategoryDetails);
 					}}>
 					<Text style={styles.text}>+</Text>
 				</TouchableOpacity>

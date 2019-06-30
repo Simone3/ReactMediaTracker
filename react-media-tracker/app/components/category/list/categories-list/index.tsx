@@ -3,7 +3,7 @@ import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/category';
 import { CategoryRowComponent } from 'app/components/category/list/category-row';
 import { navigationService } from 'app/utilities/navigation-service';
-import { AppRoutes } from 'app/containers/generic/navigation';
+import { AppScreens } from 'app/utilities/screens';
 import { i18n } from 'app/lang/lang';
 
 /**
@@ -69,7 +69,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 							category={item}
 							edit={() => {
 								loadCategoryDetails(item);
-								navigationService.navigate(AppRoutes.CategoryDetails);
+								navigationService.navigate(AppScreens.CategoryDetails);
 							}}
 							delete={() => {
 								deleteCategory(item);

@@ -1,23 +1,16 @@
 import { CategoryDetailsScreenContainer } from 'app/containers/category/details/category-details-screen';
 import { CategoriesListScreenContainer } from 'app/containers/category/list/categories-list-screen';
+import { AppScreens } from 'app/utilities/screens';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
-
-/**
- * Util object to extract all route names as constants
- */
-export const AppRoutes = {
-	CategoryList: 'CategoryList',
-	CategoryDetails: 'CategoryDetails'
-};
 
 /**
  * The application navigator
  */
 const AppNavigator = createStackNavigator({
-	[AppRoutes.CategoryList]: CategoriesListScreenContainer,
-	[AppRoutes.CategoryDetails]: CategoryDetailsScreenContainer
+	[AppScreens.CategoryList]: CategoriesListScreenContainer,
+	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer
 }, {
-	initialRouteName: AppRoutes.CategoryList
+	initialRouteName: AppScreens.CategoryList
 });
 
 /**
