@@ -4,6 +4,7 @@ import { CategoryInternal } from 'app/models/internal/category';
 import { CategoryRowComponent } from 'app/components/category/list/category-row';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppRoutes } from 'app/containers/generic/navigation';
+import { i18n } from 'app/lang/lang';
 
 /**
  * Presentational component to display the list of user categories
@@ -44,7 +45,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 	 */
 	private renderNone(): ReactNode {
 
-		return <Text>No Categories</Text>;
+		return <Text>{i18n.t('category.list.empty')}</Text>;
 	}
 
 	/**

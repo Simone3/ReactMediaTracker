@@ -5,6 +5,7 @@ import { CategoriesListContainer } from 'app/containers/category/list/categories
 import { CategoryInternal } from 'app/models/internal/category';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/list/categories-list-screen/styles';
+import { i18n } from 'app/lang/lang';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -15,7 +16,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 * React Navigation settings
 	 */
 	public static readonly navigationOptions = {
-		title: 'Categories'
+		title: i18n.t('category.list.title')
 	};
 
 	/**
@@ -81,7 +82,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	private renderLoading(): ReactNode {
 
-		return <Text>Fetching...</Text>;
+		return <Text>Fetching... Replace with loading image...</Text>;
 	}
 }
 

@@ -3,13 +3,13 @@
  */
 export class AppError extends Error {
 
-	public static GENERIC = new AppError('generic.application', 'A generic application error occurred');
-	public static BACKEND_TIMEOUT = new AppError('backend.timeout', 'A connection with the server cannot be established, check your connection and try again later');
-	public static BACKEND_GENERIC_ERROR = new AppError('backend.generic', 'The server returned a generic error');
-	public static BACKEND_PARSE = new AppError('backend.parse', 'The server returned an unknown response');
-	public static BACKEND_CATEGORY_FETCH = new AppError('backend.category.fetch', 'Cannot fetch categories from the server');
-	public static BACKEND_CATEGORY_SAVE = new AppError('backend.category.save', 'Cannot save the category to the server, check your input');
-	public static BACKEND_CATEGORY_DELETE = new AppError('backend.category.delete', 'Cannot delete the category from the server');
+	public static GENERIC = new AppError('generic.application', 'error.flash.messages.genericApplication');
+	public static BACKEND_TIMEOUT = new AppError('backend.timeout', 'error.flash.messages.backendTimeout');
+	public static BACKEND_GENERIC_ERROR = new AppError('backend.generic', 'error.flash.messages.backendGeneric');
+	public static BACKEND_PARSE = new AppError('backend.parse', 'error.flash.messages.backendParse');
+	public static BACKEND_CATEGORY_FETCH = new AppError('backend.category.fetch', 'error.flash.messages.backendCategoryFetch');
+	public static BACKEND_CATEGORY_SAVE = new AppError('backend.category.save', 'error.flash.messages.backendCategorySave');
+	public static BACKEND_CATEGORY_DELETE = new AppError('backend.category.delete', 'error.flash.messages.backendCategoryDelete');
 	
 	private _errorCode: string;
 	private _errorDescription: string;

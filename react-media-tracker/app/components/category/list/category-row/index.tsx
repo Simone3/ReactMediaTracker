@@ -30,7 +30,7 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 					onPress={edit}
 				/>
 				<Button
-					title='Del'
+					title={i18n.t('category.list.delete')}
 					onPress={deleteCallback}
 				/>
 			</View>

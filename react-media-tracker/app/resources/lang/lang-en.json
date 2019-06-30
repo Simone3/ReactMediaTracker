@@ -1,7 +1,49 @@
 {
+	"error": {
+		"flash": {
+			"title": "Error",
+			"messages": {
+				"genericApplication": "A generic application error occurred",
+				"backendTimeout": "A connection with the server cannot be established, check your connection and try again later",
+				"backendGeneric": "The server returned a generic error",
+				"backendParse": "The server returned an unknown response",
+				"backendCategoryFetch": "Cannot fetch categories from the server",
+				"backendCategorySave": "Cannot save the category to the server, check your input",
+				"backendCategoryDelete": "Cannot delete the category from the server"
+			}
+		}
+	},
 	"category": {
 		"list": {
-			"edit": "Edit"
+			"title": "Categories",
+			"empty": "No categories",
+			"edit": "Edit",
+			"delete": "Del"
+		},
+		"details": {
+			"title": "Category",
+			"placeholders": {
+				"name": "Name"
+			},
+			"validation": {
+				"name": {
+					"required": "Name is required"
+				},
+				"mediaType": {
+					"required": "Media Type is required",
+					"invalid": "Invalid Media Type"
+				},
+				"color": {
+					"required": "Color is required"
+				}				
+			},
+			"save": "Save"
+		},
+		"mediaTypes": {
+			"BOOK": "Books",
+			"MOVIE": "Movies",
+			"TV_SHOW": "TV Shows",
+			"VIDEOGAME": "Videogames"
 		}
 	}
 }

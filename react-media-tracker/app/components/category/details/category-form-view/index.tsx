@@ -3,6 +3,7 @@ import { View, Button, TextInput, Text, Picker } from 'react-native';
 import { FormikProps, FormikValues, Field, FieldProps } from 'formik';
 import { MEDIA_TYPES_INTERNAL } from 'app/models/internal/category';
 import { styles } from 'app/components/category/details/category-form-view/styles';
+import { i18n } from 'app/lang/lang';
 
 /**
  * Presentational component that contains all category form input fields, all handled by the Formik container component
@@ -39,7 +40,7 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 							onChangeText={field.onChange(field.name)}
 							onBlur={field.onBlur(field.name)}
 							value={field.value}
-							placeholder='Name'
+							placeholder={i18n.t('category.details.placeholders.name')}
 						/>
 					);
 				}}
@@ -61,10 +62,18 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 							selectedValue={field.value}
 							style={styles.picker}
 							onValueChange={field.onChange(field.name)}>
-							<Picker.Item key='EMPTY' label='' value='' />
+							<Picker.Item
+								key='EMPTY'
+								label=''
+								value=''
+							/>
 							{MEDIA_TYPES_INTERNAL.map((mediaType) => {
 								return (
-									<Picker.Item key={mediaType} label={mediaType} value={mediaType} />
+									<Picker.Item
+										key={mediaType}
+										label={i18n.t(`category.mediaTypes.${mediaType}`)}
+										value={mediaType}
+									/>
 								);
 							})}
 						</Picker>
@@ -146,7 +155,7 @@ export class CategoryFormViewComponent extends Component<FormikProps<FormikValue
 
 		return (
 			<Button
-				title='Save'
+				title={i18n.t('category.details.save')}
 				onPress={handleSubmit}
 				disabled={!isValid}
 			/>

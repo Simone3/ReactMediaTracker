@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { CategoryFormContainer } from 'app/containers/category/details/category-form';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/details/category-details-screen/styles';
+import { i18n } from 'app/lang/lang';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
@@ -14,7 +15,7 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	 * React Navigation settings
 	 */
 	public static readonly navigationOptions = {
-		title: 'Category Form'
+		title: i18n.t('category.details.title')
 	};
 
 	/**
@@ -67,7 +68,7 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	 */
 	private renderLoading(): ReactNode {
 
-		return <Text>Saving...</Text>;
+		return <Text>Saving... Replace this with loading image...</Text>;
 	}
 }
 
