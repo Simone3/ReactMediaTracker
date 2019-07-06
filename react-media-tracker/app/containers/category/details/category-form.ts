@@ -2,7 +2,7 @@
 import { saveCategory } from 'app/actions/category/generators';
 import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/category/details/category-form';
 import { AppError } from 'app/models/internal/error';
-import { State } from 'app/models/internal/state';
+import { State } from 'app/models/internal/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

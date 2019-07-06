@@ -1,6 +1,6 @@
 import { clearError } from 'app/actions/error/generators';
 import { ErrorHandlerComponent, ErrorHandlerComponentInput, ErrorHandlerComponentOutput } from 'app/components/generic/error-handler';
-import { State } from 'app/models/internal/state';
+import { State } from 'app/models/internal/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

@@ -1,6 +1,7 @@
 import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, START_SAVING_CATEGORY } from 'app/actions/category/const';
 import { LoadCategoryAction, StartSavingCategoryAction } from 'app/actions/category/types';
-import { CategoryDetailsState, DEFAULT_CATEGORY } from 'app/models/internal/category';
+import { DEFAULT_CATEGORY } from 'app/models/internal/entities/category';
+import { CategoryDetailsState } from 'app/models/internal/state/category';
 import { Action } from 'redux';
 
 /**

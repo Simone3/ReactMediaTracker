@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { FlatList, Text, View } from 'react-native';
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 import { CategoryRowComponent } from 'app/components/category/list/category-row';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';

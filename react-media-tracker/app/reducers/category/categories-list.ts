@@ -1,6 +1,6 @@
 import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, INVALIDATE_CATEGORIES, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
 import { CompleteFetchingCategoriesAction } from 'app/actions/category/types';
-import { CategoriesListState } from 'app/models/internal/category';
+import { CategoriesListState } from 'app/models/internal/state/category';
 import { Action } from 'redux';
 
 /**

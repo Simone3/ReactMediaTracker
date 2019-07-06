@@ -1,6 +1,6 @@
 import { deleteCategory, loadCategoryDetails } from 'app/actions/category/generators';
 import { CategoriesListComponent, CategoriesListComponentInput, CategoriesListComponentOutput } from 'app/components/category/list/categories-list';
-import { State } from 'app/models/internal/state';
+import { State } from 'app/models/internal/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

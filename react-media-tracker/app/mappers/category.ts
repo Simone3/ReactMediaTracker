@@ -1,6 +1,6 @@
 import { ModelMapper } from 'app/mappers/common';
 import { IdentifiedCategory } from 'app/models/api/category';
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 
 /**
  * Mapper for categories

@@ -1,5 +1,5 @@
-import { CategoriesListState, CategoryDetailsState } from 'app/models/internal/category';
 import { ErrorState } from 'app/models/internal/error';
+import { CategoriesListState, CategoryDetailsState } from 'app/models/internal/state/category';
 
 /**
  * The global application state (handled by Redux)

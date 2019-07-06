@@ -1,4 +1,4 @@
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 import { Action } from 'redux';
 
 /**

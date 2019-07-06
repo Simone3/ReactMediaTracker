@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { Text, Button, View } from 'react-native';
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 import { styles } from 'app/components/category/list/category-row/styles';
 import { i18n } from 'app/lang/lang';
 

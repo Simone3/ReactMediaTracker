@@ -1,4 +1,4 @@
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, SAVE_CATEGORY, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
 import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, SaveCategoryAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
 

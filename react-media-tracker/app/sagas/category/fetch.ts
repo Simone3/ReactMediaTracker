@@ -3,7 +3,7 @@ import { FETCH_CATEGORIES } from 'app/actions/category/const';
 import { completeFetchingCategories, failFetchingCategories, startFetchingCategories } from 'app/actions/category/generators';
 import { setError } from 'app/actions/error/generators';
 import { categoryController } from 'app/controllers/entities/category';
-import { CategoryInternal } from 'app/models/internal/category';
+import { CategoryInternal } from 'app/models/internal/entities/category';
 import { AppError } from 'app/models/internal/error';
 import { SagaIterator } from 'redux-saga';
 

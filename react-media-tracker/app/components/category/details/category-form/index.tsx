@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { Formik } from 'formik';
 import { string, object } from 'yup';
 import { CategoryFormViewComponent } from 'app/components/category/details/category-form-view';
-import { MEDIA_TYPES_INTERNAL, CategoryInternal } from 'app/models/internal/category';
+import { MEDIA_TYPES_INTERNAL, CategoryInternal } from 'app/models/internal/entities/category';
 import { i18n } from 'app/lang/lang';
 
 /**

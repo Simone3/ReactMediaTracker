@@ -7,10 +7,10 @@ import { createAppContainer, createStackNavigator } from 'react-navigation';
  * The application navigator
  */
 const AppNavigator = createStackNavigator({
-	[AppScreens.CategoryList]: CategoriesListScreenContainer,
+	[AppScreens.CategoriesList]: CategoriesListScreenContainer,
 	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer
 }, {
-	initialRouteName: AppScreens.CategoryList
+	initialRouteName: AppScreens.CategoriesList
 });
 
 /**
