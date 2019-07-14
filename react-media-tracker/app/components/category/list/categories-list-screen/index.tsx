@@ -6,6 +6,7 @@ import { CategoryInternal } from 'app/models/internal/entities/category';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/list/categories-list-screen/styles';
 import { i18n } from 'app/lang/lang';
+import { FABComponent } from 'app/components/generic/floating-action-button';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -64,14 +65,13 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 		return (
 			<View style={styles.container}>
 				<CategoriesListContainer/>
-				<TouchableOpacity
-					style={styles.fab}
+				<FABComponent
+					text={'+'}
 					onPress={() => {
 						this.props.loadNewCategoryDetails();
 						navigationService.navigate(AppScreens.CategoryDetails);
-					}}>
-					<Text style={styles.text}>+</Text>
-				</TouchableOpacity>
+					}}
+				/>
 			</View>
 		);
 	}
