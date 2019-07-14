@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -8,12 +9,16 @@ export const styles = StyleSheet.create({
 		position: 'absolute',
 		bottom: 20,
 		right: 20,
+		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
-		backgroundColor: '#686cc3'
+		backgroundColor: config.ui.colors.colorAccent
 	},
 	text: {
+		textAlign: 'center',
+		textAlignVertical: 'center',
 		fontSize: 30,
-		color: 'white'
+		color: 'white',
+		marginBottom: 4
 	}
 });

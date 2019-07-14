@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/entities/category';
