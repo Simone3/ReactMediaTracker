@@ -9,4 +9,11 @@ export type Config = {
 		defaultTimeoutMilliseconds: number;
 		baseUrl: string;
 	};
+	ui: {
+		colors: {
+			colorPrimary: string;
+			colorPrimaryDark: string;
+			colorAccent: string;
+		};
+	};
 }

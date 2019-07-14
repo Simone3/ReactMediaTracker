@@ -10,5 +10,12 @@ export const sampleConfig: Config = {
 	backEnd: {
 		defaultTimeoutMilliseconds: 5000,
 		baseUrl: '<backend_server_url>'
+	},
+	ui: {
+		colors: {
+			colorPrimary: '#3F51B5',
+			colorPrimaryDark: '#303F9F',
+			colorAccent: '#408cff'
+		}
 	}
 };
