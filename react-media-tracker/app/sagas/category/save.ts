@@ -17,7 +17,7 @@ const saveCategorySaga = function * (action: SaveCategoryAction): SagaIterator {
 
 	try {
 
-		yield call(categoryController.saveCategory, action.category);
+		yield call(categoryController.saveCategory.bind(categoryController), action.category);
 		
 		yield put(completeSavingCategory());
 	}

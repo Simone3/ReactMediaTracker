@@ -16,7 +16,7 @@ const fetchCategoriesSaga = function * (): SagaIterator {
 
 	try {
 
-		const categories: CategoryInternal[] = yield call(categoryController.getAllCategories);
+		const categories: CategoryInternal[] = yield call(categoryController.getAllCategories.bind(categoryController));
 		
 		yield put(completeFetchingCategories(categories));
 	}

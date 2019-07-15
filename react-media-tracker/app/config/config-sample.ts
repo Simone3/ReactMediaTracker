@@ -17,5 +17,8 @@ export const sampleConfig: Config = {
 			colorPrimaryDark: '#303F9F',
 			colorAccent: '#408cff'
 		}
+	},
+	mocks: {
+		categories: false
 	}
 };

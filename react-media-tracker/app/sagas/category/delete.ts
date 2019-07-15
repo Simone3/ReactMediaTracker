@@ -17,7 +17,7 @@ const deleteCategorySaga = function * (action: DeleteCategoryAction): SagaIterat
 
 	try {
 
-		yield call(categoryController.deleteCategory, action.category.id);
+		yield call(categoryController.deleteCategory.bind(categoryController), action.category.id);
 		
 		yield put(completeDeletingCategory());
 	}

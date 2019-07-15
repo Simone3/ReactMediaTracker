@@ -16,4 +16,7 @@ export type Config = {
 			colorAccent: string;
 		};
 	};
+	mocks: {
+		categories: boolean;
+	};
 }
