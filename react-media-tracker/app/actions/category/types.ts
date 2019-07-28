@@ -111,3 +111,18 @@ export type CompleteDeletingCategoryAction = Action & {
 export type FailDeletingCategoryAction = Action & {
 	
 };
+
+/**
+ * The highlight category action
+ */
+export type HighlightCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The remove category highlight action
+ */
+export type RemoveCategoryHighlightAction = Action & {
+	
+};

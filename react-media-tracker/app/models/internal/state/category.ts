@@ -24,6 +24,11 @@ export type CategoriesListState = {
 	 * Flag to tell if the categories list was marked as invalid, i.e. it requires a reload
 	 */
 	readonly requiresReload: boolean;
+
+	/**
+	 * The currently highlighted (e.g. context menu is open) category, or undefined if none is highlighted
+	 */
+	readonly highlightedCategory: CategoryInternal | undefined;
 }
 
 /**

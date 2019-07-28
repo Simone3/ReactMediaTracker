@@ -1,5 +1,5 @@
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, INVALIDATE_CATEGORIES, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
-import { CompleteFetchingCategoriesAction } from 'app/actions/category/types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, REMOVE_CATEGORY_HIGHTLIGHT, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/actions/category/const';
+import { CompleteFetchingCategoriesAction, HighlightCategoryAction } from 'app/actions/category/types';
 import { CategoriesListState } from 'app/models/internal/state/category';
 import { Action } from 'redux';
 
@@ -10,7 +10,8 @@ const initialCategories: CategoriesListState = {
 	categories: [],
 	isFetching: false,
 	isDeleting: false,
-	requiresReload: false
+	requiresReload: false,
+	highlightedCategory: undefined
 };
 
 /**
@@ -83,6 +84,24 @@ export const categoriesList = (state: CategoriesListState = initialCategories, a
 			return {
 				...state,
 				isDeleting: false
+			};
+		}
+
+		case HIGHLIGHT_CATEGORY: {
+
+			const highlightCategoryAction = action as HighlightCategoryAction;
+
+			return {
+				...state,
+				highlightedCategory: highlightCategoryAction.category
+			};
+		}
+
+		case REMOVE_CATEGORY_HIGHTLIGHT: {
+
+			return {
+				...state,
+				highlightedCategory: undefined
 			};
 		}
 
