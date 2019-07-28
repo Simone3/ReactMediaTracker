@@ -1,4 +1,4 @@
-import { deleteCategory, loadCategoryDetails } from 'app/actions/category/generators';
+import { highlightCategory } from 'app/actions/category/generators';
 import { CategoriesListComponent, CategoriesListComponentInput, CategoriesListComponentOutput } from 'app/components/category/list/categories-list';
 import { State } from 'app/models/internal/state/state';
 import { connect } from 'react-redux';
@@ -14,11 +14,8 @@ const mapStateToProps = (state: State): CategoriesListComponentInput => {
 const mapDispatchToProps = (dispatch: Dispatch): CategoriesListComponentOutput => {
 
 	return {
-		loadCategoryDetails: (category) => {
-			dispatch(loadCategoryDetails(category));
-		},
-		deleteCategory: (category) => {
-			dispatch(deleteCategory(category));
+		highlightCategory: (category) => {
+			dispatch(highlightCategory(category));
 		}
 	};
 };

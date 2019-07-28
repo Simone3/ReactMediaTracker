@@ -17,8 +17,8 @@
 		"list": {
 			"title": "Media Tracker",
 			"empty": "No categories",
-			"edit": "Edit",
-			"delete": "Del"
+			"edit": "Edit Category",
+			"delete": "Delete Category"
 		},
 		"details": {
 			"title": "Category",

@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/containers/category/list/categories-list';
 import { CategoryInternal } from 'app/models/internal/entities/category';
@@ -7,6 +7,7 @@ import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/list/categories-list-screen/styles';
 import { i18n } from 'app/lang/lang';
 import { FABComponent } from 'app/components/generic/floating-action-button';
+import { LoadingIndicatorComponent } from 'app/components/generic/loading-indicator';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -46,22 +47,6 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	public render(): ReactNode {
 		
-		if(this.props.isLoading) {
-
-			return this.renderLoading();
-		}
-		else {
-
-			return this.renderScreen();
-		}
-	}
-
-	/**
-	 * Helper to render the complete list screen
-	 * @returns the node portion
-	 */
-	public renderScreen(): ReactNode {
-		
 		return (
 			<View style={styles.container}>
 				<CategoriesListContainer/>
@@ -72,17 +57,11 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 						navigationService.navigate(AppScreens.CategoryDetails);
 					}}
 				/>
+				<LoadingIndicatorComponent
+					visible={this.props.isLoading}
+				/>
 			</View>
 		);
-	}
-
-	/**
-	 * Helper method to render the loading screen
-	 * @returns the node portion
-	 */
-	private renderLoading(): ReactNode {
-
-		return <Text>Fetching... Replace with loading image...</Text>;
 	}
 }
 

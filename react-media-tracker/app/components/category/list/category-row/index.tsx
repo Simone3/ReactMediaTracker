@@ -1,8 +1,8 @@
 import React, { Component, ReactNode } from 'react';
-import { Text, Button, View } from 'react-native';
+import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/entities/category';
 import { styles } from 'app/components/category/list/category-row/styles';
-import { i18n } from 'app/lang/lang';
+import { CategoryIconComponent } from 'app/components/category/common/category-icon';
 
 /**
  * Presentational component to display a generic category row
@@ -15,25 +15,26 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 	public render(): ReactNode {
 
 		const {
-			category,
-			edit,
-			delete: deleteCallback
+			category
 		} = this.props;
-
+		
 		return (
-			<View style={styles.container}>
-				<Text style={{ color: category.color }}>
-					{category.mediaType} - {category.name}
-				</Text>
-				<Button
-					title={i18n.t('category.list.edit')}
-					onPress={edit}
-				/>
-				<Button
-					title={i18n.t('category.list.delete')}
-					onPress={deleteCallback}
-				/>
-			</View>
+			<TouchableWithoutFeedback onLongPress={this.props.showOptionsMenu}>
+				<View style={[ styles.container, { backgroundColor: category.color }]}>
+					<View style={styles.iconContainer}>
+						<CategoryIconComponent
+							category={category}
+							style={styles.icon}
+							resizeMode='center'
+						/>
+					</View>
+					<View style={styles.nameContainer}>
+						<Text style={styles.name} numberOfLines={1}>
+							{category.name}
+						</Text>
+					</View>
+				</View>
+			</TouchableWithoutFeedback>
 		);
 	}
 }
@@ -55,13 +56,8 @@ export type CategoryRowComponentInput = {
 export type CategoryRowComponentOutput = {
 
 	/**
-	 * Callback to edit the category
+	 * Callback to open the options context menu (with e.g. the edit button)
 	 */
-	edit: () => void;
-	
-	/**
-	 * Callback to delete the category
-	 */
-	delete: () => void;
+	showOptionsMenu: () => void;
 };
 

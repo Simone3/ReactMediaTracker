@@ -2,9 +2,9 @@ import React, { Component, ReactNode } from 'react';
 import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/models/internal/entities/category';
 import { CategoryRowComponent } from 'app/components/category/list/category-row';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens } from 'app/utilities/screens';
 import { i18n } from 'app/lang/lang';
+import { styles } from 'app/components/category/list/categories-list/styles';
+import { CategoryModalContainer } from 'app/containers/category/list/category-modal';
 
 /**
  * Presentational component to display the list of user categories
@@ -45,7 +45,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 	 */
 	private renderNone(): ReactNode {
 
-		return <Text>{i18n.t('category.list.empty')}</Text>;
+		return <Text style={styles.emptyMessage}>{i18n.t('category.list.empty')}</Text>;
 	}
 
 	/**
@@ -56,31 +56,30 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 
 		const {
 			categories,
-			loadCategoryDetails,
-			deleteCategory
+			highlightCategory
 		} = this.props;
 
 		return (
-			<FlatList
-				data={categories}
-				renderItem={({ item }) => {
-					return (
-						<CategoryRowComponent
-							category={item}
-							edit={() => {
-								loadCategoryDetails(item);
-								navigationService.navigate(AppScreens.CategoryDetails);
-							}}
-							delete={() => {
-								deleteCategory(item);
-							}}>
-						</CategoryRowComponent>
-					);
-				}}
-				keyExtractor={(item) => {
-					return item.id;
-				}}
-			/>
+			<View>
+				<FlatList
+					style={styles.list}
+					data={categories}
+					renderItem={({ item }) => {
+						return (
+							<CategoryRowComponent
+								category={item}
+								showOptionsMenu={() => {
+									highlightCategory(item);
+								}}>
+							</CategoryRowComponent>
+						);
+					}}
+					keyExtractor={(item) => {
+						return item.id;
+					}}
+				/>
+				<CategoryModalContainer/>
+			</View>
 		);
 	}
 }
@@ -102,14 +101,7 @@ export type CategoriesListComponentInput = {
 export type CategoriesListComponentOutput = {
 
 	/**
-	 * Callback to load the given category details
-	 * @param category the category to edit
+	 * Callback to set a category as highlighted, e.g. to open its dialog menu
 	 */
-	loadCategoryDetails: (category: CategoryInternal) => void;
-
-	/**
-	 * Callback to delete a category
-	 * @param category the category to delete
-	 */
-	deleteCategory: (category: CategoryInternal) => void;
+	highlightCategory: (category: CategoryInternal) => void;
 }
