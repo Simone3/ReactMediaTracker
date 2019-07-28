@@ -163,7 +163,7 @@ module.exports = {
 		'no-unused-vars': [ 2, { vars: 'all', args: 'after-used' }],
 		'no-use-before-define': 2,
 		// 'callback-return': [ 2, [ 'callback', 'done', 'next' ]],
-		'global-require': 2,
+		// 'global-require': 2,
 		'handle-callback-err': [ 2, 'err' ],
 		'no-buffer-constructor': 2,
 		'no-mixed-requires': [ 2, true ],
