@@ -34,6 +34,8 @@ interface CategoryController {
  */
 class CategoryMockedController implements CategoryController {
 
+	private delay = 0;
+
 	private categories: CategoryInternal[] = [{
 		id: '1',
 		color: '#FF0000',
@@ -61,7 +63,15 @@ class CategoryMockedController implements CategoryController {
 	 */
 	public async getAllCategories(): Promise<CategoryInternal[]> {
 		
-		return this.categories;
+		const categories = this.categories = this.categories.slice();
+
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				
+				resolve(categories);
+				
+			}, this.delay);
+		});
 	}
 
 	/**
@@ -69,18 +79,28 @@ class CategoryMockedController implements CategoryController {
 	 */
 	public async saveCategory(category: CategoryInternal): Promise<void> {
 
-		if(category.id) {
+		const categories = this.categories = this.categories.slice();
 
-			const i = this.categories.findIndex((cat) => {
-				return category.id === cat.id;
-			});
-			this.categories[i] = category;
-		}
-		else {
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				
+				if(category.id) {
 
-			category.id = String(5 + Math.floor(Math.random() * 10000000001));
-			this.categories.push(category);
-		}
+					const i = categories.findIndex((cat) => {
+						return category.id === cat.id;
+					});
+					categories[i] = category;
+				}
+				else {
+		
+					category.id = String(5 + Math.floor(Math.random() * 10000000001));
+					categories.push(category);
+				}
+
+				resolve();
+
+			}, this.delay);
+		});
 	}
 
 	/**
@@ -88,10 +108,20 @@ class CategoryMockedController implements CategoryController {
 	 */
 	public async deleteCategory(categoryId: string): Promise<void> {
 
-		const i = this.categories.findIndex((cat) => {
-			return categoryId === cat.id;
+		const categories = this.categories = this.categories.slice();
+
+		return new Promise((resolve) => {
+			setTimeout(() => {
+				
+				const i = categories.findIndex((cat) => {
+					return categoryId === cat.id;
+				});
+				categories.splice(i, 1);
+
+				resolve();
+				
+			}, this.delay);
 		});
-		this.categories.splice(i, 1);
 	}
 }
 
