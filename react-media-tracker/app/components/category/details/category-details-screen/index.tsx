@@ -1,9 +1,10 @@
 import React, { Component, ReactNode } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { CategoryFormContainer } from 'app/containers/category/details/category-form';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/details/category-details-screen/styles';
-import { i18n } from 'app/lang/lang';
+import { CategoryDetailsHeaderTitleContainer } from 'app/containers/category/details/header-title';
+import { LoadingIndicatorComponent } from 'app/components/generic/loading-indicator';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
@@ -12,10 +13,10 @@ import { i18n } from 'app/lang/lang';
 export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScreenComponentInput & CategoryDetailsScreenComponentOutput> {
 	
 	/**
-	 * React Navigation settings
+	 * @override
 	 */
 	public static readonly navigationOptions = {
-		title: i18n.t('category.details.title')
+		headerTitle: <CategoryDetailsHeaderTitleContainer/>
 	};
 
 	/**
@@ -39,36 +40,17 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 
 			return null;
 		}
-		else if(this.props.isLoading) {
-			
-			return this.renderLoading();
-		}
 		else {
 
-			return this.renderForm();
+			return (
+				<View style={styles.container}>
+					<CategoryFormContainer/>
+					<LoadingIndicatorComponent
+						visible={this.props.isLoading}
+					/>
+				</View>
+			);
 		}
-	}
-
-	/**
-	 * Helper method to render the category form
-	 * @returns the node portion
-	 */
-	private renderForm(): ReactNode {
-
-		return (
-			<View style={styles.container}>
-				<CategoryFormContainer/>
-			</View>
-		);
-	}
-
-	/**
-	 * Helper method to render the loading screen
-	 * @returns the node portion
-	 */
-	private renderLoading(): ReactNode {
-
-		return <Text>Saving... Replace this with loading image...</Text>;
 	}
 }
 

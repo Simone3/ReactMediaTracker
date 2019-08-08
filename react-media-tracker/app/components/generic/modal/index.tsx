@@ -1,6 +1,6 @@
 import { styles } from 'app/components/generic/modal/styles';
 import React, { Component, ReactNode } from 'react';
-import { Modal, TouchableOpacity, View, TouchableWithoutFeedback } from 'react-native';
+import { Modal, TouchableOpacity, View, TouchableWithoutFeedback, StyleProp, ViewStyle } from 'react-native';
 
 /**
  * Presentational component to display a modal dialog
@@ -21,7 +21,7 @@ export class ModalComponent extends Component<ModalComponentInput & ModalCompone
 					this.props.onClose();
 				}}>
 				<TouchableOpacity
-					style={styles.container}
+					style={[ styles.container, this.getContainerPositionStyle() ] }
 					activeOpacity={1}
 					onPressOut={() => {
 						this.props.onClose();
@@ -35,6 +35,43 @@ export class ModalComponent extends Component<ModalComponentInput & ModalCompone
 			</Modal>
 		);
 	}
+
+	/**
+	 * Helper to get the style for the modal position
+	 * @returns the view style
+	 */
+	private getContainerPositionStyle(): StyleProp<ViewStyle> {
+
+		const hp = this.props.horizontalPosition;
+		const vp = this.props.verticalPosition;
+		
+		let alignItems: 'center' | 'flex-start' | 'flex-end';
+		if(!hp || hp === 'center') {
+			alignItems = 'center';
+		}
+		else if(hp === 'left') {
+			alignItems = 'flex-start';
+		}
+		else {
+			alignItems = 'flex-end';
+		}
+
+		let justifyContent: 'center' | 'flex-start' | 'flex-end';
+		if(!vp || vp === 'center') {
+			justifyContent = 'center';
+		}
+		else if(vp === 'top') {
+			justifyContent = 'flex-start';
+		}
+		else {
+			justifyContent = 'flex-end';
+		}
+
+		return {
+			alignItems: alignItems,
+			justifyContent: justifyContent
+		};
+	}
 }
 
 /**
@@ -46,6 +83,16 @@ export type ModalComponentInput = {
 	 * Modal dialog visibility
 	 */
 	visible: boolean;
+
+	/**
+	 * Horizontal position of the modal
+	 */
+	horizontalPosition?: 'center' | 'left' | 'right';
+
+	/**
+	 * Vertical position of the modal
+	 */
+	verticalPosition?: 'center' | 'top' | 'bottom';
 }
 
 /**

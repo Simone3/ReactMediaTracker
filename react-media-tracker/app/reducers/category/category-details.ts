@@ -1,5 +1,5 @@
-import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, START_SAVING_CATEGORY } from 'app/actions/category/const';
-import { LoadCategoryAction, StartSavingCategoryAction } from 'app/actions/category/types';
+import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, START_SAVING_CATEGORY, TOGGLE_SAVE_CATEGORY_VALIDITY } from 'app/actions/category/const';
+import { LoadCategoryAction, StartSavingCategoryAction, ToggleCategoryValidityAction } from 'app/actions/category/types';
 import { DEFAULT_CATEGORY } from 'app/models/internal/entities/category';
 import { CategoryDetailsState } from 'app/models/internal/state/category';
 import { Action } from 'redux';
@@ -9,8 +9,8 @@ import { Action } from 'redux';
  */
 const initialCategoryDetails: CategoryDetailsState = {
 	category: undefined,
-	isSaving: false,
-	saveCompleted: false
+	valid: false,
+	saveStatus: 'IDLE'
 };
 
 /**
@@ -27,7 +27,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 
 			return {
 				...state,
-				saveCompleted: false,
+				saveStatus: 'IDLE',
 				category: DEFAULT_CATEGORY
 			};
 		}
@@ -38,8 +38,26 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 			
 			return {
 				...state,
-				saveCompleted: false,
+				saveStatus: 'IDLE',
 				category: loadCategoryAction.category
+			};
+		}
+	
+		case TOGGLE_SAVE_CATEGORY_VALIDITY: {
+
+			const toggleCategoryValidityAction = action as ToggleCategoryValidityAction;
+			
+			return {
+				...state,
+				valid: toggleCategoryValidityAction.valid
+			};
+		}
+
+		case REQUEST_CATEGORY_SAVE: {
+
+			return {
+				...state,
+				saveStatus: 'REQUESTED'
 			};
 		}
 	
@@ -50,7 +68,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 			return {
 				...state,
 				category: startSavingCategoryAction.category,
-				isSaving: true
+				saveStatus: 'SAVING'
 			};
 		}
 	
@@ -58,8 +76,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 
 			return {
 				...state,
-				isSaving: false,
-				saveCompleted: true,
+				saveStatus: 'SAVED',
 				category: undefined
 			};
 		}
@@ -68,7 +85,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 
 			return {
 				...state,
-				isSaving: false
+				saveStatus: 'IDLE'
 			};
 		}
 

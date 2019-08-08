@@ -42,12 +42,17 @@ export type CategoryDetailsState = {
 	readonly category?: CategoryInternal;
 
 	/**
-	 * Flag to tell if the app is currently saving the category details
+	 * If the currently loaded category is valid, e.g. can be saved to the database
 	 */
-	readonly isSaving: boolean;
+	readonly valid: boolean;
 
 	/**
-	 * Flag to tell if the app has completed saving the category details
+	 * The current status of the category saving process
 	 */
-	readonly saveCompleted: boolean;
+	readonly saveStatus: CategorySaveStatus;
 }
+
+/**
+ * The current status of the category saving process
+ */
+export type CategorySaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';

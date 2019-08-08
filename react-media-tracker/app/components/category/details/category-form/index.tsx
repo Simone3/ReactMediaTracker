@@ -1,9 +1,8 @@
 import React, { Component, ReactNode } from 'react';
-import { Formik } from 'formik';
-import { string, object } from 'yup';
+import { Formik, FormikProps } from 'formik';
+import { string, object, ObjectSchema, StringSchema } from 'yup';
 import { CategoryFormViewComponent } from 'app/components/category/details/category-form-view';
-import { MEDIA_TYPES_INTERNAL, CategoryInternal } from 'app/models/internal/entities/category';
-import { i18n } from 'app/lang/lang';
+import { MEDIA_TYPES_INTERNAL, CategoryInternal, MediaTypeInternal } from 'app/models/internal/entities/category';
 
 /**
  * Presentational component that handles the Formik wrapper component for the category form
@@ -11,29 +10,38 @@ import { i18n } from 'app/lang/lang';
 export class CategoryFormComponent extends Component<CategoryFormComponentInput & CategoryFormComponentOutput> {
 
 	/**
+	 * The Formik validation schema
+	 */
+	private readonly validationSchema: ObjectSchema<CategoryInternal> = object().shape({
+		id: string(),
+		name: string().required(),
+		mediaType: string().oneOf(MEDIA_TYPES_INTERNAL).required() as StringSchema<MediaTypeInternal>,
+		color: string().required()
+	});
+	
+	/**
 	 * @override
 	 */
 	public render(): ReactNode {
-
-		const validationSchema = object().shape({
-			name: string()
-				.required(i18n.t('category.details.validation.name.required')),
-			mediaType: string()
-				.oneOf(MEDIA_TYPES_INTERNAL, i18n.t('category.details.validation.mediaType.invalid'))
-				.required(i18n.t('category.details.validation.mediaType.required')),
-			color: string()
-				.required(i18n.t('category.details.validation.color.required'))
-		});
 
 		return (
 			<Formik<CategoryInternal>
 				onSubmit={(result) => {
 					this.props.saveCategory(result);
 				}}
-				component={CategoryFormViewComponent}
 				initialValues={this.props.initialValues}
-				validationSchema={validationSchema}
-			/>
+				validationSchema={this.validationSchema}>
+				{(formikProps: FormikProps<CategoryInternal>) => {
+					
+					return (
+						<CategoryFormViewComponent
+							{...formikProps}
+							saveRequested={this.props.saveRequested}
+							notifyFormValidity={this.props.notifyFormValidity}
+						/>
+					);
+				}}
+			</Formik>
 		);
 	}
 }
@@ -47,6 +55,11 @@ export type CategoryFormComponentInput = {
 	 * The initial category values for the form inputs
 	 */
 	initialValues: CategoryInternal;
+
+	/**
+	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
+	 */
+	saveRequested: boolean;
 }
 
 /**
@@ -55,7 +68,13 @@ export type CategoryFormComponentInput = {
 export type CategoryFormComponentOutput = {
 
 	/**
-	 * Callback to save the category
+	 * Callback to notify the current validity status of the form. Invoked at every Formik re-render.
+	 * @param valid true if the form is valid, e.g. can be saved
+	 */
+	notifyFormValidity: (valid: boolean) => void;
+
+	/**
+	 * Callback to save the category, after form validation is successful
 	 * @param category the category to be saved
 	 */
 	saveCategory: (category: CategoryInternal) => void;

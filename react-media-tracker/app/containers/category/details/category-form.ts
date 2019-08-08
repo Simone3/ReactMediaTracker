@@ -1,5 +1,5 @@
 
-import { saveCategory } from 'app/actions/category/generators';
+import { saveCategory, toggleCategoryValiditySave } from 'app/actions/category/generators';
 import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/category/details/category-form';
 import { AppError } from 'app/models/internal/error';
 import { State } from 'app/models/internal/state/state';
@@ -12,9 +12,10 @@ const mapStateToProps = (state: State): CategoryFormComponentInput => {
 
 		throw AppError.GENERIC.withDetails('App navigated to the details screen with undefined details');
 	}
-
+	
 	return {
-		initialValues: state.categoryDetails.category
+		initialValues: state.categoryDetails.category,
+		saveRequested: state.categoryDetails.saveStatus === 'REQUESTED'
 	};
 };
 
@@ -23,6 +24,9 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoryFormComponentOutput => 
 	return {
 		saveCategory: (category) => {
 			dispatch(saveCategory(category));
+		},
+		notifyFormValidity: (valid) => {
+			dispatch(toggleCategoryValiditySave(valid));
 		}
 	};
 };

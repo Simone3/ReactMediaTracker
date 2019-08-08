@@ -53,6 +53,21 @@ export type LoadCategoryAction = Action & {
 };
 
 /**
+ * The toggle save category validity action
+ */
+export type ToggleCategoryValidityAction = Action & {
+	
+	valid: boolean;
+};
+
+/**
+ * The request category save action
+ */
+export type RequestCategorySaveAction = Action & {
+	
+};
+
+/**
  * The save category action
  */
 export type SaveCategoryAction = Action & {
