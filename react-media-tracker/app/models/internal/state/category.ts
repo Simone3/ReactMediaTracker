@@ -42,9 +42,14 @@ export type CategoryDetailsState = {
 	readonly category?: CategoryInternal;
 
 	/**
-	 * If the currently loaded category is valid, e.g. can be saved to the database
+	 * If the currently loaded category is valid (no validation error occurred)
 	 */
 	readonly valid: boolean;
+
+	/**
+	 * If the currently loaded category is dirty (one or more fields are different from initial values)
+	 */
+	readonly dirty: boolean;
 
 	/**
 	 * The current status of the category saving process

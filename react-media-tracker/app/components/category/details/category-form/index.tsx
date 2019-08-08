@@ -37,7 +37,7 @@ export class CategoryFormComponent extends Component<CategoryFormComponentInput 
 						<CategoryFormViewComponent
 							{...formikProps}
 							saveRequested={this.props.saveRequested}
-							notifyFormValidity={this.props.notifyFormValidity}
+							notifyFormStatus={this.props.notifyFormStatus}
 						/>
 					);
 				}}
@@ -68,10 +68,11 @@ export type CategoryFormComponentInput = {
 export type CategoryFormComponentOutput = {
 
 	/**
-	 * Callback to notify the current validity status of the form. Invoked at every Formik re-render.
-	 * @param valid true if the form is valid, e.g. can be saved
+	 * Callback to notify the current status of the form
+	 * @param valid true if the form is valid, i.e. no validation error occurred
+	 * @param dirty true if the form is dirty, i.e. one or more fields are different from initial values
 	 */
-	notifyFormValidity: (valid: boolean) => void;
+	notifyFormStatus: (valid: boolean, dirty: boolean) => void;
 
 	/**
 	 * Callback to save the category, after form validation is successful

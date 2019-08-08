@@ -1,5 +1,5 @@
-import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, START_SAVING_CATEGORY, TOGGLE_SAVE_CATEGORY_VALIDITY } from 'app/actions/category/const';
-import { LoadCategoryAction, StartSavingCategoryAction, ToggleCategoryValidityAction } from 'app/actions/category/types';
+import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, SET_CATEGORY_FORM_STATUS, START_SAVING_CATEGORY } from 'app/actions/category/const';
+import { LoadCategoryAction, SetCategoryFormStatusAction, StartSavingCategoryAction } from 'app/actions/category/types';
 import { DEFAULT_CATEGORY } from 'app/models/internal/entities/category';
 import { CategoryDetailsState } from 'app/models/internal/state/category';
 import { Action } from 'redux';
@@ -10,6 +10,7 @@ import { Action } from 'redux';
 const initialCategoryDetails: CategoryDetailsState = {
 	category: undefined,
 	valid: false,
+	dirty: false,
 	saveStatus: 'IDLE'
 };
 
@@ -43,13 +44,14 @@ export const categoryDetails = (state: CategoryDetailsState = initialCategoryDet
 			};
 		}
 	
-		case TOGGLE_SAVE_CATEGORY_VALIDITY: {
+		case SET_CATEGORY_FORM_STATUS: {
 
-			const toggleCategoryValidityAction = action as ToggleCategoryValidityAction;
+			const setCategoryFormStatusAction = action as SetCategoryFormStatusAction;
 			
 			return {
 				...state,
-				valid: toggleCategoryValidityAction.valid
+				valid: setCategoryFormStatusAction.valid,
+				dirty: setCategoryFormStatusAction.dirty
 			};
 		}
 

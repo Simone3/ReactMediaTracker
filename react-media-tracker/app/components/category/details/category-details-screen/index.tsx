@@ -3,8 +3,10 @@ import { View } from 'react-native';
 import { CategoryFormContainer } from 'app/containers/category/details/category-form';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/category/details/category-details-screen/styles';
-import { CategoryDetailsHeaderTitleContainer } from 'app/containers/category/details/header-title';
+import { CategoryDetailsHeaderTitleContainer } from 'app/containers/category/details/category-details-header-title';
 import { LoadingIndicatorComponent } from 'app/components/generic/loading-indicator';
+import { NavigationScreenProps } from 'react-navigation';
+import { CategoryDetailsHeaderBackButtonContainer } from 'app/containers/category/details/category-details-header-back-button';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
@@ -15,8 +17,11 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = {
-		headerTitle: <CategoryDetailsHeaderTitleContainer/>
+	public static readonly navigationOptions = (navigationScreenProps: NavigationScreenProps) => {
+		return {
+			headerTitle: <CategoryDetailsHeaderTitleContainer/>,
+			headerLeft: <CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />
+		};
 	};
 
 	/**

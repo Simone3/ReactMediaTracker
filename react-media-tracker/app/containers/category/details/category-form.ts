@@ -1,5 +1,5 @@
 
-import { saveCategory, toggleCategoryValiditySave } from 'app/actions/category/generators';
+import { saveCategory, setCategoryFormStatus } from 'app/actions/category/generators';
 import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/category/details/category-form';
 import { AppError } from 'app/models/internal/error';
 import { State } from 'app/models/internal/state/state';
@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoryFormComponentOutput => 
 		saveCategory: (category) => {
 			dispatch(saveCategory(category));
 		},
-		notifyFormValidity: (valid) => {
-			dispatch(toggleCategoryValiditySave(valid));
+		notifyFormStatus: (valid, dirty) => {
+			dispatch(setCategoryFormStatus(valid, dirty));
 		}
 	};
 };

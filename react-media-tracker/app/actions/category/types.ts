@@ -53,11 +53,12 @@ export type LoadCategoryAction = Action & {
 };
 
 /**
- * The toggle save category validity action
+ * The set category form status action
  */
-export type ToggleCategoryValidityAction = Action & {
+export type SetCategoryFormStatusAction = Action & {
 	
 	valid: boolean;
+	dirty: boolean;
 };
 
 /**

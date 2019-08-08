@@ -38,5 +38,17 @@
 			"TV_SHOW": "TV Shows",
 			"VIDEOGAME": "Videogames"
 		}
+	},
+	"common": {
+		"alert": {
+			"form": {
+				"exit": {
+					"title": "Warning",
+					"message": "You have unsaved changes, are you sure you want to exit?",
+					"okButton": "OK",
+					"cancelButton": "Cancel"
+				}
+			}
+		}
 	}
 }
