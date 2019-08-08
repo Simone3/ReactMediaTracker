@@ -14,6 +14,7 @@ export type Config = {
 			colorPrimary: string;
 			colorPrimaryDark: string;
 			colorAccent: string;
+			availableCategoryColors: string[];
 		};
 	};
 	mocks: {

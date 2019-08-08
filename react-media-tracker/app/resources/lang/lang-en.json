@@ -21,21 +21,14 @@
 			"delete": "Delete Category"
 		},
 		"details": {
-			"title": "Category",
+			"title": {
+				"new": "New Category"
+			},
 			"placeholders": {
 				"name": "Name"
 			},
-			"validation": {
-				"name": {
-					"required": "Name is required"
-				},
-				"mediaType": {
-					"required": "Media Type is required",
-					"invalid": "Invalid Media Type"
-				},
-				"color": {
-					"required": "Color is required"
-				}				
+			"prompts": {
+				"mediaType": "Media"
 			},
 			"save": "Save"
 		},
