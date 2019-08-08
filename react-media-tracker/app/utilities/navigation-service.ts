@@ -56,6 +56,29 @@ class NavigationService {
 			NavigationActions.back()
 		);
 	}
+
+	/**
+	 * Sets a navigation param
+	 * @param route the route where to set the param
+	 * @param key the param key
+	 * @param value the param value
+	 */
+	public setParam(route: string, key: string, value: unknown): void {
+
+		if(!this.navigator) {
+
+			throw AppError.GENERIC.withDetails('Navigation service was not initialized');
+		}
+
+		this.navigator.dispatch(
+			NavigationActions.setParams({
+				key: route,
+				params: {
+					[key]: value
+				}
+			})
+		);
+	}
 }
 
 /**
