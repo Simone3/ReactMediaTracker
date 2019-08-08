@@ -8,6 +8,7 @@ import { styles } from 'app/components/category/list/categories-list-screen/styl
 import { i18n } from 'app/lang/lang';
 import { FABComponent } from 'app/components/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/generic/loading-indicator';
+import { HeaderTitleComponent } from 'app/components/generic/header-title';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -15,10 +16,12 @@ import { LoadingIndicatorComponent } from 'app/components/generic/loading-indica
 export class CategoriesListScreenComponent extends Component<CategoriesListScreenComponentInput & CategoriesListScreenComponentOutput> {
 	
 	/**
-	 * React Navigation settings
+	 * @override
 	 */
 	public static readonly navigationOptions = {
-		title: i18n.t('category.list.title')
+		headerTitle: <HeaderTitleComponent
+			title={i18n.t('category.list.title')}
+		/>
 	};
 
 	/**

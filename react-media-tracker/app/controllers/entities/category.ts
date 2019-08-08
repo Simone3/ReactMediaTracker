@@ -34,7 +34,7 @@ interface CategoryController {
  */
 class CategoryMockedController implements CategoryController {
 
-	private delay = 5000;
+	private delay = 0;
 
 	private categories: CategoryInternal[] = [{
 		id: '1',
