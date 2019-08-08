@@ -85,7 +85,8 @@ export class AppError extends Error {
 export type ErrorState = {
 
 	/**
-	 * The error that occurred, if any
+	 * The error that occurred, if any.
+	 * A string is displayed as is, an AppError gets displayed as its description.
 	 */
-	error?: AppError;
+	error?: AppError | string;
 };

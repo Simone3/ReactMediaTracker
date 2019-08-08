@@ -15,13 +15,17 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 	 */
 	public componentDidUpdate(): void {
 
-		if(this.props.error) {
+		const {
+			error
+		} = this.props;
 
-			const error = this.props.error;
+		if(error) {
+
+			const messageDescription = typeof error === 'string' ? error : i18n.t(error.errorDescription);
 
 			showMessage({
 				message: i18n.t('error.flash.title'),
-				description: i18n.t(error.errorDescription),
+				description: messageDescription,
 				type: 'danger',
 				duration: 3000
 			});
@@ -52,7 +56,7 @@ export type ErrorHandlerComponentInput = {
 	/**
 	 * The error to be displayed, if any
 	 */
-	error?: AppError;
+	error?: AppError | string;
 };
 
 /**
