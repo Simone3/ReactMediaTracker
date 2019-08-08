@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { ValuesOf } from 'app/utilities/helper-types';
 
 /**
@@ -27,7 +28,7 @@ export type CategoryInternal = {
 export const DEFAULT_CATEGORY: CategoryInternal = {
 	id: '',
 	name: '',
-	color: '',
+	color: config.ui.colors.availableCategoryColors[0],
 	mediaType: 'BOOK'
 };
 
