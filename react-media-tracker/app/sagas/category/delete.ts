@@ -3,7 +3,7 @@ import { DELETE_CATEGORY } from 'app/actions/category/const';
 import { completeDeletingCategory, failDeletingCategory, startDeletingCategory } from 'app/actions/category/generators';
 import { DeleteCategoryAction } from 'app/actions/category/types';
 import { setError } from 'app/actions/error/generators';
-import { categoryController } from 'app/controllers/entities/category';
+import { categoryController } from 'app/controllers/core/entities/category';
 import { AppError } from 'app/models/internal/error';
 import { SagaIterator } from 'redux-saga';
 

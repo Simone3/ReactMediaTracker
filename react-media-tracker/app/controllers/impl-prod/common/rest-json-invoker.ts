@@ -1,22 +1,19 @@
 import { config } from 'app/config/config';
+import { InvocationParams, RestJsonInvoker } from 'app/controllers/core/common/rest-json-invoker';
 import { AppError } from 'app/models/internal/error';
 import { parserValidator } from 'app/utilities/parser-validator';
-import axios, { AxiosError, AxiosRequestConfig, Cancel, Method } from 'axios';
-import { ClassType } from 'class-transformer-validator';
+import axios, { AxiosError, AxiosRequestConfig, Cancel } from 'axios';
 
 /**
- * Helper controller to invoke external JSON-based REST services
+ * Implementation of the RestJsonInvoker that uses Axios to invoke services via HTTP
+ * @see RestJsonInvoker
  */
-export class RestJsonInvoker {
+export class RestJsonInvokerAxios implements RestJsonInvoker {
 
 	private readonly TIMEOUT_CANCEL_MESSAGE = 'custom-timeout';
 
 	/**
-	 * Invokes a JSON-based service
-	 * @param parameters the method parameters container
-	 * @returns the 200 service response, as a promise
-	 * @template TRequest the request class
-	 * @template TResponse the response class
+	 * @override
 	 */
 	public invoke<TRequest extends object, TResponse extends object>(parameters: InvocationParams<TRequest, TResponse>): Promise<TResponse> {
 
@@ -125,28 +122,3 @@ export class RestJsonInvoker {
 		return false;
 	}
 }
-
-/**
- * Singleton implementation of the JSON REST invoker
- */
-export const restJsonInvoker = new RestJsonInvoker();
-
-/**
- * Internal helper type for invocation parameters
- */
-type InvocationParams<TRequest, TResponse> = {
-	url: string;
-	method: Method;
-	requestBody?: TRequest;
-	responseBodyClass: ClassType<TResponse>;
-	timeoutMilliseconds?: number;
-	queryParams?: QueryParams;
-}
-
-/**
- * Helper type for URL query params
- */
-export type QueryParams = {
-	[key: string]: string;
-};
-
