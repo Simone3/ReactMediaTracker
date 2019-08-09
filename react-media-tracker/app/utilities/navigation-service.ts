@@ -1,4 +1,4 @@
-import { AppError } from 'app/models/internal/error';
+import { AppError } from 'app/data/models/internal/error';
 import { NavigationActions, NavigationContainerComponent, NavigationParams } from 'react-navigation';
 
 /**

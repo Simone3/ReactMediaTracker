@@ -1,6 +1,6 @@
 import { devConfig } from 'app/config/config-dev';
 import { Config } from 'app/config/type-config';
-import { AppError } from 'app/models/internal/error';
+import { AppError } from 'app/data/models/internal/error';
 import ReactNativeConfig from 'react-native-config';
 
 /**
