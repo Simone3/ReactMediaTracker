@@ -1,13 +1,15 @@
 import { CategoryController } from 'app/controllers/core/entities/category';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
 import { CategoryInternal } from 'app/models/internal/entities/category';
 
 /**
  * Mocked implementation of the CategoryController that contains an in-memory list of categories
  * @see CategoryController
  */
-export class CategoryMockedController implements CategoryController {
+export class CategoryMockedController extends MockControllerHelper implements CategoryController {
 
-	private delay = 0;
+	protected delay = 0;
+	protected errorProbability = 0;
 
 	private categories: CategoryInternal[] = [{
 		id: '1',
@@ -36,14 +38,10 @@ export class CategoryMockedController implements CategoryController {
 	 */
 	public async getAllCategories(): Promise<CategoryInternal[]> {
 		
-		const categories = this.categories = this.categories.slice();
+		return this.resolveResult(() => {
 
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				
-				resolve(categories);
-				
-			}, this.delay);
+			this.categories = this.categories.slice();
+			return this.categories;
 		});
 	}
 
@@ -52,27 +50,22 @@ export class CategoryMockedController implements CategoryController {
 	 */
 	public async saveCategory(category: CategoryInternal): Promise<void> {
 
-		const categories = this.categories = this.categories.slice();
-
-		return new Promise((resolve) => {
-			setTimeout(() => {
+		return this.resolveResult(() => {
 				
-				if(category.id) {
+			const categories = this.categories = this.categories.slice();
 
-					const i = categories.findIndex((cat) => {
-						return category.id === cat.id;
-					});
-					categories[i] = category;
-				}
-				else {
-		
-					category.id = String(5 + Math.floor(Math.random() * 10000000001));
-					categories.push(category);
-				}
+			if(category.id) {
 
-				resolve();
-
-			}, this.delay);
+				const i = categories.findIndex((cat) => {
+					return category.id === cat.id;
+				});
+				categories[i] = category;
+			}
+			else {
+	
+				category.id = this.randomId();
+				categories.push(category);
+			}
 		});
 	}
 
@@ -81,19 +74,15 @@ export class CategoryMockedController implements CategoryController {
 	 */
 	public async deleteCategory(categoryId: string): Promise<void> {
 
-		const categories = this.categories = this.categories.slice();
+		return this.resolveResult(() => {
+		
+			const categories = this.categories = this.categories.slice();
 
-		return new Promise((resolve) => {
-			setTimeout(() => {
-				
-				const i = categories.findIndex((cat) => {
-					return categoryId === cat.id;
-				});
-				categories.splice(i, 1);
-
-				resolve();
-				
-			}, this.delay);
+			const i = categories.findIndex((cat) => {
+				return categoryId === cat.id;
+			});
+			
+			categories.splice(i, 1);
 		});
 	}
 }
