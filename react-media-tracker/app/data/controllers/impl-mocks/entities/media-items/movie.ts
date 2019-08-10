@@ -1,6 +1,6 @@
 import { MovieController } from 'app/data/controllers/core/entities/media-items/movie';
 import { MediaItemMockedController } from 'app/data/controllers/impl-mocks/entities/media-items/media-item';
-import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/entities/media-items/movie';
+import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
 
 /**
  * Mocked implementation of the MovieController that contains an in-memory list of movies

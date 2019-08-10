@@ -1,6 +1,6 @@
 import { MediaItemController } from 'app/data/controllers/core/entities/media-items/media-item';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * Mocked implementation of the MediaItemController that contains an in-memory list of media items

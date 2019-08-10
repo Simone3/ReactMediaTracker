@@ -1,7 +1,7 @@
-import { DEFAULT_CATEGORY } from 'app/data/models/internal/entities/category';
-import { CategoryDetailsState } from 'app/data/models/internal/state/category';
+import { DEFAULT_CATEGORY } from 'app/data/models/internal/category';
 import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, SET_CATEGORY_FORM_STATUS, START_SAVING_CATEGORY } from 'app/redux/actions/category/const';
 import { LoadCategoryAction, SetCategoryFormStatusAction, StartSavingCategoryAction } from 'app/redux/actions/category/types';
+import { CategoryDetailsState } from 'app/redux/state/category';
 import { Action } from 'redux';
 
 /**

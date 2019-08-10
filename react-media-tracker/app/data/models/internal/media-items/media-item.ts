@@ -1,5 +1,5 @@
-import { GroupInternal } from 'app/data/models/internal/entities/group';
-import { OwnPlatformInternal } from 'app/data/models/internal/entities/own-platform';
+import { GroupInternal } from 'app/data/models/internal/group';
+import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
  * Common core data for media items, internal type just for display purposes

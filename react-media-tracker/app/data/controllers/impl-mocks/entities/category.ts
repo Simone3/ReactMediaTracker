@@ -1,6 +1,6 @@
 import { CategoryController } from 'app/data/controllers/core/entities/category';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * Mocked implementation of the CategoryController that contains an in-memory list of categories

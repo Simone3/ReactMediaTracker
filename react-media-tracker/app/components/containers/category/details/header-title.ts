@@ -1,6 +1,6 @@
 import { HeaderTitleComponent, HeaderTitleComponentInput, HeaderTitleComponentOutput } from 'app/components/presentational/generic/header-title';
-import { State } from 'app/data/models/internal/state/state';
 import { requestCategorySave } from 'app/redux/actions/category/generators';
+import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';

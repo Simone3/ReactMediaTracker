@@ -1,5 +1,5 @@
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
-import { MediaItemInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CategoryInternal } from 'app/data/models/internal/category';
+import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * Portion of the internal state with the media items list information

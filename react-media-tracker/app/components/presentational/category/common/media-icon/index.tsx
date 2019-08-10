@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { Image, ImageProps } from 'react-native';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaIconBuilder } from 'app/components/presentational/category/common/media-icon/helper';
 
 /**

@@ -1,5 +1,5 @@
 import { CategoryDetailsScreenComponent, CategoryDetailsScreenComponentInput } from 'app/components/presentational/category/details/screen';
-import { State } from 'app/data/models/internal/state/state';
+import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: State): CategoryDetailsScreenComponentInput => {

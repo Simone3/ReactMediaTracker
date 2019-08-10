@@ -1,5 +1,5 @@
 import { MovieMockedController } from 'app/data/controllers/impl-mocks/entities/media-items/movie';
-import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/entities/media-items/movie';
+import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
 import { MediaItemController } from './media-item';
 
 /**

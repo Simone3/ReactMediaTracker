@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';

@@ -3,7 +3,7 @@ import { restJsonInvoker } from 'app/data/controllers/core/common/rest-json-invo
 import { CategoryController } from 'app/data/controllers/core/entities/category';
 import { categoryMapper } from 'app/data/mappers/category';
 import { AddCategoryRequest, AddCategoryResponse, DeleteCategoryResponse, GetAllCategoriesResponse, UpdateCategoryRequest, UpdateCategoryResponse } from 'app/data/models/api/category';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { miscUtils } from 'app/utilities/misc-utils';
 
 /**

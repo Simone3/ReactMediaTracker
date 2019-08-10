@@ -1,4 +1,4 @@
-import { CategoryInternal, MediaTypeInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal, MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { ImageRequireSource } from 'react-native';
 

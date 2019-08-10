@@ -1,6 +1,6 @@
 import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
 import { CatalogVideogame, IdentifiedVideogame, SearchVideogameCatalogResult, VideogameFilter, VideogameSortBy, VideogameSortField } from 'app/data/models/api/media-items/videogame';
-import { CatalogVideogameInternal, SearchVideogameCatalogResultInternal, VideogameFilterInternal, VideogameInternal, VideogameSortByInternal, VideogameSortFieldInternal } from 'app/data/models/internal/entities/media-items/videogame';
+import { CatalogVideogameInternal, SearchVideogameCatalogResultInternal, VideogameFilterInternal, VideogameInternal, VideogameSortByInternal, VideogameSortFieldInternal } from 'app/data/models/internal/media-items/videogame';
 
 /**
  * Mapper for videogames

@@ -1,8 +1,8 @@
 
 import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/presentational/category/details/form';
 import { AppError } from 'app/data/models/internal/error';
-import { State } from 'app/data/models/internal/state/state';
 import { saveCategory, setCategoryFormStatus } from 'app/redux/actions/category/generators';
+import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

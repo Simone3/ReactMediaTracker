@@ -1,5 +1,5 @@
 import { ErrorState } from 'app/data/models/internal/error';
-import { CategoriesListState, CategoryDetailsState } from 'app/data/models/internal/state/category';
+import { CategoriesListState, CategoryDetailsState } from 'app/redux/state/category';
 import { MediaItemsListState } from './media-item';
 
 /**

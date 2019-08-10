@@ -1,6 +1,6 @@
 import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
 import { BookFilter, BookSortBy, BookSortField, CatalogBook, IdentifiedBook, SearchBookCatalogResult } from 'app/data/models/api/media-items/book';
-import { BookFilterInternal, BookInternal, BookSortByInternal, BookSortFieldInternal, CatalogBookInternal, SearchBookCatalogResultInternal } from 'app/data/models/internal/entities/media-items/book';
+import { BookFilterInternal, BookInternal, BookSortByInternal, BookSortFieldInternal, CatalogBookInternal, SearchBookCatalogResultInternal } from 'app/data/models/internal/media-items/book';
 
 /**
  * Mapper for books

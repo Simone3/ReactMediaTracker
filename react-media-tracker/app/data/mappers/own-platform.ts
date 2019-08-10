@@ -1,6 +1,6 @@
 import { ModelMapper } from 'app/data/mappers/common';
 import { IdentifiedOwnPlatform } from 'app/data/models/api/own-platform';
-import { OwnPlatformInternal } from 'app/data/models/internal/entities/own-platform';
+import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
  * Mapper for own platforms

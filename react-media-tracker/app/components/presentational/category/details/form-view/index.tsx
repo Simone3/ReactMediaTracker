@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { FormikProps, FormikValues } from 'formik';
-import { MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/entities/category';
+import { MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
 import { styles } from 'app/components/presentational/category/details/form-view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { TextInputComponent } from 'app/components/presentational/form/text-input';

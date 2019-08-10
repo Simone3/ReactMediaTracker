@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { string, object, ObjectSchema, StringSchema } from 'yup';
 import { CategoryFormViewComponent } from 'app/components/presentational/category/details/form-view';
-import { MEDIA_TYPES_INTERNAL, CategoryInternal, MediaTypeInternal } from 'app/data/models/internal/entities/category';
+import { MEDIA_TYPES_INTERNAL, CategoryInternal, MediaTypeInternal } from 'app/data/models/internal/category';
 
 /**
  * Presentational component that handles the Formik wrapper component for the category form

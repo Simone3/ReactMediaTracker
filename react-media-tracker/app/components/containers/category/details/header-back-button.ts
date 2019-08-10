@@ -1,5 +1,5 @@
 import { HeaderFormExitBackComponent, HeaderFormExitBackComponentInput } from 'app/components/presentational/generic/header-form-exit-back';
-import { State } from 'app/data/models/internal/state/state';
+import { State } from 'app/redux/state/state';
 import { NavigationScreenProp } from 'react-navigation';
 import { connect, MapStateToPropsParam } from 'react-redux';
 

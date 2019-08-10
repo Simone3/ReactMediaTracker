@@ -1,6 +1,6 @@
 import { CategoryModalComponent, CategoryModalComponentInput, CategoryModalComponentOutput } from 'app/components/presentational/category/list/modal';
-import { State } from 'app/data/models/internal/state/state';
 import { deleteCategory, loadCategoryDetails, removeCategoryHighlight } from 'app/redux/actions/category/generators';
+import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

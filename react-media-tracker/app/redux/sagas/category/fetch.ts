@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from '@redux-saga/core/effects';
 import { categoryController } from 'app/data/controllers/core/entities/category';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { FETCH_CATEGORIES } from 'app/redux/actions/category/const';
 import { completeFetchingCategories, failFetchingCategories, startFetchingCategories } from 'app/redux/actions/category/generators';

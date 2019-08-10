@@ -1,4 +1,4 @@
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * The data controller for generic media items

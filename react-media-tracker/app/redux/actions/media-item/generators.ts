@@ -1,5 +1,5 @@
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
-import { MediaItemInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CategoryInternal } from 'app/data/models/internal/category';
+import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { COMPLETE_FETCHING_MEDIA_ITEMS, FAIL_FETCHING_MEDIA_ITEMS, FETCH_MEDIA_ITEMS, START_FETCHING_MEDIA_ITEMS } from './const';
 import { CompleteFetchingMediaItemsAction, FailFetchingMediaItemsAction, FetchMediaItemsAction, OpenMediaItemsListAction, StartFetchingMediaItemsAction } from './types';
 

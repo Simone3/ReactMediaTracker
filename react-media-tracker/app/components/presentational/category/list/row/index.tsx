@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { styles } from 'app/components/presentational/category/list/row/styles';
 import { MediaIconComponent } from 'app/components/presentational/category/common/media-icon';
 

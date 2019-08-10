@@ -1,7 +1,7 @@
 import { config } from 'app/config/config';
 import { CategoryMockedController } from 'app/data/controllers/impl-mocks/entities/category';
 import { CategoryBackEndController } from 'app/data/controllers/impl-prod/entities/category';
-import { CategoryInternal } from 'app/data/models/internal/entities/category';
+import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * The data controller for the category entities

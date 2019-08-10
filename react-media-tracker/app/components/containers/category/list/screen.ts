@@ -1,6 +1,6 @@
 import { CategoriesListScreenComponent, CategoriesListScreenComponentInput, CategoriesListScreenComponentOutput } from 'app/components/presentational/category/list/screen';
-import { State } from 'app/data/models/internal/state/state';
 import { fetchCategories, loadCategoryDetails, loadNewCategoryDetails } from 'app/redux/actions/category/generators';
+import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 

@@ -1,6 +1,6 @@
 import { ModelMapper } from 'app/data/mappers/common';
 import { IdentifiedGroup } from 'app/data/models/api/group';
-import { GroupInternal } from 'app/data/models/internal/entities/group';
+import { GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * Mapper for groups
