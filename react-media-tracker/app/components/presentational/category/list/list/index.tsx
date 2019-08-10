@@ -5,6 +5,8 @@ import { CategoryRowComponent } from 'app/components/presentational/category/lis
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/category/list/list/styles';
 import { CategoryModalContainer } from 'app/components/containers/category/list/modal';
+import { navigationService } from 'app/utilities/navigation-service';
+import { AppScreens } from 'app/utilities/screens';
 
 /**
  * Presentational component to display the list of user categories
@@ -56,6 +58,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 
 		const {
 			categories,
+			selectCategory,
 			highlightCategory
 		} = this.props;
 
@@ -68,10 +71,14 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 						return (
 							<CategoryRowComponent
 								category={item}
+								open={() => {
+									selectCategory(item);
+									navigationService.navigate(AppScreens.MediaItemsList);
+								}}
 								showOptionsMenu={() => {
 									highlightCategory(item);
-								}}>
-							</CategoryRowComponent>
+								}}
+							/>
 						);
 					}}
 					keyExtractor={(item) => {
@@ -99,6 +106,11 @@ export type CategoriesListComponentInput = {
  * CategoriesListComponent's output props
  */
 export type CategoriesListComponentOutput = {
+
+	/**
+	 * Callback to select a category as highlighted, e.g. to open the list of its media items
+	 */
+	selectCategory: (category: CategoryInternal) => void;
 
 	/**
 	 * Callback to set a category as highlighted, e.g. to open its dialog menu

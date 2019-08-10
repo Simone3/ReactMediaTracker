@@ -15,11 +15,15 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 	public render(): ReactNode {
 
 		const {
-			category
+			category,
+			open,
+			showOptionsMenu
 		} = this.props;
 		
 		return (
-			<TouchableWithoutFeedback onLongPress={this.props.showOptionsMenu}>
+			<TouchableWithoutFeedback
+				onPress={open}
+				onLongPress={showOptionsMenu}>
 				<View style={[ styles.container, { backgroundColor: category.color }]}>
 					<View style={styles.iconContainer}>
 						<MediaIconComponent
@@ -54,6 +58,11 @@ export type CategoryRowComponentInput = {
  * CategoryRowComponent's output props
  */
 export type CategoryRowComponentOutput = {
+
+	/**
+	 * Callback to open the list of the category media items
+	 */
+	open: () => void;
 
 	/**
 	 * Callback to open the options context menu (with e.g. the edit button)

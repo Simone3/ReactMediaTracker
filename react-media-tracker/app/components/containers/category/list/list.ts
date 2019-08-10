@@ -1,5 +1,6 @@
 import { CategoriesListComponent, CategoriesListComponentInput, CategoriesListComponentOutput } from 'app/components/presentational/category/list/list';
 import { highlightCategory } from 'app/redux/actions/category/generators';
+import { openMediaItemsList } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -14,6 +15,9 @@ const mapStateToProps = (state: State): CategoriesListComponentInput => {
 const mapDispatchToProps = (dispatch: Dispatch): CategoriesListComponentOutput => {
 
 	return {
+		selectCategory: (category) => {
+			dispatch(openMediaItemsList(category));
+		},
 		highlightCategory: (category) => {
 			dispatch(highlightCategory(category));
 		}
