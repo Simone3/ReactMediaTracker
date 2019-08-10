@@ -1,17 +1,24 @@
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/entities/media-items/media-item';
 
 /**
- * Model for a TV Show, internal type just for display purposes
+ * Util type to extract common fields to both TV show entities and catalog entries
  */
-export type TvShowInternal = MediaItemInternal & {
+type CoreTvShowDataInternal = {
 
-	id: string;
 	creators?: string[];
 	averageEpisodeRuntimeMinutes?: number;
 	episodesNumber?: number;
 	seasonsNumber?: number;
 	inProduction?: boolean;
-	nextEpisodeAirDate?: string;
+	nextEpisodeAirDate?: Date;
+};
+
+/**
+ * Model for a TV Show, internal type just for display purposes
+ */
+export type TvShowInternal = MediaItemInternal & CoreTvShowDataInternal & {
+
+	id: string;
 }
 
 /**
@@ -33,3 +40,18 @@ export type TvShowSortByInternal = MediaItemSortByInternal & {
 
 	field: TvShowSortFieldInternal;
 }
+
+/**
+ * Model for a media item with base properties, internal type just for display purposes
+ */
+export type CatalogTvShowInternal = CatalogMediaItemInternal & CoreTvShowDataInternal & {
+	
+};
+
+/**
+ * Media item catalog search result, internal type just for display purposes
+ */
+export type SearchTvShowCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
+
+};
+

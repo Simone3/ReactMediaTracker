@@ -1,9 +1,10 @@
 import { ModelMapper } from 'app/data/mappers/common';
 import { groupMapper } from 'app/data/mappers/group';
 import { ownPlatformMapper } from 'app/data/mappers/own-platform';
-import { MediaItem, MediaItemFilter, MediaItemSortBy, MediaItemSortField } from 'app/data/models/api/media-items/media-item';
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/entities/media-items/media-item';
 import { AppError } from 'app/data/models/internal/error';
+import { dateUtils } from 'app/utilities/date-utils';
 
 /**
  * Abstract mapper for media items
@@ -25,8 +26,8 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
-			completedAt: source.completedAt,
-			releaseDate: source.releaseDate,
+			completedAt: dateUtils.toStringList(source.completedAt),
+			releaseDate: dateUtils.toString(source.releaseDate),
 			active: source.active,
 			catalogId: source.catalogId,
 			imageUrl: source.imageUrl
@@ -65,8 +66,8 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
-			completedAt: source.completedAt,
-			releaseDate: source.releaseDate,
+			completedAt: dateUtils.toDateList(source.completedAt),
+			releaseDate: dateUtils.toDate(source.releaseDate),
 			active: source.active,
 			catalogId: source.catalogId,
 			imageUrl: source.imageUrl
@@ -196,3 +197,80 @@ export abstract class MediaItemSortMapper<TMediaItemSortByInternal extends Media
 		}
 	}
 }
+
+/**
+ * Abstract mapper for media item catalog search results
+ * @template TSearchMediaItemCatalogResultInternal the class of the internal media item entity
+ * @template TSearchMediaItemCatalogResult the class of the API media item entity
+ */
+export abstract class MediaItemCatalogSearchMapper<TSearchMediaItemCatalogResultInternal extends SearchMediaItemCatalogResultInternal, TSearchMediaItemCatalogResult extends SearchMediaItemCatalogResult> extends ModelMapper<TSearchMediaItemCatalogResultInternal, TSearchMediaItemCatalogResult, never> {
+	
+	/**
+	 * Common mapping helper for implementations
+	 * @param source the mapping source
+	 * @returns the mapping target
+	 */
+	protected commonToExternal(source: SearchMediaItemCatalogResultInternal): SearchMediaItemCatalogResult {
+
+		return {
+			catalogId: source.catalogId,
+			name: source.name,
+			releaseDate: dateUtils.toString(source.releaseDate)
+		};
+	}
+	
+	/**
+	 * Common mapping helper for implementations
+	 * @param source the mapping source
+	 * @returns the mapping target
+	 */
+	protected commonToInternal(source: SearchMediaItemCatalogResult): SearchMediaItemCatalogResultInternal {
+		
+		return {
+			catalogId: source.catalogId,
+			name: source.name,
+			releaseDate: dateUtils.toDate(source.releaseDate)
+		};
+	}
+}
+
+/**
+ * Abstract mapper for media item catalog details
+ * @template TCatalogMediaItemInternal the class of the internal media item entity
+ * @template TCatalogMediaItem the class of the API media item entity
+ */
+export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal extends CatalogMediaItemInternal, TCatalogMediaItem extends CatalogMediaItem> extends ModelMapper<TCatalogMediaItemInternal, TCatalogMediaItem, never> {
+	
+	/**
+	 * Common mapping helper for implementations
+	 * @param source the mapping source
+	 * @returns the mapping target
+	 */
+	protected commonToExternal(source: CatalogMediaItemInternal): CatalogMediaItem {
+
+		return {
+			name: source.name,
+			genres: source.genres,
+			description: source.description,
+			releaseDate: dateUtils.toString(source.releaseDate),
+			imageUrl: source.imageUrl
+		};
+	}
+	
+	/**
+	 * Common mapping helper for implementations
+	 * @param source the mapping source
+	 * @returns the mapping target
+	 */
+	protected commonToInternal(source: CatalogMediaItem): CatalogMediaItemInternal {
+		
+		return {
+			name: source.name,
+			genres: source.genres,
+			description: source.description,
+			releaseDate: dateUtils.toDate(source.releaseDate),
+			imageUrl: source.imageUrl
+		};
+	}
+}
+

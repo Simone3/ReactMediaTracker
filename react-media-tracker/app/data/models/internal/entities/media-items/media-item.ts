@@ -9,7 +9,7 @@ type CoreMediaItemDataInternal = {
 	name: string;
 	genres?: string[];
 	description?: string;
-	releaseDate?: string;
+	releaseDate?: Date;
 	imageUrl?: string;
 }
 /**
@@ -30,7 +30,7 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
 	group?: MediaItemGroupInternal;
 	ownPlatform?: OwnPlatformInternal;
 	userComment?: string;
-	completedAt?: string[];
+	completedAt?: Date[];
 	active?: boolean;
 	catalogId?: string;
 }
@@ -62,4 +62,14 @@ export type MediaItemSortByInternal = {
  */
 export type CatalogMediaItemInternal = CoreMediaItemDataInternal & {
 
+}
+
+/**
+ * Media item catalog search result, internal type just for display purposes
+ */
+export type SearchMediaItemCatalogResultInternal = {
+
+	catalogId: string;
+	name: string;
+	releaseDate?: Date;
 }

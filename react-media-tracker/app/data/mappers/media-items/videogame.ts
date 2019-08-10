@@ -1,6 +1,6 @@
-import { MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
-import { IdentifiedVideogame, VideogameFilter, VideogameSortBy, VideogameSortField } from 'app/data/models/api/media-items/videogame';
-import { VideogameFilterInternal, VideogameInternal, VideogameSortByInternal, VideogameSortFieldInternal } from 'app/data/models/internal/entities/media-items/videogame';
+import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
+import { CatalogVideogame, IdentifiedVideogame, SearchVideogameCatalogResult, VideogameFilter, VideogameSortBy, VideogameSortField } from 'app/data/models/api/media-items/videogame';
+import { CatalogVideogameInternal, SearchVideogameCatalogResultInternal, VideogameFilterInternal, VideogameInternal, VideogameSortByInternal, VideogameSortFieldInternal } from 'app/data/models/internal/entities/media-items/videogame';
 
 /**
  * Mapper for videogames
@@ -117,6 +117,60 @@ class VideogameSortMapper extends MediaItemSortMapper<VideogameSortByInternal, V
 }
 
 /**
+ * Mapper for videogame catalog search results
+ */
+class VideogameCatalogSearchMapper extends MediaItemCatalogSearchMapper<SearchVideogameCatalogResultInternal, SearchVideogameCatalogResult> {
+		
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: SearchVideogameCatalogResultInternal): SearchVideogameCatalogResult {
+
+		return this.commonToExternal(source);
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: SearchVideogameCatalogResult): SearchVideogameCatalogResultInternal {
+
+		return this.commonToInternal(source);
+	}
+}
+
+/**
+ * Mapper for videogame catalog details
+ */
+class VideogameCatalogDetailsMapper extends MediaItemCatalogDetailsMapper<CatalogVideogameInternal, CatalogVideogame> {
+	
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: CatalogVideogameInternal): CatalogVideogame {
+
+		return {
+			...this.commonToExternal(source),
+			developers: source.developers,
+			publishers: source.publishers,
+			platforms: source.platforms
+		};
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: CatalogVideogame): CatalogVideogameInternal {
+
+		return {
+			...this.commonToInternal(source),
+			developers: source.developers,
+			publishers: source.publishers,
+			platforms: source.platforms
+		};
+	}
+}
+
+/**
  * Singleton instance of the videogames mapper
  */
 export const videogameMapper = new VideogameMapper();
@@ -130,3 +184,14 @@ export const videogameFilterMapper = new VideogameFilterMapper();
  * Singleton instance of the videogames sort mapper
  */
 export const videogameSortMapper = new VideogameSortMapper();
+
+/**
+ * Singleton instance of the videogames catalog search mapper
+ */
+export const videogameCatalogSearchMapper = new VideogameCatalogSearchMapper();
+
+/**
+ * Singleton instance of the videogames catalog details mapper
+ */
+export const videogameCatalogDetailsMapper = new VideogameCatalogDetailsMapper();
+

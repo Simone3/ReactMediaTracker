@@ -1,6 +1,7 @@
-import { MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
-import { IdentifiedTvShow, TvShowFilter, TvShowSortBy, TvShowSortField } from 'app/data/models/api/media-items/tv-show';
-import { TvShowFilterInternal, TvShowInternal, TvShowSortByInternal, TvShowSortFieldInternal } from 'app/data/models/internal/entities/media-items/tv-show';
+import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
+import { CatalogTvShow, IdentifiedTvShow, SearchTvShowCatalogResult, TvShowFilter, TvShowSortBy, TvShowSortField } from 'app/data/models/api/media-items/tv-show';
+import { CatalogTvShowInternal, SearchTvShowCatalogResultInternal, TvShowFilterInternal, TvShowInternal, TvShowSortByInternal, TvShowSortFieldInternal } from 'app/data/models/internal/entities/media-items/tv-show';
+import { dateUtils } from 'app/utilities/date-utils';
 
 /**
  * Mapper for TV shows
@@ -20,7 +21,7 @@ class TvShowMapper extends MediaItemMapper<TvShowInternal, IdentifiedTvShow> {
 			episodesNumber: source.episodesNumber,
 			seasonsNumber: source.seasonsNumber,
 			inProduction: source.inProduction,
-			nextEpisodeAirDate: source.nextEpisodeAirDate
+			nextEpisodeAirDate: dateUtils.toString(source.nextEpisodeAirDate)
 		};
 	}
 		
@@ -37,7 +38,7 @@ class TvShowMapper extends MediaItemMapper<TvShowInternal, IdentifiedTvShow> {
 			episodesNumber: source.episodesNumber,
 			seasonsNumber: source.seasonsNumber,
 			inProduction: source.inProduction,
-			nextEpisodeAirDate: source.nextEpisodeAirDate
+			nextEpisodeAirDate: dateUtils.toDate(source.nextEpisodeAirDate)
 		};
 	}
 }
@@ -121,6 +122,66 @@ class TvShowSortMapper extends MediaItemSortMapper<TvShowSortByInternal, TvShowS
 }
 
 /**
+ * Mapper for TV show catalog search results
+ */
+class TvShowCatalogSearchMapper extends MediaItemCatalogSearchMapper<SearchTvShowCatalogResultInternal, SearchTvShowCatalogResult> {
+		
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: SearchTvShowCatalogResultInternal): SearchTvShowCatalogResult {
+
+		return this.commonToExternal(source);
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: SearchTvShowCatalogResult): SearchTvShowCatalogResultInternal {
+
+		return this.commonToInternal(source);
+	}
+}
+
+/**
+ * Mapper for TV show catalog details
+ */
+class TvShowCatalogDetailsMapper extends MediaItemCatalogDetailsMapper<CatalogTvShowInternal, CatalogTvShow> {
+	
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: CatalogTvShowInternal): CatalogTvShow {
+
+		return {
+			...this.commonToExternal(source),
+			creators: source.creators,
+			averageEpisodeRuntimeMinutes: source.averageEpisodeRuntimeMinutes,
+			episodesNumber: source.episodesNumber,
+			seasonsNumber: source.seasonsNumber,
+			inProduction: source.inProduction,
+			nextEpisodeAirDate: dateUtils.toString(source.nextEpisodeAirDate)
+		};
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: CatalogTvShow): CatalogTvShowInternal {
+
+		return {
+			...this.commonToInternal(source),
+			creators: source.creators,
+			averageEpisodeRuntimeMinutes: source.averageEpisodeRuntimeMinutes,
+			episodesNumber: source.episodesNumber,
+			seasonsNumber: source.seasonsNumber,
+			inProduction: source.inProduction,
+			nextEpisodeAirDate: dateUtils.toDate(source.nextEpisodeAirDate)
+		};
+	}
+}
+
+/**
  * Singleton instance of the TV shows mapper
  */
 export const tvShowMapper = new TvShowMapper();
@@ -134,4 +195,14 @@ export const tvShowFilterMapper = new TvShowFilterMapper();
  * Singleton instance of the TV shows sort mapper
  */
 export const tvShowSortMapper = new TvShowSortMapper();
+
+/**
+ * Singleton instance of the TV shows catalog search mapper
+ */
+export const tvShowCatalogSearchMapper = new TvShowCatalogSearchMapper();
+
+/**
+ * Singleton instance of the TV shows catalog details mapper
+ */
+export const tvShowCatalogDetailsMapper = new TvShowCatalogDetailsMapper();
 

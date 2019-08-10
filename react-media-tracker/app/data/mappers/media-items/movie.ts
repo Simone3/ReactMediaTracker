@@ -1,6 +1,6 @@
-import { MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
-import { IdentifiedMovie, MovieFilter, MovieSortBy, MovieSortField } from 'app/data/models/api/media-items/movie';
-import { MovieFilterInternal, MovieInternal, MovieSortByInternal, MovieSortFieldInternal } from 'app/data/models/internal/entities/media-items/movie';
+import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
+import { CatalogMovie, IdentifiedMovie, MovieFilter, MovieSortBy, MovieSortField, SearchMovieCatalogResult } from 'app/data/models/api/media-items/movie';
+import { CatalogMovieInternal, MovieFilterInternal, MovieInternal, MovieSortByInternal, MovieSortFieldInternal, SearchMovieCatalogResultInternal } from 'app/data/models/internal/entities/media-items/movie';
 
 /**
  * Mapper for movies
@@ -113,6 +113,58 @@ class MovieSortMapper extends MediaItemSortMapper<MovieSortByInternal, MovieSort
 }
 
 /**
+ * Mapper for movie catalog search results
+ */
+class MovieCatalogSearchMapper extends MediaItemCatalogSearchMapper<SearchMovieCatalogResultInternal, SearchMovieCatalogResult> {
+		
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: SearchMovieCatalogResultInternal): SearchMovieCatalogResult {
+
+		return this.commonToExternal(source);
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: SearchMovieCatalogResult): SearchMovieCatalogResultInternal {
+
+		return this.commonToInternal(source);
+	}
+}
+
+/**
+ * Mapper for movie catalog details
+ */
+class MovieCatalogDetailsMapper extends MediaItemCatalogDetailsMapper<CatalogMovieInternal, CatalogMovie> {
+	
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: CatalogMovieInternal): CatalogMovie {
+
+		return {
+			...this.commonToExternal(source),
+			directors: source.directors,
+			durationMinutes: source.durationMinutes
+		};
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: CatalogMovie): CatalogMovieInternal {
+
+		return {
+			...this.commonToInternal(source),
+			directors: source.directors,
+			durationMinutes: source.durationMinutes
+		};
+	}
+}
+
+/**
  * Singleton instance of the movies mapper
  */
 export const movieMapper = new MovieMapper();
@@ -126,3 +178,14 @@ export const movieFilterMapper = new MovieFilterMapper();
  * Singleton instance of the movies sort mapper
  */
 export const movieSortMapper = new MovieSortMapper();
+
+/**
+ * Singleton instance of the movies catalog search mapper
+ */
+export const movieCatalogSearchMapper = new MovieCatalogSearchMapper();
+
+/**
+ * Singleton instance of the movies catalog details mapper
+ */
+export const movieCatalogDetailsMapper = new MovieCatalogDetailsMapper();
+

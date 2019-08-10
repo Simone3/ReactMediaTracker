@@ -1,6 +1,6 @@
-import { MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
-import { BookFilter, BookSortBy, BookSortField, IdentifiedBook } from 'app/data/models/api/media-items/book';
-import { BookFilterInternal, BookInternal, BookSortByInternal, BookSortFieldInternal } from 'app/data/models/internal/entities/media-items/book';
+import { MediaItemCatalogDetailsMapper, MediaItemCatalogSearchMapper, MediaItemFilterMapper, MediaItemMapper, MediaItemSortMapper } from 'app/data/mappers/media-items/media-item';
+import { BookFilter, BookSortBy, BookSortField, CatalogBook, IdentifiedBook, SearchBookCatalogResult } from 'app/data/models/api/media-items/book';
+import { BookFilterInternal, BookInternal, BookSortByInternal, BookSortFieldInternal, CatalogBookInternal, SearchBookCatalogResultInternal } from 'app/data/models/internal/entities/media-items/book';
 
 /**
  * Mapper for books
@@ -113,6 +113,58 @@ class BookSortMapper extends MediaItemSortMapper<BookSortByInternal, BookSortBy>
 }
 
 /**
+ * Mapper for book catalog search results
+ */
+class BookCatalogSearchMapper extends MediaItemCatalogSearchMapper<SearchBookCatalogResultInternal, SearchBookCatalogResult> {
+		
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: SearchBookCatalogResultInternal): SearchBookCatalogResult {
+
+		return this.commonToExternal(source);
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: SearchBookCatalogResult): SearchBookCatalogResultInternal {
+
+		return this.commonToInternal(source);
+	}
+}
+
+/**
+ * Mapper for book catalog details
+ */
+class BookCatalogDetailsMapper extends MediaItemCatalogDetailsMapper<CatalogBookInternal, CatalogBook> {
+	
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: CatalogBookInternal): CatalogBook {
+
+		return {
+			...this.commonToExternal(source),
+			authors: source.authors,
+			pagesNumber: source.pagesNumber
+		};
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: CatalogBook): CatalogBookInternal {
+
+		return {
+			...this.commonToInternal(source),
+			authors: source.authors,
+			pagesNumber: source.pagesNumber
+		};
+	}
+}
+
+/**
  * Singleton instance of the books mapper
  */
 export const bookMapper = new BookMapper();
@@ -126,3 +178,13 @@ export const bookFilterMapper = new BookFilterMapper();
  * Singleton instance of the books sort mapper
  */
 export const bookSortMapper = new BookSortMapper();
+
+/**
+ * Singleton instance of the books catalog search mapper
+ */
+export const bookCatalogSearchMapper = new BookCatalogSearchMapper();
+
+/**
+ * Singleton instance of the books catalog details mapper
+ */
+export const bookCatalogDetailsMapper = new BookCatalogDetailsMapper();

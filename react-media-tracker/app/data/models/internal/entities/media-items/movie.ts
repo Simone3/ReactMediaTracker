@@ -1,13 +1,20 @@
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/entities/media-items/media-item';
+
+/**
+ * Util type to extract common fields to both movie entities and catalog entries
+ */
+type CoreMovieDataInternal = {
+
+	directors?: string[];
+	durationMinutes?: number;
+};
 
 /**
  * A movie, internal type just for display purposes
  */
-export type MovieInternal = MediaItemInternal & {
+export type MovieInternal = MediaItemInternal & CoreMovieDataInternal & {
 
 	id: string;
-	directors?: string[];
-	durationMinutes?: number;
 }
 
 /**
@@ -29,3 +36,18 @@ export type MovieSortByInternal = MediaItemSortByInternal & {
 
 	field: MovieSortFieldInternal;
 }
+
+/**
+ * Model for a media item with base properties, internal type just for display purposes
+ */
+export type CatalogMovieInternal = CatalogMediaItemInternal & CoreMovieDataInternal & {
+
+};
+
+/**
+ * Media item catalog search result, internal type just for display purposes
+ */
+export type SearchMovieCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
+
+};
+

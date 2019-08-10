@@ -1,13 +1,20 @@
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal } from 'app/data/models/internal/entities/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/entities/media-items/media-item';
+
+/**
+ * Util type to extract common fields to both book entities and catalog entries
+ */
+type CoreBookDataInternal = {
+
+	authors?: string[];
+	pagesNumber?: number;
+};
 
 /**
  * Model for a book, internal type just for display purposes
  */
-export type BookInternal = MediaItemInternal & {
+export type BookInternal = MediaItemInternal & CoreBookDataInternal & {
 
 	id: string;
-	authors?: string[];
-	pagesNumber?: number;
 }
 
 /**
@@ -30,3 +37,16 @@ export type BookSortByInternal = MediaItemSortByInternal & {
 	field: BookSortFieldInternal;
 }
 
+/**
+ * Model for a media item with base properties, internal type just for display purposes
+ */
+export type CatalogBookInternal = CatalogMediaItemInternal & CoreBookDataInternal & {
+
+};
+
+/**
+ * Media item catalog search result, internal type just for display purposes
+ */
+export type SearchBookCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
+
+};
