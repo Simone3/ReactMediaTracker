@@ -26,6 +26,7 @@ export type MediaItemGroupInternal = {
  */
 export type MediaItemInternal = CoreMediaItemDataInternal & {
 
+	id: string;
 	importance: number;
 	group?: MediaItemGroupInternal;
 	ownPlatform?: OwnPlatformInternal;

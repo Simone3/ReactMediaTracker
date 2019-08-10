@@ -14,8 +14,7 @@ type CoreVideogameDataInternal = {
  * Model for a videogame, internal type just for display purposes
  */
 export type VideogameInternal = MediaItemInternal & CoreVideogameDataInternal & {
-
-	id: string;
+	
 	averageLengthHours?: number;
 }
 

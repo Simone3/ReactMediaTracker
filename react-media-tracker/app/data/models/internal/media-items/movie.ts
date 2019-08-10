@@ -14,7 +14,6 @@ type CoreMovieDataInternal = {
  */
 export type MovieInternal = MediaItemInternal & CoreMovieDataInternal & {
 
-	id: string;
 }
 
 /**

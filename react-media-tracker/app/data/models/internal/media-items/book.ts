@@ -14,7 +14,6 @@ type CoreBookDataInternal = {
  */
 export type BookInternal = MediaItemInternal & CoreBookDataInternal & {
 
-	id: string;
 }
 
 /**

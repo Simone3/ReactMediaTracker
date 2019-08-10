@@ -18,7 +18,6 @@ type CoreTvShowDataInternal = {
  */
 export type TvShowInternal = MediaItemInternal & CoreTvShowDataInternal & {
 
-	id: string;
 }
 
 /**

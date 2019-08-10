@@ -61,6 +61,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 	protected commonToInternal(source: MediaItem): MediaItemInternal {
 
 		const target: MediaItemInternal = {
+			id: '',
 			name: source.name,
 			importance: source.importance,
 			genres: source.genres,
