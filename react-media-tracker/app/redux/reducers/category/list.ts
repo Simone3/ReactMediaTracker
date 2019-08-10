@@ -6,7 +6,7 @@ import { Action } from 'redux';
 /**
  * The initial state for the categories list
  */
-const initialCategories: CategoriesListState = {
+const initialState: CategoriesListState = {
 	categories: [],
 	isFetching: false,
 	isDeleting: false,
@@ -20,7 +20,7 @@ const initialCategories: CategoriesListState = {
  * @param action an action
  * @returns the new state
  */
-export const categoriesList = (state: CategoriesListState = initialCategories, action: Action): CategoriesListState => {
+export const categoriesList = (state: CategoriesListState = initialState, action: Action): CategoriesListState => {
 	
 	switch(action.type) {
 

@@ -7,7 +7,7 @@ import { Action } from 'redux';
 /**
  * The initial state for the category details
  */
-const initialCategoryDetails: CategoryDetailsState = {
+const initialState: CategoryDetailsState = {
 	category: undefined,
 	valid: false,
 	dirty: false,
@@ -20,7 +20,7 @@ const initialCategoryDetails: CategoryDetailsState = {
  * @param action an action
  * @returns the new state
  */
-export const categoryDetails = (state: CategoryDetailsState = initialCategoryDetails, action: Action): CategoryDetailsState => {
+export const categoryDetails = (state: CategoryDetailsState = initialState, action: Action): CategoryDetailsState => {
 	
 	switch(action.type) {
 

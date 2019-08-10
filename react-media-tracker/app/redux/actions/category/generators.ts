@@ -38,7 +38,7 @@ export const completeFetchingCategories = (categories: CategoryInternal[]): Comp
 };
 
 /**
- * Generator for the complete fetching categories action, which marks the unsuccessful end of the categories list fetching operation
+ * Generator for the fail fetching categories action, which marks the unsuccessful end of the categories list fetching operation
  * @returns the action
  */
 export const failFetchingCategories = (): FailFetchingCategoriesAction => {

@@ -6,7 +6,7 @@ import { Action } from 'redux';
 /**
  * The initial state for the error
  */
-const initialErrorState: ErrorState = {
+const initialState: ErrorState = {
 	error: undefined
 };
 
@@ -16,7 +16,7 @@ const initialErrorState: ErrorState = {
  * @param action an action
  * @returns the new state
  */
-export const error = (state: ErrorState = initialErrorState, action: Action): ErrorState => {
+export const error = (state: ErrorState = initialState, action: Action): ErrorState => {
 	
 	switch(action.type) {
 

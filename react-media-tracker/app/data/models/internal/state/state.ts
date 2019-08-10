@@ -1,5 +1,6 @@
 import { ErrorState } from 'app/data/models/internal/error';
 import { CategoriesListState, CategoryDetailsState } from 'app/data/models/internal/state/category';
+import { MediaItemsListState } from './media-item';
 
 /**
  * The global application state (handled by Redux)
@@ -20,4 +21,9 @@ export class State {
 	 * Portion of the state with the category details information
 	 */
 	public readonly categoryDetails!: CategoryDetailsState;
+
+	/**
+	 * Portion of the state with the media items list information
+	 */
+	public readonly mediaItemsList!: MediaItemsListState;
 }
