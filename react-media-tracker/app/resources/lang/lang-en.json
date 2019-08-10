@@ -9,7 +9,8 @@
 				"backendParse": "The server returned an unknown response",
 				"backendCategoryFetch": "Cannot fetch categories from the server",
 				"backendCategorySave": "Cannot save the category to the server, check your input",
-				"backendCategoryDelete": "Cannot delete the category from the server"
+				"backendCategoryDelete": "Cannot delete the category from the server",
+				"backendMediaItemFetch": "Cannot fetch media items from the server"
 			}
 		}
 	},
@@ -37,6 +38,26 @@
 			"MOVIE": "Movies",
 			"TV_SHOW": "TV Shows",
 			"VIDEOGAME": "Videogames"
+		}
+	},
+	"book": {
+		"list": {
+			"empty": "No books"
+		}
+	},
+	"movie": {
+		"list": {
+			"empty": "No movies"
+		}
+	},
+	"tvShow": {
+		"list": {
+			"empty": "No TV Shows"
+		}
+	},
+	"videogame": {
+		"list": {
+			"empty": "No videogames"
 		}
 	},
 	"common": {

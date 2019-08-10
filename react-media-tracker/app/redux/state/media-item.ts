@@ -1,5 +1,5 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * Portion of the internal state with the media items list information
@@ -11,6 +11,16 @@ export type MediaItemsListState = {
 	 */
 	readonly category?: CategoryInternal;
 
+	/**
+	 * The current media item filter
+	 */
+	readonly filter?: MediaItemFilterInternal;
+
+	/**
+	 * The current media item order filter
+	 */
+	readonly sortBy?: MediaItemSortByInternal;
+	
 	/**
 	 * The list of available media items
 	 */

@@ -16,7 +16,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	public async filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]> {
 
 		let categoryMediaItems: TMediaItemInternal[];
-		if('categoryId' in this.mediaItems) {
+		if(categoryId in this.mediaItems) {
 
 			categoryMediaItems = this.mediaItems[categoryId];
 		}

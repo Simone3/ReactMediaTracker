@@ -4,6 +4,6 @@
 export const AppScreens = {
 	CategoriesList: 'CategoriesList',
 	CategoryDetails: 'CategoryDetails',
-	MoviesList: 'MoviesList',
-	MovieDetails: 'MovieDetails'
+	MediaItemsList: 'MediaItemsList',
+	MediaItemDetails: 'MediaItemDetails'
 };
