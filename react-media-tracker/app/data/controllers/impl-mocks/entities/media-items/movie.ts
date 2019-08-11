@@ -1,6 +1,6 @@
-import { MovieController } from 'app/data/controllers/core/entities/media-items/movie';
-import { MediaItemMockedController } from 'app/data/controllers/impl-mocks/entities/media-items/media-item';
-import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
+import { MovieCatalogController, MovieController } from 'app/data/controllers/core/entities/media-items/movie';
+import { MediaItemMockedCatalogController, MediaItemMockedController } from 'app/data/controllers/impl-mocks/entities/media-items/media-item';
+import { CatalogMovieInternal, MovieFilterInternal, MovieInternal, MovieSortByInternal, SearchMovieCatalogResultInternal } from 'app/data/models/internal/media-items/movie';
 
 /**
  * Mocked implementation of the MovieController that contains an in-memory list of movies
@@ -47,10 +47,10 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 	}
 }
 
-// /**
-//  * Mocked implementation of the MovieCatalogController that contains an in-memory list of movies
-//  * @see MovieCatalogController
-//  */
-// export class MovieMockedCatalogController extends MediaItemMockedCatalogController implements MovieCatalogController {
+/**
+ * Mocked implementation of the MovieCatalogController that contains an in-memory list of movies
+ * @see MovieCatalogController
+ */
+export class MovieMockedCatalogController extends MediaItemMockedCatalogController<SearchMovieCatalogResultInternal, CatalogMovieInternal> implements MovieCatalogController {
 
-// }
+}

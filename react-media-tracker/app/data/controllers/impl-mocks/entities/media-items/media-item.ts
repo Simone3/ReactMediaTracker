@@ -1,13 +1,14 @@
-import { MediaItemController } from 'app/data/controllers/core/entities/media-items/media-item';
+import { MediaItemCatalogController, MediaItemController } from 'app/data/controllers/core/entities/media-items/media-item';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
+import { AppError } from 'app/data/models/internal/error';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * Mocked implementation of the MediaItemController that contains an in-memory list of media items
  * @see MediaItemController
  */
 export abstract class MediaItemMockedController<TMediaItemInternal extends MediaItemInternal, TMediaItemSortByInternal extends MediaItemSortByInternal, TMediaItemFilterInternal extends MediaItemFilterInternal> extends MockControllerHelper implements MediaItemController<TMediaItemInternal, TMediaItemSortByInternal, TMediaItemFilterInternal> {
-	
+
 	protected readonly mediaItems: {[category: string]: TMediaItemInternal[]} = {};
 
 	/**
@@ -15,20 +16,61 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 */
 	public async filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]> {
 
-		let categoryMediaItems: TMediaItemInternal[];
-		if(categoryId in this.mediaItems) {
+		return this.resolveResult(() => {
 
-			categoryMediaItems = this.mediaItems[categoryId];
-		}
-		else {
+			let categoryMediaItems = this.getCategoryMediaItems(categoryId);
 			
-			categoryMediaItems = [];
-		}
+			categoryMediaItems = this.mockFilter(categoryMediaItems, filter);
+			categoryMediaItems = this.mockSort(categoryMediaItems, sortBy);
 
-		categoryMediaItems = this.mockFilter(categoryMediaItems, filter);
-		categoryMediaItems = this.mockSort(categoryMediaItems, sortBy);
+			return categoryMediaItems.slice();
+		});
+	}
 
-		return categoryMediaItems.slice();
+	/**
+	 * @override
+	 */
+	public async search(categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]> {
+			
+		return this.resolveResult(() => {
+
+			return this.getCategoryMediaItems(categoryId)
+				.filter((item) => {
+					return item.name.includes(searchTerm);
+				})
+				.slice();
+		});
+	}
+	
+	/**
+	 * @override
+	 */
+	public async save(categoryId: string, mediaItem: TMediaItemInternal): Promise<void> {
+		
+		return this.resolveResult(() => {
+			
+			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
+			categoryMediaItems.push(mediaItem);
+			this.mediaItems[categoryId] = categoryMediaItems;
+		});
+	}
+
+	/**
+	 * @override
+	 */
+	public async delete(categoryId: string, mediaItemId: string): Promise<void> {
+		
+		return this.resolveResult(() => {
+			
+			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
+			const index = categoryMediaItems.findIndex((item) => {
+				return item.id === mediaItemId;
+			});
+			if(index > -1) {
+				categoryMediaItems.splice(index, 1);
+			}
+			this.mediaItems[categoryId] = categoryMediaItems;
+		});
 	}
 
 	/**
@@ -60,12 +102,66 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 			return mediaItems;
 		}
 	}
+
+	/**
+	 * Helper to get all media items in the category
+	 * @param categoryId the category ID
+	 * @returns the media items
+	 */
+	private getCategoryMediaItems(categoryId: string): TMediaItemInternal[] {
+
+		let categoryMediaItems: TMediaItemInternal[];
+		if(categoryId in this.mediaItems) {
+
+			categoryMediaItems = this.mediaItems[categoryId];
+		}
+		else {
+			
+			categoryMediaItems = [];
+		}
+		return categoryMediaItems;
+	}
 }
 
-// /**
-//  * Mocked implementation of the MediaItemCatalogController that contains an in-memory list of media items
-//  * @see MediaItemCatalogController
-//  */
-// export class MediaItemMockedCatalogController extends MockControllerHelper implements MediaItemCatalogController {
+/**
+ * Mocked implementation of the MediaItemCatalogController that contains an in-memory list of media items
+ * @see MediaItemCatalogController
+ */
+export class MediaItemMockedCatalogController<TSearchMediaItemCatalogResultInternal extends SearchMediaItemCatalogResultInternal, TCatalogMediaItemInternal extends CatalogMediaItemInternal> extends MockControllerHelper implements MediaItemCatalogController<TSearchMediaItemCatalogResultInternal, TCatalogMediaItemInternal> {
 
-// }
+	protected readonly catalogList: TSearchMediaItemCatalogResultInternal[] = [];
+	protected readonly catalogDetails: {[catalogId: string]: TCatalogMediaItemInternal} = {};
+	
+	/**
+	 * @override
+	 */
+	public async search(searchTerm: string): Promise<TSearchMediaItemCatalogResultInternal[]> {
+		
+		return this.resolveResult(() => {
+			
+			return this.catalogList
+				.filter((item) => {
+					return item.name.includes(searchTerm);
+				})
+				.slice();
+		});
+	}
+	
+	/**
+	 * @override
+	 */
+	public async getDetails(catalogId: string): Promise<TCatalogMediaItemInternal> {
+		
+		return this.resolveResult(() => {
+			
+			if(catalogId in this.catalogDetails) {
+
+				return this.catalogDetails[catalogId];
+			}
+			else {
+				
+				throw AppError.GENERIC.withDetails('Mocked catalog details not found');
+			}
+		});
+	}
+}
