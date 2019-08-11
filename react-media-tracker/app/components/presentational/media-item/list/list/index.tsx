@@ -4,6 +4,8 @@ import { MediaItemInternal } from 'app/data/models/internal/media-items/media-it
 import { MediaItemRowComponent } from 'app/components/presentational/media-item/list/row';
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
+import { mediaItemLangPrefixFactory } from 'app/factories/media-item';
+import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * Presentational component to display the list of user media items
@@ -44,8 +46,8 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 	 */
 	private renderNone(): ReactNode {
 
-		// TODO replace "movie"
-		return <Text style={styles.emptyMessage}>{i18n.t(`movie.list.empty`)}</Text>;
+		const prefix = mediaItemLangPrefixFactory.get(this.props.category);
+		return <Text style={styles.emptyMessage}>{i18n.t(`${prefix}.list.empty`)}</Text>;
 	}
 
 	/**
@@ -87,6 +89,11 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
  * MediaItemsListComponent's input props
  */
 export type MediaItemsListComponentInput = {
+
+	/**
+	 * The linked category
+	 */
+	category: CategoryInternal;
 
 	/**
 	 * The media items list to be displayed

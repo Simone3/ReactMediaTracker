@@ -121,3 +121,38 @@ export const mediaItemSortByFactory = new class MediaIconFactory extends MediaFa
 		}
 	}
 }();
+
+/**
+ * Factory for the media items lang prefix
+ */
+export const mediaItemLangPrefixFactory = new class MediaIconFactory extends MediaFactory<string> {
+
+	/**
+	 * @override
+	 */
+	protected getInternal(mediaType: MediaTypeInternal): string {
+
+		switch(mediaType) {
+
+			case 'BOOK': {
+				return 'book';
+			}
+
+			case 'MOVIE': {
+				return 'movie';
+			}
+
+			case 'TV_SHOW': {
+				return 'tvShow';
+			}
+
+			case 'VIDEOGAME': {
+				return 'videogame';
+			}
+
+			default: {
+				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items lang prefix factory`);
+			}
+		}
+	}
+}();
