@@ -5,7 +5,7 @@ import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
-import { MediaIconBuilder } from 'app/components/presentational/category/common/media-icon/helper';
+import { mediaIconFactory } from 'app/factories/category';
 
 /**
  * Presentational component to display a modal dialog with the category options
@@ -56,7 +56,7 @@ export class CategoryModalComponent extends Component<CategoryModalComponentInpu
 					verticalPosition='bottom'>
 					<ButtonsListComponent
 						title={category.name}
-						titleIcon={MediaIconBuilder.getMediaIconFromCategory(category)}
+						titleIcon={mediaIconFactory.get(category)}
 						buttons={buttons}
 					/>
 				</ModalComponent>

@@ -6,9 +6,9 @@ import { styles } from 'app/components/presentational/category/details/form-view
 import { i18n } from 'app/utilities/i18n';
 import { TextInputComponent } from 'app/components/presentational/form/text-input';
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
-import { MediaIconBuilder } from 'app/components/presentational/category/common/media-icon/helper';
 import { ColorPickerInputComponent } from 'app/components/presentational/form/color-picker-input';
 import { config } from 'app/config/config';
+import { mediaIconFactory } from 'app/factories/category';
 
 /**
  * Presentational component that contains all category form input fields, all handled by the Formik container component
@@ -99,7 +99,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 			return {
 				value: mediaType,
 				label: i18n.t(`category.mediaTypes.${mediaType}`),
-				icon: MediaIconBuilder.getMediaIconFromType(mediaType)
+				icon: mediaIconFactory.get(mediaType)
 			};
 		});
 

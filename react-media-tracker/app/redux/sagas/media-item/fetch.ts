@@ -1,7 +1,7 @@
 import { call, put, select, takeEvery } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { mediaItemFactory } from 'app/factories/media-item';
+import { mediaItemControllerFactory } from 'app/factories/media-item';
 import { setError } from 'app/redux/actions/error/generators';
 import { FETCH_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { completeFetchingMediaItems, failFetchingMediaItems, startFetchingMediaItems } from 'app/redux/actions/media-item/generators';
@@ -32,7 +32,7 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 		}
 		
 		// Get the correct controller for the current category
-		const mediaItemController = mediaItemFactory.getMediaItemsController(category);
+		const mediaItemController = mediaItemControllerFactory.get(category);
 
 		// Get the media items and return them
 		const mediaItems: MediaItemInternal[] = yield call(mediaItemController.filter.bind(mediaItemController), category.id, filter, sortBy);

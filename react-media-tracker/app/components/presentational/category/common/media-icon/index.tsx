@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { Image, ImageProps } from 'react-native';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { MediaIconBuilder } from 'app/components/presentational/category/common/media-icon/helper';
+import { mediaIconFactory } from 'app/factories/category';
 
 /**
  * Presentational component to display a category icon based on its media type
@@ -15,7 +15,7 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 
 		return (
 			<Image
-				source={MediaIconBuilder.getMediaIconFromCategory(this.props.category)}
+				source={mediaIconFactory.get(this.props.category)}
 				{...this.props}>
 				{this.props.children}
 			</Image>

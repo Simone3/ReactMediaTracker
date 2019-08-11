@@ -316,7 +316,7 @@ module.exports = {
 		'no-class-assign': 2,
 		'no-confusing-arrow': 2,
 		'no-const-assign': 2,
-		'no-dupe-class-members': 2,
+		'no-dupe-class-members': 'off',
 		'no-duplicate-imports': 2,
 		'no-new-symbol': 2,
 		'no-restricted-imports': 0,

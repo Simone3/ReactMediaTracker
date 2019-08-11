@@ -1,4 +1,4 @@
-import { mediaItemFactory } from 'app/factories/media-item';
+import { mediaItemFilterFactory, mediaItemSortByFactory } from 'app/factories/media-item';
 import { COMPLETE_FETCHING_MEDIA_ITEMS, FAIL_FETCHING_MEDIA_ITEMS, OPEN_MEDIA_ITEMS_LIST, START_FETCHING_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { CompleteFetchingMediaItemsAction, OpenMediaItemsListAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
@@ -34,8 +34,8 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 
 			const category = openMediaItemsListAction.category;
 
-			const defaultFilter = mediaItemFactory.getDefaultMediaItemFilter(category);
-			const defaultSortBy = mediaItemFactory.getDefaultMediaItemSortBy(category);
+			const defaultFilter = mediaItemFilterFactory.get(category);
+			const defaultSortBy = mediaItemSortByFactory.get(category);
 
 			return {
 				...initialState,
