@@ -45,6 +45,25 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			return mediaItems;
 		}
 	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultFilter(): MovieFilterInternal {
+		
+		return {};
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultSortBy(): MovieSortByInternal {
+		
+		return {
+			field: 'NAME',
+			ascending: true
+		};
+	}
 }
 
 /**

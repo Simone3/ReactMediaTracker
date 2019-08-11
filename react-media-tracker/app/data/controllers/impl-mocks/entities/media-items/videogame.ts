@@ -45,6 +45,25 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 			return mediaItems;
 		}
 	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultFilter(): VideogameFilterInternal {
+		
+		return {};
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultSortBy(): VideogameSortByInternal {
+		
+		return {
+			field: 'NAME',
+			ascending: true
+		};
+	}
 }
 
 /**

@@ -45,6 +45,25 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 			return mediaItems;
 		}
 	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultFilter(): BookFilterInternal {
+		
+		return {};
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultSortBy(): BookSortByInternal {
+		
+		return {
+			field: 'NAME',
+			ascending: true
+		};
+	}
 }
 
 /**

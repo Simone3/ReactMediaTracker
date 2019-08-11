@@ -15,6 +15,18 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 	filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]>;
 
 	/**
+	 * Getter for the default media item filter option
+	 * @returns the filter
+	 */
+	getDefaultFilter(): TMediaItemFilterInternal;
+
+	/**
+	 * Getter for the default media item sort option
+	 * @returns the sort by
+	 */
+	getDefaultSortBy(): TMediaItemSortByInternal;
+
+	/**
 	 * Searches the media items of a category
 	 * @param categoryId the category
 	 * @param searchTerm the search term

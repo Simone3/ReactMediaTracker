@@ -30,6 +30,16 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	/**
 	 * @override
 	 */
+	public abstract getDefaultFilter(): TMediaItemFilterInternal;
+
+	/**
+	 * @override
+	 */
+	public abstract getDefaultSortBy(): TMediaItemSortByInternal;
+
+	/**
+	 * @override
+	 */
 	public async search(categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]> {
 			
 		return this.resolveResult(() => {

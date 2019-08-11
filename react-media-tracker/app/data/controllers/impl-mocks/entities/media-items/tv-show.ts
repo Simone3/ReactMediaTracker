@@ -45,6 +45,25 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 			return mediaItems;
 		}
 	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultFilter(): TvShowFilterInternal {
+		
+		return {};
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultSortBy(): TvShowSortByInternal {
+		
+		return {
+			field: 'NAME',
+			ascending: true
+		};
+	}
 }
 
 /**
