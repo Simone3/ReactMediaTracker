@@ -18,6 +18,6 @@ export type MovieCatalogController = MediaItemCatalogController<SearchMovieCatal
 export const movieController: MovieController = new MovieMockedController();
 
 /**
- * Singleton implementation of the movie controller
+ * Singleton implementation of the movie catalog controller
  */
 export const movieCatalogController: MovieCatalogController = new MovieMockedCatalogController();

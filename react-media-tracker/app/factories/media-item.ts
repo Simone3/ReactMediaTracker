@@ -1,5 +1,8 @@
+import { bookController } from 'app/data/controllers/core/entities/media-items/book';
 import { MediaItemController } from 'app/data/controllers/core/entities/media-items/media-item';
 import { movieController } from 'app/data/controllers/core/entities/media-items/movie';
+import { tvShowController } from 'app/data/controllers/core/entities/media-items/tv-show';
+import { videogameController } from 'app/data/controllers/core/entities/media-items/videogame';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { BookFilterInternal, BookSortByInternal } from 'app/data/models/internal/media-items/book';
@@ -21,8 +24,20 @@ export const mediaItemControllerFactory = new class MediaIconFactory extends Med
 
 		switch(mediaType) {
 
+			case 'BOOK': {
+				return bookController;
+			}
+
 			case 'MOVIE': {
 				return movieController;
+			}
+
+			case 'TV_SHOW': {
+				return tvShowController;
+			}
+
+			case 'VIDEOGAME': {
+				return videogameController;
 			}
 
 			default: {
