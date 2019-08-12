@@ -1,6 +1,7 @@
 import { styles } from 'app/components/presentational/generic/header-title/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, Image, Text, TouchableOpacity, ImageRequireSource } from 'react-native';
+import { View, Text, TouchableOpacity, ImageRequireSource } from 'react-native';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 
 /**
  * Presentational component to display the header title, optionally with a clickable icon
@@ -41,8 +42,9 @@ export class HeaderTitleComponent extends Component<HeaderTitleComponentInput & 
 			if(!iconClickStatus || iconClickStatus === 'NOT_CLICKABLE') {
 
 				return (
-					<Image
+					<ColoredImage
 						source={icon}
+						tintColor='white'
 						style={styles.icon}
 					/>
 				);
@@ -55,8 +57,9 @@ export class HeaderTitleComponent extends Component<HeaderTitleComponentInput & 
 					<TouchableOpacity
 						onPress={onIconClick}
 						disabled={!iconClickEnabled}>
-						<Image
+						<ColoredImage
 							source={icon}
+							tintColor='white'
 							style={iconClickEnabled ? styles.icon : [ styles.icon, styles.iconDisabled ]}
 						/>
 					</TouchableOpacity>

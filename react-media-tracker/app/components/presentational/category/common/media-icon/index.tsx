@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { Image, ImageProps } from 'react-native';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { mediaIconFactory } from 'app/factories/category';
+import { ColoredImage, ColoredImageInput } from 'app/components/presentational/generic/colored-image';
 
 /**
  * Presentational component to display a category icon based on its media type
@@ -14,11 +14,12 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 	public render(): ReactNode {
 
 		return (
-			<Image
+			<ColoredImage
 				source={mediaIconFactory.get(this.props.category)}
+				tintColor={this.props.tintColor}
 				{...this.props}>
 				{this.props.children}
-			</Image>
+			</ColoredImage>
 		);
 	}
 }
@@ -26,7 +27,7 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 /**
  * Media's input props
  */
-export type MediaIconComponentInput = Omit<ImageProps, 'source'> & {
+export type MediaIconComponentInput = Omit<ColoredImageInput, 'source'> & {
 
 	/**
 	 * The linked category

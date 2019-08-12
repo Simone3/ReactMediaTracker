@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	icon: {
-		tintColor: 'white',
 		width: 40,
 		height: 40,
 		marginRight: 18

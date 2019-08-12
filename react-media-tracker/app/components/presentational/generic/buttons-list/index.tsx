@@ -1,7 +1,8 @@
 import { styles } from 'app/components/presentational/generic/buttons-list/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, ImageRequireSource, Text, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, ImageRequireSource, Text, FlatList, TouchableOpacity } from 'react-native';
 import { HrComponent } from 'app/components/presentational/generic/hr';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 
 /**
  * Presentational component to display a title and a list of buttons with icons
@@ -54,8 +55,9 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 		return (
 			<View style={styles.rowContainer}>
 				<View style={styles.rowIconContainer}>
-					<Image
+					<ColoredImage
 						source={icon}
+						tintColor='black'
 						style={styles.rowIcon}
 						resizeMode='center'
 					/>

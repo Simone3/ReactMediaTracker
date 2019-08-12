@@ -11,7 +11,7 @@ const mapStateToProps = (state: State): HeaderTitleComponentInput => {
 
 	return {
 		title: category && category.id ? category.name : i18n.t('category.details.title.new'),
-		icon: require('app/resources/images/ic_save.png'),
+		icon: require('app/resources/images/ic_action_save.png'),
 		iconClickStatus: state.categoryDetails.valid ? 'ENABLED' : 'DISABLED'
 	};
 };

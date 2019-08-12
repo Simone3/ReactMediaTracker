@@ -16,19 +16,19 @@ export const mediaIconFactory = new class MediaIconFactory extends MediaFactory<
 		switch(mediaType) {
 
 			case 'BOOK': {
-				return require('app/resources/images/ic_book.png');
+				return require('app/resources/images/ic_media_book.png');
 			}
 			
 			case 'MOVIE': {
-				return require('app/resources/images/ic_movie.png');
+				return require('app/resources/images/ic_media_movie.png');
 			}
 			
 			case 'TV_SHOW': {
-				return require('app/resources/images/ic_tvshow.png');
+				return require('app/resources/images/ic_media_tvshow.png');
 			}
 			
 			case 'VIDEOGAME': {
-				return require('app/resources/images/ic_videogame.png');
+				return require('app/resources/images/ic_media_videogame.png');
 			}
 			
 			default: {

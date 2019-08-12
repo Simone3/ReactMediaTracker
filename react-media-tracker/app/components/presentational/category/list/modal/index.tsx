@@ -31,7 +31,7 @@ export class CategoryModalComponent extends Component<CategoryModalComponentInpu
 
 			const buttons: ButtonsListComponentButton[] = [{
 				label: i18n.t('category.list.edit'),
-				icon: require('app/resources/images/ic_edit.png'),
+				icon: require('app/resources/images/ic_action_edit.png'),
 				onClick: () => {
 	
 					edit(category);
@@ -40,7 +40,7 @@ export class CategoryModalComponent extends Component<CategoryModalComponentInpu
 				}
 			}, {
 				label: i18n.t('category.list.delete'),
-				icon: require('app/resources/images/ic_delete.png'),
+				icon: require('app/resources/images/ic_action_delete.png'),
 				onClick: () => {
 	
 					deleteCallback(category);

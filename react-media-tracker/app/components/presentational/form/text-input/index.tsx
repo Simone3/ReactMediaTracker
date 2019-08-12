@@ -1,7 +1,8 @@
 import { styles } from 'app/components/presentational/form/text-input/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, ImageRequireSource, Image } from 'react-native';
+import { View, TextInput, ImageRequireSource } from 'react-native';
 import { FieldComponent } from 'app/components/presentational/form/field';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 
 /**
  * Presentational component to display a text input with Formik
@@ -24,8 +25,9 @@ export class TextInputComponent extends Component<TextInputComponentInput> {
 				{(field) => {
 					return (
 						<View style={styles.container}>
-							<Image
+							<ColoredImage
 								source={icon}
+								tintColor='black'
 								style={styles.icon}
 							/>
 							<TextInput

@@ -28,6 +28,7 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 					<View style={styles.iconContainer}>
 						<MediaIconComponent
 							category={category}
+							tintColor='white'
 							style={styles.icon}
 							resizeMode='center'
 						/>

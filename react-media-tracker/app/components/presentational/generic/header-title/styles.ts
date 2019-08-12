@@ -18,7 +18,6 @@ export const styles = StyleSheet.create({
 	icon: {
 		margin: 10,
 		marginRight: 15,
-		tintColor: 'white',
 		alignSelf: 'center',
 		width: 30,
 		height: 30

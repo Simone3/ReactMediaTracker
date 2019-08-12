@@ -36,7 +36,6 @@ export const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	rowIcon: {
-		tintColor: 'black',
 		width: 25,
 		height: 25,
 		marginRight: 18

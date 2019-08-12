@@ -1,8 +1,9 @@
 import React, { ReactNode, Component } from 'react';
 import { styles } from 'app/components/presentational/form/color-picker-input/styles';
 import { FieldComponent, Field } from 'app/components/presentational/form/field';
-import { View, ImageRequireSource, Image, TouchableOpacity, Text } from 'react-native';
+import { View, ImageRequireSource, TouchableOpacity, Text } from 'react-native';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 
 /**
  * Presentational component to display a color picker input with Formik
@@ -49,8 +50,9 @@ export class ColorPickerInputComponent extends Component<ColorPickerInputCompone
 
 		return (
 			<View style={styles.container}>
-				<Image
+				<ColoredImage
 					source={icon}
+					tintColor='black'
 					style={styles.icon}
 				/>
 				<TouchableOpacity style={styles.nameCicleIconContainer}

@@ -14,6 +14,14 @@ export type Config = {
 			colorPrimary: string;
 			colorPrimaryDark: string;
 			colorAccent: string;
+			blue: string;
+			red: string;
+			green: string;
+			orange: string;
+			yellow: string;
+			purple: string;
+			cyan: string;
+			grey: string;
 			availableCategoryColors: string[];
 		};
 	};

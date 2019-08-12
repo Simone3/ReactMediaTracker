@@ -84,7 +84,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 			<TextInputComponent
 				name='name'
 				placeholder={i18n.t('category.details.placeholders.name')}
-				icon={require('app/resources/images/ic_name.png')}
+				icon={require('app/resources/images/ic_input_name.png')}
 			/>
 		);
 	}
@@ -121,7 +121,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 		return (
 			<ColorPickerInputComponent
 				name='color'
-				icon={require('app/resources/images/ic_color.png')}
+				icon={require('app/resources/images/ic_input_color.png')}
 				colors={config.ui.colors.availableCategoryColors}
 			/>
 		);
