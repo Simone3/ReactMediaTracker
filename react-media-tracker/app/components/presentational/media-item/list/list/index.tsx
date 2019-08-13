@@ -4,7 +4,7 @@ import { MediaItemInternal } from 'app/data/models/internal/media-items/media-it
 import { MediaItemRowComponent } from 'app/components/presentational/media-item/list/row';
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
-import { mediaItemLangPrefixFactory } from 'app/factories/media-item';
+import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**

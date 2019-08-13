@@ -1,7 +1,7 @@
 import { call, put, select, takeEvery } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { mediaItemControllerFactory } from 'app/factories/media-item';
+import { mediaItemControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
 import { FETCH_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { completeFetchingMediaItems, failFetchingMediaItems, startFetchingMediaItems } from 'app/redux/actions/media-item/generators';

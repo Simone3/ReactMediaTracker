@@ -8,7 +8,7 @@ import { TextInputComponent } from 'app/components/presentational/form/text-inpu
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
 import { ColorPickerInputComponent } from 'app/components/presentational/form/color-picker-input';
 import { config } from 'app/config/config';
-import { mediaIconFactory } from 'app/factories/category';
+import { mediaIconFactory } from 'app/factories/icon-factories';
 
 /**
  * Presentational component that contains all category form input fields, all handled by the Formik container component

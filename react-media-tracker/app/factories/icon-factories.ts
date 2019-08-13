@@ -1,115 +1,41 @@
 import { ColoredImageDescriptor } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config-sample';
-import { bookController, bookDefinitionsController } from 'app/data/controllers/core/entities/media-items/book';
-import { MediaItemController, MediaItemDefinitionsController } from 'app/data/controllers/core/entities/media-items/media-item';
-import { movieController, movieDefinitionsController } from 'app/data/controllers/core/entities/media-items/movie';
-import { tvShowController, tvShowDefinitionsController } from 'app/data/controllers/core/entities/media-items/tv-show';
-import { videogameController, videogameDefinitionsController } from 'app/data/controllers/core/entities/media-items/videogame';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
-import { MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
-import { MediaFactory } from 'app/factories/abstract-factory';
+import { MediaItemImportanceInternal, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaFactory } from 'app/factories/abstract-factories';
+import { ImageRequireSource } from 'react-native';
 
 /**
- * Factory for the media item controller
+ * Factory for a media type icon
  */
-export const mediaItemControllerFactory = new class MediaItemControllerFactory extends MediaFactory<MediaItemController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal>> {
+export const mediaIconFactory = new class MediaIconFactory extends MediaFactory<ImageRequireSource> {
 
 	/**
 	 * @override
 	 */
-	protected getInternal(mediaType: MediaTypeInternal): MediaItemController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal> {
+	protected getInternal(mediaType: MediaTypeInternal): ImageRequireSource {
 
 		switch(mediaType) {
 
 			case 'BOOK': {
-				return bookController;
+				return require('app/resources/images/ic_media_book.png');
 			}
-
+			
 			case 'MOVIE': {
-				return movieController;
+				return require('app/resources/images/ic_media_movie.png');
 			}
-
+			
 			case 'TV_SHOW': {
-				return tvShowController;
+				return require('app/resources/images/ic_media_tvshow.png');
 			}
-
+			
 			case 'VIDEOGAME': {
-				return videogameController;
+				return require('app/resources/images/ic_media_videogame.png');
 			}
-
+			
 			default: {
-				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items controller factory`);
-			}
-		}
-	}
-}();
-
-/**
- * Factory for the media item definitions controller
- */
-export const mediaItemDefinitionsControllerFactory = new class MediaItemDefinitionsControllerFactory extends MediaFactory<MediaItemDefinitionsController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal>> {
-
-	/**
-	 * @override
-	 */
-	protected getInternal(mediaType: MediaTypeInternal): MediaItemDefinitionsController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal> {
-
-		switch(mediaType) {
-
-			case 'BOOK': {
-				return bookDefinitionsController;
-			}
-
-			case 'MOVIE': {
-				return movieDefinitionsController;
-			}
-
-			case 'TV_SHOW': {
-				return tvShowDefinitionsController;
-			}
-
-			case 'VIDEOGAME': {
-				return videogameDefinitionsController;
-			}
-
-			default: {
-				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items definitions controller factory`);
-			}
-		}
-	}
-}();
-
-/**
- * Factory for the media items lang prefix
- */
-export const mediaItemLangPrefixFactory = new class MediaItemLangPrefixFactory extends MediaFactory<string> {
-
-	/**
-	 * @override
-	 */
-	protected getInternal(mediaType: MediaTypeInternal): string {
-
-		switch(mediaType) {
-
-			case 'BOOK': {
-				return 'book';
-			}
-
-			case 'MOVIE': {
-				return 'movie';
-			}
-
-			case 'TV_SHOW': {
-				return 'tvShow';
-			}
-
-			case 'VIDEOGAME': {
-				return 'videogame';
-			}
-
-			default: {
-				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items lang prefix factory`);
+				throw AppError.GENERIC.withDetails(`Category icon not mapped for media type ${mediaType}`);
 			}
 		}
 	}
@@ -237,4 +163,3 @@ export const mediaItemStatusIconFactory = new class MediaItemStatusIconFactory {
 		}
 	}
 }();
-

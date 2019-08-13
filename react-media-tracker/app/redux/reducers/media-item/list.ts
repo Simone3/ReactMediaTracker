@@ -1,4 +1,4 @@
-import { mediaItemDefinitionsControllerFactory } from 'app/factories/media-item';
+import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
 import { COMPLETE_FETCHING_MEDIA_ITEMS, FAIL_FETCHING_MEDIA_ITEMS, OPEN_MEDIA_ITEMS_LIST, START_FETCHING_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { CompleteFetchingMediaItemsAction, OpenMediaItemsListAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';

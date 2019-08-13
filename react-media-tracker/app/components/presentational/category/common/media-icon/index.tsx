@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { mediaIconFactory } from 'app/factories/category';
+import { mediaIconFactory } from 'app/factories/icon-factories';
 import { ColoredImage, ColoredImageInput } from 'app/components/presentational/generic/colored-image';
 
 /**

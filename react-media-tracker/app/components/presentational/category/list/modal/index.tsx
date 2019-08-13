@@ -5,7 +5,7 @@ import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
-import { mediaIconFactory } from 'app/factories/category';
+import { mediaIconFactory } from 'app/factories/icon-factories';
 
 /**
  * Presentational component to display a modal dialog with the category options

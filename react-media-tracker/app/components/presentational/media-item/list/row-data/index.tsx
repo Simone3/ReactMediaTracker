@@ -4,7 +4,8 @@ import { MediaItemInternal } from 'app/data/models/internal/media-items/media-it
 import { styles } from 'app/components/presentational/media-item/list/row-data/styles';
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
 import { i18n } from 'app/utilities/i18n';
-import { mediaItemDefinitionsControllerFactory, mediaItemLangPrefixFactory } from 'app/factories/media-item';
+import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
+import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 
 /**
  * Presentational component to display the textual data portion of the list row
