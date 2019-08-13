@@ -23,7 +23,7 @@ export class MediaItemRowIconsComponent extends Component<MediaItemRowIconsCompo
 			<View style={styles.secondaryIconsContainer}>
 				<ColoredImage
 					style={styles.statusIcon}
-					{...mediaItemStatusIconFactory.get(mediaItem)}
+					{...mediaItemStatusIconFactory.get(mediaItem.status, mediaItem.mediaType)}
 				/>
 				<ColoredImage
 					style={styles.importanceIcon}

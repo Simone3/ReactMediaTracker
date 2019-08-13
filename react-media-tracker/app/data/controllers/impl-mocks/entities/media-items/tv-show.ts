@@ -12,23 +12,27 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 		3: [{
 			id: '1',
 			mediaType: 'TV_SHOW',
+			status: 'NEW',
 			name: 'My First TV Show',
 			importance: 'VERY_IMPORTANT'
 		}, {
 			id: '2',
 			mediaType: 'TV_SHOW',
+			status: 'NEW',
 			name: 'My Second TV Show',
 			importance: 'UNIMPORTANT',
 			averageEpisodeRuntimeMinutes: 50
 		}, {
 			id: '3',
 			mediaType: 'TV_SHOW',
+			status: 'ACTIVE',
 			name: 'My Third TV Show',
 			importance: 'IMPORTANT',
 			active: true
 		}, {
 			id: '4',
 			mediaType: 'TV_SHOW',
+			status: 'NEW',
 			name: 'My Fourth TV Show',
 			importance: 'FAIRLY_IMPORTANT'
 		}]

@@ -29,12 +29,18 @@ export type MediaItemGroupInternal = {
 export type MediaItemImportanceInternal = 'VERY_IMPORTANT' | 'IMPORTANT' | 'FAIRLY_IMPORTANT' | 'UNIMPORTANT';
 
 /**
+ * The media type "status" (helper label based on other media item data), internal type just for display purposes
+ */
+export type MediaItemStatusInternal = 'ACTIVE' | 'UPCOMING' | 'REDO' | 'COMPLETE' | 'NEW';
+
+/**
  * A generic media item, internal type just for display purposes
  */
 export type MediaItemInternal = CoreMediaItemDataInternal & {
 
 	id: string;
 	mediaType: MediaTypeInternal;
+	status: MediaItemStatusInternal;
 	importance: MediaItemImportanceInternal;
 	group?: MediaItemGroupInternal;
 	ownPlatform?: OwnPlatformInternal;

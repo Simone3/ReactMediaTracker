@@ -2,7 +2,7 @@ import { ColoredImageDescriptor } from 'app/components/presentational/generic/co
 import { config } from 'app/config/config-sample';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
-import { MediaItemImportanceInternal, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaItemImportanceInternal, MediaItemStatusInternal } from 'app/data/models/internal/media-items/media-item';
 import { MediaFactory } from 'app/factories/abstract-factories';
 import { ImageRequireSource } from 'react-native';
 
@@ -91,75 +91,74 @@ export const mediaItemImportanceIconFactory = new class MediaItemImportanceIconF
 export const mediaItemStatusIconFactory = new class MediaItemStatusIconFactory {
 
 	/**
-	 * Gets the value based on the given media item
-	 * @param mediaItem the media item
+	 * Gets the value based on the given "status"
+	 * @param status the media item "status"
+	 * @param mediaType the media item type
 	 * @returns the linked value
 	 */
-	public get(mediaItem: MediaItemInternal): ColoredImageDescriptor {
+	public get(status: MediaItemStatusInternal, mediaType: MediaTypeInternal): ColoredImageDescriptor {
 
-		if(mediaItem.active) {
+		switch(status) {
 
-			// Items marked as currenctly active (e.g. currently reading)
-			switch(mediaItem.mediaType) {
-				
-				case 'BOOK':
-					return {
-						source: require('app/resources/images/ic_status_reading.png'),
-						tintColor: config.ui.colors.green
-					};
-	
-				case 'MOVIE':
-				case 'TV_SHOW':
-					return {
-						source: require('app/resources/images/ic_status_watching.png'),
-						tintColor: config.ui.colors.green
-					};
-	
-				case 'VIDEOGAME':
-					return {
-						source: require('app/resources/images/ic_status_playing.png'),
-						tintColor: config.ui.colors.green
-					};
-	
-				default: {
-					throw AppError.GENERIC.withDetails(`Media type ${mediaItem.mediaType} not recognized in media item status icon factory`);
-				}
-			}
-		}
-		else if(mediaItem.releaseDate && mediaItem.releaseDate > new Date()) {
+			case 'ACTIVE':
+
+				switch(mediaType) {
+					
+					case 'BOOK':
+						return {
+							source: require('app/resources/images/ic_status_reading.png'),
+							tintColor: config.ui.colors.green
+						};
 		
-			// Items with a future release date
-			return {
-				source: require('app/resources/images/ic_status_upcoming.png'),
-				tintColor: config.ui.colors.orange
-			};
-		}
-		else if(mediaItem.completedAt && mediaItem.completedAt.length > 0) {
+					case 'MOVIE':
+					case 'TV_SHOW':
+						return {
+							source: require('app/resources/images/ic_status_watching.png'),
+							tintColor: config.ui.colors.green
+						};
+		
+					case 'VIDEOGAME':
+						return {
+							source: require('app/resources/images/ic_status_playing.png'),
+							tintColor: config.ui.colors.green
+						};
+		
+					default: {
+						throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media item status icon factory`);
+					}
+				}
 
-			if(mediaItem.markedAsRedo) {
+			case 'UPCOMING':
+			
+				return {
+					source: require('app/resources/images/ic_status_upcoming.png'),
+					tintColor: config.ui.colors.orange
+				};
+			
+			case 'REDO':
 
-				// Items that have been completed but have been marked for redo (e.g. rewatch)
 				return {
 					source: require('app/resources/images/ic_status_redoing.png'),
 					tintColor: config.ui.colors.cyan
 				};
-			}
-			else {
+			
+			case 'COMPLETE':
 
-				// Items that have been completed
 				return {
 					source: require('app/resources/images/ic_status_complete.png'),
 					tintColor: config.ui.colors.purple
 				};
-			}
-		}
-		else {
 
-			// All other items
-			return {
-				source: require('app/resources/images/ic_status_new.png'),
-				tintColor: 'black'
-			};
+			case 'NEW':
+
+				return {
+					source: require('app/resources/images/ic_status_new.png'),
+					tintColor: 'black'
+				};
+			
+			default:
+				
+				throw AppError.GENERIC.withDetails(`Status ${status} not recognized in media item status icon factory`);
 		}
 	}
 }();

@@ -18,8 +18,8 @@
 		"list": {
 			"title": "Media Tracker",
 			"empty": "No categories",
-			"edit": "Edit Category",
-			"delete": "Delete Category"
+			"edit": "Edit category",
+			"delete": "Delete category"
 		},
 		"details": {
 			"title": {
@@ -48,32 +48,52 @@
 	"book": {
 		"list": {
 			"empty": "No books",
-			"duration": "{{duration}}pp."
+			"duration": "{{duration}}pp.",
+			"edit": "Edit book",
+			"delete": "Delete book",
+			"markActive": "I'm reading this",
+			"markComplete": "I've read this",
+			"markRedo": "I could reread this"
 		}
 	},
 	"movie": {
 		"list": {
 			"empty": "No movies",
-			"duration": "{{duration}}'"
+			"duration": "{{duration}}'",
+			"edit": "Edit movie",
+			"delete": "Delete movie",
+			"markActive": "I'm watching this",
+			"markComplete": "I've watched this",
+			"markRedo": "I could rewatch this"
 		}
 	},
 	"tvShow": {
 		"list": {
 			"empty": "No TV Shows",
-			"duration": "{{duration}}'"
+			"duration": "{{duration}}'",
+			"edit": "Edit show",
+			"delete": "Delete show",
+			"markActive": "I'm following this",
+			"markComplete": "I've completed this",
+			"markRedo": "I could rewatch this"
 		}
 	},
 	"videogame": {
 		"list": {
 			"empty": "No videogames",
-			"duration": "{{duration}}h"
+			"duration": "{{duration}}h",
+			"edit": "Edit game",
+			"delete": "Delete game",
+			"markActive": "I'm playing this",
+			"markComplete": "I've played this",
+			"markRedo": "I could replay this"
 		}
 	},
 	"common": {
 		"alert": {
 			"form": {
 				"exit": {
-					"title": "Warning",
+					"title": "Unsaved Changes",
 					"message": "You have unsaved changes, are you sure you want to exit?",
 					"okButton": "OK",
 					"cancelButton": "Cancel"

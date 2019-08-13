@@ -3,7 +3,7 @@ import { groupMapper } from 'app/data/mappers/group';
 import { ownPlatformMapper } from 'app/data/mappers/own-platform';
 import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
 import { AppError } from 'app/data/models/internal/error';
-import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
 
 /**
@@ -101,6 +101,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			mediaType: 'BOOK',
 			
 			name: source.name,
+			status: this.buildStatusLabel(source),
 			importance: toInternalImportance(source.importance),
 			genres: source.genres,
 			description: source.description,
@@ -108,6 +109,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			completedAt: dateUtils.toDateList(source.completedAt),
 			releaseDate: dateUtils.toDate(source.releaseDate),
 			active: source.active,
+			markedAsRedo: source.markedAsRedo,
 			catalogId: source.catalogId,
 			imageUrl: source.imageUrl
 		};
@@ -132,6 +134,43 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 		}
 
 		return target;
+	}
+
+	/**
+	 * Helper to build the internal "status" label based on other media item data
+	 * @param source the source data
+	 * @returns the internal "status"
+	 */
+	private buildStatusLabel(source: MediaItem): MediaItemStatusInternal {
+		
+		if(source.active) {
+
+			// Items marked as currently active (e.g. currently reading)
+			return 'ACTIVE';
+		}
+		else if(source.releaseDate && new Date(source.releaseDate) > new Date()) {
+		
+			// Items with a future release date
+			return 'UPCOMING';
+		}
+		else if(source.completedAt && source.completedAt.length > 0) {
+
+			if(source.markedAsRedo) {
+
+				// Items that have been completed but have been marked for redo (e.g. rewatch)
+				return 'REDO';
+			}
+			else {
+
+				// Items that have been completed
+				return 'COMPLETE';
+			}
+		}
+		else {
+
+			// All other items
+			return 'NEW';
+		}
 	}
 }
 

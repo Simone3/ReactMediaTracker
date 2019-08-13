@@ -12,6 +12,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 		2: [{
 			id: '1',
 			mediaType: 'MOVIE',
+			status: 'NEW',
 			name: 'My First Movie',
 			importance: 'VERY_IMPORTANT',
 			durationMinutes: 123,
@@ -28,6 +29,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 		}, {
 			id: '2',
 			mediaType: 'MOVIE',
+			status: 'ACTIVE',
 			name: 'My Second Movie',
 			importance: 'UNIMPORTANT',
 			durationMinutes: 89,
@@ -40,12 +42,14 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 		}, {
 			id: '3',
 			mediaType: 'MOVIE',
+			status: 'UPCOMING',
 			name: 'My Third Movie',
 			importance: 'IMPORTANT',
 			releaseDate: new Date('2050-01-01')
 		}, {
 			id: '4',
 			mediaType: 'MOVIE',
+			status: 'COMPLETE',
 			name: 'My Fourth Movie',
 			importance: 'FAIRLY_IMPORTANT',
 			completedAt: [ new Date('2000-01-01'), new Date('2010-01-01') ],
@@ -57,6 +61,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 		}, {
 			id: '5',
 			mediaType: 'MOVIE',
+			status: 'REDO',
 			name: 'My Fifth Movie',
 			importance: 'FAIRLY_IMPORTANT',
 			completedAt: [ new Date('2010-01-01') ],
@@ -64,6 +69,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 		}, {
 			id: '6',
 			mediaType: 'MOVIE',
+			status: 'NEW',
 			name: 'My Sixth Movie With a Very Very Very Very Very Very Very Very Very Very Very Very Long Title',
 			importance: 'FAIRLY_IMPORTANT',
 			genres: [ 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre' ],

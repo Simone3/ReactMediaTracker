@@ -154,6 +154,13 @@ export abstract class MediaItem extends CoreMediaItemData {
 	public active?: boolean;
 
 	/**
+	 * If the user marked the media item as "redoing" (i.e. was completed in the past but the user moved it back to the "current" list to e.g. rewatch it)
+	 */
+	@IsOptional()
+	@IsBoolean()
+	public markedAsRedo?: boolean;
+
+	/**
 	 * The data source catalog reference
 	 */
 	@IsOptional()
