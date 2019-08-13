@@ -8,9 +8,7 @@ import { Action } from 'redux';
  */
 const initialState: CategoriesListState = {
 	categories: [],
-	isFetching: false,
-	isDeleting: false,
-	requiresReload: false,
+	status: 'IDLE',
 	highlightedCategory: undefined
 };
 
@@ -28,8 +26,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 
 			return {
 				...state,
-				isFetching: true,
-				requiresReload: false
+				status: 'FETCHING'
 			};
 		}
 	
@@ -39,7 +36,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 			
 			return {
 				...state,
-				isFetching: false,
+				status: 'IDLE',
 				categories: receiveCategoriesAction.categories
 			};
 		}
@@ -48,7 +45,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 
 			return {
 				...state,
-				isFetching: false,
+				status: 'IDLE',
 				categories: []
 			};
 		}
@@ -58,7 +55,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				requiresReload: true
+				status: 'REQUIRES_RELOAD'
 			};
 		}
 
@@ -66,7 +63,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 
 			return {
 				...state,
-				isDeleting: true
+				status: 'DELETING'
 			};
 		}
 
@@ -74,8 +71,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				isDeleting: false,
-				requiresReload: true
+				status: 'REQUIRES_RELOAD'
 			};
 		}
 
@@ -83,7 +79,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				isDeleting: false
+				status: 'IDLE'
 			};
 		}
 

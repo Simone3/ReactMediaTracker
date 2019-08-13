@@ -29,7 +29,7 @@ export type MediaItemsListState = {
 	/**
 	 * The current status of the media items list
 	 */
-	readonly status: MediaItemListStatus;
+	readonly status: MediaItemsListStatus;
 
 	/**
 	 * The currently highlighted (e.g. context menu is open) media item, or undefined if none is highlighted
@@ -40,4 +40,4 @@ export type MediaItemsListState = {
 /**
  * The current status of the media items list
  */
-export type MediaItemListStatus = 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING' | 'INLINE_UPDATING';
+export type MediaItemsListStatus = 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING' | 'INLINE_UPDATING';

@@ -9,8 +9,8 @@ const mapStateToProps = (state: State): CategoriesListScreenComponentInput => {
 	const listState = state.categoriesList;
 
 	return {
-		isLoading: listState.isFetching || listState.isDeleting,
-		requiresReload: listState.requiresReload
+		isLoading: listState.status === 'FETCHING' || listState.status === 'DELETING',
+		requiresReload: listState.status === 'REQUIRES_RELOAD'
 	};
 };
 

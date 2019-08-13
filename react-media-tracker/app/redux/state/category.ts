@@ -11,19 +11,9 @@ export type CategoriesListState = {
 	readonly categories: CategoryInternal[];
 
 	/**
-	 * Flag to tell if the app is currently waiting for the categories list
+	 * The current status of the categories list
 	 */
-	readonly isFetching: boolean;
-
-	/**
-	 * Flag to tell if the app is currently waiting for a category to be deleted
-	 */
-	readonly isDeleting: boolean;
-
-	/**
-	 * Flag to tell if the categories list was marked as invalid, i.e. it requires a reload
-	 */
-	readonly requiresReload: boolean;
+	readonly status: CategoriesListStatus;
 
 	/**
 	 * The currently highlighted (e.g. context menu is open) category, or undefined if none is highlighted
@@ -56,6 +46,11 @@ export type CategoryDetailsState = {
 	 */
 	readonly saveStatus: CategorySaveStatus;
 }
+
+/**
+ * The current status of the categories list
+ */
+export type CategoriesListStatus = 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING';
 
 /**
  * The current status of the category saving process
