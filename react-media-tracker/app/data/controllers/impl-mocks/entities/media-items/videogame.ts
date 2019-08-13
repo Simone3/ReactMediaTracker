@@ -11,20 +11,26 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 	protected readonly mediaItems: {[category: string]: VideogameInternal[]} = {
 		4: [{
 			id: '1',
+			mediaType: 'VIDEOGAME',
 			name: 'My First Videogame',
-			importance: 30
+			importance: 'VERY_IMPORTANT'
 		}, {
 			id: '2',
+			mediaType: 'VIDEOGAME',
 			name: 'My Second Videogame',
-			importance: 10
+			importance: 'UNIMPORTANT',
+			averageLengthHours: 20
 		}, {
 			id: '3',
+			mediaType: 'VIDEOGAME',
 			name: 'My Third Videogame',
-			importance: 20
+			importance: 'IMPORTANT',
+			active: true
 		}, {
 			id: '4',
+			mediaType: 'VIDEOGAME',
 			name: 'My Fourth Videogame',
-			importance: 10
+			importance: 'FAIRLY_IMPORTANT'
 		}]
 	};
 
@@ -33,10 +39,16 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 	 */
 	protected mockSort(mediaItems: VideogameInternal[], sortBy: VideogameSortByInternal): VideogameInternal[] {
 		
-		if(sortBy.field === 'IMPORTANCE') {
+		if(sortBy.field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
-				return first.importance - second.importance;
+				if(first.name < second.name) {
+					return -1;
+				}
+				if(first.name > second.name) {
+					return 1;
+				}
+				return 0;
 			});
 		}
 		else {
@@ -44,25 +56,6 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 			console.log('Sort option not currently mocked!');
 			return mediaItems;
 		}
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultFilter(): VideogameFilterInternal {
-		
-		return {};
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultSortBy(): VideogameSortByInternal {
-		
-		return {
-			field: 'NAME',
-			ascending: true
-		};
 	}
 }
 

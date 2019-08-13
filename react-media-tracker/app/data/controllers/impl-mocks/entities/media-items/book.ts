@@ -11,20 +11,26 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 	protected readonly mediaItems: {[category: string]: BookInternal[]} = {
 		1: [{
 			id: '1',
+			mediaType: 'BOOK',
 			name: 'My First Book',
-			importance: 30
+			importance: 'VERY_IMPORTANT'
 		}, {
 			id: '2',
+			mediaType: 'BOOK',
 			name: 'My Second Book',
-			importance: 10
+			importance: 'UNIMPORTANT',
+			pagesNumber: 500
 		}, {
 			id: '3',
+			mediaType: 'BOOK',
 			name: 'My Third Book',
-			importance: 20
+			importance: 'IMPORTANT',
+			active: true
 		}, {
 			id: '4',
+			mediaType: 'BOOK',
 			name: 'My Fourth Book',
-			importance: 10
+			importance: 'FAIRLY_IMPORTANT'
 		}]
 	};
 
@@ -33,10 +39,16 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 	 */
 	protected mockSort(mediaItems: BookInternal[], sortBy: BookSortByInternal): BookInternal[] {
 		
-		if(sortBy.field === 'IMPORTANCE') {
+		if(sortBy.field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
-				return first.importance - second.importance;
+				if(first.name < second.name) {
+					return -1;
+				}
+				if(first.name > second.name) {
+					return 1;
+				}
+				return 0;
 			});
 		}
 		else {
@@ -44,25 +56,6 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 			console.log('Sort option not currently mocked!');
 			return mediaItems;
 		}
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultFilter(): BookFilterInternal {
-		
-		return {};
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultSortBy(): BookSortByInternal {
-		
-		return {
-			field: 'NAME',
-			ascending: true
-		};
 	}
 }
 

@@ -11,20 +11,63 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 	protected readonly mediaItems: {[category: string]: MovieInternal[]} = {
 		2: [{
 			id: '1',
+			mediaType: 'MOVIE',
 			name: 'My First Movie',
-			importance: 30
+			importance: 'VERY_IMPORTANT',
+			durationMinutes: 123,
+			directors: [ 'Some One' ],
+			genres: [ 'Genre 1', 'Genre 2' ],
+			releaseDate: new Date('2010-01-01'),
+			group: {
+				orderInGroup: 3,
+				groupData: {
+					id: '1',
+					name: 'My Group'
+				}
+			}
 		}, {
 			id: '2',
+			mediaType: 'MOVIE',
 			name: 'My Second Movie',
-			importance: 10
+			importance: 'UNIMPORTANT',
+			durationMinutes: 89,
+			ownPlatform: {
+				id: '1',
+				name: 'Netflix',
+				color: 'red'
+			},
+			active: true
 		}, {
 			id: '3',
+			mediaType: 'MOVIE',
 			name: 'My Third Movie',
-			importance: 20
+			importance: 'IMPORTANT',
+			releaseDate: new Date('2050-01-01')
 		}, {
 			id: '4',
+			mediaType: 'MOVIE',
 			name: 'My Fourth Movie',
-			importance: 10
+			importance: 'FAIRLY_IMPORTANT',
+			completedAt: [ new Date('2000-01-01'), new Date('2010-01-01') ],
+			ownPlatform: {
+				id: '2',
+				name: 'Hulu',
+				color: 'green'
+			}
+		}, {
+			id: '5',
+			mediaType: 'MOVIE',
+			name: 'My Fifth Movie',
+			importance: 'FAIRLY_IMPORTANT',
+			completedAt: [ new Date('2010-01-01') ],
+			markedAsRedo: true
+		}, {
+			id: '6',
+			mediaType: 'MOVIE',
+			name: 'My Sixth Movie With a Very Very Very Very Very Very Very Very Very Very Very Very Long Title',
+			importance: 'FAIRLY_IMPORTANT',
+			genres: [ 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre' ],
+			directors: [ 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One' ]
 		}]
 	};
 
@@ -33,10 +76,16 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 	 */
 	protected mockSort(mediaItems: MovieInternal[], sortBy: MovieSortByInternal): MovieInternal[] {
 		
-		if(sortBy.field === 'IMPORTANCE') {
+		if(sortBy.field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
-				return first.importance - second.importance;
+				if(first.name < second.name) {
+					return -1;
+				}
+				if(first.name > second.name) {
+					return 1;
+				}
+				return 0;
 			});
 		}
 		else {
@@ -44,25 +93,6 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			console.log('Sort option not currently mocked!');
 			return mediaItems;
 		}
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultFilter(): MovieFilterInternal {
-		
-		return {};
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultSortBy(): MovieSortByInternal {
-		
-		return {
-			field: 'NAME',
-			ascending: true
-		};
 	}
 }
 

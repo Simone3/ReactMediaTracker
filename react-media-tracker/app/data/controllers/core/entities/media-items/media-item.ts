@@ -1,7 +1,7 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
- * The data controller for generic media items
+ * The data controller for generic media items: provides methods to select, save and delete media items from the user database
  */
 export interface MediaItemController<TMediaItemInternal extends MediaItemInternal, TMediaItemSortByInternal extends MediaItemSortByInternal, TMediaItemFilterInternal extends MediaItemFilterInternal> {
 
@@ -13,19 +13,7 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 	 * @returns the list of media items, as a promise
 	 */
 	filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]>;
-
-	/**
-	 * Getter for the default media item filter option
-	 * @returns the filter
-	 */
-	getDefaultFilter(): TMediaItemFilterInternal;
-
-	/**
-	 * Getter for the default media item sort option
-	 * @returns the sort by
-	 */
-	getDefaultSortBy(): TMediaItemSortByInternal;
-
+	
 	/**
 	 * Searches the media items of a category
 	 * @param categoryId the category
@@ -52,7 +40,7 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 }
 
 /**
- * The catalog controller for generic media items
+ * The catalog controller for generic media items: provides methods to query the global catalog
  */
 export interface MediaItemCatalogController<TSearchMediaItemCatalogResultInternal extends SearchMediaItemCatalogResultInternal, TCatalogMediaItemInternal extends CatalogMediaItemInternal> {
 
@@ -71,3 +59,34 @@ export interface MediaItemCatalogController<TSearchMediaItemCatalogResultInterna
 	getDetails(catalogId: string): Promise<TCatalogMediaItemInternal>;
 }
 
+/**
+ * The definitions controller for generic media items: provides methods that define default values or extract common values from media items
+ */
+export interface MediaItemDefinitionsController<TMediaItemInternal extends MediaItemInternal, TMediaItemSortByInternal extends MediaItemSortByInternal, TMediaItemFilterInternal extends MediaItemFilterInternal> {
+
+	/**
+	 * Getter for the default media item filter option
+	 * @returns the filter
+	 */
+	getDefaultFilter(): TMediaItemFilterInternal;
+
+	/**
+	 * Getter for the default media item sort option
+	 * @returns the sort by
+	 */
+	getDefaultSortBy(): TMediaItemSortByInternal;
+
+	/**
+	 * Extracts the creator (e.g. author for books) names from a media item
+	 * @param mediaItem the media item
+	 * @returns the author names
+	 */
+	getCreatorNames(mediaItem: TMediaItemInternal): string[] | undefined;
+	
+	/**
+	 * Extracts the duration (e.g. number of pages for books) from a media item
+	 * @param mediaItem the media item
+	 * @returns the duration value
+	 */
+	getDurationValue(mediaItem: TMediaItemInternal): number | undefined;
+}

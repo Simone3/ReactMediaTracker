@@ -26,17 +26,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 			return categoryMediaItems.slice();
 		});
 	}
-
-	/**
-	 * @override
-	 */
-	public abstract getDefaultFilter(): TMediaItemFilterInternal;
-
-	/**
-	 * @override
-	 */
-	public abstract getDefaultSortBy(): TMediaItemSortByInternal;
-
+	
 	/**
 	 * @override
 	 */

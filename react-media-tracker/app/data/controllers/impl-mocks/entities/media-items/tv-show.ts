@@ -11,20 +11,26 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 	protected readonly mediaItems: {[category: string]: TvShowInternal[]} = {
 		3: [{
 			id: '1',
+			mediaType: 'TV_SHOW',
 			name: 'My First TV Show',
-			importance: 30
+			importance: 'VERY_IMPORTANT'
 		}, {
 			id: '2',
+			mediaType: 'TV_SHOW',
 			name: 'My Second TV Show',
-			importance: 10
+			importance: 'UNIMPORTANT',
+			averageEpisodeRuntimeMinutes: 50
 		}, {
 			id: '3',
+			mediaType: 'TV_SHOW',
 			name: 'My Third TV Show',
-			importance: 20
+			importance: 'IMPORTANT',
+			active: true
 		}, {
 			id: '4',
+			mediaType: 'TV_SHOW',
 			name: 'My Fourth TV Show',
-			importance: 10
+			importance: 'FAIRLY_IMPORTANT'
 		}]
 	};
 
@@ -33,10 +39,16 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 	 */
 	protected mockSort(mediaItems: TvShowInternal[], sortBy: TvShowSortByInternal): TvShowInternal[] {
 		
-		if(sortBy.field === 'IMPORTANCE') {
+		if(sortBy.field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
-				return first.importance - second.importance;
+				if(first.name < second.name) {
+					return -1;
+				}
+				if(first.name > second.name) {
+					return 1;
+				}
+				return 0;
 			});
 		}
 		else {
@@ -44,25 +56,6 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 			console.log('Sort option not currently mocked!');
 			return mediaItems;
 		}
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultFilter(): TvShowFilterInternal {
-		
-		return {};
-	}
-
-	/**
-	 * @override
-	 */
-	public getDefaultSortBy(): TvShowSortByInternal {
-		
-		return {
-			field: 'NAME',
-			ascending: true
-		};
 	}
 }
 
