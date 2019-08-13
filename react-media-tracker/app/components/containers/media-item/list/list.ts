@@ -1,7 +1,9 @@
 import { MediaItemsListComponent, MediaItemsListComponentInput, MediaItemsListComponentOutput } from 'app/components/presentational/media-item/list/list';
 import { AppError } from 'app/data/models/internal/error';
+import { highlightMediaItem } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: State): MediaItemsListComponentInput => {
 	
@@ -16,11 +18,11 @@ const mapStateToProps = (state: State): MediaItemsListComponentInput => {
 	};
 };
 
-const mapDispatchToProps = (): MediaItemsListComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch): MediaItemsListComponentOutput => {
 
 	return {
-		highlightMediaItem: () => {
-			// Redux action here
+		highlightMediaItem: (mediaItem) => {
+			dispatch(highlightMediaItem(mediaItem));
 		}
 	};
 };

@@ -27,22 +27,17 @@ export type MediaItemsListState = {
 	readonly mediaItems: MediaItemInternal[];
 	
 	/**
-	 * Flag to tell if the app is currently waiting for the media items list
+	 * The current status of the media items list
 	 */
-	readonly isFetching: boolean;
-
-	/**
-	 * Flag to tell if the app is currently waiting for a media item to be deleted
-	 */
-	readonly isDeleting: boolean;
-
-	/**
-	 * Flag to tell if the media items list was marked as invalid, i.e. it requires a reload
-	 */
-	readonly requiresReload: boolean;
+	readonly status: MediaItemListStatus;
 
 	/**
 	 * The currently highlighted (e.g. context menu is open) media item, or undefined if none is highlighted
 	 */
 	readonly highlightedMediaItem: MediaItemInternal | undefined;
 }
+
+/**
+ * The current status of the media items list
+ */
+export type MediaItemListStatus = 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING' | 'INLINE_UPDATING';

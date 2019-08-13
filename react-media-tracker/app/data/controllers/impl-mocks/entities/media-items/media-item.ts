@@ -50,7 +50,21 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 		return this.resolveResult(() => {
 			
 			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
-			categoryMediaItems.push(mediaItem);
+			
+			if(mediaItem.id) {
+
+				const i = categoryMediaItems.findIndex((item) => {
+					return item.id === mediaItem.id;
+				});
+
+				categoryMediaItems[i] = mediaItem;
+			}
+			else {
+
+				mediaItem.id = this.randomId();
+				categoryMediaItems.push(mediaItem);
+			}
+			
 			this.mediaItems[categoryId] = categoryMediaItems;
 		});
 	}
@@ -63,12 +77,13 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 		return this.resolveResult(() => {
 			
 			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
-			const index = categoryMediaItems.findIndex((item) => {
+			
+			const i = categoryMediaItems.findIndex((item) => {
 				return item.id === mediaItemId;
 			});
-			if(index > -1) {
-				categoryMediaItems.splice(index, 1);
-			}
+			
+			categoryMediaItems.splice(i, 1);
+
 			this.mediaItems[categoryId] = categoryMediaItems;
 		});
 	}

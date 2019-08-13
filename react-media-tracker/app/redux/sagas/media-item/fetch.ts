@@ -28,7 +28,7 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 		const sortBy = listState.sortBy;
 		if(!category || !filter || !sortBy) {
 
-			throw AppError.GENERIC.withDetails('Something went wrong in the state initialization: cannot find values while fetching media items');
+			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while fetching media items');
 		}
 		
 		// Get the correct controller for the current category

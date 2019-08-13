@@ -9,8 +9,8 @@ const mapStateToProps = (state: State): MediaItemsListScreenComponentInput => {
 	const listState = state.mediaItemsList;
 
 	return {
-		isLoading: listState.isFetching || listState.isDeleting,
-		requiresReload: listState.requiresReload
+		isLoading: listState.status === 'FETCHING' || listState.status === 'DELETING' || listState.status === 'INLINE_UPDATING',
+		requiresReload: listState.status === 'REQUIRES_RELOAD'
 	};
 };
 

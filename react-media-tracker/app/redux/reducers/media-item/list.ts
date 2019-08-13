@@ -1,6 +1,6 @@
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
-import { COMPLETE_FETCHING_MEDIA_ITEMS, FAIL_FETCHING_MEDIA_ITEMS, OPEN_MEDIA_ITEMS_LIST, START_FETCHING_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
-import { CompleteFetchingMediaItemsAction, OpenMediaItemsListAction } from 'app/redux/actions/media-item/types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM } from 'app/redux/actions/media-item/const';
+import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, OpenMediaItemsListAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
 
@@ -12,9 +12,7 @@ const initialState: MediaItemsListState = {
 	filter: undefined,
 	sortBy: undefined,
 	mediaItems: [],
-	isFetching: false,
-	isDeleting: false,
-	requiresReload: false,
+	status: 'IDLE',
 	highlightedMediaItem: undefined
 };
 
@@ -50,8 +48,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 
 			return {
 				...state,
-				isFetching: true,
-				requiresReload: false
+				status: 'FETCHING'
 			};
 		}
 	
@@ -61,7 +58,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 			
 			return {
 				...state,
-				isFetching: false,
+				status: 'IDLE',
 				mediaItems: receiveMediaItemsAction.mediaItems
 			};
 		}
@@ -70,8 +67,74 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 
 			return {
 				...state,
-				isFetching: false,
+				status: 'IDLE',
 				mediaItems: []
+			};
+		}
+
+		case START_DELETING_MEDIA_ITEM: {
+
+			return {
+				...state,
+				status: 'DELETING'
+			};
+		}
+
+		case COMPLETE_DELETING_MEDIA_ITEM: {
+		
+			return {
+				...state,
+				status: 'REQUIRES_RELOAD'
+			};
+		}
+
+		case FAIL_DELETING_MEDIA_ITEM: {
+		
+			return {
+				...state,
+				status: 'IDLE'
+			};
+		}
+		
+		case START_INLINE_UPDATING_MEDIA_ITEM: {
+
+			return {
+				...state,
+				status: 'INLINE_UPDATING'
+			};
+		}
+
+		case COMPLETE_INLINE_UPDATING_MEDIA_ITEM: {
+		
+			return {
+				...state,
+				status: 'REQUIRES_RELOAD'
+			};
+		}
+
+		case FAIL_INLINE_UPDATING_MEDIA_ITEM: {
+		
+			return {
+				...state,
+				status: 'IDLE'
+			};
+		}
+		
+		case HIGHLIGHT_MEDIA_ITEM: {
+
+			const highlightMediaItemAction = action as HighlightMediaItemAction;
+
+			return {
+				...state,
+				highlightedMediaItem: highlightMediaItemAction.mediaItem
+			};
+		}
+
+		case REMOVE_MEDIA_ITEM_HIGHTLIGHT: {
+
+			return {
+				...state,
+				highlightedMediaItem: undefined
 			};
 		}
 

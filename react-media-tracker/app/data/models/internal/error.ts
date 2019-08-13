@@ -13,6 +13,8 @@ export class AppError extends Error {
 	public static BACKEND_CATEGORY_DELETE = new AppError('backend.category.delete', 'error.flash.messages.backendCategoryDelete');
 	
 	public static BACKEND_MEDIA_ITEM_FETCH = new AppError('backend.mediaItem.fetch', 'error.flash.messages.backendMediaItemFetch');
+	public static BACKEND_MEDIA_ITEM_SAVE = new AppError('backend.mediaItem.save', 'error.flash.messages.backendMediaItemSave');
+	public static BACKEND_MEDIA_ITEM_DELETE = new AppError('backend.mediaItem.delete', 'error.flash.messages.backendMediaItemDelete');
 
 	private _errorCode: string;
 	private _errorDescription: string;

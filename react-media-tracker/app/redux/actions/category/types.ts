@@ -111,7 +111,6 @@ export type DeleteCategoryAction = Action & {
  */
 export type StartDeletingCategoryAction = Action & {
 	
-	category: CategoryInternal;
 };
 
 /**

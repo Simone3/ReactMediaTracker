@@ -13,7 +13,7 @@ import { SagaIterator } from 'redux-saga';
  */
 const deleteCategorySaga = function * (action: DeleteCategoryAction): SagaIterator {
 
-	yield put(startDeletingCategory(action.category));
+	yield put(startDeletingCategory());
 
 	try {
 

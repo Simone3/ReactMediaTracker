@@ -8,9 +8,11 @@
 				"backendGeneric": "The server returned a generic error",
 				"backendParse": "The server returned an unknown response",
 				"backendCategoryFetch": "Cannot fetch categories from the server",
-				"backendCategorySave": "Cannot save the category to the server, check your input",
+				"backendCategorySave": "Cannot save the category to the server",
 				"backendCategoryDelete": "Cannot delete the category from the server",
-				"backendMediaItemFetch": "Cannot fetch media items from the server"
+				"backendMediaItemFetch": "Cannot fetch media items from the server",
+				"backendMediaItemSave": "Cannot save the media item to the server",
+				"backendMediaItemDelete": "Cannot delete the media item from the server"
 			}
 		}
 	},

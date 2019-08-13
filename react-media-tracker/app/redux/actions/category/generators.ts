@@ -172,14 +172,12 @@ export const deleteCategory = (category: CategoryInternal): DeleteCategoryAction
 
 /**
  * Generator for the start deleting category action, which marks the start of the category deleting operation
- * @param category the category data
  * @returns the action
  */
-export const startDeletingCategory = (category: CategoryInternal): StartDeletingCategoryAction => {
+export const startDeletingCategory = (): StartDeletingCategoryAction => {
 	
 	return {
-		type: START_DELETING_CATEGORY,
-		category: category
+		type: START_DELETING_CATEGORY
 	};
 };
 
@@ -195,7 +193,7 @@ export const completeDeletingCategory = (): CompleteDeletingCategoryAction => {
 };
 
 /**
- * Generator for the complete deleting category action, which marks the unsuccessful end of the category deleting operation
+ * Generator for the fail deleting category action, which marks the unsuccessful end of the category deleting operation
  * @returns the action
  */
 export const failDeletingCategory = (): FailDeletingCategoryAction => {
