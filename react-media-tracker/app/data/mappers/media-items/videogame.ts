@@ -30,6 +30,7 @@ class VideogameMapper extends MediaItemMapper<VideogameInternal, IdentifiedVideo
 		return {
 			...this.commonToInternal(source),
 			id: source.uid,
+			mediaType: 'VIDEOGAME',
 			developers: source.developers,
 			publishers: source.publishers,
 			platforms: source.platforms,

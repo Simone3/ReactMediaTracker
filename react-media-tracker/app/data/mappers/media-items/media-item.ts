@@ -3,8 +3,42 @@ import { groupMapper } from 'app/data/mappers/group';
 import { ownPlatformMapper } from 'app/data/mappers/own-platform';
 import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
 import { AppError } from 'app/data/models/internal/error';
-import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
+
+/**
+ * Helper for importance mapping
+ * @param internal internal value
+ * @returns API value
+ */
+const toExternalImportance = (internal: MediaItemImportanceInternal): number => {
+
+	switch(internal) {
+
+		case 'VERY_IMPORTANT': return 350;
+		case 'IMPORTANT': return 250;
+		case 'FAIRLY_IMPORTANT': return 150;
+		case 'UNIMPORTANT': return 50;
+		default: throw AppError.GENERIC.withDetails(`Importance level ${internal} not mapped`);
+	}
+};
+
+/**
+ * Helper for importance mapping (exact match instead of numeric intervals to avoid inconsistencies with back-end filtering)
+ * @param api API value
+ * @returns internal value
+ */
+const toInternalImportance = (api: number): MediaItemImportanceInternal => {
+	
+	switch(api) {
+
+		case 350: return 'VERY_IMPORTANT';
+		case 250: return 'IMPORTANT';
+		case 150: return 'FAIRLY_IMPORTANT';
+		case 50: return 'UNIMPORTANT';
+		default: throw AppError.GENERIC.withDetails(`Importance level ${api} not mapped`);
+	}
+};
 
 /**
  * Abstract mapper for media items
@@ -22,7 +56,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 		
 		const target: MediaItem = {
 			name: source.name,
-			importance: source.importance,
+			importance: toExternalImportance(source.importance),
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -61,9 +95,13 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 	protected commonToInternal(source: MediaItem): MediaItemInternal {
 
 		const target: MediaItemInternal = {
+			
+			// These two will be overridden by the specific mappers. Done like this to avoid setting the fields as optional (= useless undefined checks throughout the app)
 			id: '',
+			mediaType: 'BOOK',
+			
 			name: source.name,
-			importance: source.importance,
+			importance: toInternalImportance(source.importance),
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -112,7 +150,7 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	protected commonToExternal(source: MediaItemFilterInternal): MediaItemFilter {
 
 		return {
-			importance: source.importance,
+			importance: source.importance ? toExternalImportance(source.importance) : undefined,
 			groupId: source.groupId,
 			ownPlatformId: source.ownPlatformId
 		};
@@ -126,7 +164,7 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	protected commonToInternal(source: MediaItemFilter): MediaItemFilterInternal {
 
 		return {
-			importance: source.importance,
+			importance: source.importance ? toInternalImportance(source.importance) : undefined,
 			groupId: source.groupId,
 			ownPlatformId: source.ownPlatformId
 		};

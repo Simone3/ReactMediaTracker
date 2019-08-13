@@ -28,6 +28,7 @@ class BookMapper extends MediaItemMapper<BookInternal, IdentifiedBook> {
 		return {
 			...this.commonToInternal(source),
 			id: source.uid,
+			mediaType: 'BOOK',
 			authors: source.authors,
 			pagesNumber: source.pagesNumber
 		};

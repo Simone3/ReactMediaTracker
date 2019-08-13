@@ -33,6 +33,7 @@ class TvShowMapper extends MediaItemMapper<TvShowInternal, IdentifiedTvShow> {
 		return {
 			...this.commonToInternal(source),
 			id: source.uid,
+			mediaType: 'TV_SHOW',
 			creators: source.creators,
 			averageEpisodeRuntimeMinutes: source.averageEpisodeRuntimeMinutes,
 			episodesNumber: source.episodesNumber,

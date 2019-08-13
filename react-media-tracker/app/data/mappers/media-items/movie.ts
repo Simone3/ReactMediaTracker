@@ -28,6 +28,7 @@ class MovieMapper extends MediaItemMapper<MovieInternal, IdentifiedMovie> {
 		return {
 			...this.commonToInternal(source),
 			id: source.uid,
+			mediaType: 'MOVIE',
 			directors: source.directors,
 			durationMinutes: source.durationMinutes
 		};

@@ -1,3 +1,4 @@
+import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { GroupInternal } from 'app/data/models/internal/group';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
@@ -12,6 +13,7 @@ type CoreMediaItemDataInternal = {
 	releaseDate?: Date;
 	imageUrl?: string;
 }
+
 /**
  * Data about a media item group, internal type just for display purposes
  */
@@ -22,17 +24,24 @@ export type MediaItemGroupInternal = {
 }
 
 /**
+ * The media item importance levels, internal type just for display purposes
+ */
+export type MediaItemImportanceInternal = 'VERY_IMPORTANT' | 'IMPORTANT' | 'FAIRLY_IMPORTANT' | 'UNIMPORTANT';
+
+/**
  * A generic media item, internal type just for display purposes
  */
 export type MediaItemInternal = CoreMediaItemDataInternal & {
 
 	id: string;
-	importance: number;
+	mediaType: MediaTypeInternal;
+	importance: MediaItemImportanceInternal;
 	group?: MediaItemGroupInternal;
 	ownPlatform?: OwnPlatformInternal;
 	userComment?: string;
 	completedAt?: Date[];
 	active?: boolean;
+	markedAsRedo?: boolean;
 	catalogId?: string;
 }
 /**
@@ -40,7 +49,7 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
  */
 export type MediaItemFilterInternal = {
 
-	importance?: number;
+	importance?: MediaItemImportanceInternal;
 	groupId?: string;
 	ownPlatformId?: string;
 }
