@@ -40,24 +40,33 @@
 			"VIDEOGAME": "Videogames"
 		}
 	},
+	"mediaItem": {
+		"list": {
+			"group": "{{groupName}}, #{{order}}"
+		}
+	},
 	"book": {
 		"list": {
-			"empty": "No books"
+			"empty": "No books",
+			"duration": "{{duration}}pp."
 		}
 	},
 	"movie": {
 		"list": {
-			"empty": "No movies"
+			"empty": "No movies",
+			"duration": "{{duration}}'"
 		}
 	},
 	"tvShow": {
 		"list": {
-			"empty": "No TV Shows"
+			"empty": "No TV Shows",
+			"duration": "{{duration}}'"
 		}
 	},
 	"videogame": {
 		"list": {
-			"empty": "No videogames"
+			"empty": "No videogames",
+			"duration": "{{duration}}h"
 		}
 	},
 	"common": {

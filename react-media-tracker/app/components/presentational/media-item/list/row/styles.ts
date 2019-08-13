@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	container: {
-
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
@@ -10,21 +9,21 @@ export const styles = StyleSheet.create({
 
 		paddingTop: 10,
 		paddingBottom: 10,
-		paddingLeft: 18,
-		paddingRight: 18,
+		paddingLeft: 10,
+		paddingRight: 10,
 
-		marginLeft: 14,
-		marginRight: 14,
-		marginTop: 3,
-		marginBottom: 3
+		borderBottomWidth: 1,
+		borderColor: 'rgb(219,219,219)'
 	},
-	nameContainer: {
+	primaryIconContainer: {
+		flex: 0
+	},
+	dataContainer: {
 		flex: 1,
-		flexDirection: 'row',
-		alignItems: 'flex-start'
+		marginRight: 10,
+		marginLeft: 10
 	},
-	name: {
-		flex: 0,
-		fontSize: 20
+	secondaryIconsContainer: {
+		flex: 0
 	}
 });

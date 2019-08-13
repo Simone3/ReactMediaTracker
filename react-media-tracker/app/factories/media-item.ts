@@ -1,10 +1,10 @@
 import { ColoredImageDescriptor } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config-sample';
-import { bookController } from 'app/data/controllers/core/entities/media-items/book';
-import { MediaItemController } from 'app/data/controllers/core/entities/media-items/media-item';
-import { movieController } from 'app/data/controllers/core/entities/media-items/movie';
-import { tvShowController } from 'app/data/controllers/core/entities/media-items/tv-show';
-import { videogameController } from 'app/data/controllers/core/entities/media-items/videogame';
+import { bookController, bookDefinitionsController } from 'app/data/controllers/core/entities/media-items/book';
+import { MediaItemController, MediaItemDefinitionsController } from 'app/data/controllers/core/entities/media-items/media-item';
+import { movieController, movieDefinitionsController } from 'app/data/controllers/core/entities/media-items/movie';
+import { tvShowController, tvShowDefinitionsController } from 'app/data/controllers/core/entities/media-items/tv-show';
+import { videogameController, videogameDefinitionsController } from 'app/data/controllers/core/entities/media-items/videogame';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
@@ -40,6 +40,41 @@ export const mediaItemControllerFactory = new class MediaItemControllerFactory e
 
 			default: {
 				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items controller factory`);
+			}
+		}
+	}
+}();
+
+/**
+ * Factory for the media item definitions controller
+ */
+export const mediaItemDefinitionsControllerFactory = new class MediaItemDefinitionsControllerFactory extends MediaFactory<MediaItemDefinitionsController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal>> {
+
+	/**
+	 * @override
+	 */
+	protected getInternal(mediaType: MediaTypeInternal): MediaItemDefinitionsController<MediaItemInternal, MediaItemSortByInternal, MediaItemFilterInternal> {
+
+		switch(mediaType) {
+
+			case 'BOOK': {
+				return bookDefinitionsController;
+			}
+
+			case 'MOVIE': {
+				return movieDefinitionsController;
+			}
+
+			case 'TV_SHOW': {
+				return tvShowDefinitionsController;
+			}
+
+			case 'VIDEOGAME': {
+				return videogameDefinitionsController;
+			}
+
+			default: {
+				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media items definitions controller factory`);
 			}
 		}
 	}
@@ -132,16 +167,15 @@ export const mediaItemStatusIconFactory = new class MediaItemStatusIconFactory {
 	/**
 	 * Gets the value based on the given media item
 	 * @param mediaItem the media item
-	 * @param mediaType the media item type
 	 * @returns the linked value
 	 */
-	public get(mediaItem: MediaItemInternal, mediaType: MediaTypeInternal): ColoredImageDescriptor {
+	public get(mediaItem: MediaItemInternal): ColoredImageDescriptor {
 
 		if(mediaItem.active) {
 
 			// Items marked as currenctly active (e.g. currently reading)
-			switch(mediaType) {
-
+			switch(mediaItem.mediaType) {
+				
 				case 'BOOK':
 					return {
 						source: require('app/resources/images/ic_status_reading.png'),
@@ -162,7 +196,7 @@ export const mediaItemStatusIconFactory = new class MediaItemStatusIconFactory {
 					};
 	
 				default: {
-					throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized in media item status icon factory`);
+					throw AppError.GENERIC.withDetails(`Media type ${mediaItem.mediaType} not recognized in media item status icon factory`);
 				}
 			}
 		}
