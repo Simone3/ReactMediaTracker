@@ -19,7 +19,7 @@ const mapStateToProps = (state: State): HeaderTitleComponentInput => {
 /**
  * Container component that handles Redux state for HeaderTitleComponent
  */
-export const MediaItemDetailsHeaderTitleContainer = connect(
+export const MediaItemsListHeaderTitleContainer = connect(
 	mapStateToProps,
 	null
 )(HeaderTitleComponent);

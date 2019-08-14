@@ -7,7 +7,7 @@ import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/media-item/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { MediaItemDetailsHeaderTitleContainer } from 'app/components/containers/media-item/list/header-title';
+import { MediaItemsListHeaderTitleContainer } from 'app/components/containers/media-item/list/header-title';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -19,7 +19,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public static readonly navigationOptions = () => {
 		return {
-			headerTitle: <MediaItemDetailsHeaderTitleContainer/>
+			headerTitle: <MediaItemsListHeaderTitleContainer/>
 		};
 	};
 
@@ -48,7 +48,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 * @override
 	 */
 	public render(): ReactNode {
-		
+
 		return (
 			<View style={styles.container}>
 				<MediaItemsListContainer/>
