@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/buttons-list/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, ImageRequireSource, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, ImageRequireSource, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { HrComponent } from 'app/components/presentational/generic/hr';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 
@@ -21,7 +21,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 		} = this.props;
 
 		return (
-			<View style={styles.container}>
+			<View style={[ styles.container, { width: Dimensions.get('window').width }]}>
 				<View style={styles.titleSectionContainer}>
 					{this.renderRow(title, titleIcon)}
 				</View>

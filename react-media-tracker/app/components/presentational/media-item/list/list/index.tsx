@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, Dimensions } from 'react-native';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { MediaItemRowComponent } from 'app/components/presentational/media-item/list/row';
 import { i18n } from 'app/utilities/i18n';
@@ -65,7 +65,7 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 		return (
 			<View>
 				<FlatList
-					style={styles.list}
+					style={[ styles.list, { width: Dimensions.get('window').width }]}
 					data={mediaItems}
 					renderItem={({ item }) => {
 						return (

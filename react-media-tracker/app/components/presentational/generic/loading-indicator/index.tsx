@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/loading-indicator/styles';
 import React, { Component, ReactNode } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View, Dimensions } from 'react-native';
 import { config } from 'app/config/config';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 
@@ -20,7 +20,7 @@ export class LoadingIndicatorComponent extends Component<ModalComponentInput> {
 				onClose={() => {
 					// Do nothing here (loading modal cannot be closed by clicking on the grayed-out area)
 				}}>
-				<View style={styles.container}>
+				<View style={[ styles.container, { height: Dimensions.get('window').height }]}>
 					<ActivityIndicator style={styles.indicator} size='large' color={config.ui.colors.colorAccent} />
 				</View>
 			</ModalComponent>

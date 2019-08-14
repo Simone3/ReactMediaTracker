@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, Dimensions } from 'react-native';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { CategoryRowComponent } from 'app/components/presentational/category/list/row';
 import { i18n } from 'app/utilities/i18n';
@@ -65,7 +65,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 		return (
 			<View>
 				<FlatList
-					style={styles.list}
+					style={[ styles.list, { width: Dimensions.get('window').width }]}
 					data={categories}
 					renderItem={({ item }) => {
 						return (
