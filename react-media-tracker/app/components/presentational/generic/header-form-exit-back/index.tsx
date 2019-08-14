@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { Alert, AlertButton, AlertOptions, BackHandler } from 'react-native';
+import { BackHandler } from 'react-native';
 import { HeaderBackButton, NavigationScreenProp, NavigationEventSubscription } from 'react-navigation';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { i18n } from 'app/utilities/i18n';
 
 /**
@@ -92,41 +93,15 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 
 		if(dirtyForm) {
 
-			this.showAlert();
+			ConfirmAlert.alert(i18n.t('common.alert.form.exit.title'), i18n.t('common.alert.form.exit.message'), () => {
+
+				this.props.navigation.goBack();
+			});
 		}
 		else {
 
 			navigation.goBack();
 		}
-	}
-
-	/**
-	 * Shows the confirmation alert
-	 */
-	private showAlert(): void {
-
-		const title = i18n.t('common.alert.form.exit.title');
-
-		const message = i18n.t('common.alert.form.exit.message');
-
-		const cancelButton: AlertButton = {
-			text: i18n.t('common.alert.form.exit.cancelButton'),
-			style: 'cancel'
-		};
-
-		const okButton: AlertButton = {
-			text: i18n.t('common.alert.form.exit.okButton'),
-			onPress: () => {
-
-				this.props.navigation.goBack();
-			}
-		};
-
-		const options: AlertOptions = {
-			cancelable: false
-		};
-
-		Alert.alert(title, message, [ cancelButton, okButton ], options);
 	}
 }
 

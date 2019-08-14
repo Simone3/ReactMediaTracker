@@ -7,6 +7,7 @@ import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
 import { mediaIconFactory, mediaItemStatusIconFactory } from 'app/factories/icon-factories';
 import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
  * Presentational component to display a modal dialog with the media item options
@@ -117,8 +118,13 @@ export class MediaItemModalComponent extends Component<MediaItemModalComponentIn
 			icon: require('app/resources/images/ic_action_delete.png'),
 			onClick: () => {
 
-				deleteCallback(mediaItem);
-				close();
+				const title = i18n.t(`${langPrefix}.common.alert.delete.title`);
+				const message = i18n.t('mediaItem.common.alert.delete.message', { name: mediaItem.name });
+				ConfirmAlert.alert(title, message, () => {
+					
+					deleteCallback(mediaItem);
+					close();
+				});
 			}
 		};
 	}
