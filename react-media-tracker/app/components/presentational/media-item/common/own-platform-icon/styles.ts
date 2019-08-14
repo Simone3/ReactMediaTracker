@@ -1,4 +1,4 @@
-import { config } from 'app/config/config-sample';
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({

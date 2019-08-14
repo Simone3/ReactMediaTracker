@@ -1,6 +1,6 @@
 import { Config } from 'app/config/type-config';
 
-export const config: Config = {
+const config: Config = {
 	tempToDelete: {
 		userId: '<temp_user_id>'
 	},

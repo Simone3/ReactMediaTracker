@@ -1,5 +1,5 @@
 import { ColoredImageDescriptor } from 'app/components/presentational/generic/colored-image';
-import { config } from 'app/config/config-sample';
+import { config } from 'app/config/config';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemImportanceInternal, MediaItemStatusInternal } from 'app/data/models/internal/media-items/media-item';
