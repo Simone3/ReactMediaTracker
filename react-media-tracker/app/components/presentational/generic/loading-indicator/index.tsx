@@ -1,8 +1,7 @@
 import { styles } from 'app/components/presentational/generic/loading-indicator/styles';
 import React, { Component, ReactNode } from 'react';
-import { ActivityIndicator, View, Dimensions } from 'react-native';
+import { ActivityIndicator, View, Modal } from 'react-native';
 import { config } from 'app/config/config';
-import { ModalComponent } from 'app/components/presentational/generic/modal';
 
 /**
  * Presentational component to display a simple loading icon
@@ -14,16 +13,45 @@ export class LoadingIndicatorComponent extends Component<ModalComponentInput> {
 	 */
 	public render(): ReactNode {
 
+		const {
+			visible,
+			fullScreen
+		} = this.props;
+
+		if(visible) {
+
+			if(fullScreen) {
+
+				return (
+					<Modal
+						animationType='fade'
+						transparent={true}
+						visible={true}>
+						<View style={[ styles.container, styles.containerFullScreen ]}>
+							{this.renderLoadingIcon()}
+						</View>
+					</Modal>
+				);
+			}
+			else {
+				
+				return (
+					<View style={[ styles.container, styles.containerParentSize ]}>
+						{this.renderLoadingIcon()}
+					</View>
+				);
+			}
+		}
+		else {
+
+			return null;
+		}
+	}
+
+	private renderLoadingIcon(): ReactNode {
+
 		return (
-			<ModalComponent
-				visible={this.props.visible}
-				onClose={() => {
-					// Do nothing here (loading modal cannot be closed by clicking on the grayed-out area)
-				}}>
-				<View style={[ styles.container, { height: Dimensions.get('window').height }]}>
-					<ActivityIndicator style={styles.indicator} size='large' color={config.ui.colors.colorAccent} />
-				</View>
-			</ModalComponent>
+			<ActivityIndicator style={styles.indicator} size='large' color={config.ui.colors.colorAccent} />
 		);
 	}
 }
@@ -37,4 +65,9 @@ export type ModalComponentInput = {
 	 * Loading dialog visibility
 	 */
 	visible: boolean;
+
+	/**
+	 * Whether the modal is full screen or relative to its parent (its full width and height)
+	 */
+	fullScreen: boolean;
 }

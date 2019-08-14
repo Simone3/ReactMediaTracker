@@ -62,6 +62,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 				/>
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
+					fullScreen={false}
 				/>
 			</View>
 		);

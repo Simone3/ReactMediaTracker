@@ -52,6 +52,7 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 					<CategoryFormContainer/>
 					<LoadingIndicatorComponent
 						visible={this.props.isLoading}
+						fullScreen={true}
 					/>
 				</View>
 			);

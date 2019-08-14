@@ -61,6 +61,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 				/>
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
+					fullScreen={false}
 				/>
 			</View>
 		);

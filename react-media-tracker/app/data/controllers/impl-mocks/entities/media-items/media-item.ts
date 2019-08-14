@@ -9,6 +9,9 @@ import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, M
  */
 export abstract class MediaItemMockedController<TMediaItemInternal extends MediaItemInternal, TMediaItemSortByInternal extends MediaItemSortByInternal, TMediaItemFilterInternal extends MediaItemFilterInternal> extends MockControllerHelper implements MediaItemController<TMediaItemInternal, TMediaItemSortByInternal, TMediaItemFilterInternal> {
 
+	protected delay = 0;
+	protected errorProbability = 0;
+
 	protected readonly mediaItems: {[category: string]: TMediaItemInternal[]} = {};
 
 	/**
