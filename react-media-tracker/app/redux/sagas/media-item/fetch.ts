@@ -1,4 +1,4 @@
-import { call, put, select, takeEvery } from '@redux-saga/core/effects';
+import { call, put, select, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { mediaItemControllerFactory } from 'app/factories/controller-factories';
@@ -51,5 +51,5 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
  */
 export const watchFetchMediaItemsSaga = function * (): SagaIterator {
 
-	yield takeEvery(FETCH_MEDIA_ITEMS, fetchMediaItemsSaga);
+	yield takeLatest(FETCH_MEDIA_ITEMS, fetchMediaItemsSaga);
 };

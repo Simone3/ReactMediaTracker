@@ -1,4 +1,4 @@
-import { call, put, select, takeEvery } from '@redux-saga/core/effects';
+import { call, put, select, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { mediaItemControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
@@ -50,5 +50,5 @@ const deleteMediaItemSaga = function * (action: DeleteMediaItemAction): SagaIter
  */
 export const watchDeleteMediaItemSaga = function * (): SagaIterator {
 
-	yield takeEvery(DELETE_MEDIA_ITEM, deleteMediaItemSaga);
+	yield takeLatest(DELETE_MEDIA_ITEM, deleteMediaItemSaga);
 };

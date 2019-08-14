@@ -1,4 +1,4 @@
-import { call, put, select, takeEvery } from '@redux-saga/core/effects';
+import { call, put, select, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { mediaItemControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
@@ -84,5 +84,5 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
  */
 export const watchInlineMediaItemUpdateSaga = function * (): SagaIterator {
 
-	yield takeEvery([ MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO ], inlineMediaItemUpdateSaga);
+	yield takeLatest([ MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO ], inlineMediaItemUpdateSaga);
 };

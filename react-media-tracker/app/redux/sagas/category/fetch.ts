@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { categoryController } from 'app/data/controllers/core/entities/category';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
@@ -33,5 +33,5 @@ const fetchCategoriesSaga = function * (): SagaIterator {
  */
 export const watchFetchCategoriesSaga = function * (): SagaIterator {
 
-	yield takeEvery(FETCH_CATEGORIES, fetchCategoriesSaga);
+	yield takeLatest(FETCH_CATEGORIES, fetchCategoriesSaga);
 };

@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { categoryController } from 'app/data/controllers/core/entities/category';
 import { AppError } from 'app/data/models/internal/error';
 import { DELETE_CATEGORY } from 'app/redux/actions/category/const';
@@ -34,5 +34,5 @@ const deleteCategorySaga = function * (action: DeleteCategoryAction): SagaIterat
  */
 export const watchDeleteCategorySaga = function * (): SagaIterator {
 
-	yield takeEvery(DELETE_CATEGORY, deleteCategorySaga);
+	yield takeLatest(DELETE_CATEGORY, deleteCategorySaga);
 };

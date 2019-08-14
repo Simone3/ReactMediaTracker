@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { categoryController } from 'app/data/controllers/core/entities/category';
 import { AppError } from 'app/data/models/internal/error';
 import { SAVE_CATEGORY } from 'app/redux/actions/category/const';
@@ -34,5 +34,5 @@ const saveCategorySaga = function * (action: SaveCategoryAction): SagaIterator {
  */
 export const watchSaveCategorySaga = function * (): SagaIterator {
 
-	yield takeEvery(SAVE_CATEGORY, saveCategorySaga);
+	yield takeLatest(SAVE_CATEGORY, saveCategorySaga);
 };
