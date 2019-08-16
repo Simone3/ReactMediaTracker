@@ -24,6 +24,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 	
 	switch(action.type) {
 
+		// When the details page is started with a new category, the status is reset and the default category is loaded
 		case LOAD_NEW_CATEGORY_DETAILS: {
 
 			return {
@@ -33,6 +34,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
+		// When the details page is started with an existing category, the status is reset and the given category is loaded
 		case LOAD_CATEGORY_DETAILS: {
 
 			const loadCategoryAction = action as LoadCategoryAction;
@@ -44,6 +46,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
+		// When the form status changes, the corresponding state fields are set
 		case SET_CATEGORY_FORM_STATUS: {
 
 			const setCategoryFormStatusAction = action as SetCategoryFormStatusAction;
@@ -55,6 +58,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 
+		// When the category save is requested, the status changes (e.g. allows header save button to notify the form about the request)
 		case REQUEST_CATEGORY_SAVE: {
 
 			return {
@@ -63,6 +67,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
+		// When the app starts saving a category, the status changes to show the loading indicator
 		case START_SAVING_CATEGORY: {
 
 			const startSavingCategoryAction = action as StartSavingCategoryAction;
@@ -74,6 +79,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
+		// When the app completes the save process, the status changes and the category is reset (at this point a navigation back to the list is expected)
 		case COMPLETE_SAVING_CATEGORY: {
 
 			return {
@@ -83,6 +89,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
+		// When the app fails to save a category, the status is reset (an error is shown by the global handler)
 		case FAIL_SAVING_CATEGORY: {
 
 			return {

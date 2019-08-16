@@ -127,3 +127,25 @@ export type HighlightMediaItemAction = Action & {
 export type RemoveMediaItemHighlightAction = Action & {
 	
 };
+
+/**
+ * The search media items action
+ */
+export type SearchMediaItemsAction = Action & {
+	
+	term: string;
+};
+
+/**
+ * The start search media items mode action
+ */
+export type StartMediaItemsSearchModeAction = Action & {
+	
+};
+
+/**
+ * The stop search media items mode action
+ */
+export type StopMediaItemsSearchModeAction = Action & {
+	
+};

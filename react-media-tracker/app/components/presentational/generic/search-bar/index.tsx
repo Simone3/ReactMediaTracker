@@ -77,6 +77,7 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 			);
 		}
 		else {
+			
 			return null;
 		}
 	}
@@ -110,22 +111,46 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 			submitDelayMilliseconds
 		} = this.props;
 
+		const searchTerm = this.getSearchTerm(term);
+
 		if(submitDelayMilliseconds && submitDelayMilliseconds > 0) {
 			
 			this.clearTimeout();
 
-			if(term) {
+			if(searchTerm) {
 
 				this.timeout = setTimeout(() => {
 
-					onSearch(term);
+					onSearch(searchTerm);
 				}, submitDelayMilliseconds);
 			}
 		}
-		else if(term) {
+		else if(searchTerm) {
 
-			onSearch(term);
+			onSearch(searchTerm);
 		}
+	}
+
+	/**
+	 * Gets the modified search term
+	 * @param term the term
+	 * @returns a valid search term or undefined if search should not be submitted
+	 */
+	private getSearchTerm(term: string): string | undefined {
+
+		if(!term) {
+
+			return undefined;
+		}
+
+		const trimmed = term.trim();
+
+		if(!trimmed) {
+
+			return undefined;
+		}
+
+		return trimmed;
 	}
 
 	/**

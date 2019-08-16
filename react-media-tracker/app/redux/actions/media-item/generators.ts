@@ -1,7 +1,7 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM } from './const';
-import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, OpenMediaItemsListAction, RemoveMediaItemHighlightAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction } from './types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from './const';
+import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, OpenMediaItemsListAction, RemoveMediaItemHighlightAction, SearchMediaItemsAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StopMediaItemsSearchModeAction } from './types';
 
 /**
  * Generator for the open media items list action, which sets the category linked with the list
@@ -201,5 +201,40 @@ export const removeMediaItemHighlight = (): RemoveMediaItemHighlightAction => {
 	
 	return {
 		type: REMOVE_MEDIA_ITEM_HIGHTLIGHT
+	};
+};
+
+/**
+ * Generator for the search media items list action, which causes the request media items action, the async media items search and then the receive media items action
+ * @param term the search term (non-null and non-blank)
+ * @returns the action
+ */
+export const searchMediaItems = (term: string): SearchMediaItemsAction => {
+	
+	return {
+		type: SEARCH_MEDIA_ITEMS,
+		term: term
+	};
+};
+
+/**
+ * Generator for the start media items search mode action, which allows to start searching for media items by term
+ * @returns the action
+ */
+export const startMediaItemsSearchMode = (): StartMediaItemsSearchModeAction => {
+	
+	return {
+		type: START_MEDIA_ITEMS_SEARCH_MODE
+	};
+};
+
+/**
+ * Generator for the start media items search mode action, which allows to stop searching for media items by term
+ * @returns the action
+ */
+export const stopMediaItemsSearchMode = (): StopMediaItemsSearchModeAction => {
+	
+	return {
+		type: STOP_MEDIA_ITEMS_SEARCH_MODE
 	};
 };
