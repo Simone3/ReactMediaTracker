@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 /**
  * Presentational component to display the header, with a title and optionally one or more icons
  */
-export class HeaderComponent extends Component<HeaderComponentInput> {
+export class HeaderComponent extends Component<HeaderComponentProps> {
 	
 	/**
 	 * @override
@@ -42,3 +42,7 @@ export type HeaderComponentInput = {
 	icons?: ReactNode;
 }
 
+/**
+ * HeaderComponent's props
+ */
+export type HeaderComponentProps = HeaderComponentInput;

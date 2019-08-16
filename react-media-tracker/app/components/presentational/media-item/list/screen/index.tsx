@@ -8,6 +8,7 @@ import { styles } from 'app/components/presentational/media-item/list/screen/sty
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { MediaItemsListHeaderContainer } from 'app/components/containers/media-item/list/header';
+import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containers/media-item/list/header-search-icon';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -19,7 +20,12 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public static readonly navigationOptions = () => {
 		return {
-			headerTitle: <MediaItemsListHeaderContainer/>
+			headerTitle: <MediaItemsListHeaderContainer
+				icons={<MediaItemsListHeaderSearchIconContainer
+					source={require('app/resources/images/ic_action_search.png')}
+					clickStatus='ENABLED'
+				/>}
+			/>
 		};
 	};
 

@@ -24,6 +24,11 @@ const config: Config = {
 			availableCategoryColors: []
 		}
 	},
+	timers: {
+		mediaItems: {
+			searchSubmitTimerMilliseconds: 3000
+		}
+	},
 	mocks: {
 		categories: false
 	}

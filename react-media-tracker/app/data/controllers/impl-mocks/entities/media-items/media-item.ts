@@ -39,7 +39,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 
 			return this.getCategoryMediaItems(categoryId)
 				.filter((item) => {
-					return item.name.includes(searchTerm);
+					return item.name.toLowerCase().includes(searchTerm.toLowerCase());
 				})
 				.slice();
 		});
@@ -159,7 +159,7 @@ export class MediaItemMockedCatalogController<TSearchMediaItemCatalogResultInter
 			
 			return this.catalogList
 				.filter((item) => {
-					return item.name.includes(searchTerm);
+					return item.name.toLowerCase().includes(searchTerm.toLowerCase());
 				})
 				.slice();
 		});

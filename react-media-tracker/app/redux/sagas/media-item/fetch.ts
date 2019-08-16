@@ -5,16 +5,14 @@ import { mediaItemControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
 import { FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { completeFetchingMediaItems, failFetchingMediaItems, startFetchingMediaItems } from 'app/redux/actions/media-item/generators';
-import { FetchMediaItemsAction, SearchMediaItemsAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { State } from 'app/redux/state/state';
 import { SagaIterator } from 'redux-saga';
 
 /**
  * Worker saga that fetches the media items
- * @param action the action
  */
-const fetchMediaItemsSaga = function * (action: FetchMediaItemsAction | SearchMediaItemsAction): SagaIterator {
+const fetchMediaItemsSaga = function * (): SagaIterator {
 
 	yield put(startFetchingMediaItems());
 
@@ -57,8 +55,7 @@ const fetchMediaItemsSaga = function * (action: FetchMediaItemsAction | SearchMe
 			// Search fetching mode allows to search media items by term
 			case 'SEARCH': {
 
-				const searchAction = action as SearchMediaItemsAction;
-				const term = searchAction.term;
+				const term = listState.searchTerm;
 				if(!term) {
 		
 					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find search term');

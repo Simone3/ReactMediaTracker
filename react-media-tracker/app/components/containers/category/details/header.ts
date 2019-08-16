@@ -28,7 +28,7 @@ export const CategoryDetailsHeaderContainer = connect(
 export type CategoryDetailsHeaderContainerProps = {
 	
 	/**
-	 * The optional header icons, shown on the right in the specified order
+	 * The header icons
 	 */
-	icons?: ReactNode;
+	icons: ReactNode;
 }

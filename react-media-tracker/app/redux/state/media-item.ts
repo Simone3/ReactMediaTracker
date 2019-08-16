@@ -22,6 +22,11 @@ export type MediaItemsListState = {
 	readonly category?: CategoryInternal;
 
 	/**
+	 * The current search term
+	 */
+	readonly searchTerm?: string;
+
+	/**
 	 * The current media item filter
 	 */
 	readonly filter?: MediaItemFilterInternal;

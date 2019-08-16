@@ -1,6 +1,6 @@
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from 'app/redux/actions/media-item/const';
-import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, OpenMediaItemsListAction } from 'app/redux/actions/media-item/types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from 'app/redux/actions/media-item/const';
+import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, OpenMediaItemsListAction, SearchMediaItemsAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
 
@@ -13,6 +13,7 @@ const initialState: MediaItemsListState = {
 	category: undefined,
 	filter: undefined,
 	sortBy: undefined,
+	searchTerm: undefined,
 	mediaItems: [],
 	highlightedMediaItem: undefined
 };
@@ -159,14 +160,26 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 				mode: 'SEARCH'
 			};
 		}
+
+		// When a search is submitted, the state field is set (the rest of the logic is handled by a saga, which is executed right after this reducer)
+		case SEARCH_MEDIA_ITEMS: {
+
+			const searchMediaItemsAction = action as SearchMediaItemsAction;
+
+			return {
+				...state,
+				searchTerm: searchMediaItemsAction.term
+			};
+		}
 		
-		// When the search mode is closed, the mode field is reset and the list is marked for reload (i.e. the standard version of the list is fetched)
+		// When the search mode is closed, the mode and term fields are reset and the list is marked for reload (i.e. the standard version of the list is fetched)
 		case STOP_MEDIA_ITEMS_SEARCH_MODE: {
 
 			return {
 				...state,
 				mode: 'NORMAL',
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_RELOAD',
+				searchTerm: undefined
 			};
 		}
 

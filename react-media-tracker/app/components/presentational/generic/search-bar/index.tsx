@@ -8,7 +8,7 @@ import { config } from 'app/config/config';
 /**
  * Presentational component to display a search input with icons
  */
-export class SearchBarComponent extends Component<SearchBarComponentInput & SearchBarComponentOutput, SearchBarComponentState> {
+export class SearchBarComponent extends Component<SearchBarComponentProps, SearchBarComponentState> {
 	
 	private timeout: number | undefined = undefined;
 
@@ -38,12 +38,15 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 	private renderField(): ReactNode {
 
 		const {
-			placeholder
+			placeholder,
+			autoFocus
 		} = this.props;
 
 		return (
 			<TextInput
+				autoFocus={autoFocus}
 				placeholder={placeholder}
+				placeholderTextColor='white'
 				value={this.state.term}
 				style={styles.input}
 				onChangeText={(value) => {
@@ -70,7 +73,7 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 					}}>
 					<ColoredImage
 						source={require('app/resources/images/ic_action_clear.png')}
-						tintColor='black'
+						tintColor='white'
 						style={styles.clearIcon}
 					/>
 				</TouchableWithoutFeedback>
@@ -172,6 +175,11 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 export type SearchBarComponentInput = {
 
 	/**
+	 * Whether to autofocus on startup
+	 */
+	autoFocus?: boolean;
+
+	/**
 	 * Search placeholder
 	 */
 	placeholder?: string;
@@ -197,6 +205,11 @@ export type SearchBarComponentOutput = {
 	 */
 	onSearch: (term: string) => void;
 }
+
+/**
+ * SearchBarComponent's props
+ */
+export type SearchBarComponentProps = SearchBarComponentInput & SearchBarComponentOutput;
 
 /**
  * SearchBarComponent's state

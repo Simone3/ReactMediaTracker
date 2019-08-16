@@ -77,7 +77,8 @@
 			"delete": "Delete book",
 			"markActive": "I'm reading this",
 			"markComplete": "I've read this",
-			"markRedo": "I could reread this"
+			"markRedo": "I could reread this",
+			"search": "Search books..."
 		}
 	},
 	"movie": {
@@ -95,7 +96,8 @@
 			"delete": "Delete movie",
 			"markActive": "I'm watching this",
 			"markComplete": "I've watched this",
-			"markRedo": "I could rewatch this"
+			"markRedo": "I could rewatch this",
+			"search": "Search movies..."
 		}
 	},
 	"tvShow": {
@@ -107,13 +109,14 @@
 			}
 		},
 		"list": {
-			"empty": "No TV Shows",
+			"empty": "No shows",
 			"duration": "{{duration}}'",
 			"edit": "Edit show",
 			"delete": "Delete show",
 			"markActive": "I'm following this",
 			"markComplete": "I've completed this",
-			"markRedo": "I could rewatch this"
+			"markRedo": "I could rewatch this",
+			"search": "Search shows..."
 		}
 	},
 	"videogame": {
@@ -125,13 +128,14 @@
 			}
 		},
 		"list": {
-			"empty": "No videogames",
+			"empty": "No games",
 			"duration": "{{duration}}h",
 			"edit": "Edit game",
 			"delete": "Delete game",
 			"markActive": "I'm playing this",
 			"markComplete": "I've played this",
-			"markRedo": "I could replay this"
+			"markRedo": "I could replay this",
+			"search": "Search games..."
 		}
 	},
 	"common": {

@@ -21,6 +21,9 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 
 		if(error) {
 
+			console.log('ErrorHandlerComponent: error intercepted');
+			console.log(error);
+
 			const messageDescription = typeof error === 'string' ? error : i18n.t(error.errorDescription);
 
 			showMessage({
