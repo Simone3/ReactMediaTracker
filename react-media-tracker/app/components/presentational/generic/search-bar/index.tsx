@@ -1,8 +1,9 @@
 import { styles } from 'app/components/presentational/generic/search-bar/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import { View, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display a search input with icons
@@ -24,6 +25,7 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 		return (
 			<View style={styles.container}>
 				{this.renderField()}
+				{this.renderLoadingIcon()}
 				{this.renderClearButton()}
 			</View>
 		);
@@ -77,6 +79,24 @@ export class SearchBarComponent extends Component<SearchBarComponentInput & Sear
 		else {
 			
 			return null;
+		}
+	}
+
+	/**
+	 * Helper to render the loading icon
+	 * @returns the component
+	 */
+	private renderLoadingIcon(): ReactNode {
+		
+		if(this.props.showLoading) {
+
+			return (
+				<ActivityIndicator
+					style={styles.loadingIcon}
+					size='small'
+					color={config.ui.colors.colorAccent}
+				/>
+			);
 		}
 	}
 
@@ -160,6 +180,11 @@ export type SearchBarComponentInput = {
 	 * The search submit delay. ```onSearch()``` will be called ```submitDelayMilliseconds``` milliseconds after last typed letter.
 	 */
 	submitDelayMilliseconds?: number;
+
+	/**
+	 * If a small loading icon next to the search input is currently visibile
+	 */
+	showLoading?: boolean;
 }
 
 /**
