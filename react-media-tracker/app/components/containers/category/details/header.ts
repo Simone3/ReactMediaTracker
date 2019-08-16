@@ -1,7 +1,6 @@
 import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
-import { ReactNode } from 'react';
 import { connect, MapStateToPropsParam } from 'react-redux';
 
 const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, CategoryDetailsHeaderContainerProps, State> = (state: State, ownProps: CategoryDetailsHeaderContainerProps): HeaderComponentInput => {
@@ -9,8 +8,8 @@ const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, CategoryDetail
 	const category = state.categoryDetails.category;
 
 	return {
-		title: category && category.id ? category.name : i18n.t('category.details.title.new'),
-		icons: ownProps.icons
+		...ownProps,
+		title: category && category.id ? category.name : i18n.t('category.details.title.new')
 	};
 };
 
@@ -25,10 +24,4 @@ export const CategoryDetailsHeaderContainer = connect(
 /**
  * CategoryDetailsHeaderContainer's props
  */
-export type CategoryDetailsHeaderContainerProps = {
-	
-	/**
-	 * The header icons
-	 */
-	icons: ReactNode;
-}
+export type CategoryDetailsHeaderContainerProps = Omit<HeaderComponentInput, 'title'>;

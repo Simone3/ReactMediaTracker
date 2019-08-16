@@ -95,7 +95,7 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 
 			ConfirmAlert.alert(i18n.t('common.alert.form.exit.title'), i18n.t('common.alert.form.exit.message'), () => {
 
-				this.props.navigation.goBack();
+				navigation.goBack();
 			});
 		}
 		else {

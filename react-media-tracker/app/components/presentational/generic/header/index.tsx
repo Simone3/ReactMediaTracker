@@ -14,13 +14,15 @@ export class HeaderComponent extends Component<HeaderComponentProps> {
 
 		const {
 			title,
-			icons
+			componentsLeft,
+			componentsRight
 		} = this.props;
 
 		return (
 			<View style={styles.container}>
+				{componentsLeft}
 				<Text style={styles.title}>{title}</Text>
-				{icons}
+				{componentsRight}
 			</View>
 		);
 	}
@@ -37,9 +39,14 @@ export type HeaderComponentInput = {
 	title: string;
 
 	/**
-	 * The optional header icons, shown on the right in the specified order
+	 * The optional component(s) to display left of the title, e.g. a custom back button
 	 */
-	icons?: ReactNode;
+	componentsLeft?: ReactNode;
+
+	/**
+	 * The optional component(s) to display right of the title, e.g. custom icons
+	 */
+	componentsRight?: ReactNode;
 }
 
 /**

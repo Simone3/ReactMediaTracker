@@ -21,11 +21,12 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	public static readonly navigationOptions = () => {
 		return {
 			headerTitle: <MediaItemsListHeaderContainer
-				icons={<MediaItemsListHeaderSearchIconContainer
+				componentsRight={<MediaItemsListHeaderSearchIconContainer
 					source={require('app/resources/images/ic_action_search.png')}
 					clickStatus='ENABLED'
 				/>}
-			/>
+			/>,
+			headerLeft: null
 		};
 	};
 

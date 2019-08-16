@@ -21,7 +21,8 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	public static readonly navigationOptions = {
 		headerTitle: <HeaderComponent
 			title={i18n.t('category.list.title')}
-		/>
+		/>,
+		headerLeft: null
 	};
 
 	/**
