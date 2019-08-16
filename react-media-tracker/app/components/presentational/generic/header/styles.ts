@@ -14,15 +14,5 @@ export const styles = StyleSheet.create({
 		marginLeft: 15,
 		color: 'white',
 		fontWeight: 'bold'
-	},
-	icon: {
-		margin: 10,
-		marginRight: 15,
-		alignSelf: 'center',
-		width: 30,
-		height: 30
-	},
-	iconDisabled: {
-		opacity: 0.5
 	}
 });

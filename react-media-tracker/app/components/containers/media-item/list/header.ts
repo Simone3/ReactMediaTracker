@@ -1,9 +1,9 @@
-import { HeaderTitleComponent, HeaderTitleComponentInput } from 'app/components/presentational/generic/header-title';
+import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { AppError } from 'app/data/models/internal/error';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state: State): HeaderTitleComponentInput => {
+const mapStateToProps = (state: State): HeaderComponentInput => {
 	
 	const category = state.mediaItemsList.category;
 	if(!category) {
@@ -17,9 +17,9 @@ const mapStateToProps = (state: State): HeaderTitleComponentInput => {
 };
 
 /**
- * Container component that handles Redux state for HeaderTitleComponent
+ * Container component that handles Redux state for HeaderComponent
  */
-export const MediaItemsListHeaderTitleContainer = connect(
+export const MediaItemsListHeaderContainer = connect(
 	mapStateToProps,
 	null
-)(HeaderTitleComponent);
+)(HeaderComponent);

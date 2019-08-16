@@ -8,7 +8,7 @@ import { styles } from 'app/components/presentational/category/list/screen/style
 import { i18n } from 'app/utilities/i18n';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { HeaderTitleComponent } from 'app/components/presentational/generic/header-title';
+import { HeaderComponent } from 'app/components/presentational/generic/header';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -19,7 +19,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 * @override
 	 */
 	public static readonly navigationOptions = {
-		headerTitle: <HeaderTitleComponent
+		headerTitle: <HeaderComponent
 			title={i18n.t('category.list.title')}
 		/>
 	};
