@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
 	container: {
 		flex: 0,
 		borderBottomWidth: 1,
-		borderColor: 'black',
+		borderColor: config.ui.colors.colorFormInputs,
 		marginBottom: 10
 	},
 	containerError: {

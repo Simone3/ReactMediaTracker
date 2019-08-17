@@ -46,7 +46,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 			<TextInput
 				autoFocus={autoFocus}
 				placeholder={placeholder}
-				placeholderTextColor='white'
+				placeholderTextColor={config.ui.colors.colorContrastText}
 				value={this.state.term}
 				style={styles.input}
 				onChangeText={(value) => {
@@ -73,7 +73,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 					}}>
 					<ColoredImage
 						source={require('app/resources/images/ic_action_clear.png')}
-						tintColor='white'
+						tintColor={config.ui.colors.colorContrastText}
 						style={styles.clearIcon}
 					/>
 				</TouchableWithoutFeedback>

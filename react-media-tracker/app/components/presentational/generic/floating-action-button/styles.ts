@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
 		textAlign: 'center',
 		textAlignVertical: 'center',
 		fontSize: 30,
-		color: 'white',
+		color: config.ui.colors.colorContrastText,
 		marginBottom: 4
 	}
 });

@@ -4,6 +4,7 @@ import { View, ImageRequireSource, Picker } from 'react-native';
 import { FieldComponent } from 'app/components/presentational/form/field';
 import { AppError } from 'app/data/models/internal/error';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display a picker input with Formik
@@ -40,7 +41,7 @@ export class PickerInputComponent extends Component<PickerInputComponentInput> {
 						<View style={styles.container}>
 							<ColoredImage
 								source={icon}
-								tintColor='black'
+								tintColor={config.ui.colors.colorFormInputs}
 								style={styles.icon}
 							/>
 							<Picker

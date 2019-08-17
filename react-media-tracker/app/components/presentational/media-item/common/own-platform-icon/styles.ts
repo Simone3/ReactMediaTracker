@@ -16,6 +16,6 @@ export const styles = StyleSheet.create({
 	},
 	nameInitial: {
 		fontSize: 20,
-		color: 'white'
+		color: config.ui.colors.colorContrastText
 	}
 });

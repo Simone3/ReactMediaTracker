@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -23,7 +24,7 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		alignSelf: 'center',
 		margin: 10,
-		color: 'black'
+		color: config.ui.colors.colorFormInputs
 	},
 	colorCircleIcon: {
 		borderRadius: 50,
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
 	modalContent: {
 		width: 260,
 		height: 140,
-		backgroundColor: 'white',
+		backgroundColor: config.ui.colors.colorModalBackground,
 		borderRadius: 20
 	},
 	colorCirclesGrid: {

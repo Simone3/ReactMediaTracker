@@ -1,8 +1,9 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'white',
+		backgroundColor: config.ui.colors.colorModalBackground,
 
 		borderTopLeftRadius: 10,
 		borderTopRightRadius: 10
@@ -44,7 +45,7 @@ export const styles = StyleSheet.create({
 		alignItems: 'flex-start'
 	},
 	rowLabel: {
-		color: 'black',
+		color: config.ui.colors.colorModalContent,
 		flex: 0,
 		fontSize: 15
 	}

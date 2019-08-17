@@ -3,6 +3,7 @@ import React, { Component, ReactNode } from 'react';
 import { View, ImageRequireSource, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { HrComponent } from 'app/components/presentational/generic/hr';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display a title and a list of buttons with icons
@@ -57,7 +58,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 				<View style={styles.rowIconContainer}>
 					<ColoredImage
 						source={icon}
-						tintColor='black'
+						tintColor={config.ui.colors.colorModalContent}
 						style={styles.rowIcon}
 						resizeMode='center'
 					/>

@@ -2,6 +2,7 @@ import { styles } from 'app/components/presentational/generic/header-icon/styles
 import React, { Component, ReactNode } from 'react';
 import { TouchableOpacity, ImageRequireSource } from 'react-native';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display an header icon, optionally clickable
@@ -24,7 +25,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 			return (
 				<ColoredImage
 					source={source}
-					tintColor='white'
+					tintColor={config.ui.colors.colorContrastText}
 					style={styles.icon}
 				/>
 			);
@@ -39,7 +40,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 					disabled={!iconClickEnabled}>
 					<ColoredImage
 						source={source}
-						tintColor='white'
+						tintColor={config.ui.colors.colorContrastText}
 						style={iconClickEnabled ? styles.icon : [ styles.icon, styles.iconDisabled ]}
 					/>
 				</TouchableOpacity>

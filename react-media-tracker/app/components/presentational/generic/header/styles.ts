@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
 		alignSelf: 'center',
 		margin: 10,
 		marginLeft: 15,
-		color: 'white',
+		color: config.ui.colors.colorContrastText,
 		fontWeight: 'bold'
 	}
 });

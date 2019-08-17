@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -35,7 +36,7 @@ export const styles = StyleSheet.create({
 		alignItems: 'flex-start'
 	},
 	name: {
-		color: 'white',
+		color: config.ui.colors.colorContrastText,
 		flex: 0,
 		fontSize: 20
 	}

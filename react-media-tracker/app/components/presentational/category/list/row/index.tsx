@@ -3,6 +3,7 @@ import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { styles } from 'app/components/presentational/category/list/row/styles';
 import { MediaIconComponent } from 'app/components/presentational/category/common/media-icon';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display a generic category row
@@ -28,7 +29,7 @@ export class CategoryRowComponent extends Component<CategoryRowComponentInput & 
 					<View style={styles.iconContainer}>
 						<MediaIconComponent
 							category={category}
-							tintColor='white'
+							tintColor={config.ui.colors.colorContrastText}
 							style={styles.icon}
 							resizeMode='center'
 						/>

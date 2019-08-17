@@ -14,6 +14,11 @@ export type Config = {
 			colorPrimary: string;
 			colorPrimaryDark: string;
 			colorAccent: string;
+			colorContrastText: string;
+			colorModalBackground: string;
+			colorModalContent: string;
+			colorFormInputs: string;
+			colorDefaultIcon: string;
 			blue: string;
 			red: string;
 			green: string;

@@ -58,25 +58,25 @@ export const mediaItemImportanceIconFactory = new class MediaItemImportanceIconF
 			case 'VERY_IMPORTANT':
 				return {
 					source: require('app/resources/images/ic_importance_1.png'),
-					tintColor: 'black'
+					tintColor: config.ui.colors.colorDefaultIcon
 				};
 			
 			case 'IMPORTANT':
 				return {
 					source: require('app/resources/images/ic_importance_2.png'),
-					tintColor: 'black'
+					tintColor: config.ui.colors.colorDefaultIcon
 				};
 
 			case 'FAIRLY_IMPORTANT':
 				return {
 					source: require('app/resources/images/ic_importance_3.png'),
-					tintColor: 'black'
+					tintColor: config.ui.colors.colorDefaultIcon
 				};
 
 			case 'UNIMPORTANT':
 				return {
 					source: require('app/resources/images/ic_importance_4.png'),
-					tintColor: 'black'
+					tintColor: config.ui.colors.colorDefaultIcon
 				};
 				
 			default:
@@ -153,7 +153,7 @@ export const mediaItemStatusIconFactory = new class MediaItemStatusIconFactory {
 
 				return {
 					source: require('app/resources/images/ic_status_new.png'),
-					tintColor: 'black'
+					tintColor: config.ui.colors.colorDefaultIcon
 				};
 			
 			default:
