@@ -153,6 +153,15 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 			return undefined;
 		}
 
+		const {
+			submitMinLength
+		} = this.props;
+
+		if(submitMinLength !== undefined && trimmed.length < submitMinLength) {
+
+			return undefined;
+		}
+
 		return trimmed;
 	}
 
@@ -188,6 +197,11 @@ export type SearchBarComponentInput = {
 	 * The search submit delay. ```onSearch()``` will be called ```submitDelayMilliseconds``` milliseconds after last typed letter.
 	 */
 	submitDelayMilliseconds?: number;
+
+	/**
+	 * If defined, only inputs with ```submitMinLength``` characters or more will trigger a submit
+	 */
+	submitMinLength?: number;
 
 	/**
 	 * If a small loading icon next to the search input is currently visibile

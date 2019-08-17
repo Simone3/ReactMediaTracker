@@ -29,7 +29,8 @@ const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaIte
 			autoFocus: true,
 			placeholder: i18n.t(`${langPrefix}.list.search`),
 			showLoading: false,
-			submitDelayMilliseconds: config.timers.mediaItems.searchSubmitTimerMilliseconds
+			submitDelayMilliseconds: config.parameters.mediaItems.search.submitTimerMilliseconds,
+			submitMinLength: config.parameters.mediaItems.search.submitMinLength
 		}
 	};
 };
