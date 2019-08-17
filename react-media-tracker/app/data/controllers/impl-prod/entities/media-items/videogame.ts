@@ -18,12 +18,12 @@ export class VideogameDefinitionsControllerImpl implements VideogameDefinitionsC
 	/**
 	 * @override
 	 */
-	public getDefaultSortBy(): VideogameSortByInternal {
+	public getDefaultSortBy(): VideogameSortByInternal[] {
 		
-		return {
+		return [{
 			field: 'NAME',
 			ascending: true
-		};
+		}];
 	}
 
 	/**

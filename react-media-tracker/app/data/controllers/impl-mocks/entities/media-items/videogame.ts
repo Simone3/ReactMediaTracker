@@ -41,9 +41,9 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 	/**
 	 * @override
 	 */
-	protected mockSort(mediaItems: VideogameInternal[], sortBy: VideogameSortByInternal): VideogameInternal[] {
+	protected mockSort(mediaItems: VideogameInternal[], sortBy: VideogameSortByInternal[]): VideogameInternal[] {
 		
-		if(sortBy.field === 'NAME') {
+		if(sortBy[0].field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
 				if(first.name < second.name) {

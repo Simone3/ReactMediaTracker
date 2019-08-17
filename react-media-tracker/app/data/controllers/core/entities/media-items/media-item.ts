@@ -12,7 +12,7 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 	 * @param sortBy the order to apply
 	 * @returns the list of media items, as a promise
 	 */
-	filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]>;
+	filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]>;
 	
 	/**
 	 * Searches the media items of a category
@@ -74,7 +74,7 @@ export interface MediaItemDefinitionsController<TMediaItemInternal extends Media
 	 * Getter for the default media item sort option
 	 * @returns the sort by
 	 */
-	getDefaultSortBy(): TMediaItemSortByInternal;
+	getDefaultSortBy(): TMediaItemSortByInternal[];
 
 	/**
 	 * Extracts the creator (e.g. author for books) names from a media item

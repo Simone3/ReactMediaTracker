@@ -80,9 +80,9 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 	/**
 	 * @override
 	 */
-	protected mockSort(mediaItems: MovieInternal[], sortBy: MovieSortByInternal): MovieInternal[] {
+	protected mockSort(mediaItems: MovieInternal[], sortBy: MovieSortByInternal[]): MovieInternal[] {
 		
-		if(sortBy.field === 'NAME') {
+		if(sortBy[0].field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
 				if(first.name < second.name) {

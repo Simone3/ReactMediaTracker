@@ -18,12 +18,12 @@ export class MovieDefinitionsControllerImpl implements MovieDefinitionsControlle
 	/**
 	 * @override
 	 */
-	public getDefaultSortBy(): MovieSortByInternal {
+	public getDefaultSortBy(): MovieSortByInternal[] {
 		
-		return {
+		return [{
 			field: 'NAME',
 			ascending: true
-		};
+		}];
 	}
 
 	/**

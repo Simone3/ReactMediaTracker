@@ -17,7 +17,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	/**
 	 * @override
 	 */
-	public async filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal): Promise<TMediaItemInternal[]> {
+	public async filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]> {
 
 		return this.resolveResult(() => {
 
@@ -97,7 +97,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 * @param sortBy the sort request
 	 * @returns the sorted media items
 	 */
-	protected abstract mockSort(mediaItems: TMediaItemInternal[], sortBy: TMediaItemSortByInternal): TMediaItemInternal[];
+	protected abstract mockSort(mediaItems: TMediaItemInternal[], sortBy: TMediaItemSortByInternal[]): TMediaItemInternal[];
 
 	/**
 	 * Allows to mock-filter a list

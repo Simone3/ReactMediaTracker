@@ -18,12 +18,12 @@ export class BookDefinitionsControllerImpl implements BookDefinitionsController 
 	/**
 	 * @override
 	 */
-	public getDefaultSortBy(): BookSortByInternal {
+	public getDefaultSortBy(): BookSortByInternal[] {
 		
-		return {
+		return [{
 			field: 'NAME',
 			ascending: true
-		};
+		}];
 	}
 
 	/**

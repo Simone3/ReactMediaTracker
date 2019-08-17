@@ -41,9 +41,9 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 	/**
 	 * @override
 	 */
-	protected mockSort(mediaItems: BookInternal[], sortBy: BookSortByInternal): BookInternal[] {
+	protected mockSort(mediaItems: BookInternal[], sortBy: BookSortByInternal[]): BookInternal[] {
 		
-		if(sortBy.field === 'NAME') {
+		if(sortBy[0].field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
 				if(first.name < second.name) {

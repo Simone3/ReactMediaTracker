@@ -18,12 +18,12 @@ export class TvShowDefinitionsControllerImpl implements TvShowDefinitionsControl
 	/**
 	 * @override
 	 */
-	public getDefaultSortBy(): TvShowSortByInternal {
+	public getDefaultSortBy(): TvShowSortByInternal[] {
 		
-		return {
+		return [{
 			field: 'NAME',
 			ascending: true
-		};
+		}];
 	}
 
 	/**

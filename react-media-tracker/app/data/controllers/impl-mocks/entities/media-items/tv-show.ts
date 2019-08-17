@@ -41,9 +41,9 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 	/**
 	 * @override
 	 */
-	protected mockSort(mediaItems: TvShowInternal[], sortBy: TvShowSortByInternal): TvShowInternal[] {
+	protected mockSort(mediaItems: TvShowInternal[], sortBy: TvShowSortByInternal[]): TvShowInternal[] {
 		
-		if(sortBy.field === 'NAME') {
+		if(sortBy[0].field === 'NAME') {
 
 			return mediaItems.sort((first, second) => {
 				if(first.name < second.name) {

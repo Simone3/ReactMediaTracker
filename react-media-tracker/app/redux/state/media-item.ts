@@ -34,7 +34,7 @@ export type MediaItemsListState = {
 	/**
 	 * The current media item order filter
 	 */
-	readonly sortBy?: MediaItemSortByInternal;
+	readonly sortBy?: MediaItemSortByInternal[];
 	
 	/**
 	 * The list of available media items
