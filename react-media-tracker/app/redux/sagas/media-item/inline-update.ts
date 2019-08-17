@@ -5,7 +5,6 @@ import { setError } from 'app/redux/actions/error/generators';
 import { MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO } from 'app/redux/actions/media-item/const';
 import { completeInlineUpdatingMediaItem, failInlineUpdatingMediaItem, startInlineUpdatingMediaItem } from 'app/redux/actions/media-item/generators';
 import { MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction } from 'app/redux/actions/media-item/types';
-import { MediaItemsListState } from 'app/redux/state/media-item';
 import { State } from 'app/redux/state/state';
 import { SagaIterator } from 'redux-saga';
 
@@ -22,11 +21,8 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 		const mediaItem = action.mediaItem;
 
 		// Get values from state
-		const listState: MediaItemsListState = yield select((state: State) => {
-
-			return state.mediaItemsList;
-		});
-		const category = listState.category;
+		const state: State = yield select();
+		const category = state.categoryGlobal.selectedCategory;
 		if(!category) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while inline updating media item');

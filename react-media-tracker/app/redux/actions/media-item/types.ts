@@ -1,14 +1,5 @@
-import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { Action } from 'redux';
-
-/**
- * The open media items list action
- */
-export type OpenMediaItemsListAction = Action & {
-	
-	category: CategoryInternal;
-};
 
 /**
  * The fetch media items action

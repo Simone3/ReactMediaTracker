@@ -1,6 +1,18 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**
+ * Portion of the internal state with the global category data
+ */
+export type CategoryGlobalState = {
+
+	/**
+	 * The current category, e.g. to show the correct list of media items, groups, etc.
+	 * Undefined means no category has been selected yet
+	 */
+	selectedCategory: CategoryInternal | undefined;
+}
+
+/**
  * Portion of the internal state with the categories list information
  */
 export type CategoriesListState = {

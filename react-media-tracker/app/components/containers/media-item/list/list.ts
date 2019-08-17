@@ -7,13 +7,13 @@ import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: State): MediaItemsListComponentInput => {
 	
-	if(!state.mediaItemsList.category) {
+	if(!state.categoryGlobal.selectedCategory) {
 
 		throw AppError.GENERIC.withDetails('Category cannot be null while rendering the media items list');
 	}
 
 	return {
-		category: state.mediaItemsList.category,
+		category: state.categoryGlobal.selectedCategory,
 		mediaItems: state.mediaItemsList.mediaItems
 	};
 };

@@ -1,4 +1,3 @@
-import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
@@ -15,11 +14,6 @@ export type MediaItemsListState = {
 	 * The current mode (e.g. allows to toggle between standard and search mode)
 	 */
 	readonly mode: MediaItemsListMode;
-
-	/**
-	 * The category linked with this list of media items
-	 */
-	readonly category?: CategoryInternal;
 
 	/**
 	 * The current search term

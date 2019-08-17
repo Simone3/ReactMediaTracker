@@ -1,6 +1,6 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REMOVE_CATEGORY_HIGHTLIGHT, REQUEST_CATEGORY_SAVE, SAVE_CATEGORY, SET_CATEGORY_FORM_STATUS, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
-import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, HighlightCategoryAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, RemoveCategoryHighlightAction, RequestCategorySaveAction, SaveCategoryAction, SetCategoryFormStatusAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
+import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REMOVE_CATEGORY_HIGHTLIGHT, REQUEST_CATEGORY_SAVE, SAVE_CATEGORY, SELECT_CATEGORY, SET_CATEGORY_FORM_STATUS, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
+import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, HighlightCategoryAction, InvalidateCategoriesAction, LoadCategoryAction as LoadCategoryDetailsAction, LoadNewCategoryAction as LoadNewCategoryDetailsAction, RemoveCategoryHighlightAction, RequestCategorySaveAction, SaveCategoryAction, SelectCategoryAction, SetCategoryFormStatusAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -224,5 +224,18 @@ export const removeCategoryHighlight = (): RemoveCategoryHighlightAction => {
 	
 	return {
 		type: REMOVE_CATEGORY_HIGHTLIGHT
+	};
+};
+
+/**
+ * Generator for the select category action, which sets the category into the global state to allow retrieval of the correct media items, groups, etc.
+ * @param category the linked category
+ * @returns the action
+ */
+export const selectCategory = (category: CategoryInternal): SelectCategoryAction => {
+	
+	return {
+		type: SELECT_CATEGORY,
+		category: category
 	};
 };

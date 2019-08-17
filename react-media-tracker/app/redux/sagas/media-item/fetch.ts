@@ -5,7 +5,6 @@ import { mediaItemControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
 import { FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
 import { completeFetchingMediaItems, failFetchingMediaItems, startFetchingMediaItems } from 'app/redux/actions/media-item/generators';
-import { MediaItemsListState } from 'app/redux/state/media-item';
 import { State } from 'app/redux/state/state';
 import { SagaIterator } from 'redux-saga';
 
@@ -19,12 +18,9 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 	try {
 		
 		// Get values from state
-		const listState: MediaItemsListState = yield select((state: State) => {
-
-			return state.mediaItemsList;
-		});
-		const mode = listState.mode;
-		const category = listState.category;
+		const state: State = yield select();
+		const mode = state.mediaItemsList.mode;
+		const category = state.categoryGlobal.selectedCategory;
 		if(!category) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find category while fetching media items');
@@ -40,8 +36,8 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 			// Normal fetching mode is the standard one, based on the current filter and sort options
 			case 'NORMAL': {
 
-				const filter = listState.filter;
-				const sortBy = listState.sortBy;
+				const filter = state.mediaItemsList.filter;
+				const sortBy = state.mediaItemsList.sortBy;
 				if(!filter || !sortBy) {
 		
 					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find filter and sort options');
@@ -55,7 +51,7 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 			// Search fetching mode allows to search media items by term
 			case 'SEARCH': {
 
-				const term = listState.searchTerm;
+				const term = state.mediaItemsList.searchTerm;
 				if(!term) {
 		
 					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find search term');

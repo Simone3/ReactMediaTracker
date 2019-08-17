@@ -5,7 +5,6 @@ import { setError } from 'app/redux/actions/error/generators';
 import { DELETE_MEDIA_ITEM } from 'app/redux/actions/media-item/const';
 import { completeDeletingMediaItem, failDeletingMediaItem, startDeletingMediaItem } from 'app/redux/actions/media-item/generators';
 import { DeleteMediaItemAction } from 'app/redux/actions/media-item/types';
-import { MediaItemsListState } from 'app/redux/state/media-item';
 import { State } from 'app/redux/state/state';
 import { SagaIterator } from 'redux-saga';
 
@@ -20,11 +19,8 @@ const deleteMediaItemSaga = function * (action: DeleteMediaItemAction): SagaIter
 	try {
 
 		// Get values from state
-		const listState: MediaItemsListState = yield select((state: State) => {
-
-			return state.mediaItemsList;
-		});
-		const category = listState.category;
+		const state: State = yield select();
+		const category = state.categoryGlobal.selectedCategory;
 		if(!category) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while deleting media item');

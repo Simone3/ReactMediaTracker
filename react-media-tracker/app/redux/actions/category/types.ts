@@ -141,3 +141,11 @@ export type HighlightCategoryAction = Action & {
 export type RemoveCategoryHighlightAction = Action & {
 	
 };
+
+/**
+ * The select category action
+ */
+export type SelectCategoryAction = Action & {
+	
+	category: CategoryInternal;
+};

@@ -1,6 +1,8 @@
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, OPEN_MEDIA_ITEMS_LIST, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from 'app/redux/actions/media-item/const';
-import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, OpenMediaItemsListAction, SearchMediaItemsAction } from 'app/redux/actions/media-item/types';
+import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
+import { SelectCategoryAction } from 'app/redux/actions/category/types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from 'app/redux/actions/media-item/const';
+import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, SearchMediaItemsAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
 
@@ -10,7 +12,6 @@ import { Action } from 'redux';
 const initialState: MediaItemsListState = {
 	status: 'IDLE',
 	mode: 'NORMAL',
-	category: undefined,
 	filter: undefined,
 	sortBy: undefined,
 	searchTerm: undefined,
@@ -28,10 +29,10 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 	
 	switch(action.type) {
 	
-		// When the media items page is started, the category and its default settings are loaded
-		case OPEN_MEDIA_ITEMS_LIST: {
+		// When a category is selected (i.e. the media items page is opened), its default settings are loaded
+		case SELECT_CATEGORY: {
 
-			const openMediaItemsListAction = action as OpenMediaItemsListAction;
+			const openMediaItemsListAction = action as SelectCategoryAction;
 
 			const category = openMediaItemsListAction.category;
 
@@ -41,7 +42,6 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 
 			return {
 				...initialState,
-				category: category,
 				filter: defaultFilter,
 				sortBy: defaultSortBy
 			};

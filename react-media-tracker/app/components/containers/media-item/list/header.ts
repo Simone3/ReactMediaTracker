@@ -11,7 +11,7 @@ import { Dispatch } from 'redux';
 
 const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaItemsListHeaderContainerProps, State> = (state: State, ownProps: MediaItemsListHeaderContainerProps): SearchHeaderComponentInput => {
 
-	const category = state.mediaItemsList.category;
+	const category = state.categoryGlobal.selectedCategory;
 	if(!category) {
 
 		throw AppError.GENERIC.withDetails('List state has no linked category, cannot display header');
