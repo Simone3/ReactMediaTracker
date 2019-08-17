@@ -37,7 +37,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 			
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				groups: receiveGroupsAction.groups
 			};
 		}
@@ -47,7 +47,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				groups: []
 			};
 		}
@@ -85,7 +85,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 		
 			return {
 				...state,
-				status: 'IDLE'
+				status: 'FETCHED'
 			};
 		}
 

@@ -19,4 +19,4 @@ export type GroupsListState = {
 /**
  * The current status of the groups list
  */
-export type GroupsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'IDLE' | 'DELETING';
+export type GroupsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | 'DELETING';

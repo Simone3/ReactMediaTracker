@@ -38,7 +38,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 			
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				categories: receiveCategoriesAction.categories
 			};
 		}
@@ -48,7 +48,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				categories: []
 			};
 		}
@@ -86,7 +86,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				status: 'IDLE'
+				status: 'FETCHED'
 			};
 		}
 

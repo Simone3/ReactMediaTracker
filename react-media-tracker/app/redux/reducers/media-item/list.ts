@@ -63,7 +63,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 			
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				mediaItems: receiveMediaItemsAction.mediaItems
 			};
 		}
@@ -73,7 +73,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 
 			return {
 				...state,
-				status: 'IDLE',
+				status: 'FETCHED',
 				mediaItems: []
 			};
 		}
@@ -101,7 +101,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 		
 			return {
 				...state,
-				status: 'IDLE'
+				status: 'FETCHED'
 			};
 		}
 		
@@ -128,7 +128,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 		
 			return {
 				...state,
-				status: 'IDLE'
+				status: 'FETCHED'
 			};
 		}
 		
