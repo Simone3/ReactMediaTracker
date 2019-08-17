@@ -30,8 +30,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	public componentWillMount(): void {
 
-		// Load first list of categories
-		this.props.fetchCategories();
+		this.requestFetchIfRequired();
 	}
 
 	/**
@@ -39,11 +38,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	public componentDidUpdate(): void {
 
-		if(this.props.requiresReload) {
-
-			// Reload categories if the current list was marked as invalid
-			this.props.fetchCategories();
-		}
+		this.requestFetchIfRequired();
 	}
 
 	/**
@@ -68,6 +63,17 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 			</View>
 		);
 	}
+
+	/**
+	 * Helper to invoke the fetch callback if the input fetch flag is true
+	 */
+	private requestFetchIfRequired(): void {
+		
+		if(this.props.requiresFetch) {
+
+			this.props.fetchCategories();
+		}
+	}
 }
 
 /**
@@ -81,9 +87,9 @@ export type CategoriesListScreenComponentInput = {
 	isLoading: boolean;
 
 	/**
-	 * Flag to tell if the categories list was invalidated. If true, requests a new reload.
+	 * Flag to tell if the categories list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
-	requiresReload: boolean;
+	requiresFetch: boolean;
 }
 
 /**

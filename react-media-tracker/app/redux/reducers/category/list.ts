@@ -8,7 +8,7 @@ import { Action } from 'redux';
  */
 const initialState: CategoriesListState = {
 	categories: [],
-	status: 'IDLE',
+	status: 'REQUIRES_FETCH',
 	highlightedCategory: undefined
 };
 
@@ -59,7 +59,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 
@@ -77,7 +77,7 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 

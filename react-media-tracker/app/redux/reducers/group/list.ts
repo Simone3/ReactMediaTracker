@@ -8,7 +8,7 @@ import { Action } from 'redux';
  */
 const initialState: GroupsListState = {
 	groups: [],
-	status: 'NOT_LOADED'
+	status: 'REQUIRES_FETCH'
 };
 
 /**
@@ -58,7 +58,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 
@@ -76,7 +76,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 

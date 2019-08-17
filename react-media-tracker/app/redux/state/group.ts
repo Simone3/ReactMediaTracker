@@ -19,4 +19,4 @@ export type GroupsListState = {
 /**
  * The current status of the groups list
  */
-export type GroupsListStatus = 'NOT_LOADED' | 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING';
+export type GroupsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'IDLE' | 'DELETING';

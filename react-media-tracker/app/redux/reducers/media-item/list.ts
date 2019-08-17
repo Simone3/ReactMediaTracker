@@ -10,7 +10,7 @@ import { Action } from 'redux';
  * The initial state for the media items list
  */
 const initialState: MediaItemsListState = {
-	status: 'IDLE',
+	status: 'REQUIRES_FETCH',
 	mode: 'NORMAL',
 	filter: undefined,
 	sortBy: undefined,
@@ -92,7 +92,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 
@@ -119,7 +119,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 		
 			return {
 				...state,
-				status: 'REQUIRES_RELOAD'
+				status: 'REQUIRES_FETCH'
 			};
 		}
 
@@ -178,7 +178,7 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 			return {
 				...state,
 				mode: 'NORMAL',
-				status: 'REQUIRES_RELOAD',
+				status: 'REQUIRES_FETCH',
 				searchTerm: undefined
 			};
 		}

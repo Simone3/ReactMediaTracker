@@ -62,7 +62,7 @@ export type CategoryDetailsState = {
 /**
  * The current status of the categories list
  */
-export type CategoriesListStatus = 'IDLE' | 'FETCHING' | 'REQUIRES_RELOAD' | 'DELETING';
+export type CategoriesListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'IDLE' | 'DELETING';
 
 /**
  * The current status of the category saving process

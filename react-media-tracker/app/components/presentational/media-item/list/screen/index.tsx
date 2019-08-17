@@ -35,8 +35,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public componentWillMount(): void {
 
-		// Load first list of media items
-		this.props.fetchMediaItems();
+		this.requestFetchIfRequired();
 	}
 
 	/**
@@ -44,11 +43,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public componentDidUpdate(): void {
 
-		if(this.props.requiresReload) {
-
-			// Reload media items if the current list was marked as invalid
-			this.props.fetchMediaItems();
-		}
+		this.requestFetchIfRequired();
 	}
 
 	/**
@@ -73,6 +68,17 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 			</View>
 		);
 	}
+
+	/**
+	 * Helper to invoke the fetch callback if the input fetch flag is true
+	 */
+	private requestFetchIfRequired(): void {
+		
+		if(this.props.requiresFetch) {
+
+			this.props.fetchMediaItems();
+		}
+	}
 }
 
 /**
@@ -86,9 +92,9 @@ export type MediaItemsListScreenComponentInput = {
 	isLoading: boolean;
 
 	/**
-	 * Flag to tell if the media items list was invalidated. If true, requests a new reload.
+	 * Flag to tell if the categories list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
-	requiresReload: boolean;
+	requiresFetch: boolean;
 }
 
 /**
