@@ -1,44 +1,40 @@
 import { ModelMapper } from 'app/data/mappers/common';
 import { groupMapper } from 'app/data/mappers/group';
 import { ownPlatformMapper } from 'app/data/mappers/own-platform';
-import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
+import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemGroupFilter, MediaItemOwnPlatformFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
 import { AppError } from 'app/data/models/internal/error';
-import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusFilterInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
 
 /**
- * Helper for importance mapping
- * @param internal internal value
- * @returns API value
- */
-const toExternalImportance = (internal: MediaItemImportanceInternal): number => {
-
-	switch(internal) {
-
-		case 'VERY_IMPORTANT': return 350;
-		case 'IMPORTANT': return 250;
-		case 'FAIRLY_IMPORTANT': return 150;
-		case 'UNIMPORTANT': return 50;
-		default: throw AppError.GENERIC.withDetails(`Importance level ${internal} not mapped`);
-	}
-};
-
-/**
  * Helper for importance mapping (exact match instead of numeric intervals to avoid inconsistencies with back-end filtering)
- * @param api API value
- * @returns internal value
  */
-const toInternalImportance = (api: number): MediaItemImportanceInternal => {
+const importanceLevelMapper = new class ImportanceLevelMapper extends ModelMapper<MediaItemImportanceInternal, number, {}> {
 	
-	switch(api) {
+	protected convertToExternal(source: MediaItemImportanceInternal): number {
 
-		case 350: return 'VERY_IMPORTANT';
-		case 250: return 'IMPORTANT';
-		case 150: return 'FAIRLY_IMPORTANT';
-		case 50: return 'UNIMPORTANT';
-		default: throw AppError.GENERIC.withDetails(`Importance level ${api} not mapped`);
+		switch(source) {
+
+			case 'VERY_IMPORTANT': return 350;
+			case 'IMPORTANT': return 250;
+			case 'FAIRLY_IMPORTANT': return 150;
+			case 'UNIMPORTANT': return 50;
+			default: throw AppError.GENERIC.withDetails(`Importance level ${source} not mapped`);
+		}
 	}
-};
+
+	protected convertToInternal(source: number): MediaItemImportanceInternal {
+
+		switch(source) {
+
+			case 350: return 'VERY_IMPORTANT';
+			case 250: return 'IMPORTANT';
+			case 150: return 'FAIRLY_IMPORTANT';
+			case 50: return 'UNIMPORTANT';
+			default: throw AppError.GENERIC.withDetails(`Importance level ${source} not mapped`);
+		}
+	}
+}();
 
 /**
  * Abstract mapper for media items
@@ -56,7 +52,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 		
 		const target: MediaItem = {
 			name: source.name,
-			importance: toExternalImportance(source.importance),
+			importance: importanceLevelMapper.toExternal(source.importance),
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -102,7 +98,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			
 			name: source.name,
 			status: this.buildStatusLabel(source),
-			importance: toInternalImportance(source.importance),
+			importance: importanceLevelMapper.toInternal(source.importance),
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -188,11 +184,12 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	 */
 	protected commonToExternal(source: MediaItemFilterInternal): MediaItemFilter {
 
-		return {
-			importance: source.importance ? toExternalImportance(source.importance) : undefined,
-			groupId: source.groupId,
-			ownPlatformId: source.ownPlatformId
+		const target: MediaItemFilter = {
+			importanceLevels: source.importanceLevels ? importanceLevelMapper.toExternalList(source.importanceLevels) : undefined,
+			groups: this.toExternalGroupFilter(source.groups),
+			ownPlatforms: this.toExternalOwnPlatformFilter(source.ownPlatforms)
 		};
+		return this.setStatusFilterExternal(source.status, target);
 	}
 	
 	/**
@@ -203,10 +200,144 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	protected commonToInternal(source: MediaItemFilter): MediaItemFilterInternal {
 
 		return {
-			importance: source.importance ? toInternalImportance(source.importance) : undefined,
-			groupId: source.groupId,
-			ownPlatformId: source.ownPlatformId
+			importanceLevels: source.importanceLevels ? importanceLevelMapper.toInternalList(source.importanceLevels) : undefined,
+			groups: this.toInternalGroupFilter(source.groups),
+			ownPlatforms: this.toInternalOwnPlatformFilter(source.ownPlatforms),
+			status: this.toInternalStatusFilter(source)
 		};
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @returns the target
+	 */
+	private toExternalGroupFilter(source: MediaItemGroupFilterInternal | undefined): MediaItemGroupFilter | undefined {
+		
+		if(source) {
+
+			return {
+				anyGroup: source.anyGroup,
+				noGroup: source.noGroup,
+				groupIds: source.groupIds
+			};
+		}
+		else {
+
+			return undefined;
+		}
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @returns the target
+	 */
+	private toExternalOwnPlatformFilter(source: MediaItemOwnPlatformFilterInternal | undefined): MediaItemOwnPlatformFilter | undefined {
+		
+		if(source) {
+
+			return {
+				anyOwnPlatform: source.anyOwnPlatform,
+				noOwnPlatform: source.noOwnPlatform,
+				ownPlatformIds: source.ownPlatformIds
+			};
+		}
+		else {
+
+			return undefined;
+		}
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @returns the target
+	 */
+	private toInternalGroupFilter(source: MediaItemGroupFilter | undefined): MediaItemGroupFilterInternal | undefined {
+
+		if(source) {
+
+			return {
+				anyGroup: source.anyGroup,
+				noGroup: source.noGroup,
+				groupIds: source.groupIds
+			};
+		}
+		else {
+
+			return undefined;
+		}
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @returns the target
+	 */
+	private toInternalOwnPlatformFilter(source: MediaItemOwnPlatformFilter | undefined): MediaItemOwnPlatformFilterInternal | undefined {
+
+		if(source) {
+
+			return {
+				anyOwnPlatform: source.anyOwnPlatform,
+				noOwnPlatform: source.noOwnPlatform,
+				ownPlatformIds: source.ownPlatformIds
+			};
+		}
+		else {
+
+			return undefined;
+		}
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @param target the target
+	 * @returns the target
+	 */
+	private setStatusFilterExternal(source: MediaItemStatusFilterInternal | undefined, target: MediaItemFilter): MediaItemFilter {
+
+		if(source) {
+
+			switch(source) {
+
+				case 'CURRENT':
+					target.complete = false;
+					break;
+
+				case 'COMPLETE':
+					target.complete = true;
+					break;
+
+				default:
+					throw AppError.GENERIC.withDetails(`Cannot map status filter ${source}`);
+			}
+		}
+		
+		return target;
+	}
+
+	/**
+	 * Helper for nested object mapping
+	 * @param source the source
+	 * @returns the target
+	 */
+	private toInternalStatusFilter(source: MediaItemFilter): MediaItemStatusFilterInternal | undefined {
+
+		if(source.complete) {
+
+			return 'COMPLETE';
+		}
+		else if(source.complete === false) {
+
+			return 'CURRENT';
+		}
+		else {
+
+			return undefined;
+		}
 	}
 }
 

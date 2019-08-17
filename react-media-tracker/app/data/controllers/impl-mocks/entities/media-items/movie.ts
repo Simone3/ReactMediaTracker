@@ -76,30 +76,6 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			directors: [ 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One' ]
 		}]
 	};
-
-	/**
-	 * @override
-	 */
-	protected mockSort(mediaItems: MovieInternal[], sortBy: MovieSortByInternal[]): MovieInternal[] {
-		
-		if(sortBy[0].field === 'NAME') {
-
-			return mediaItems.sort((first, second) => {
-				if(first.name < second.name) {
-					return -1;
-				}
-				if(first.name > second.name) {
-					return 1;
-				}
-				return 0;
-			});
-		}
-		else {
-			
-			console.log('Sort option not currently mocked!');
-			return mediaItems;
-		}
-	}
 }
 
 /**

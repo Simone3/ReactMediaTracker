@@ -37,30 +37,6 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 			importance: 'FAIRLY_IMPORTANT'
 		}]
 	};
-
-	/**
-	 * @override
-	 */
-	protected mockSort(mediaItems: TvShowInternal[], sortBy: TvShowSortByInternal[]): TvShowInternal[] {
-		
-		if(sortBy[0].field === 'NAME') {
-
-			return mediaItems.sort((first, second) => {
-				if(first.name < second.name) {
-					return -1;
-				}
-				if(first.name > second.name) {
-					return 1;
-				}
-				return 0;
-			});
-		}
-		else {
-			
-			console.log('Sort option not currently mocked!');
-			return mediaItems;
-		}
-	}
 }
 
 /**

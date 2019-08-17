@@ -50,14 +50,41 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
 	markedAsRedo?: boolean;
 	catalogId?: string;
 }
+
+/**
+ * Media items groups filtering options, internal type just for display purposes
+ */
+export type MediaItemGroupFilterInternal = {
+	
+	anyGroup?: boolean;
+	noGroup?: boolean;
+	groupIds?: string[];
+}
+
+/**
+ * Media items own platforms filtering options, internal type just for display purposes
+ */
+export type MediaItemOwnPlatformFilterInternal = {
+	
+	anyOwnPlatform?: boolean;
+	noOwnPlatform?: boolean;
+	ownPlatformIds?: string[];
+}
+
+/**
+ * The media type "status" filter, internal type just for display purposes
+ */
+export type MediaItemStatusFilterInternal = 'CURRENT' | 'COMPLETE';
+
 /**
  * A filter for generic media items, internal type just for display purposes
  */
 export type MediaItemFilterInternal = {
 
-	importance?: MediaItemImportanceInternal;
-	groupId?: string;
-	ownPlatformId?: string;
+	importanceLevels?: MediaItemImportanceInternal[];
+	groups?: MediaItemGroupFilterInternal;
+	ownPlatforms?: MediaItemOwnPlatformFilterInternal;
+	status?: MediaItemStatusFilterInternal;
 }
 
 /**

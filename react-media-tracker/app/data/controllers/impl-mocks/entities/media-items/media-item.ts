@@ -2,6 +2,7 @@ import { MediaItemCatalogController, MediaItemController } from 'app/data/contro
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
 import { AppError } from 'app/data/models/internal/error';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
 
 /**
  * Mocked implementation of the MediaItemController that contains an in-memory list of media items
@@ -97,7 +98,28 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 * @param sortBy the sort request
 	 * @returns the sorted media items
 	 */
-	protected abstract mockSort(mediaItems: TMediaItemInternal[], sortBy: TMediaItemSortByInternal[]): TMediaItemInternal[];
+	protected mockSort(mediaItems: TMediaItemInternal[], sortBy: TMediaItemSortByInternal[]): TMediaItemInternal[] {
+
+		console.log(`Back-End would sort by ${JSON.stringify(sortBy)} - mocked implementation is non complete...`);
+		
+		const mockSortBy = sortBy as unknown as MovieSortByInternal[];
+		if(mockSortBy[0].field === 'NAME') {
+
+			return mediaItems.sort((first, second) => {
+				if(first.name < second.name) {
+					return -1;
+				}
+				if(first.name > second.name) {
+					return 1;
+				}
+				return 0;
+			});
+		}
+		else {
+
+			return mediaItems;
+		}
+	}
 
 	/**
 	 * Allows to mock-filter a list
@@ -107,16 +129,17 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 */
 	protected mockFilter(mediaItems: TMediaItemInternal[], filter: TMediaItemFilterInternal): TMediaItemInternal[] {
 
-		if(filter.importance) {
+		console.log(`Back-End would filter by ${JSON.stringify(filter)} - mocked implementation is non complete...`);
+
+		if(filter.importanceLevels) {
 
 			return mediaItems.filter((item) => {
 
-				return item.importance === filter.importance;
+				return filter.importanceLevels && filter.importanceLevels.indexOf(item.importance) !== -1;
 			});
 		}
 		else {
 
-			console.log('Filter not currently mocked!');
 			return mediaItems;
 		}
 	}
