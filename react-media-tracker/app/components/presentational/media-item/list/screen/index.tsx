@@ -9,6 +9,9 @@ import { FABComponent } from 'app/components/presentational/generic/floating-act
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { MediaItemsListHeaderContainer } from 'app/components/containers/media-item/list/header';
 import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containers/media-item/list/header-search-icon';
+import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containers/media-item/list/header-filter-icon';
+import { MediaItemFilterModalComponent } from '../filter-modal';
+import { MediaItemFilterModalContainer } from 'app/components/containers/media-item/list/filter-modal';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -21,10 +24,18 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	public static readonly navigationOptions = () => {
 		return {
 			headerTitle: <MediaItemsListHeaderContainer
-				componentsRight={<MediaItemsListHeaderSearchIconContainer
-					source={require('app/resources/images/ic_action_search.png')}
-					clickStatus='ENABLED'
-				/>}
+				componentsRight={[
+					<MediaItemsListHeaderFilterIconContainer
+						key='herader-filter-icon'
+						source={require('app/resources/images/ic_action_filter.png')}
+						clickStatus='ENABLED'
+					/>,
+					<MediaItemsListHeaderSearchIconContainer
+						key='herader-search-icon'
+						source={require('app/resources/images/ic_action_search.png')}
+						clickStatus='ENABLED'
+					/>
+				]}
 			/>,
 			headerLeft: null
 		};
@@ -61,6 +72,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 						navigationService.navigate(AppScreens.MediaItemDetails);
 					}}
 				/>
+				<MediaItemFilterModalContainer />
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
 					fullScreen={false}

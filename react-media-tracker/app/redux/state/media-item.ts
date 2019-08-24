@@ -49,4 +49,4 @@ export type MediaItemsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | '
 /**
  * The current mode (e.g. allows to toggle between standard and search mode)
  */
-export type MediaItemsListMode = 'NORMAL' | 'SEARCH';
+export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS';

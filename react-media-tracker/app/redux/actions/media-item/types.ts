@@ -1,4 +1,4 @@
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 import { Action } from 'redux';
 
 /**
@@ -139,4 +139,27 @@ export type StartMediaItemsSearchModeAction = Action & {
  */
 export type StopMediaItemsSearchModeAction = Action & {
 	
+};
+
+/**
+ * The start "set filters" media items mode action
+ */
+export type StartMediaItemsSetFiltersModeAction = Action & {
+	
+};
+
+/**
+ * The stop "set filters" media items mode action
+ */
+export type StopMediaItemsSetFiltersModeAction = Action & {
+	
+};
+
+/**
+ * The submit media items filters action
+ */
+export type SubmitMediaItemsFiltersAction = Action & {
+	
+	filter: MediaItemFilterInternal;
+	sortBy: MediaItemSortByInternal[];
 };

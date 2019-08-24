@@ -1,6 +1,6 @@
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE } from './const';
-import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, SearchMediaItemsAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StopMediaItemsSearchModeAction } from './types';
+import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
+import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, SearchMediaItemsAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
 
 /**
  * Generator for the fetch media items list action, which causes the request media items action, the async media items fetch and then the receive media items action
@@ -224,3 +224,41 @@ export const stopMediaItemsSearchMode = (): StopMediaItemsSearchModeAction => {
 		type: STOP_MEDIA_ITEMS_SEARCH_MODE
 	};
 };
+
+/**
+ * Generator for the start media items "set filters" mode action, which allows to show the filter form for media items
+ * @returns the action
+ */
+export const startMediaItemsSetFiltersMode = (): StartMediaItemsSetFiltersModeAction => {
+	
+	return {
+		type: START_MEDIA_ITEMS_SET_FILTERS_MODE
+	};
+};
+
+/**
+ * Generator for the start media items "set filters" mode action, which allows to hide the filter form for media items
+ * @returns the action
+ */
+export const stopMediaItemsSetFiltersMode = (): StopMediaItemsSetFiltersModeAction => {
+	
+	return {
+		type: STOP_MEDIA_ITEMS_SET_FILTERS_MODE
+	};
+};
+
+/**
+ * Generator for the submit media items filters, which sets the current category filters
+ * @param filter the filter options
+ * @param sortBy the sort by options
+ * @returns the action
+ */
+export const submitMediaItemsFilters = (filter: MediaItemFilterInternal, sortBy: MediaItemSortByInternal[]): SubmitMediaItemsFiltersAction => {
+	
+	return {
+		type: SUBMIT_MEDIA_ITEMS_FILTERS,
+		filter: filter,
+		sortBy: sortBy
+	};
+};
+
