@@ -1,17 +1,17 @@
-import { MediaItemModalComponent, MediaItemModalComponentInput, MediaItemModalComponentOutput } from 'app/components/presentational/media-item/list/modal';
+import { MediaItemContextMenuComponent, MediaItemContextMenuComponentInput, MediaItemContextMenuComponentOutput } from 'app/components/presentational/media-item/list/context-menu';
 import { deleteMediaItem, markMediaItemAsActive, markMediaItemAsComplete, markMediaItemAsRedo, removeMediaItemHighlight } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: State): MediaItemModalComponentInput => {
+const mapStateToProps = (state: State): MediaItemContextMenuComponentInput => {
 	
 	return {
 		mediaItem: state.mediaItemsList.highlightedMediaItem
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): MediaItemModalComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch): MediaItemContextMenuComponentOutput => {
 
 	return {
 		delete: (mediaItem) => {
@@ -36,9 +36,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemModalComponentOutput =
 };
 
 /**
- * Container component that handles Redux state for MediaItemModalComponent
+ * Container component that handles Redux state for MediaItemContextMenuComponent
  */
-export const MediaItemModalContainer = connect(
+export const MediaItemContextMenuContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(MediaItemModalComponent);
+)(MediaItemContextMenuComponent);

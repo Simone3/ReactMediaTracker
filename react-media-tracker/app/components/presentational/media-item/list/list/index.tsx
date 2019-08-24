@@ -6,7 +6,7 @@ import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
 import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { MediaItemModalContainer } from 'app/components/containers/media-item/list/modal';
+import { MediaItemContextMenuContainer } from 'app/components/containers/media-item/list/context-menu';
 
 /**
  * Presentational component to display the list of user media items
@@ -81,7 +81,7 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 						return item.id;
 					}}
 				/>
-				<MediaItemModalContainer />
+				<MediaItemContextMenuContainer />
 			</View>
 		);
 	}

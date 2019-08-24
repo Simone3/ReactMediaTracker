@@ -1,17 +1,17 @@
-import { CategoryModalComponent, CategoryModalComponentInput, CategoryModalComponentOutput } from 'app/components/presentational/category/list/modal';
+import { CategoryContextMenuComponent, CategoryContextMenuComponentInput, CategoryContextMenuComponentOutput } from 'app/components/presentational/category/list/context-menu';
 import { deleteCategory, loadCategoryDetails, removeCategoryHighlight } from 'app/redux/actions/category/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: State): CategoryModalComponentInput => {
+const mapStateToProps = (state: State): CategoryContextMenuComponentInput => {
 	
 	return {
 		category: state.categoriesList.highlightedCategory
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): CategoryModalComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch): CategoryContextMenuComponentOutput => {
 
 	return {
 		delete: (category) => {
@@ -27,9 +27,9 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoryModalComponentOutput =>
 };
 
 /**
- * Container component that handles Redux state for CategoryModalComponent
+ * Container component that handles Redux state for CategoryContextMenuComponent
  */
-export const CategoryModalContainer = connect(
+export const CategoryContextMenuContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(CategoryModalComponent);
+)(CategoryContextMenuComponent);

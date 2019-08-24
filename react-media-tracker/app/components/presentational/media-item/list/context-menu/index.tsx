@@ -12,7 +12,7 @@ import { ConfirmAlert } from 'app/components/presentational/generic/confirm-aler
 /**
  * Presentational component to display a modal dialog with the media item options
  */
-export class MediaItemModalComponent extends Component<MediaItemModalComponentInput & MediaItemModalComponentOutput> {
+export class MediaItemContextMenuComponent extends Component<MediaItemContextMenuComponentInput & MediaItemContextMenuComponentOutput> {
 	
 	/**
 	 * @override
@@ -206,9 +206,9 @@ export class MediaItemModalComponent extends Component<MediaItemModalComponentIn
 }
 
 /**
- * MediaItemModalComponent's input props
+ * MediaItemContextMenuComponent's input props
  */
-export type MediaItemModalComponentInput = {
+export type MediaItemContextMenuComponentInput = {
 
 	/**
 	 * The media item linked with the modal. Undefined means no modal is displayed.
@@ -217,9 +217,9 @@ export type MediaItemModalComponentInput = {
 };
 
 /**
- * MediaItemModalComponent's output props
+ * MediaItemContextMenuComponent's output props
  */
-export type MediaItemModalComponentOutput = {
+export type MediaItemContextMenuComponentOutput = {
 
 	/**
 	 * Callback to edit the media item

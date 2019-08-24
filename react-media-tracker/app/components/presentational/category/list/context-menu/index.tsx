@@ -11,7 +11,7 @@ import { ConfirmAlert } from 'app/components/presentational/generic/confirm-aler
 /**
  * Presentational component to display a modal dialog with the category options
  */
-export class CategoryModalComponent extends Component<CategoryModalComponentInput & CategoryModalComponentOutput> {
+export class CategoryContextMenuComponent extends Component<CategoryContextMenuComponentInput & CategoryContextMenuComponentOutput> {
 	
 	/**
 	 * @override
@@ -104,9 +104,9 @@ export class CategoryModalComponent extends Component<CategoryModalComponentInpu
 }
 
 /**
- * CategoryModalComponent's input props
+ * CategoryContextMenuComponent's input props
  */
-export type CategoryModalComponentInput = {
+export type CategoryContextMenuComponentInput = {
 
 	/**
 	 * The category linked with the modal. Undefined means no modal is displayed.
@@ -115,9 +115,9 @@ export type CategoryModalComponentInput = {
 };
 
 /**
- * CategoryModalComponent's output props
+ * CategoryContextMenuComponent's output props
  */
-export type CategoryModalComponentOutput = {
+export type CategoryContextMenuComponentOutput = {
 
 	/**
 	 * Callback to edit the category

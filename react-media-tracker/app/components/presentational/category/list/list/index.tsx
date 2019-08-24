@@ -4,7 +4,7 @@ import { CategoryInternal } from 'app/data/models/internal/category';
 import { CategoryRowComponent } from 'app/components/presentational/category/list/row';
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/category/list/list/styles';
-import { CategoryModalContainer } from 'app/components/containers/category/list/modal';
+import { CategoryContextMenuContainer } from 'app/components/containers/category/list/context-menu';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
 
@@ -85,7 +85,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 						return item.id;
 					}}
 				/>
-				<CategoryModalContainer/>
+				<CategoryContextMenuContainer/>
 			</View>
 		);
 	}
