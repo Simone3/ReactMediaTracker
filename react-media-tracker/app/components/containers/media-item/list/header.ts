@@ -2,7 +2,6 @@ import { HeaderComponentInput } from 'app/components/presentational/generic/head
 import { SearchHeaderComponent, SearchHeaderComponentInput, SearchHeaderComponentOutput } from 'app/components/presentational/generic/header-search';
 import { config } from 'app/config/config';
 import { AppError } from 'app/data/models/internal/error';
-import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 import { searchMediaItems, stopMediaItemsSearchMode } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
@@ -17,7 +16,7 @@ const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaIte
 		throw AppError.GENERIC.withDetails('List state has no linked category, cannot display header');
 	}
 
-	const langPrefix = mediaItemLangPrefixFactory.get(category);
+	const mediaType = category.mediaType;
 
 	return {
 		searchMode: state.mediaItemsList.mode === 'SEARCH',
@@ -27,7 +26,7 @@ const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaIte
 		},
 		searchHeaderInput: {
 			autoFocus: true,
-			placeholder: i18n.t(`${langPrefix}.list.search`),
+			placeholder: i18n.t(`${mediaType}.list.search`),
 			showLoading: false,
 			submitDelayMilliseconds: config.parameters.mediaItems.search.submitTimerMilliseconds,
 			submitMinLength: config.parameters.mediaItems.search.submitMinLength

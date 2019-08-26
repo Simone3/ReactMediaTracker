@@ -5,7 +5,6 @@ import { styles } from 'app/components/presentational/media-item/list/row-data/s
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
 import { i18n } from 'app/utilities/i18n';
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
-import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 
 /**
  * Presentational component to display the textual data portion of the list row
@@ -77,9 +76,7 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 
 		if(duration) {
 
-			const langPrefix = mediaItemLangPrefixFactory.get(mediaType);
-
-			values.push(i18n.t(`${langPrefix}.list.duration`, { duration: duration }));
+			values.push(i18n.t(`${mediaType}.list.duration`, { duration: duration }));
 		}
 
 		if(creators && creators.length > 0) {

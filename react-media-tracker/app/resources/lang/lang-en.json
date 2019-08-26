@@ -59,13 +59,50 @@
 				"delete": {
 					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it."
 				}
+			},
+			"importance": {
+				"VERY_IMPORTANT": "Very important",
+				"IMPORTANT": "Important",
+				"FAIRLY_IMPORTANT" : "Fairly important",
+				"UNIMPORTANT": "Unimportant"
 			}
 		},
 		"list": {
-			"group": "{{groupName}}, #{{order}}"
+			"group": "{{groupName}}, #{{order}}",
+			"filter": {
+				"prompts": {
+					"status": "Status",
+					"group": "Group",
+					"ownPlatform": "Owned",
+					"importance": "Importance"
+				},
+				"values": {
+					"status": {
+						"ALL": "All",
+						"CURRENT": "Current",
+						"COMPLETE" : "Completed"
+					},
+					"group": {
+						"ALL": "All",
+						"ANY": "Only with group",
+						"NONE": "Only without group"
+					},
+					"ownPlatform": {
+						"ALL": "All",
+						"ANY": "Only owned",
+						"NONE": "Only not owned"
+					},
+					"sort": {
+						"DEFAULT": "Default",
+						"NAME": "By name",
+						"RELEASE_DATE" : "By release date",
+						"COMPLETION_DATE": "By completion date"
+					}
+				}
+			}
 		}
 	},
-	"book": {
+	"BOOK": {
 		"common": {
 			"alert": {
 				"delete": {
@@ -84,7 +121,7 @@
 			"search": "Search books..."
 		}
 	},
-	"movie": {
+	"MOVIE": {
 		"common": {
 			"alert": {
 				"delete": {
@@ -103,7 +140,7 @@
 			"search": "Search movies..."
 		}
 	},
-	"tvShow": {
+	"TV_SHOW": {
 		"common": {
 			"alert": {
 				"delete": {
@@ -122,7 +159,7 @@
 			"search": "Search shows..."
 		}
 	},
-	"videogame": {
+	"VIDEOGAME": {
 		"common": {
 			"alert": {
 				"delete": {

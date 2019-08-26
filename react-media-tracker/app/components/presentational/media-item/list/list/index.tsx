@@ -4,7 +4,6 @@ import { MediaItemInternal } from 'app/data/models/internal/media-items/media-it
 import { MediaItemRowComponent } from 'app/components/presentational/media-item/list/row';
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
-import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemContextMenuContainer } from 'app/components/containers/media-item/list/context-menu';
 
@@ -47,8 +46,7 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 	 */
 	private renderNone(): ReactNode {
 
-		const prefix = mediaItemLangPrefixFactory.get(this.props.category);
-		return <Text style={styles.emptyMessage}>{i18n.t(`${prefix}.list.empty`)}</Text>;
+		return <Text style={styles.emptyMessage}>{i18n.t(`${this.props.category.mediaType}.list.empty`)}</Text>;
 	}
 
 	/**

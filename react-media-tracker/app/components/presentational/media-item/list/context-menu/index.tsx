@@ -6,7 +6,6 @@ import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
 import { mediaIconFactory, mediaItemStatusIconFactory } from 'app/factories/icon-factories';
-import { mediaItemLangPrefixFactory } from 'app/factories/misc-factories';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
@@ -85,10 +84,8 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			close
 		} = this.props;
 
-		const langPrefix = mediaItemLangPrefixFactory.get(mediaItem.mediaType);
-
 		return {
-			label: i18n.t(`${langPrefix}.list.edit`),
+			label: i18n.t(`${mediaItem.mediaType}.list.edit`),
 			icon: require('app/resources/images/ic_action_edit.png'),
 			onClick: () => {
 
@@ -111,14 +108,12 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			close
 		} = this.props;
 
-		const langPrefix = mediaItemLangPrefixFactory.get(mediaItem.mediaType);
-
 		return {
-			label: i18n.t(`${langPrefix}.list.delete`),
+			label: i18n.t(`${mediaItem.mediaType}.list.delete`),
 			icon: require('app/resources/images/ic_action_delete.png'),
 			onClick: () => {
 
-				const title = i18n.t(`${langPrefix}.common.alert.delete.title`);
+				const title = i18n.t(`${mediaItem.mediaType}.common.alert.delete.title`);
 				const message = i18n.t('mediaItem.common.alert.delete.message', { name: mediaItem.name });
 				ConfirmAlert.alert(title, message, () => {
 					
@@ -141,10 +136,8 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			close
 		} = this.props;
 
-		const langPrefix = mediaItemLangPrefixFactory.get(mediaItem.mediaType);
-
 		return {
-			label: i18n.t(`${langPrefix}.list.markActive`),
+			label: i18n.t(`${mediaItem.mediaType}.list.markActive`),
 			icon: mediaItemStatusIconFactory.get('ACTIVE', mediaItem.mediaType).source,
 			onClick: () => {
 
@@ -166,10 +159,8 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			close
 		} = this.props;
 
-		const langPrefix = mediaItemLangPrefixFactory.get(mediaItem.mediaType);
-
 		return {
-			label: i18n.t(`${langPrefix}.list.markComplete`),
+			label: i18n.t(`${mediaItem.mediaType}.list.markComplete`),
 			icon: mediaItemStatusIconFactory.get('COMPLETE', mediaItem.mediaType).source,
 			onClick: () => {
 
@@ -191,10 +182,8 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			close
 		} = this.props;
 
-		const langPrefix = mediaItemLangPrefixFactory.get(mediaItem.mediaType);
-
 		return {
-			label: i18n.t(`${langPrefix}.list.markRedo`),
+			label: i18n.t(`${mediaItem.mediaType}.list.markRedo`),
 			icon: mediaItemStatusIconFactory.get('REDO', mediaItem.mediaType).source,
 			onClick: () => {
 
