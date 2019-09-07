@@ -32,14 +32,6 @@ export type Config = {
 			availableCategoryColors: string[];
 		};
 	};
-	parameters: {
-		mediaItems: {
-			search: {
-				submitTimerMilliseconds: number;
-				submitMinLength: number;
-			};
-		};
-	};
 	mocks: {
 		categories: boolean;
 	};

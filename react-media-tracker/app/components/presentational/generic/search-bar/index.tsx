@@ -11,8 +11,6 @@ import { images } from 'app/utilities/images';
  */
 export class SearchBarComponent extends Component<SearchBarComponentProps, SearchBarComponentState> {
 	
-	private timeout: number | undefined = undefined;
-
 	/**
 	 * @override
 	 */
@@ -40,7 +38,8 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 
 		const {
 			placeholder,
-			autoFocus
+			autoFocus,
+			onSearch
 		} = this.props;
 
 		return (
@@ -52,7 +51,15 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 				style={styles.input}
 				onChangeText={(value) => {
 					this.setState({ term: value });
-					this.onSearchDelayed(value);
+				}}
+				returnKeyType='search'
+				onSubmitEditing={(event) => {
+
+					const term = this.getSearchTerm(event.nativeEvent.text);
+					if(term) {
+
+						onSearch(term);
+					}
 				}}
 			/>
 		);
@@ -70,7 +77,6 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 				<TouchableWithoutFeedback
 					onPress={() => {
 						this.setState({ term: '' });
-						this.clearTimeout();
 					}}>
 					<ColoredImage
 						source={images.clearButton()}
@@ -103,44 +109,13 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 			);
 		}
 	}
-
-	/**
-	 * Submits the search, optionally with the configured delay
-	 * @param term the search term
-	 */
-	private onSearchDelayed(term: string): void {
-
-		const {
-			onSearch,
-			submitDelayMilliseconds
-		} = this.props;
-
-		const searchTerm = this.getSearchTerm(term);
-
-		if(submitDelayMilliseconds && submitDelayMilliseconds > 0) {
-			
-			this.clearTimeout();
-
-			if(searchTerm) {
-
-				this.timeout = setTimeout(() => {
-
-					onSearch(searchTerm);
-				}, submitDelayMilliseconds);
-			}
-		}
-		else if(searchTerm) {
-
-			onSearch(searchTerm);
-		}
-	}
-
+	
 	/**
 	 * Gets the modified search term
 	 * @param term the term
 	 * @returns a valid search term or undefined if search should not be submitted
 	 */
-	private getSearchTerm(term: string): string | undefined {
+	private getSearchTerm(term: string | undefined): string | undefined {
 
 		if(!term) {
 
@@ -154,28 +129,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 			return undefined;
 		}
 
-		const {
-			submitMinLength
-		} = this.props;
-
-		if(submitMinLength !== undefined && trimmed.length < submitMinLength) {
-
-			return undefined;
-		}
-
 		return trimmed;
-	}
-
-	/**
-	 * Helper to clear the timeout, if set
-	 */
-	private clearTimeout(): void {
-
-		if(this.timeout) {
-
-			clearTimeout(this.timeout);
-			this.timeout = undefined;
-		}
 	}
 }
 
@@ -195,16 +149,6 @@ export type SearchBarComponentInput = {
 	placeholder?: string;
 
 	/**
-	 * The search submit delay. ```onSearch()``` will be called ```submitDelayMilliseconds``` milliseconds after last typed letter.
-	 */
-	submitDelayMilliseconds?: number;
-
-	/**
-	 * If defined, only inputs with ```submitMinLength``` characters or more will trigger a submit
-	 */
-	submitMinLength?: number;
-
-	/**
 	 * If a small loading icon next to the search input is currently visibile
 	 */
 	showLoading?: boolean;
@@ -216,7 +160,7 @@ export type SearchBarComponentInput = {
 export type SearchBarComponentOutput = {
 
 	/**
-	 * The search callback
+	 * The search callback. Only invoked with valid strings, with at least 1 character.
 	 */
 	onSearch: (term: string) => void;
 }
