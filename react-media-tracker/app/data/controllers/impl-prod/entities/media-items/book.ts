@@ -1,5 +1,5 @@
 import { BookDefinitionsController } from 'app/data/controllers/core/entities/media-items/book';
-import { BookFilterInternal, BookInternal, BookSortByInternal } from 'app/data/models/internal/media-items/book';
+import { BookFilterInternal, BookInternal, BookSortByInternal, DEFAULT_BOOK } from 'app/data/models/internal/media-items/book';
 
 /**
  * Production implementation of the BookDefinitionsController
@@ -48,5 +48,13 @@ export class BookDefinitionsControllerImpl implements BookDefinitionsController 
 	public getDurationValue(mediaItem: BookInternal): number | undefined {
 
 		return mediaItem.pagesNumber;
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultMediaItem(): BookInternal {
+		
+		return DEFAULT_BOOK;
 	}
 }

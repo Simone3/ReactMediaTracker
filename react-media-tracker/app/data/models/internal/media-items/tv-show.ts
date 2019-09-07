@@ -54,3 +54,14 @@ export type SearchTvShowCatalogResultInternal = SearchMediaItemCatalogResultInte
 
 };
 
+/**
+ * The default initial TV show, internal type just for display purposes
+ */
+export const DEFAULT_TV_SHOW: TvShowInternal = {
+	id: '',
+	name: '',
+	mediaType: 'TV_SHOW',
+	status: 'ACTIVE',
+	importance: 'VERY_IMPORTANT'
+};
+

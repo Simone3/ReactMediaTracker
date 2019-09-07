@@ -1,6 +1,7 @@
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
-import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, SearchMediaItemsAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FAIL_SAVING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, REQUEST_MEDIA_ITEM_SAVE, SAVE_MEDIA_ITEM, SEARCH_MEDIA_ITEMS, SET_MEDIA_ITEM_FORM_STATUS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_SAVING_MEDIA_ITEM, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
+import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, CompleteSavingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FailSavingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, RequestMediaItemSaveAction, SaveMediaItemAction, SearchMediaItemsAction, SetMediaItemFormStatusAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StartSavingMediaItemAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
 
 /**
  * Generator for the fetch media items list action, which causes the request media items action, the async media items fetch and then the receive media items action
@@ -248,7 +249,7 @@ export const stopMediaItemsSetFiltersMode = (): StopMediaItemsSetFiltersModeActi
 };
 
 /**
- * Generator for the submit media items filters, which sets the current category filters
+ * Generator for the submit media items filters, which sets the current media item filters
  * @param filter the filter options
  * @param sortBy the sort by options
  * @returns the action
@@ -259,6 +260,106 @@ export const submitMediaItemsFilters = (filter: MediaItemFilterInternal, sortBy:
 		type: SUBMIT_MEDIA_ITEMS_FILTERS,
 		filter: filter,
 		sortBy: sortBy
+	};
+};
+
+/**
+ * Generator for the load new media item action, which resets the media item details state to the initial values
+ * @param category the current category
+ * @returns the action
+ */
+export const loadNewMediaItemDetails = (category: CategoryInternal): LoadNewMediaItemDetailsAction => {
+	
+	return {
+		type: LOAD_NEW_MEDIA_ITEM_DETAILS,
+		category: category
+	};
+};
+
+/**
+ * Generator for the load existing media item action, which sets the media item details state
+ * @param mediaItem the media item data
+ * @returns the action
+ */
+export const loadMediaItemDetails = (mediaItem: MediaItemInternal): LoadMediaItemDetailsAction => {
+	
+	return {
+		type: LOAD_MEDIA_ITEM_DETAILS,
+		mediaItem: mediaItem
+	};
+};
+
+/**
+ * Generator for the set media item form status, which sets the current status of the media item details form
+ * @param valid true if the form is currently valid (no validation errors)
+ * @param dirty true if the form is currently dirty (one or more fields changed)
+ * @returns the action
+ */
+export const setMediaItemFormStatus = (valid: boolean, dirty: boolean): SetMediaItemFormStatusAction => {
+	
+	return {
+		type: SET_MEDIA_ITEM_FORM_STATUS,
+		valid: valid,
+		dirty: dirty
+	};
+};
+
+/**
+ * Generator for the request media item save action, which requests the media item form validation and, if OK, submission
+ * @returns the action
+ */
+export const requestMediaItemSave = (): RequestMediaItemSaveAction => {
+	
+	return {
+		type: REQUEST_MEDIA_ITEM_SAVE
+	};
+};
+
+/**
+ * Generator for the save media item action, which causes the start saving media item action, the async media item store and then the complete saving media item action
+ * @param mediaItem the media item data
+ * @returns the action
+ */
+export const saveMediaItem = (mediaItem: MediaItemInternal): SaveMediaItemAction => {
+	
+	return {
+		type: SAVE_MEDIA_ITEM,
+		mediaItem: mediaItem
+	};
+};
+
+/**
+ * Generator for the start saving media item action, which marks the start of the media item saving operation
+ * @param mediaItem the media item data
+ * @returns the action
+ */
+export const startSavingMediaItem = (mediaItem: MediaItemInternal): StartSavingMediaItemAction => {
+	
+	return {
+		type: START_SAVING_MEDIA_ITEM,
+		mediaItem: mediaItem
+	};
+};
+
+/**
+ * Generator for the complete saving media item action, which marks the successful end of the media item saving operation
+ * @returns the action
+ */
+export const completeSavingMediaItem = (): CompleteSavingMediaItemAction => {
+	
+	return {
+		type: COMPLETE_SAVING_MEDIA_ITEM
+	};
+};
+
+/**
+ * Generator for the complete saving media item action, which marks the unsuccessful end of the media item saving operation
+ * @returns the action
+ */
+export const failSavingMediaItem = (): FailSavingMediaItemAction => {
+	
+	return {
+		type: FAIL_SAVING_MEDIA_ITEM
 	};
 };
 

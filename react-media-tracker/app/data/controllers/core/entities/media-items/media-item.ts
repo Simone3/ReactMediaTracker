@@ -89,4 +89,9 @@ export interface MediaItemDefinitionsController<TMediaItemInternal extends Media
 	 * @returns the duration value
 	 */
 	getDurationValue(mediaItem: TMediaItemInternal): number | undefined;
+
+	/**
+	 * Defines the default initial values of a media item
+	 */
+	getDefaultMediaItem(): TMediaItemInternal;
 }

@@ -1,5 +1,5 @@
 import { VideogameDefinitionsController } from 'app/data/controllers/core/entities/media-items/videogame';
-import { VideogameFilterInternal, VideogameInternal, VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
+import { DEFAULT_VIDEOGAME, VideogameFilterInternal, VideogameInternal, VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
 
 /**
  * Production implementation of the VideogameDefinitionsController
@@ -48,5 +48,13 @@ export class VideogameDefinitionsControllerImpl implements VideogameDefinitionsC
 	public getDurationValue(mediaItem: VideogameInternal): number | undefined {
 
 		return mediaItem.averageLengthHours;
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultMediaItem(): VideogameInternal {
+		
+		return DEFAULT_VIDEOGAME;
 	}
 }

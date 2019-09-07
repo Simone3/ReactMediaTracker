@@ -1,5 +1,5 @@
 import { TvShowDefinitionsController } from 'app/data/controllers/core/entities/media-items/tv-show';
-import { TvShowFilterInternal, TvShowInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
+import { DEFAULT_TV_SHOW, TvShowFilterInternal, TvShowInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
 
 /**
  * Production implementation of the TvShowDefinitionsController
@@ -48,6 +48,14 @@ export class TvShowDefinitionsControllerImpl implements TvShowDefinitionsControl
 	public getDurationValue(mediaItem: TvShowInternal): number | undefined {
 
 		return mediaItem.averageEpisodeRuntimeMinutes;
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultMediaItem(): TvShowInternal {
+		
+		return DEFAULT_TV_SHOW;
 	}
 }
 

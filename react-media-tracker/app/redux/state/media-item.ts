@@ -42,6 +42,32 @@ export type MediaItemsListState = {
 }
 
 /**
+ * Portion of the internal state with the media item details information
+ */
+export type MediaItemDetailsState = {
+
+	/**
+	 * The media item data
+	 */
+	readonly mediaItem?: MediaItemInternal;
+
+	/**
+	 * If the currently loaded media item is valid (no validation error occurred)
+	 */
+	readonly valid: boolean;
+
+	/**
+	 * If the currently loaded media item is dirty (one or more fields are different from initial values)
+	 */
+	readonly dirty: boolean;
+
+	/**
+	 * The current status of the media item saving process
+	 */
+	readonly saveStatus: MediaItemSaveStatus;
+}
+
+/**
  * The current status (e.g. allows to invalidate, show the loading indicator, etc.)
  */
 export type MediaItemsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | 'DELETING' | 'INLINE_UPDATING';
@@ -50,3 +76,8 @@ export type MediaItemsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | '
  * The current mode (e.g. allows to toggle between standard and search mode)
  */
 export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS';
+
+/**
+ * The current status of the media item saving process
+ */
+export type MediaItemSaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';

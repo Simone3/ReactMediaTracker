@@ -1,5 +1,5 @@
 import { MovieDefinitionsController } from 'app/data/controllers/core/entities/media-items/movie';
-import { MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
+import { DEFAULT_MOVIE, MovieFilterInternal, MovieInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
 
 /**
  * Production implementation of the MovieDefinitionsController
@@ -48,6 +48,14 @@ export class MovieDefinitionsControllerImpl implements MovieDefinitionsControlle
 	public getDurationValue(mediaItem: MovieInternal): number | undefined {
 
 		return mediaItem.durationMinutes;
+	}
+
+	/**
+	 * @override
+	 */
+	public getDefaultMediaItem(): MovieInternal {
+		
+		return DEFAULT_MOVIE;
 	}
 }
 

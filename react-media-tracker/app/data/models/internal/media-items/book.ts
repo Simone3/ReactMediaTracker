@@ -49,3 +49,14 @@ export type CatalogBookInternal = CatalogMediaItemInternal & CoreBookDataInterna
 export type SearchBookCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
 };
+
+/**
+ * The default initial book, internal type just for display purposes
+ */
+export const DEFAULT_BOOK: BookInternal = {
+	id: '',
+	name: '',
+	mediaType: 'BOOK',
+	status: 'ACTIVE',
+	importance: 'VERY_IMPORTANT'
+};

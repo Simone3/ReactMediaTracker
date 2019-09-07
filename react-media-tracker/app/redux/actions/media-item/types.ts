@@ -1,3 +1,4 @@
+import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
 import { Action } from 'redux';
 
@@ -162,4 +163,66 @@ export type SubmitMediaItemsFiltersAction = Action & {
 	
 	filter: MediaItemFilterInternal;
 	sortBy: MediaItemSortByInternal[];
+};
+
+/**
+ * The load new media item action
+ */
+export type LoadNewMediaItemDetailsAction = Action & {
+	
+	category: CategoryInternal;
+};
+
+/**
+ * The load existing media item action
+ */
+export type LoadMediaItemDetailsAction = Action & {
+	
+	mediaItem: MediaItemInternal;
+};
+
+/**
+ * The set media item form status action
+ */
+export type SetMediaItemFormStatusAction = Action & {
+	
+	valid: boolean;
+	dirty: boolean;
+};
+
+/**
+ * The request media item save action
+ */
+export type RequestMediaItemSaveAction = Action & {
+	
+};
+
+/**
+ * The save media item action
+ */
+export type SaveMediaItemAction = Action & {
+	
+	mediaItem: MediaItemInternal;
+};
+
+/**
+ * The start saving media item action
+ */
+export type StartSavingMediaItemAction = Action & {
+	
+	mediaItem: MediaItemInternal;
+};
+
+/**
+ * The complete saving media item action
+ */
+export type CompleteSavingMediaItemAction = Action & {
+	
+};
+
+/**
+ * The fail saving media item action
+ */
+export type FailSavingMediaItemAction = Action & {
+	
 };

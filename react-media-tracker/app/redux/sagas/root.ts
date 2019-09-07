@@ -8,6 +8,7 @@ import { watchSaveGroupSaga } from 'app/redux/sagas/group/save';
 import { watchDeleteMediaItemSaga } from 'app/redux/sagas/media-item/delete';
 import { watchFetchMediaItemsSaga } from 'app/redux/sagas/media-item/fetch';
 import { watchInlineMediaItemUpdateSaga } from 'app/redux/sagas/media-item/inline-update';
+import { watchSaveMediaItemSaga } from 'app/redux/sagas/media-item/save';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -23,6 +24,7 @@ export const rootSaga = function * (): SagaIterator {
 		call(watchInlineMediaItemUpdateSaga),
 		call(watchFetchGroupsSaga),
 		call(watchSaveGroupSaga),
-		call(watchDeleteGroupSaga)
+		call(watchDeleteGroupSaga),
+		call(watchSaveMediaItemSaga)
 	]);
 };

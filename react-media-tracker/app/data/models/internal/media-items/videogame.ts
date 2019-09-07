@@ -51,3 +51,15 @@ export type CatalogVideogameInternal = CatalogMediaItemInternal & CoreVideogameD
 export type SearchVideogameCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
 };
+
+/**
+ * The default initial videogame, internal type just for display purposes
+ */
+export const DEFAULT_VIDEOGAME: VideogameInternal = {
+	id: '',
+	name: '',
+	mediaType: 'VIDEOGAME',
+	status: 'ACTIVE',
+	importance: 'VERY_IMPORTANT'
+};
+
