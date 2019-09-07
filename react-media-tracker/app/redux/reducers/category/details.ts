@@ -1,6 +1,6 @@
 import { DEFAULT_CATEGORY } from 'app/data/models/internal/category';
 import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, SET_CATEGORY_FORM_STATUS, START_SAVING_CATEGORY } from 'app/redux/actions/category/const';
-import { LoadCategoryAction, SetCategoryFormStatusAction, StartSavingCategoryAction } from 'app/redux/actions/category/types';
+import { LoadCategoryDetailsAction, SetCategoryFormStatusAction, StartSavingCategoryAction } from 'app/redux/actions/category/types';
 import { CategoryDetailsState } from 'app/redux/state/category';
 import { Action } from 'redux';
 
@@ -37,7 +37,7 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 		// When the details page is started with an existing category, the status is reset and the given category is loaded
 		case LOAD_CATEGORY_DETAILS: {
 
-			const loadCategoryAction = action as LoadCategoryAction;
+			const loadCategoryAction = action as LoadCategoryDetailsAction;
 			
 			return {
 				...state,

@@ -40,14 +40,14 @@ export type InvalidateCategoriesAction = Action & {
 /**
  * The load new category action
  */
-export type LoadNewCategoryAction = Action & {
+export type LoadNewCategoryDetailsAction = Action & {
 	
 };
 
 /**
  * The load existing category action
  */
-export type LoadCategoryAction = Action & {
+export type LoadCategoryDetailsAction = Action & {
 	
 	category: CategoryInternal;
 };
