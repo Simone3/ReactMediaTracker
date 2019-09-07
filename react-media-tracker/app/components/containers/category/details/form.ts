@@ -1,5 +1,5 @@
 
-import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/presentational/category/details/form';
+import { CategoryFormComponent, CategoryFormComponentInput, CategoryFormComponentOutput } from 'app/components/presentational/category/details/form/wrapper';
 import { AppError } from 'app/data/models/internal/error';
 import { saveCategory, setCategoryFormStatus } from 'app/redux/actions/category/generators';
 import { State } from 'app/redux/state/state';

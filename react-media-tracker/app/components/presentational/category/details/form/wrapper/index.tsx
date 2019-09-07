@@ -1,24 +1,14 @@
 import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
-import { string, object, ObjectSchema, StringSchema } from 'yup';
-import { CategoryFormViewComponent } from 'app/components/presentational/category/details/form-view';
-import { MEDIA_TYPES_INTERNAL, CategoryInternal, MediaTypeInternal } from 'app/data/models/internal/category';
+import { CategoryFormViewComponent } from 'app/components/presentational/category/details/form/view';
+import { CategoryInternal } from 'app/data/models/internal/category';
+import { categoryFormValidationSchema } from 'app/components/presentational/category/details/form/data';
 
 /**
  * Presentational component that handles the Formik wrapper component for the category form
  */
 export class CategoryFormComponent extends Component<CategoryFormComponentInput & CategoryFormComponentOutput> {
 
-	/**
-	 * The Formik validation schema
-	 */
-	private readonly validationSchema: ObjectSchema<CategoryInternal> = object().shape({
-		id: string(),
-		name: string().required(),
-		mediaType: string().oneOf(MEDIA_TYPES_INTERNAL).required() as StringSchema<MediaTypeInternal>,
-		color: string().required()
-	});
-	
 	/**
 	 * @override
 	 */
@@ -30,7 +20,7 @@ export class CategoryFormComponent extends Component<CategoryFormComponentInput 
 					this.props.saveCategory(result);
 				}}
 				initialValues={this.props.initialValues}
-				validationSchema={this.validationSchema}>
+				validationSchema={categoryFormValidationSchema}>
 				{(formikProps: FormikProps<CategoryInternal>) => {
 					
 					return (
