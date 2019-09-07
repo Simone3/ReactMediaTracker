@@ -70,6 +70,7 @@
 		"list": {
 			"group": "{{groupName}}, #{{order}}",
 			"filter": {
+				"title": "Filter",
 				"prompts": {
 					"status": "Status",
 					"group": "Group",
@@ -78,25 +79,28 @@
 				},
 				"values": {
 					"status": {
-						"ALL": "All",
+						"ALL": "Any status",
 						"CURRENT": "Current",
 						"COMPLETE" : "Completed"
 					},
 					"group": {
-						"ALL": "All",
+						"ALL": "With or without group",
 						"ANY": "Only with group",
 						"NONE": "Only without group"
 					},
 					"ownPlatform": {
-						"ALL": "All",
+						"ALL": "Owned or not",
 						"ANY": "Only owned",
 						"NONE": "Only not owned"
 					},
 					"sort": {
-						"DEFAULT": "Default",
-						"NAME": "By name",
-						"RELEASE_DATE" : "By release date",
-						"COMPLETION_DATE": "By completion date"
+						"DEFAULT": "Default order",
+						"NAME": "Order by name",
+						"RELEASE_DATE" : "Order by release date",
+						"COMPLETION_DATE": "Order by completion date"
+					},
+					"importance": {
+						"all": "Any importance"
 					}
 				}
 			}
@@ -182,7 +186,8 @@
 		"alert": {
 			"default": {
 				"okButton": "OK",
-				"cancelButton": "Cancel"
+				"cancelButton": "Cancel",
+				"applyButton": "Apply"
 			},
 			"form": {
 				"exit": {

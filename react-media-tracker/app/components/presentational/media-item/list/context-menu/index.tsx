@@ -5,8 +5,8 @@ import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
-import { mediaIconFactory, mediaItemStatusIconFactory } from 'app/factories/icon-factories';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component to display a modal dialog with the media item options
@@ -60,7 +60,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 					verticalPosition='bottom'>
 					<ButtonsListComponent
 						title={mediaItem.name}
-						titleIcon={mediaIconFactory.get(mediaItem.mediaType)}
+						titleIcon={images.mediaType(mediaItem.mediaType)}
 						buttons={buttons}
 					/>
 				</ModalComponent>
@@ -86,7 +86,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`${mediaItem.mediaType}.list.edit`),
-			icon: require('app/resources/images/ic_action_edit.png'),
+			icon: images.editButton(),
 			onClick: () => {
 
 				edit(mediaItem);
@@ -110,7 +110,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`${mediaItem.mediaType}.list.delete`),
-			icon: require('app/resources/images/ic_action_delete.png'),
+			icon: images.deleteButton(),
 			onClick: () => {
 
 				const title = i18n.t(`${mediaItem.mediaType}.common.alert.delete.title`);
@@ -138,7 +138,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`${mediaItem.mediaType}.list.markActive`),
-			icon: mediaItemStatusIconFactory.get('ACTIVE', mediaItem.mediaType).source,
+			icon: images.mediaItemStatus('ACTIVE', mediaItem.mediaType).source,
 			onClick: () => {
 
 				markAsActive(mediaItem);
@@ -161,7 +161,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`${mediaItem.mediaType}.list.markComplete`),
-			icon: mediaItemStatusIconFactory.get('COMPLETE', mediaItem.mediaType).source,
+			icon: images.mediaItemStatus('COMPLETE', mediaItem.mediaType).source,
 			onClick: () => {
 
 				markAsComplete(mediaItem);
@@ -184,7 +184,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`${mediaItem.mediaType}.list.markRedo`),
-			icon: mediaItemStatusIconFactory.get('REDO', mediaItem.mediaType).source,
+			icon: images.mediaItemStatus('REDO', mediaItem.mediaType).source,
 			onClick: () => {
 
 				markAsRedo(mediaItem);

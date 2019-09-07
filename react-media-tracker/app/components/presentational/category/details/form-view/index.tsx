@@ -8,7 +8,7 @@ import { TextInputComponent } from 'app/components/presentational/form/text-inpu
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
 import { ColorPickerInputComponent } from 'app/components/presentational/form/color-picker-input';
 import { config } from 'app/config/config';
-import { mediaIconFactory } from 'app/factories/icon-factories';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component that contains all category form input fields, all handled by the Formik container component
@@ -84,7 +84,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 			<TextInputComponent
 				name='name'
 				placeholder={i18n.t('category.details.placeholders.name')}
-				icon={require('app/resources/images/ic_input_name.png')}
+				icon={images.nameField()}
 			/>
 		);
 	}
@@ -99,7 +99,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 			return {
 				value: mediaType,
 				label: i18n.t(`category.mediaTypes.${mediaType}`),
-				icon: mediaIconFactory.get(mediaType)
+				icon: images.mediaType(mediaType)
 			};
 		});
 
@@ -121,7 +121,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 		return (
 			<ColorPickerInputComponent
 				name='color'
-				icon={require('app/resources/images/ic_input_color.png')}
+				icon={images.colorField()}
 				colors={config.ui.colors.availableCategoryColors}
 			/>
 		);

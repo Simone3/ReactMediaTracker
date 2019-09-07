@@ -16,6 +16,8 @@ const config: Config = {
 			colorContrastText: 'white',
 			colorModalBackground: 'white',
 			colorModalContent: 'black',
+			colorModalButton: '#2CA69B',
+			colorModalButtonDisabled: '#CDCDCD',
 			colorFormInputs: 'black',
 			colorDefaultIcon: 'black',
 			blue: '#3c82eb',

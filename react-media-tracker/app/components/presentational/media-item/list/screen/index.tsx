@@ -10,8 +10,8 @@ import { LoadingIndicatorComponent } from 'app/components/presentational/generic
 import { MediaItemsListHeaderContainer } from 'app/components/containers/media-item/list/header';
 import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containers/media-item/list/header-search-icon';
 import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containers/media-item/list/header-filter-icon';
-import { MediaItemFilterModalComponent } from '../filter-modal';
 import { MediaItemFilterModalContainer } from 'app/components/containers/media-item/list/filter-modal';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -27,12 +27,12 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 				componentsRight={[
 					<MediaItemsListHeaderFilterIconContainer
 						key='herader-filter-icon'
-						source={require('app/resources/images/ic_action_filter.png')}
+						source={images.filterButton()}
 						clickStatus='ENABLED'
 					/>,
 					<MediaItemsListHeaderSearchIconContainer
 						key='herader-search-icon'
-						source={require('app/resources/images/ic_action_search.png')}
+						source={images.searchButton()}
 						clickStatus='ENABLED'
 					/>
 				]}

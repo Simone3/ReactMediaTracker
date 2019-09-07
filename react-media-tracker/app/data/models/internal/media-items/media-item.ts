@@ -1,6 +1,7 @@
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { GroupInternal } from 'app/data/models/internal/group';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { ValuesOf } from 'app/utilities/helper-types';
 
 /**
  * Common core data for media items, internal type just for display purposes
@@ -24,9 +25,14 @@ export type MediaItemGroupInternal = {
 }
 
 /**
+ * Array of all media item importance levels, internal type just for display purposes
+ */
+export const MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES: [ 'VERY_IMPORTANT', 'IMPORTANT', 'FAIRLY_IMPORTANT', 'UNIMPORTANT' ] = [ 'VERY_IMPORTANT', 'IMPORTANT', 'FAIRLY_IMPORTANT', 'UNIMPORTANT' ];
+
+/**
  * The media item importance levels, internal type just for display purposes
  */
-export type MediaItemImportanceInternal = 'VERY_IMPORTANT' | 'IMPORTANT' | 'FAIRLY_IMPORTANT' | 'UNIMPORTANT';
+export type MediaItemImportanceInternal = ValuesOf<typeof MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES>;
 
 /**
  * The media type "status" (helper label based on other media item data), internal type just for display purposes
@@ -90,7 +96,7 @@ export type MediaItemFilterInternal = {
 /**
  * Sort fields for a generic media item, internal type just for display purposes
  */
-export type MediaItemSortFieldInternal = 'IMPORTANCE' | 'NAME' | 'GROUP' | 'OWN_PLATFORM';
+export type MediaItemSortFieldInternal = 'IMPORTANCE' | 'NAME' | 'GROUP' | 'OWN_PLATFORM' | 'COMPLETION_DATE' | 'ACTIVE' | 'RELEASE_DATE';
 
 /**
  * A sort by filter for generic media items, internal type just for display purposes

@@ -12,7 +12,9 @@ export class TvShowDefinitionsControllerImpl implements TvShowDefinitionsControl
 	 */
 	public getDefaultFilter(): TvShowFilterInternal {
 		
-		return {};
+		return {
+			status: 'CURRENT'
+		};
 	}
 
 	/**
@@ -21,7 +23,13 @@ export class TvShowDefinitionsControllerImpl implements TvShowDefinitionsControl
 	public getDefaultSortBy(): TvShowSortByInternal[] {
 		
 		return [{
-			field: 'NAME',
+			field: 'ACTIVE',
+			ascending: false
+		}, {
+			field: 'IMPORTANCE',
+			ascending: false
+		}, {
+			field: 'RELEASE_DATE',
 			ascending: true
 		}];
 	}

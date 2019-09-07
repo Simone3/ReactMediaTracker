@@ -4,6 +4,7 @@ import { View, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component to display a search input with icons
@@ -72,7 +73,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 						this.clearTimeout();
 					}}>
 					<ColoredImage
-						source={require('app/resources/images/ic_action_clear.png')}
+						source={images.clearButton()}
 						tintColor={config.ui.colors.colorContrastText}
 						style={styles.clearIcon}
 					/>

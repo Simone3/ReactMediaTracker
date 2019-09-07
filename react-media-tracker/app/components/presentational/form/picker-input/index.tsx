@@ -50,10 +50,10 @@ export class PickerInputComponent extends Component<PickerInputComponentInput> {
 								selectedValue={field.value}
 								style={styles.input}
 								onValueChange={field.onChange}>
-								{items.map((item) => {
+								{items.map((item, index) => {
 									return (
 										<Picker.Item
-											key={item.value}
+											key={index}
 											label={item.label}
 											value={item.value}
 										/>
@@ -102,7 +102,7 @@ export type PickerInputComponentItem = {
 	/**
 	 * The item value
 	 */
-	value: string;
+	value: string | undefined | null;
 
 	/**
 	 * The item label

@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { styles } from 'app/components/presentational/media-item/list/row-icons/styles';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
-import { mediaItemImportanceIconFactory, mediaItemStatusIconFactory } from 'app/factories/icon-factories';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component to display the set of secondary icons portion of the list row
@@ -23,11 +23,11 @@ export class MediaItemRowIconsComponent extends Component<MediaItemRowIconsCompo
 			<View style={styles.secondaryIconsContainer}>
 				<ColoredImage
 					style={styles.statusIcon}
-					{...mediaItemStatusIconFactory.get(mediaItem.status, mediaItem.mediaType)}
+					{...images.mediaItemStatus(mediaItem.status, mediaItem.mediaType)}
 				/>
 				<ColoredImage
 					style={styles.importanceIcon}
-					{...mediaItemImportanceIconFactory.get(mediaItem.importance)}
+					{...images.mediaItemImportance(mediaItem.importance)}
 				/>
 			</View>
 		);

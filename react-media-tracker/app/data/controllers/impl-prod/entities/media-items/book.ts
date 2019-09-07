@@ -12,16 +12,24 @@ export class BookDefinitionsControllerImpl implements BookDefinitionsController 
 	 */
 	public getDefaultFilter(): BookFilterInternal {
 		
-		return {};
+		return {
+			status: 'CURRENT'
+		};
 	}
 
 	/**
 	 * @override
 	 */
 	public getDefaultSortBy(): BookSortByInternal[] {
-		
+
 		return [{
-			field: 'NAME',
+			field: 'ACTIVE',
+			ascending: false
+		}, {
+			field: 'IMPORTANCE',
+			ascending: false
+		}, {
+			field: 'RELEASE_DATE',
 			ascending: true
 		}];
 	}

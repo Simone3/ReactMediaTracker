@@ -1,13 +1,14 @@
 import { HeaderIconComponent, HeaderIconComponentInput, HeaderIconComponentOutput } from 'app/components/presentational/generic/header-icon';
 import { requestCategorySave } from 'app/redux/actions/category/generators';
 import { State } from 'app/redux/state/state';
+import { images } from 'app/utilities/images';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: State): HeaderIconComponentInput => {
 	
 	return {
-		source: require('app/resources/images/ic_action_save.png'),
+		source: images.saveButton(),
 		clickStatus: state.categoryDetails.valid ? 'ENABLED' : 'DISABLED'
 	};
 };

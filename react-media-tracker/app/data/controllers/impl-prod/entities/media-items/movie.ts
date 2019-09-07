@@ -12,7 +12,9 @@ export class MovieDefinitionsControllerImpl implements MovieDefinitionsControlle
 	 */
 	public getDefaultFilter(): MovieFilterInternal {
 		
-		return {};
+		return {
+			status: 'CURRENT'
+		};
 	}
 
 	/**
@@ -21,7 +23,13 @@ export class MovieDefinitionsControllerImpl implements MovieDefinitionsControlle
 	public getDefaultSortBy(): MovieSortByInternal[] {
 		
 		return [{
-			field: 'NAME',
+			field: 'ACTIVE',
+			ascending: false
+		}, {
+			field: 'IMPORTANCE',
+			ascending: false
+		}, {
+			field: 'RELEASE_DATE',
 			ascending: true
 		}];
 	}

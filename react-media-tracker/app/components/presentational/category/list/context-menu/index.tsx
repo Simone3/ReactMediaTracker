@@ -5,8 +5,8 @@ import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
-import { mediaIconFactory } from 'app/factories/icon-factories';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
+import { images } from 'app/utilities/images';
 
 /**
  * Presentational component to display a modal dialog with the category options
@@ -38,7 +38,7 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 					verticalPosition='bottom'>
 					<ButtonsListComponent
 						title={category.name}
-						titleIcon={mediaIconFactory.get(category)}
+						titleIcon={images.mediaType(category.mediaType)}
 						buttons={buttons}
 					/>
 				</ModalComponent>
@@ -64,7 +64,7 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 
 		return {
 			label: i18n.t('category.list.delete'),
-			icon: require('app/resources/images/ic_action_delete.png'),
+			icon: images.deleteButton(),
 			onClick: () => {
 
 				const title = i18n.t('category.common.alert.delete.title');
@@ -92,7 +92,7 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 
 		return {
 			label: i18n.t('category.list.edit'),
-			icon: require('app/resources/images/ic_action_edit.png'),
+			icon: images.editButton(),
 			onClick: () => {
 
 				edit(category);

@@ -12,7 +12,9 @@ export class VideogameDefinitionsControllerImpl implements VideogameDefinitionsC
 	 */
 	public getDefaultFilter(): VideogameFilterInternal {
 		
-		return {};
+		return {
+			status: 'CURRENT'
+		};
 	}
 
 	/**
@@ -21,7 +23,13 @@ export class VideogameDefinitionsControllerImpl implements VideogameDefinitionsC
 	public getDefaultSortBy(): VideogameSortByInternal[] {
 		
 		return [{
-			field: 'NAME',
+			field: 'ACTIVE',
+			ascending: false
+		}, {
+			field: 'IMPORTANCE',
+			ascending: false
+		}, {
+			field: 'RELEASE_DATE',
 			ascending: true
 		}];
 	}
