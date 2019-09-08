@@ -1,8 +1,8 @@
-import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationSchema, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
+import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationShape, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { videogameDefinitionsController } from 'app/data/controllers/core/entities/media-items/videogame';
 import { AppError } from 'app/data/models/internal/error';
 import { VideogameFilterInternal, VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
-import { ObjectSchema } from 'yup';
+import { object, ObjectSchema } from 'yup';
 
 /**
  * The videogame filter form model
@@ -14,7 +14,7 @@ export type VideogameFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The videogame filter form validation
  */
-export const videogameFilterFormValidationSchema: ObjectSchema<VideogameFilterFormValues> = mediaItemFilterFormValidationSchema;
+export const videogameFilterFormValidationSchema: ObjectSchema<VideogameFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the videogame filter form values

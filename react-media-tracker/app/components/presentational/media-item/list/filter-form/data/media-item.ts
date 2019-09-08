@@ -2,7 +2,7 @@ import { MediaItemGroupFilter, MediaItemOwnPlatformFilter } from 'app/data/model
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemImportanceInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemStatusFilterInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { ValuesOf } from 'app/utilities/helper-types';
-import { object, ObjectSchema, string, StringSchema } from 'yup';
+import { ObjectSchemaDefinition, string, StringSchema } from 'yup';
 
 /**
  * The generic media item filter form model
@@ -57,15 +57,15 @@ export const MEDIA_ITEM_FILTER_FORM_SORT_VALUES: [ 'DEFAULT', 'NAME', 'COMPLETIO
 export type MediaItemFilterFormSortBy = ValuesOf<typeof MEDIA_ITEM_FILTER_FORM_SORT_VALUES>;
 
 /**
- * The generic media item filter form validation
+ * The generic media item filter form validation shape
  */
-export const mediaItemFilterFormValidationSchema: ObjectSchema<MediaItemFilterFormValues> = object().shape({
+export const mediaItemFilterFormValidationShape: ObjectSchemaDefinition<MediaItemFilterFormValues> = {
 	status: string().oneOf(MEDIA_ITEM_FILTER_FORM_STATUS_VALUES).required() as StringSchema<MediaItemFilterFormStatus>,
 	importanceLevel: string().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES) as StringSchema<MediaItemImportanceInternal>,
 	group: string().oneOf(MEDIA_ITEM_FILTER_FORM_GROUP_VALUES).required() as StringSchema<MediaItemFilterFormGroup>,
 	ownPlatform: string().oneOf(MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES).required() as StringSchema<MediaItemFilterFormOwnPlatform>,
 	sortBy: string().oneOf(MEDIA_ITEM_FILTER_FORM_SORT_VALUES).required() as StringSchema<MediaItemFilterFormSortBy>
-});
+};
 
 /**
  * Mapper for the media item filter form values

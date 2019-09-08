@@ -1,8 +1,8 @@
-import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationSchema, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
+import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationShape, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { bookDefinitionsController } from 'app/data/controllers/core/entities/media-items/book';
 import { AppError } from 'app/data/models/internal/error';
 import { BookFilterInternal, BookSortByInternal } from 'app/data/models/internal/media-items/book';
-import { ObjectSchema } from 'yup';
+import { object, ObjectSchema } from 'yup';
 
 /**
  * The book filter form model
@@ -14,7 +14,7 @@ export type BookFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The book filter form validation
  */
-export const bookFilterFormValidationSchema: ObjectSchema<BookFilterFormValues> = mediaItemFilterFormValidationSchema;
+export const bookFilterFormValidationSchema: ObjectSchema<BookFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the book filter form values

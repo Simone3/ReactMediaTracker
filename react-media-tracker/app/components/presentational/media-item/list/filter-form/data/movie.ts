@@ -1,8 +1,8 @@
-import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationSchema, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
+import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationShape, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { movieDefinitionsController } from 'app/data/controllers/core/entities/media-items/movie';
 import { AppError } from 'app/data/models/internal/error';
 import { MovieFilterInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
-import { ObjectSchema } from 'yup';
+import { object, ObjectSchema } from 'yup';
 
 /**
  * The movie filter form model
@@ -14,7 +14,7 @@ export type MovieFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The movie filter form validation
  */
-export const movieFilterFormValidationSchema: ObjectSchema<MovieFilterFormValues> = mediaItemFilterFormValidationSchema;
+export const movieFilterFormValidationSchema: ObjectSchema<MovieFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the movie filter form values
