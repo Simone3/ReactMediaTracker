@@ -43,8 +43,7 @@
 			},
 			"prompts": {
 				"mediaType": "Media"
-			},
-			"save": "Save"
+			}
 		},
 		"mediaTypes": {
 			"BOOK": "Books",
@@ -103,6 +102,19 @@
 						"all": "Any importance"
 					}
 				}
+			}
+		},
+		"details": {
+			"title": {
+				"new": {
+					"BOOK": "New Book",
+					"MOVIE": "New Movie",
+					"TV_SHOW": "New TV Show",
+					"VIDEOGAME": "New Videogame"
+				}
+			},
+			"placeholders": {
+				"name": "Name"
 			}
 		}
 	},

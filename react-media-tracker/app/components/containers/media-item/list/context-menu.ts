@@ -1,5 +1,5 @@
 import { MediaItemContextMenuComponent, MediaItemContextMenuComponentInput, MediaItemContextMenuComponentOutput } from 'app/components/presentational/media-item/list/context-menu';
-import { deleteMediaItem, markMediaItemAsActive, markMediaItemAsComplete, markMediaItemAsRedo, removeMediaItemHighlight } from 'app/redux/actions/media-item/generators';
+import { deleteMediaItem, loadMediaItemDetails, markMediaItemAsActive, markMediaItemAsComplete, markMediaItemAsRedo, removeMediaItemHighlight } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemContextMenuComponentOu
 		delete: (mediaItem) => {
 			dispatch(deleteMediaItem(mediaItem));
 		},
-		edit: () => {
-			// Redux action here
+		edit: (mediaItem) => {
+			dispatch(loadMediaItemDetails(mediaItem));
 		},
 		markAsActive: (mediaItem) => {
 			dispatch(markMediaItemAsActive(mediaItem));

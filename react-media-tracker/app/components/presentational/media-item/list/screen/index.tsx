@@ -2,7 +2,6 @@ import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { AppScreens } from 'app/utilities/screens';
 import { MediaItemsListContainer } from 'app/components/containers/media-item/list/list';
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/media-item/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
@@ -12,6 +11,7 @@ import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containe
 import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containers/media-item/list/header-filter-icon';
 import { MediaItemFilterModalContainer } from 'app/components/containers/media-item/list/filter-modal';
 import { images } from 'app/utilities/images';
+import { CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -62,19 +62,25 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public render(): ReactNode {
 
+		const {
+			category,
+			loadNewMediaItemDetails,
+			isLoading
+		} = this.props;
+
 		return (
 			<View style={styles.container}>
 				<MediaItemsListContainer/>
 				<FABComponent
 					text={'+'}
 					onPress={() => {
-						this.props.loadNewMediaItemDetails();
+						loadNewMediaItemDetails(category);
 						navigationService.navigate(AppScreens.MediaItemDetails);
 					}}
 				/>
 				<MediaItemFilterModalContainer />
 				<LoadingIndicatorComponent
-					visible={this.props.isLoading}
+					visible={isLoading}
 					fullScreen={false}
 				/>
 			</View>
@@ -99,6 +105,11 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 export type MediaItemsListScreenComponentInput = {
 	
 	/**
+	 * The category linked with this media items list
+	 */
+	category: CategoryInternal;
+
+	/**
 	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
 	isLoading: boolean;
@@ -120,13 +131,7 @@ export type MediaItemsListScreenComponentOutput = {
 	fetchMediaItems: () => void;
 
 	/**
-	 * Callback to load the details of a new media item
+	 * Callback to load the details of a new media item for the given category
 	 */
-	loadNewMediaItemDetails: () => void;
-
-	/**
-	 * Callback to load the details of an existing media item
-	 * @param mediaItem the existing media item
-	 */
-	loadMediaItemDetails: (mediaItem: MediaItemInternal) => void;
+	loadNewMediaItemDetails: (category: CategoryInternal) => void;
 }

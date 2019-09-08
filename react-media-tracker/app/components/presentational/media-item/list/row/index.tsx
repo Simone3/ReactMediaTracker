@@ -18,11 +18,14 @@ export class MediaItemRowComponent extends Component<MediaItemRowComponentInput 
 
 		const {
 			showOptionsMenu,
-			mediaItem
+			mediaItem,
+			open
 		} = this.props;
 
 		return (
-			<TouchableWithoutFeedback onLongPress={showOptionsMenu}>
+			<TouchableWithoutFeedback
+				onPress={open}
+				onLongPress={showOptionsMenu}>
 				<View style={styles.container}>
 					<View style={styles.primaryIconContainer}>
 						<MediaItemOwnPlatformIconComponent ownPlatform={mediaItem.ownPlatform} />
@@ -54,6 +57,11 @@ export type MediaItemRowComponentInput = {
  * MediaItemRowComponent's output props
  */
 export type MediaItemRowComponentOutput = {
+
+	/**
+	 * Callback to open the media item details
+	 */
+	open: () => void;
 
 	/**
 	 * Callback to open the options context menu (with e.g. the edit button)

@@ -6,6 +6,8 @@ import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemContextMenuContainer } from 'app/components/containers/media-item/list/context-menu';
+import { navigationService } from 'app/utilities/navigation-service';
+import { AppScreens } from 'app/utilities/screens';
 
 /**
  * Presentational component to display the list of user media items
@@ -57,7 +59,8 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 
 		const {
 			mediaItems,
-			highlightMediaItem
+			highlightMediaItem,
+			selectMediaItem
 		} = this.props;
 
 		return (
@@ -69,6 +72,10 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 						return (
 							<MediaItemRowComponent
 								mediaItem={item}
+								open={() => {
+									selectMediaItem(item);
+									navigationService.navigate(AppScreens.MediaItemDetails);
+								}}
 								showOptionsMenu={() => {
 									highlightMediaItem(item);
 								}}>
@@ -105,6 +112,11 @@ export type MediaItemsListComponentInput = {
  * MediaItemsListComponent's output props
  */
 export type MediaItemsListComponentOutput = {
+
+	/**
+	 * Callback to select a media item, e.g. to open its details
+	 */
+	selectMediaItem: (mediaItem: MediaItemInternal) => void;
 
 	/**
 	 * Callback to set a mediaItem as highlighted, e.g. to open its dialog menu

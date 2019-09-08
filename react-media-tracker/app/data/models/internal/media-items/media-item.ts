@@ -35,9 +35,14 @@ export const MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES: [ 'VERY_IMPORTANT', 'IMPORTA
 export type MediaItemImportanceInternal = ValuesOf<typeof MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES>;
 
 /**
+ * Array of all media item "status" values, internal type just for display purposes
+ */
+export const MEDIA_ITEM_STATUS_INTERNAL_VALUES: [ 'ACTIVE', 'UPCOMING', 'REDO', 'COMPLETE', 'NEW' ] = [ 'ACTIVE', 'UPCOMING', 'REDO', 'COMPLETE', 'NEW' ];
+
+/**
  * The media type "status" (helper label based on other media item data), internal type just for display purposes
  */
-export type MediaItemStatusInternal = 'ACTIVE' | 'UPCOMING' | 'REDO' | 'COMPLETE' | 'NEW';
+export type MediaItemStatusInternal = ValuesOf<typeof MEDIA_ITEM_STATUS_INTERNAL_VALUES>;
 
 /**
  * A generic media item, internal type just for display purposes
