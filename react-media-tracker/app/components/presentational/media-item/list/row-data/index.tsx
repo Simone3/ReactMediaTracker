@@ -76,7 +76,7 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 
 		if(duration) {
 
-			values.push(i18n.t(`${mediaType}.list.duration`, { duration: duration }));
+			values.push(i18n.t(`mediaItem.list.duration.${mediaType}`, { duration: duration }));
 		}
 
 		if(creators && creators.length > 0) {

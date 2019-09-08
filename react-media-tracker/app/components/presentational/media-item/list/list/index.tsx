@@ -48,7 +48,7 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 	 */
 	private renderNone(): ReactNode {
 
-		return <Text style={styles.emptyMessage}>{i18n.t(`${this.props.category.mediaType}.list.empty`)}</Text>;
+		return <Text style={styles.emptyMessage}>{i18n.t(`mediaItem.list.empty.${this.props.category.mediaType}`)}</Text>;
 	}
 
 	/**

@@ -25,7 +25,7 @@ const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaIte
 		},
 		searchHeaderInput: {
 			autoFocus: true,
-			placeholder: i18n.t(`${mediaType}.list.search`),
+			placeholder: i18n.t(`mediaItem.list.search.${mediaType}`),
 			showLoading: false
 		}
 	};

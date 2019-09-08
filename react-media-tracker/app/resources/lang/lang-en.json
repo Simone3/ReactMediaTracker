@@ -56,6 +56,12 @@
 		"common": {
 			"alert": {
 				"delete": {
+					"title": {
+						"BOOK": "Delete Book",
+						"MOVIE": "Delete Movie",
+						"TV_SHOW": "Delete Show",
+						"VIDEOGAME": "Delete Game"
+					},
 					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it."
 				}
 			},
@@ -67,6 +73,54 @@
 			}
 		},
 		"list": {
+			"empty": {
+				"BOOK": "No books",
+				"MOVIE": "No movies",
+				"TV_SHOW": "No shows",
+				"VIDEOGAME": "No games"
+			},
+			"duration": {
+				"BOOK": "{{duration}}pp.",
+				"MOVIE": "{{duration}}'",
+				"TV_SHOW": "{{duration}}'",
+				"VIDEOGAME": "{{duration}}h"
+			},
+			"edit": {
+				"BOOK": "Edit book",
+				"MOVIE": "Edit movie",
+				"TV_SHOW": "Edit show",
+				"VIDEOGAME": "Edit game"
+			},
+			"delete": {
+				"BOOK": "Delete book",
+				"MOVIE": "Delete movie",
+				"TV_SHOW": "Delete show",
+				"VIDEOGAME": "Delete game"
+			},
+			"markActive": {
+				"BOOK": "I'm reading this",
+				"MOVIE": "I'm watching this",
+				"TV_SHOW": "I'm following this",
+				"VIDEOGAME": "I'm playing this"
+			},
+			"markComplete": {
+				"BOOK": "I've read this",
+				"MOVIE": "I've watched this",
+				"TV_SHOW": "I've completed this",
+				"VIDEOGAME": "I've played this"
+			},
+			"markRedo": {
+				"BOOK": "I could reread this",
+				"MOVIE": "I could rewatch this",
+				"TV_SHOW": "I could rewatch this",
+				"VIDEOGAME": "I could replay this"
+			},
+			"search": {
+				"BOOK": "Search books...",
+				"MOVIE": "Search movies...",
+				"TV_SHOW": "Search shows...",
+				"VIDEOGAME": "Search games..."
+			},
 			"group": "{{groupName}}, #{{order}}",
 			"filter": {
 				"title": "Filter",
@@ -116,82 +170,6 @@
 			"placeholders": {
 				"name": "Name"
 			}
-		}
-	},
-	"BOOK": {
-		"common": {
-			"alert": {
-				"delete": {
-					"title": "Delete Book"
-				}
-			}
-		},
-		"list": {
-			"empty": "No books",
-			"duration": "{{duration}}pp.",
-			"edit": "Edit book",
-			"delete": "Delete book",
-			"markActive": "I'm reading this",
-			"markComplete": "I've read this",
-			"markRedo": "I could reread this",
-			"search": "Search books..."
-		}
-	},
-	"MOVIE": {
-		"common": {
-			"alert": {
-				"delete": {
-					"title": "Delete Movie"
-				}
-			}
-		},
-		"list": {
-			"empty": "No movies",
-			"duration": "{{duration}}'",
-			"edit": "Edit movie",
-			"delete": "Delete movie",
-			"markActive": "I'm watching this",
-			"markComplete": "I've watched this",
-			"markRedo": "I could rewatch this",
-			"search": "Search movies..."
-		}
-	},
-	"TV_SHOW": {
-		"common": {
-			"alert": {
-				"delete": {
-					"title": "Delete Show"
-				}
-			}
-		},
-		"list": {
-			"empty": "No shows",
-			"duration": "{{duration}}'",
-			"edit": "Edit show",
-			"delete": "Delete show",
-			"markActive": "I'm following this",
-			"markComplete": "I've completed this",
-			"markRedo": "I could rewatch this",
-			"search": "Search shows..."
-		}
-	},
-	"VIDEOGAME": {
-		"common": {
-			"alert": {
-				"delete": {
-					"title": "Delete Game"
-				}
-			}
-		},
-		"list": {
-			"empty": "No games",
-			"duration": "{{duration}}h",
-			"edit": "Edit game",
-			"delete": "Delete game",
-			"markActive": "I'm playing this",
-			"markComplete": "I've played this",
-			"markRedo": "I could replay this",
-			"search": "Search games..."
 		}
 	},
 	"common": {

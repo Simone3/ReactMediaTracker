@@ -85,7 +85,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 		} = this.props;
 
 		return {
-			label: i18n.t(`${mediaItem.mediaType}.list.edit`),
+			label: i18n.t(`mediaItem.list.edit.${mediaItem.mediaType}`),
 			icon: images.editButton(),
 			onClick: () => {
 
@@ -109,11 +109,11 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 		} = this.props;
 
 		return {
-			label: i18n.t(`${mediaItem.mediaType}.list.delete`),
+			label: i18n.t(`mediaItem.list.delete.${mediaItem.mediaType}`),
 			icon: images.deleteButton(),
 			onClick: () => {
 
-				const title = i18n.t(`${mediaItem.mediaType}.common.alert.delete.title`);
+				const title = i18n.t(`mediaItem.common.alert.delete.title.${mediaItem.mediaType}`);
 				const message = i18n.t('mediaItem.common.alert.delete.message', { name: mediaItem.name });
 				ConfirmAlert.alert(title, message, () => {
 					
@@ -137,7 +137,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 		} = this.props;
 
 		return {
-			label: i18n.t(`${mediaItem.mediaType}.list.markActive`),
+			label: i18n.t(`mediaItem.list.markActive.${mediaItem.mediaType}`),
 			icon: images.mediaItemStatus('ACTIVE', mediaItem.mediaType).source,
 			onClick: () => {
 
@@ -160,7 +160,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 		} = this.props;
 
 		return {
-			label: i18n.t(`${mediaItem.mediaType}.list.markComplete`),
+			label: i18n.t(`mediaItem.list.markComplete.${mediaItem.mediaType}`),
 			icon: images.mediaItemStatus('COMPLETE', mediaItem.mediaType).source,
 			onClick: () => {
 
@@ -183,7 +183,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 		} = this.props;
 
 		return {
-			label: i18n.t(`${mediaItem.mediaType}.list.markRedo`),
+			label: i18n.t(`mediaItem.list.markRedo.${mediaItem.mediaType}`),
 			icon: images.mediaItemStatus('REDO', mediaItem.mediaType).source,
 			onClick: () => {
 
