@@ -1,5 +1,5 @@
 import { CategoriesListScreenComponent, CategoriesListScreenComponentInput, CategoriesListScreenComponentOutput } from 'app/components/presentational/category/list/screen';
-import { fetchCategories, loadCategoryDetails, loadNewCategoryDetails } from 'app/redux/actions/category/generators';
+import { fetchCategories, loadNewCategoryDetails } from 'app/redux/actions/category/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -22,9 +22,6 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoriesListScreenComponentOu
 		},
 		loadNewCategoryDetails: () => {
 			dispatch(loadNewCategoryDetails());
-		},
-		loadCategoryDetails: (category) => {
-			dispatch(loadCategoryDetails(category));
 		}
 	};
 };

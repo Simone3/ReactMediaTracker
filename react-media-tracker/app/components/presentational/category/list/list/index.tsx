@@ -108,7 +108,7 @@ export type CategoriesListComponentInput = {
 export type CategoriesListComponentOutput = {
 
 	/**
-	 * Callback to select a category as highlighted, e.g. to open the list of its media items
+	 * Callback to select a category, e.g. to open the list of its media items
 	 */
 	selectCategory: (category: CategoryInternal) => void;
 

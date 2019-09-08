@@ -2,7 +2,6 @@ import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/components/containers/category/list/list';
-import { CategoryInternal } from 'app/data/models/internal/category';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/category/list/screen/styles';
 import { i18n } from 'app/utilities/i18n';
@@ -106,10 +105,4 @@ export type CategoriesListScreenComponentOutput = {
 	 * Callback to load the details of a new category
 	 */
 	loadNewCategoryDetails: () => void;
-
-	/**
-	 * Callback to load the details of an existing category
-	 * @param category the existing category
-	 */
-	loadCategoryDetails: (category: CategoryInternal) => void;
 }
