@@ -1,5 +1,4 @@
 import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
-import { AppError } from 'app/data/models/internal/error';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
 import { connect, MapStateToPropsParam } from 'react-redux';
@@ -9,7 +8,10 @@ const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, MediaItemDetai
 	const mediaItem = state.mediaItemDetails.mediaItem;
 	if(!mediaItem) {
 
-		throw AppError.GENERIC.withDetails('No media item was provided, cannot load details header');
+		return {
+			...ownProps,
+			title: ''
+		};
 	}
 
 	return {

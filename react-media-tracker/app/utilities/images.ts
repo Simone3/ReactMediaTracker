@@ -225,6 +225,15 @@ class ImagesHelper {
 
 	/**
 	 * Image getter
+	 * @returns description input field icon
+	 */
+	public descriptionField(): ImageRequireSource {
+		
+		return require('app/resources/images/ic_input_description.png');
+	}
+
+	/**
+	 * Image getter
 	 * @returns color input field icon
 	 */
 	public colorField(): ImageRequireSource {

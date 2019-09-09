@@ -21,7 +21,7 @@ export class HeaderComponent extends Component<HeaderComponentProps> {
 		return (
 			<View style={styles.container}>
 				{componentsLeft}
-				<Text style={styles.title}>{title}</Text>
+				<Text style={styles.title} numberOfLines={1}>{title}</Text>
 				{componentsRight}
 			</View>
 		);

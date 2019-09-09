@@ -17,13 +17,13 @@ export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInter
 	importance: string().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES).required() as StringSchema<MediaItemImportanceInternal>,
 	group: object({
 		groupData: object({
-			id: string().required(),
+			id: string(),
 			name: string()
 		}),
-		orderInGroup: number().required()
+		orderInGroup: number()
 	}),
 	ownPlatform: object({
-		id: string().required(),
+		id: string(),
 		name: string(),
 		color: string()
 	}),

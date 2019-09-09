@@ -59,7 +59,7 @@ export const DEFAULT_VIDEOGAME: VideogameInternal = {
 	id: '',
 	name: '',
 	mediaType: 'VIDEOGAME',
-	status: 'ACTIVE',
+	status: 'NEW',
 	importance: 'VERY_IMPORTANT'
 };
 

@@ -168,7 +168,11 @@
 				}
 			},
 			"placeholders": {
-				"name": "Name"
+				"name": "Name",
+				"description": "Summary"
+			},
+			"prompts": {
+				"importance": "Importance"
 			}
 		}
 	},

@@ -5,6 +5,8 @@ import { styles } from 'app/components/presentational/media-item/details/form/vi
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { TextInputComponent } from 'app/components/presentational/form/text-input';
+import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
+import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -23,7 +25,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	 * @override
 	 */
 	public componentDidUpdate(prevProps: MediaItemFormViewComponentProps): void {
-
+		
 		const validChanged = prevProps.isValid !== this.props.isValid;
 		const dirtyChanged = prevProps.dirty !== this.props.dirty;
 		const saveReqChanged = prevProps.saveRequested !== this.props.saveRequested;
@@ -64,6 +66,8 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 		return (
 			<View style={styles.container}>
 				{this.nameField()}
+				{this.descriptionField()}
+				{this.importanceField()}
 			</View>
 		);
 	}
@@ -79,6 +83,44 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='name'
 				placeholder={i18n.t('mediaItem.details.placeholders.name')}
 				icon={images.nameField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the description component
+	 */
+	private descriptionField(): ReactNode {
+
+		return (
+			<TextInputComponent
+				name='description'
+				placeholder={i18n.t('mediaItem.details.placeholders.description')}
+				icon={images.descriptionField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the importance component
+	 */
+	private importanceField(): ReactNode {
+
+		const items = MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES.map((importance) => {
+			return {
+				value: importance,
+				label: i18n.t(`mediaItem.common.importance.${importance}`),
+				icon: images.mediaItemImportance(importance).source
+			};
+		});
+
+		return (
+			<PickerInputComponent
+				name='importance'
+				prompt={i18n.t('mediaItem.details.prompts.importance')}
+				items={items}
 			/>
 		);
 	}
