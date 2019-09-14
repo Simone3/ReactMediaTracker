@@ -1,5 +1,5 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { Action } from 'redux';
 
 /**
@@ -224,5 +224,79 @@ export type CompleteSavingMediaItemAction = Action & {
  * The fail saving media item action
  */
 export type FailSavingMediaItemAction = Action & {
+	
+};
+
+/**
+ * The search media items catalog action
+ */
+export type SearchMediaItemsCatalogAction = Action & {
+	
+	term: string;
+};
+
+/**
+ * The start searching media items catalog action
+ */
+export type StartSearchingMediaItemsCatalogAction = Action & {
+	
+};
+
+/**
+ * The complete searching media items catalog action
+ */
+export type CompleteSearchingMediaItemsCatalogAction = Action & {
+	
+	results: SearchMediaItemCatalogResultInternal[];
+};
+
+/**
+ * The fail searching media items catalog action
+ */
+export type FailSearchingMediaItemsCatalogAction = Action & {
+	
+};
+
+/**
+ * The reset media items catalog search action
+ */
+export type ResetMediaItemsCatalogSearchAction = Action & {
+	
+};
+
+/**
+ * The get media item catalog details action
+ */
+export type GetMediaItemCatalogDetailsAction = Action & {
+	
+	catalogId: string;
+};
+
+/**
+ * The start getting media item catalog details action
+ */
+export type StartGettingMediaItemCatalogDetailsAction = Action & {
+	
+};
+
+/**
+ * The complete getting media item catalog details action
+ */
+export type CompleteGettingMediaItemCatalogDetailsAction = Action & {
+	
+	details: CatalogMediaItemInternal;
+};
+
+/**
+ * The fail getting media item catalog details action
+ */
+export type FailGettingMediaItemCatalogDetailsAction = Action & {
+	
+};
+
+/**
+ * The reset media item catalog details action
+ */
+export type ResetMediaItemCatalogDetailsAction = Action & {
 	
 };

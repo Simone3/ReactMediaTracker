@@ -15,6 +15,8 @@ export class AppError extends Error {
 	public static BACKEND_MEDIA_ITEM_FETCH = new AppError('backend.mediaItem.fetch', 'error.flash.messages.backendMediaItemFetch');
 	public static BACKEND_MEDIA_ITEM_SAVE = new AppError('backend.mediaItem.save', 'error.flash.messages.backendMediaItemSave');
 	public static BACKEND_MEDIA_ITEM_DELETE = new AppError('backend.mediaItem.delete', 'error.flash.messages.backendMediaItemDelete');
+	public static BACKEND_MEDIA_ITEM_CATALOG_SEARCH = new AppError('backend.mediaItem.catalogSearch', 'error.flash.messages.backendMediaItemCatalogSearch');
+	public static BACKEND_MEDIA_ITEM_CATALOG_DETAILS = new AppError('backend.mediaItem.catalogDetails', 'error.flash.messages.backendMediaItemCatalogDetails');
 
 	public static BACKEND_GROUP_FETCH = new AppError('backend.group.fetch', 'error.flash.messages.backendGroupFetch');
 	public static BACKEND_GROUP_SAVE = new AppError('backend.group.save', 'error.flash.messages.backendGroupSave');

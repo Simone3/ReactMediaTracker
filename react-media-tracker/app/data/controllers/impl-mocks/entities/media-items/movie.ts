@@ -84,4 +84,50 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
  */
 export class MovieMockedCatalogController extends MediaItemMockedCatalogController<SearchMovieCatalogResultInternal, CatalogMovieInternal> implements MovieCatalogController {
 
+	protected readonly catalogList: SearchMovieCatalogResultInternal[] = [{
+		catalogId: '1',
+		name: 'Catalog Movie 1',
+		releaseDate: new Date(2010, 10, 10)
+	}, {
+		catalogId: '2',
+		name: 'Catalog Test 1'
+	}, {
+		catalogId: '3',
+		name: 'Catalog Test 2',
+		releaseDate: new Date(2011, 11, 11)
+	}, {
+		catalogId: '4',
+		name: 'Some Other Movie',
+		releaseDate: new Date(2012, 12, 12)
+	}];
+
+	protected readonly catalogDetails: {[catalogId: string]: CatalogMovieInternal} = {
+		1: {
+			name: 'Catalog Movie 1',
+			description: 'Some description for catalog movie 1',
+			directors: [ 'Person 1', 'Person 2' ],
+			durationMinutes: 100,
+			genres: [ 'One', 'Two' ],
+			imageUrl: 'https://image.shutterstock.com/image-photo/homemade-pumpkin-pies-decorated-fall-600w-486373975.jpg',
+			releaseDate: new Date(2010, 10, 10)
+		},
+		2: {
+			name: 'Catalog Test 1',
+			description: 'Some description for catalog test 1'
+		},
+		3: {
+			name: 'Catalog Test 2',
+			directors: [ 'Person 3', 'Person 4' ],
+			durationMinutes: 100,
+			genres: [ 'One', 'Two' ],
+			releaseDate: new Date(2011, 11, 11)
+		},
+		4: {
+			name: 'Some Other Movie',
+			description: 'Some description for some other movie',
+			durationMinutes: 200,
+			imageUrl: 'https://image.shutterstock.com/image-photo/homemade-pumpkin-pies-decorated-fall-600w-486373975.jpg',
+			releaseDate: new Date(2012, 12, 12)
+		}
+	};
 }

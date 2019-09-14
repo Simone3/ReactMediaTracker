@@ -1,4 +1,4 @@
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
  * Portion of the internal state with the media items list information
@@ -62,6 +62,21 @@ export type MediaItemDetailsState = {
 	readonly dirty: boolean;
 
 	/**
+	 * The media item catalog search results
+	 */
+	readonly catalogSearchResults?: SearchMediaItemCatalogResultInternal[];
+
+	/**
+	 * The media item catalog details
+	 */
+	readonly catalogDetails?: CatalogMediaItemInternal;
+
+	/**
+	 * The current status of the media item catalog retrieval process
+	 */
+	readonly catalogStatus: MediaItemsCatalogStatus;
+
+	/**
 	 * The current status of the media item saving process
 	 */
 	readonly saveStatus: MediaItemSaveStatus;
@@ -81,3 +96,8 @@ export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS';
  * The current status of the media item saving process
  */
 export type MediaItemSaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';
+
+/**
+ * The current status of the media item catalog retrieval process
+ */
+export type MediaItemsCatalogStatus = 'IDLE' | 'FETCHING';

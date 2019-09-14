@@ -1,7 +1,7 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal } from 'app/data/models/internal/media-items/media-item';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FAIL_SAVING_MEDIA_ITEM, FETCH_MEDIA_ITEMS, HIGHLIGHT_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, REQUEST_MEDIA_ITEM_SAVE, SAVE_MEDIA_ITEM, SEARCH_MEDIA_ITEMS, SET_MEDIA_ITEM_FORM_STATUS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_SAVING_MEDIA_ITEM, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
-import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteInlineUpdatingMediaItemAction, CompleteSavingMediaItemAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailInlineUpdatingMediaItemAction, FailSavingMediaItemAction, FetchMediaItemsAction, HighlightMediaItemAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, RequestMediaItemSaveAction, SaveMediaItemAction, SearchMediaItemsAction, SetMediaItemFormStatusAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StartSavingMediaItemAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FAIL_SAVING_MEDIA_ITEM, FAIL_SEARCHING_MEDIA_ITEMS_CATALOG, FETCH_MEDIA_ITEMS, GET_MEDIA_ITEM_CATALOG_DETAILS, HIGHLIGHT_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, REQUEST_MEDIA_ITEM_SAVE, RESET_MEDIA_ITEMS_CATALOG_SEARCH, RESET_MEDIA_ITEM_CATALOG_DETAILS, SAVE_MEDIA_ITEM, SEARCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS_CATALOG, SET_MEDIA_ITEM_FORM_STATUS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_GETTING_MEDIA_ITEM_CATALOG_DETAILS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_SAVING_MEDIA_ITEM, START_SEARCHING_MEDIA_ITEMS_CATALOG, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
+import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteGettingMediaItemCatalogDetailsAction, CompleteInlineUpdatingMediaItemAction, CompleteSavingMediaItemAction, CompleteSearchingMediaItemsCatalogAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailGettingMediaItemCatalogDetailsAction, FailInlineUpdatingMediaItemAction, FailSavingMediaItemAction, FailSearchingMediaItemsCatalogAction, FetchMediaItemsAction, GetMediaItemCatalogDetailsAction, HighlightMediaItemAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, RequestMediaItemSaveAction, ResetMediaItemCatalogDetailsAction, ResetMediaItemsCatalogSearchAction, SaveMediaItemAction, SearchMediaItemsAction, SearchMediaItemsCatalogAction, SetMediaItemFormStatusAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartGettingMediaItemCatalogDetailsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StartSavingMediaItemAction, StartSearchingMediaItemsCatalogAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
 
 /**
  * Generator for the fetch media items list action, which causes the request media items action, the async media items fetch and then the receive media items action
@@ -363,3 +363,120 @@ export const failSavingMediaItem = (): FailSavingMediaItemAction => {
 	};
 };
 
+/**
+ * Generator for the search media items catalog list action, which causes the request media items catalog action, the async media items catalog search and then the receive media items catalog action
+ * @param term the search term
+ * @returns the action
+ */
+export const searchMediaItemsCatalog = (term: string): SearchMediaItemsCatalogAction => {
+	
+	return {
+		type: SEARCH_MEDIA_ITEMS_CATALOG,
+		term: term
+	};
+};
+
+/**
+ * Generator for the start searching media items catalog action, which marks the start of the media items catalog searching operation
+ * @returns the action
+ */
+export const startSearchingMediaItemsCatalog = (): StartSearchingMediaItemsCatalogAction => {
+	
+	return {
+		type: START_SEARCHING_MEDIA_ITEMS_CATALOG
+	};
+};
+
+/**
+ * Generator for the complete searching media items catalog action, which marks the successful end of the media items catalog searching operation
+ * @param results the catalog search results, possibly an empty array
+ * @returns the action
+ */
+export const completeSearchingMediaItemsCatalog = (results: SearchMediaItemCatalogResultInternal[]): CompleteSearchingMediaItemsCatalogAction => {
+	
+	return {
+		type: COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG,
+		results: results
+	};
+};
+
+/**
+ * Generator for the fail searching media items catalog action, which marks the unsuccessful end of the media items catalog searching operation
+ * @returns the action
+ */
+export const failSearchingMediaItemsCatalog = (): FailSearchingMediaItemsCatalogAction => {
+	
+	return {
+		type: FAIL_SEARCHING_MEDIA_ITEMS_CATALOG
+	};
+};
+
+/**
+ * Generator for the reset media items catalog search action, which clears any saved catalog results
+ * @returns the action
+ */
+export const resetMediaItemsCatalogSearch = (): ResetMediaItemsCatalogSearchAction => {
+	
+	return {
+		type: RESET_MEDIA_ITEMS_CATALOG_SEARCH
+	};
+};
+
+/**
+ * Generator for the get media item catalog details list action, which causes the request media item catalog details action, the async media item catalog details fetch and then the receive media item catalog details action
+ * @param catalogId the ID of the element for which the details are required
+ * @returns the action
+ */
+export const getMediaItemCatalogDetails = (catalogId: string): GetMediaItemCatalogDetailsAction => {
+	
+	return {
+		type: GET_MEDIA_ITEM_CATALOG_DETAILS,
+		catalogId: catalogId
+	};
+};
+
+/**
+ * Generator for the start getting media item catalog details action, which marks the start of the media item catalog details fetching operation
+ * @returns the action
+ */
+export const startGettingMediaItemCatalogDetails = (): StartGettingMediaItemCatalogDetailsAction => {
+	
+	return {
+		type: START_GETTING_MEDIA_ITEM_CATALOG_DETAILS
+	};
+};
+
+/**
+ * Generator for the complete getting media item catalog details action, which marks the successful end of the media item catalog details fetching operation
+ * @param details the fetched media item catalog details
+ * @returns the action
+ */
+export const completeGettingMediaItemCatalogDetails = (details: CatalogMediaItemInternal): CompleteGettingMediaItemCatalogDetailsAction => {
+	
+	return {
+		type: COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS,
+		details: details
+	};
+};
+
+/**
+ * Generator for the fail getting media item catalog details action, which marks the unsuccessful end of the media item catalog details fetching operation
+ * @returns the action
+ */
+export const failGettingMediaItemCatalogDetails = (): FailGettingMediaItemCatalogDetailsAction => {
+	
+	return {
+		type: FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS
+	};
+};
+
+/**
+ * Generator for the reset media item catalog details action, which clears any saved catalog details
+ * @returns the action
+ */
+export const resetMediaItemCatalogDetails = (): ResetMediaItemCatalogDetailsAction => {
+	
+	return {
+		type: RESET_MEDIA_ITEM_CATALOG_DETAILS
+	};
+};

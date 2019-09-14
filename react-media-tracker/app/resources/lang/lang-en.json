@@ -13,6 +13,8 @@
 				"backendMediaItemFetch": "Cannot fetch media items from the server",
 				"backendMediaItemSave": "Cannot save the media item to the server",
 				"backendMediaItemDelete": "Cannot delete the media item from the server",
+				"backendMediaItemCatalogSearch": "Cannot search the media item catalog",
+				"backendMediaItemCatalogDetails": "Cannot get the media item catalog details",
 				"backendGroupFetch": "Cannot fetch groups from the server",
 				"backendGroupSave": "Cannot save the group to the server",
 				"backendGroupDelete": "Cannot delete the group from the server"
