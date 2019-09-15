@@ -12,23 +12,35 @@ export class ModalComponent extends Component<ModalComponentInput & ModalCompone
 	 */
 	public render(): ReactNode {
 
+		const {
+			onClose,
+			visible,
+			children,
+			transparentBackground,
+			modalContainerStyle
+		} = this.props;
+
 		return (
 			<Modal
 				animationType='fade'
 				transparent={true}
-				visible={this.props.visible}
+				visible={visible}
 				onRequestClose={() => {
-					this.props.onClose();
+					if(onClose) {
+						onClose();
+					}
 				}}>
 				<TouchableOpacity
-					style={[ styles.container, this.getContainerPositionStyle() ] }
+					style={[ styles.container, transparentBackground ? null : styles.containerGrayed, this.getContainerPositionStyle() ] }
 					activeOpacity={1}
 					onPressOut={() => {
-						this.props.onClose();
+						if(onClose) {
+							onClose();
+						}
 					}}>
 					<TouchableWithoutFeedback>
-						<View style={styles.contentContainer}>
-							{this.props.children}
+						<View style={[ styles.contentContainer, modalContainerStyle ] }>
+							{children}
 						</View>
 					</TouchableWithoutFeedback>
 				</TouchableOpacity>
@@ -93,6 +105,16 @@ export type ModalComponentInput = {
 	 * Vertical position of the modal
 	 */
 	verticalPosition?: 'center' | 'top' | 'bottom';
+
+	/**
+	 * Extra styles for the modal container
+	 */
+	modalContainerStyle?: ViewStyle;
+
+	/**
+	 * Whether the area outside the modal should be transparent or the default grayed-out
+	 */
+	transparentBackground?: boolean;
 }
 
 /**
@@ -104,5 +126,5 @@ export type ModalComponentOutput = {
 	 * Called when the modal requests itself to be closed, e.g. when the user clicks outside the content.
 	 * It's up to the parents to decide whether to trigger the visibility change or not (via "visible" prop).
 	 */
-	onClose: () => void;
+	onClose?: () => void;
 }

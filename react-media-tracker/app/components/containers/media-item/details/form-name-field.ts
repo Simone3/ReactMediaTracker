@@ -1,6 +1,6 @@
 
 import { SearchTextInputComponent, SearchTextInputComponentInput, SearchTextInputComponentOutput, SearchTextInputComponentSuggestion } from 'app/components/presentational/form/search-text-input';
-import { getMediaItemCatalogDetails, searchMediaItemsCatalog } from 'app/redux/actions/media-item/generators';
+import { getMediaItemCatalogDetails, resetMediaItemsCatalogSearch, searchMediaItemsCatalog } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
 import { ImageRequireSource } from 'react-native';
@@ -36,6 +36,9 @@ const mapDispatchToProps = (dispatch: Dispatch): SearchTextInputComponentOutput 
 		},
 		onSelectSuggestion: (catalogId) => {
 			dispatch(getMediaItemCatalogDetails(catalogId));
+		},
+		onClearSuggestions: () => {
+			dispatch(resetMediaItemsCatalogSearch());
 		}
 	};
 };

@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { FormikProps, FormikValues } from 'formik';
 import { styles } from 'app/components/presentational/media-item/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
@@ -65,11 +65,13 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	public render(): ReactNode {
 		
 		return (
-			<View style={styles.container}>
-				{this.nameField()}
-				{this.descriptionField()}
-				{this.importanceField()}
-			</View>
+			<ScrollView style={styles.container}>
+				<View style={styles.content}>
+					{this.nameField()}
+					{this.descriptionField()}
+					{this.importanceField()}
+				</View>
+			</ScrollView>
 		);
 	}
 

@@ -5,8 +5,9 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		alignSelf: 'stretch',
 		justifyContent: 'center',
-		alignItems: 'center',
-		
+		alignItems: 'center'
+	},
+	containerGrayed: {
 		backgroundColor: 'rgba(0, 0, 0, 0.7)'
 	},
 	contentContainer: {

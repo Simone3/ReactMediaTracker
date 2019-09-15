@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/search-bar/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, TouchableWithoutFeedback, ActivityIndicator, TextInputProps, TextStyle } from 'react-native';
+import { View, TouchableWithoutFeedback, ActivityIndicator, TextInputProps } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config';
@@ -147,11 +147,6 @@ export type SearchBarComponentInput = TextInputProps & {
 	 * If a small loading icon next to the search input is currently visibile
 	 */
 	showLoading?: boolean;
-
-	/**
-	 * Extra styles for the search bar input
-	 */
-	style?: TextStyle;
 }
 
 /**
