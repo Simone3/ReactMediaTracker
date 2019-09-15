@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state: State): MediaItemDetailsScreenComponentInput => {
 	
+	const details = state.mediaItemDetails;
+	
 	return {
-		isLoading: state.mediaItemDetails.saveStatus === 'SAVING',
+		isLoading: details.saveStatus === 'SAVING' || state.mediaItemDetails.catalogStatus === 'FETCHING',
 		wasSaved: state.mediaItemDetails.saveStatus === 'SAVED'
 	};
 };

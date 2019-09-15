@@ -7,6 +7,7 @@ import { images } from 'app/utilities/images';
 import { TextInputComponent } from 'app/components/presentational/form/text-input';
 import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
+import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -79,7 +80,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	private nameField(): ReactNode {
 
 		return (
-			<TextInputComponent
+			<MediaItemFormNameFieldContainer
 				name='name'
 				placeholder={i18n.t('mediaItem.details.placeholders.name')}
 				icon={images.nameField()}

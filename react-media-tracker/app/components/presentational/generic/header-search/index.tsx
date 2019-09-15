@@ -55,7 +55,11 @@ export class SearchHeaderComponent extends Component<SearchHeaderComponentProps>
 					onPress={onRequestSearchModeExit}
 					tintColor={config.ui.colors.colorContrastText}
 				/>
-				<SearchBarComponent {...searchHeaderInput} {...searchHeaderOutput} />
+				<SearchBarComponent
+					{...searchHeaderInput}
+					{...searchHeaderOutput}
+					style={styles.searchBarInput}
+				/>
 			</View>
 		);
 	}

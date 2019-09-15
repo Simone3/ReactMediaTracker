@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/search-bar/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
+import { View, TouchableWithoutFeedback, ActivityIndicator, TextInputProps, TextStyle } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config';
@@ -37,20 +37,25 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 	private renderField(): ReactNode {
 
 		const {
-			placeholder,
-			autoFocus,
-			onSearch
+			onSearch,
+			onChangeText,
+			value,
+			style
 		} = this.props;
 
 		return (
 			<TextInput
-				autoFocus={autoFocus}
-				placeholder={placeholder}
-				placeholderTextColor={config.ui.colors.colorContrastText}
-				value={this.state.term}
-				style={styles.input}
-				onChangeText={(value) => {
-					this.setState({ term: value });
+				{...this.props}
+				value={value ? value : this.state.term}
+				style={[ styles.input, style ] }
+				onChangeText={(newValue) => {
+
+					this.setState({ term: newValue });
+
+					if(onChangeText) {
+
+						onChangeText(newValue);
+					}
 				}}
 				returnKeyType='search'
 				onSubmitEditing={(event) => {
@@ -136,22 +141,17 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 /**
  * SearchBarComponent's input props
  */
-export type SearchBarComponentInput = {
-
-	/**
-	 * Whether to autofocus on startup
-	 */
-	autoFocus?: boolean;
-
-	/**
-	 * Search placeholder
-	 */
-	placeholder?: string;
+export type SearchBarComponentInput = TextInputProps & {
 
 	/**
 	 * If a small loading icon next to the search input is currently visibile
 	 */
 	showLoading?: boolean;
+
+	/**
+	 * Extra styles for the search bar input
+	 */
+	style?: TextStyle;
 }
 
 /**

@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -6,5 +7,8 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		paddingRight: 10
+	},
+	searchBarInput: {
+		color: config.ui.colors.colorContrastText
 	}
 });

@@ -1,5 +1,6 @@
 import { HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { SearchHeaderComponent, SearchHeaderComponentInput, SearchHeaderComponentOutput } from 'app/components/presentational/generic/header-search';
+import { config } from 'app/config/config';
 import { AppError } from 'app/data/models/internal/error';
 import { searchMediaItems, stopMediaItemsSearchMode } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
@@ -26,6 +27,7 @@ const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaIte
 		searchHeaderInput: {
 			autoFocus: true,
 			placeholder: i18n.t(`mediaItem.list.search.${mediaType}`),
+			placeholderTextColor: config.ui.colors.colorContrastText,
 			showLoading: false
 		}
 	};
