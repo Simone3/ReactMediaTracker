@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { miscUtils } from 'app/utilities/misc-utils';
 
 /**
  * Util type to extract common fields to both videogame entities and catalog entries
@@ -51,6 +52,20 @@ export type CatalogVideogameInternal = CatalogMediaItemInternal & CoreVideogameD
 export type SearchVideogameCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
 };
+
+/**
+ * List of all CatalogVideogameInternal fields
+ */
+export const CATALOG_VIDEOGAME_FIELDS: (keyof CatalogVideogameInternal)[] = miscUtils.buildArrayOfFields<CatalogVideogameInternal>({
+	name: '',
+	description: '',
+	genres: [],
+	imageUrl: '',
+	releaseDate: new Date(),
+	developers: [],
+	platforms: [],
+	publishers: []
+});
 
 /**
  * The default initial videogame, internal type just for display purposes

@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaItemInternal, CatalogMediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { MediaTypeSwitcherComponent } from 'app/components/presentational/generic/media-switcher';
 import { MovieFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/movie';
 
@@ -36,6 +36,11 @@ export type MediaItemFormComponentInput = {
 	initialValues: MediaItemInternal;
 
 	/**
+	 * If set, the media item catalog details are requested to be loaded into the form
+	 */
+	loadCatalogDetails?: CatalogMediaItemInternal;
+
+	/**
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
@@ -58,6 +63,11 @@ export type MediaItemFormComponentOutput = {
 	 * @param mediaItem the media item to be saved
 	 */
 	saveMediaItem: (mediaItem: MediaItemInternal) => void;
+
+	/**
+	 * Callback for when the form is done loading the input catalog details
+	 */
+	onCatalogDetailsLoaded(): void;
 }
 
 /**

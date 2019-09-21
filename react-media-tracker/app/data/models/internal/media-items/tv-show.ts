@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { miscUtils } from 'app/utilities/misc-utils';
 
 /**
  * Util type to extract common fields to both TV show entities and catalog entries
@@ -53,6 +54,23 @@ export type CatalogTvShowInternal = CatalogMediaItemInternal & CoreTvShowDataInt
 export type SearchTvShowCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
 };
+
+/**
+ * List of all CatalogTvShowInternal fields
+ */
+export const CATALOG_TV_SHOW_FIELDS: (keyof CatalogTvShowInternal)[] = miscUtils.buildArrayOfFields<CatalogTvShowInternal>({
+	name: '',
+	description: '',
+	genres: [],
+	imageUrl: '',
+	releaseDate: new Date(),
+	averageEpisodeRuntimeMinutes: 0,
+	creators: [],
+	episodesNumber: 0,
+	inProduction: false,
+	nextEpisodeAirDate: new Date(),
+	seasonsNumber: 0
+});
 
 /**
  * The default initial TV show, internal type just for display purposes

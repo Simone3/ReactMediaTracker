@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { miscUtils } from 'app/utilities/misc-utils';
 
 /**
  * Util type to extract common fields to both book entities and catalog entries
@@ -49,6 +50,19 @@ export type CatalogBookInternal = CatalogMediaItemInternal & CoreBookDataInterna
 export type SearchBookCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
 };
+
+/**
+ * List of all CatalogBookInternal fields
+ */
+export const CATALOG_BOOK_FIELDS: (keyof CatalogBookInternal)[] = miscUtils.buildArrayOfFields<CatalogBookInternal>({
+	name: '',
+	description: '',
+	authors: [],
+	pagesNumber: 0,
+	genres: [],
+	imageUrl: '',
+	releaseDate: new Date()
+});
 
 /**
  * The default initial book, internal type just for display purposes

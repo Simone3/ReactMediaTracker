@@ -52,6 +52,23 @@ class MiscUtils {
 		
 		return fullUrl;
 	}
+
+	/**
+	 * Helper to build an array of field names of the given object
+	 * @param source a sample object of type T, with all required fields to allow TypeScript validation, to use as the field names source. Field values are irrelevant.
+	 * @returns the array of all fields of type T
+	 */
+	public buildArrayOfFields<T extends object>(source: Required<T>): (keyof T)[] {
+
+		const result: (keyof T)[] = [];
+
+		for(const key in source) {
+
+			result.push(key as keyof T);
+		}
+
+		return result;
+	}
 }
 
 /**
