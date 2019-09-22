@@ -171,7 +171,8 @@
 			},
 			"placeholders": {
 				"name": "Search or type name",
-				"description": "Summary"
+				"description": "Summary",
+				"releaseDate": "Release date"
 			},
 			"prompts": {
 				"importance": "Importance"

@@ -8,6 +8,7 @@ import { TextInputComponent } from 'app/components/presentational/form/text-inpu
 import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
+import { DatePickerInputComponent } from 'app/components/presentational/form/date-picker-input';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -70,6 +71,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.nameField()}
 					{this.descriptionField()}
 					{this.importanceField()}
+					{this.releaseDate()}
 				</View>
 			</ScrollView>
 		);
@@ -124,6 +126,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='importance'
 				prompt={i18n.t('mediaItem.details.prompts.importance')}
 				items={items}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the release date component
+	 */
+	private releaseDate(): ReactNode {
+
+		return (
+			<DatePickerInputComponent
+				name='releaseDate'
+				icon={images.releaseDateField()}
+				placeholder={i18n.t('mediaItem.details.placeholders.releaseDate')}
 			/>
 		);
 	}

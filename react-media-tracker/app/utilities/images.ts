@@ -276,6 +276,15 @@ class ImagesHelper {
 		
 		return require('app/resources/images/ic_input_sort.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns release date field icon
+	 */
+	public releaseDateField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_release_date.png');
+	}
 }
 
 /**
