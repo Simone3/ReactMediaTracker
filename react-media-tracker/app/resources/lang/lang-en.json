@@ -172,7 +172,11 @@
 			"placeholders": {
 				"name": "Search or type name",
 				"description": "Summary",
-				"releaseDate": "Release date"
+				"releaseDate": "Release date",
+				"duration": {
+					"MOVIE": "Runtime (minutes)"
+				},
+				"userComment": "Your notes"
 			},
 			"prompts": {
 				"importance": "Importance"

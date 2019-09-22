@@ -72,6 +72,8 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.descriptionField()}
 					{this.importanceField()}
 					{this.releaseDate()}
+					{this.userCommentField()}
+					{this.props.children}
 				</View>
 			</ScrollView>
 		);
@@ -141,6 +143,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='releaseDate'
 				icon={images.releaseDateField()}
 				placeholder={i18n.t('mediaItem.details.placeholders.releaseDate')}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the user comment component
+	 */
+	private userCommentField(): ReactNode {
+
+		return (
+			<TextInputComponent
+				name='userComment'
+				placeholder={i18n.t('mediaItem.details.placeholders.userComment')}
+				icon={images.userCommentField()}
 			/>
 		);
 	}

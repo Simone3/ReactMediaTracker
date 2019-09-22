@@ -285,6 +285,24 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_input_release_date.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns duration field icon
+	 */
+	public durationField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_duration.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns notes field icon
+	 */
+	public userCommentField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_user_comment.png');
+	}
 }
 
 /**
