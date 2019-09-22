@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/form/text-input/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, ImageRequireSource } from 'react-native';
+import { View, TextInput, ImageRequireSource, KeyboardTypeOptions } from 'react-native';
 import { FieldComponent } from 'app/components/presentational/form/field';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 import { config } from 'app/config/config';
@@ -18,7 +18,8 @@ export class TextInputComponent extends Component<TextInputComponentInput> {
 		const {
 			name,
 			placeholder,
-			icon
+			icon,
+			keyboardType
 		} = this.props;
 
 		return (
@@ -37,6 +38,7 @@ export class TextInputComponent extends Component<TextInputComponentInput> {
 								onBlur={field.onBlur}
 								value={field.value}
 								placeholder={placeholder}
+								keyboardType={keyboardType}
 								style={styles.input}
 							/>
 						</View>
@@ -61,6 +63,11 @@ export type TextInputComponentInput = {
 	 * The text placeholder
 	 */
 	placeholder: string;
+
+	/**
+	 * The keyboard type
+	 */
+	keyboardType?: KeyboardTypeOptions;
 
 	/**
 	 * The input icon
