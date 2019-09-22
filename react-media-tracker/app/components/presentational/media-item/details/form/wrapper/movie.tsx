@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { MovieFormViewComponent } from 'app/components/presentational/media-item/details/form/view/movie';
-import { MovieInternal, CATALOG_MOVIE_FIELDS, CatalogMovieInternal } from 'app/data/models/internal/media-items/movie';
+import { MovieInternal, DEFAULT_CATALOG_MOVIE, CatalogMovieInternal } from 'app/data/models/internal/media-items/movie';
 import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { movieFormValidationSchema } from 'app/components/presentational/media-item/details/form/data/movie';
 
@@ -11,25 +11,32 @@ import { movieFormValidationSchema } from 'app/components/presentational/media-i
 export class MovieFormComponent extends Component<MovieFormComponentProps> {
 
 	private formikProps?: FormikProps<MovieInternal>;
+	private loadingCatalog = false;
 
 	/**
 	 * @override
 	 */
 	public componentDidUpdate(): void {
-		
+
 		// If we have new catalog details...
-		if(this.props.loadCatalogDetails && this.formikProps) {
+		if(this.props.loadCatalogDetails && this.formikProps && !this.loadingCatalog) {
+
+			this.loadingCatalog = true;
 
 			const catalogDetails = this.props.loadCatalogDetails as CatalogMovieInternal;
-
+			
 			// Reload EVERY catalog field (even if the current object has an undefined/null value)
-			for(const catalogField of CATALOG_MOVIE_FIELDS) {
-
-				this.formikProps.setFieldValue(catalogField, catalogDetails[catalogField]);
-			}
+			const values: MovieInternal = {
+				...this.formikProps.values,
+				...DEFAULT_CATALOG_MOVIE,
+				...catalogDetails
+			};
+			this.formikProps.setValues(values);
 
 			// Notify catalog details load completion
 			this.props.onCatalogDetailsLoaded();
+
+			this.loadingCatalog = false;
 		}
 	}
 

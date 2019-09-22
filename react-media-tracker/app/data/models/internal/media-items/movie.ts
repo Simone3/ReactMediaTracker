@@ -1,5 +1,4 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
-import { miscUtils } from 'app/utilities/misc-utils';
 
 /**
  * Util type to extract common fields to both movie entities and catalog entries
@@ -52,19 +51,6 @@ export type SearchMovieCatalogResultInternal = SearchMediaItemCatalogResultInter
 };
 
 /**
- * List of all CatalogMovieInternal fields
- */
-export const CATALOG_MOVIE_FIELDS: (keyof CatalogMovieInternal)[] = miscUtils.buildArrayOfFields<CatalogMovieInternal>({
-	name: '',
-	description: '',
-	directors: [],
-	durationMinutes: 0,
-	genres: [],
-	imageUrl: '',
-	releaseDate: new Date()
-});
-
-/**
  * The default initial videogame, internal type just for display purposes
  */
 export const DEFAULT_MOVIE: MovieInternal = {
@@ -73,4 +59,17 @@ export const DEFAULT_MOVIE: MovieInternal = {
 	mediaType: 'MOVIE',
 	status: 'NEW',
 	importance: 'VERY_IMPORTANT'
+};
+
+/**
+ * The default movie catalog details (with all fields required), internal type just for display purposes
+ */
+export const DEFAULT_CATALOG_MOVIE: Required<CatalogMovieInternal> = {
+	name: '',
+	description: '',
+	directors: [],
+	durationMinutes: 0,
+	genres: [],
+	imageUrl: '',
+	releaseDate: new Date()
 };
