@@ -378,7 +378,7 @@ module.exports = {
 		'import/no-absolute-path': 'off',
 		'import/no-dynamic-require': 2,
 		'import/no-internal-modules': [ 2, {
-			'allow': [ 'request-promise-native/errors', '@redux-saga/**' ]
+			'allow': [ 'request-promise-native/errors', '@redux-saga/**', 'react-navigation-stack/lib/typescript/types' ]
 		} ],
 		'import/no-webpack-loader-syntax': 'off',
 		'import/no-self-import': 'off',

@@ -4,10 +4,10 @@ import { getMediaItemCatalogDetails, resetMediaItemsCatalogSearch, searchMediaIt
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
 import { ImageRequireSource } from 'react-native';
-import { connect, MapStateToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps: MapStateToPropsParam<SearchTextInputComponentInput, MediaItemFormNameFieldContainerProps, State> = (state: State, ownProps: MediaItemFormNameFieldContainerProps): SearchTextInputComponentInput => {
+const mapStateToProps = (state: State, ownProps: MediaItemFormNameFieldContainerProps): SearchTextInputComponentInput => {
 	
 	const catalogSearchResults = state.mediaItemDetails.catalogSearchResults;
 	let suggestions: SearchTextInputComponentSuggestion[] | undefined;

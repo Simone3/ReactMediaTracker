@@ -387,11 +387,11 @@ export abstract class SearchMediaItemCatalogResult {
 
 	@IsNotEmpty()
 	@IsString()
-	public catalogId: string = '';
+	public catalogId = '';
 	
 	@IsNotEmpty()
 	@IsString()
-	public name: string = '';
+	public name = '';
 
 	@IsOptional()
 	@IsDateString()

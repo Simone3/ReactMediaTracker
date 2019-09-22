@@ -1,9 +1,9 @@
 import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
-import { connect, MapStateToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 
-const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, CategoryDetailsHeaderContainerProps, State> = (state: State, ownProps: CategoryDetailsHeaderContainerProps): HeaderComponentInput => {
+const mapStateToProps = (state: State, ownProps: CategoryDetailsHeaderContainerProps): HeaderComponentInput => {
 	
 	const category = state.categoryDetails.category;
 
@@ -17,8 +17,7 @@ const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, CategoryDetail
  * Container component that handles Redux state for HeaderComponent
  */
 export const CategoryDetailsHeaderContainer = connect(
-	mapStateToProps,
-	null
+	mapStateToProps
 )(HeaderComponent);
 
 /**

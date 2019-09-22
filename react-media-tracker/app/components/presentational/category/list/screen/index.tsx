@@ -8,6 +8,7 @@ import { i18n } from 'app/utilities/i18n';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { HeaderComponent } from 'app/components/presentational/generic/header';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -17,17 +18,17 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = {
+	public static readonly navigationOptions: NavigationStackOptions = {
 		headerTitle: <HeaderComponent
 			title={i18n.t('category.list.title')}
-		/>,
+		/> as unknown as string,
 		headerLeft: null
 	};
 
 	/**
 	 * @override
 	 */
-	public componentWillMount(): void {
+	public componentDidMount(): void {
 
 		this.requestFetchIfRequired();
 	}

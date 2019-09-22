@@ -5,10 +5,10 @@ import { AppError } from 'app/data/models/internal/error';
 import { searchMediaItems, stopMediaItemsSearchMode } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
-import { connect, MapStateToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps: MapStateToPropsParam<SearchHeaderComponentInput, MediaItemsListHeaderContainerProps, State> = (state: State, ownProps: MediaItemsListHeaderContainerProps): SearchHeaderComponentInput => {
+const mapStateToProps = (state: State, ownProps: MediaItemsListHeaderContainerProps): SearchHeaderComponentInput => {
 
 	const category = state.categoryGlobal.selectedCategory;
 	if(!category) {

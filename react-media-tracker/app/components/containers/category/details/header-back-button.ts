@@ -1,9 +1,9 @@
 import { HeaderFormExitBackComponent, HeaderFormExitBackComponentInput } from 'app/components/presentational/generic/header-form-exit-back';
 import { State } from 'app/redux/state/state';
-import { NavigationScreenProp } from 'react-navigation';
-import { connect, MapStateToPropsParam } from 'react-redux';
+import { NavigationStackProp } from 'react-navigation-stack';
+import { connect } from 'react-redux';
 
-const mapStateToProps: MapStateToPropsParam<HeaderFormExitBackComponentInput, CategoryDetailsHeaderBackButtonContainerProps, State> = (state: State, ownProps: CategoryDetailsHeaderBackButtonContainerProps): HeaderFormExitBackComponentInput => {
+const mapStateToProps = (state: State, ownProps: CategoryDetailsHeaderBackButtonContainerProps): HeaderFormExitBackComponentInput => {
 	
 	return {
 		dirtyForm: state.categoryDetails.dirty,
@@ -15,8 +15,7 @@ const mapStateToProps: MapStateToPropsParam<HeaderFormExitBackComponentInput, Ca
  * Container component that handles Redux state for HeaderFormExitBackComponent
  */
 export const CategoryDetailsHeaderBackButtonContainer = connect(
-	mapStateToProps,
-	null
+	mapStateToProps
 )(HeaderFormExitBackComponent);
 
 /**
@@ -27,6 +26,6 @@ export type CategoryDetailsHeaderBackButtonContainerProps = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationScreenProp<object>;
+	navigation: NavigationStackProp<object>;
 }
 

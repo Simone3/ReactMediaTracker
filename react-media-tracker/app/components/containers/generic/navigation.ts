@@ -4,7 +4,8 @@ import { MediaItemDetailsScreenContainer } from 'app/components/containers/media
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
 import { config } from 'app/config/config';
 import { AppScreens } from 'app/utilities/screens';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 /**
  * The application navigator

@@ -1,9 +1,9 @@
 import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
-import { connect, MapStateToPropsParam } from 'react-redux';
+import { connect } from 'react-redux';
 
-const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, MediaItemDetailsHeaderContainerProps, State> = (state: State, ownProps: MediaItemDetailsHeaderContainerProps): HeaderComponentInput => {
+const mapStateToProps = (state: State, ownProps: MediaItemDetailsHeaderContainerProps): HeaderComponentInput => {
 	
 	const mediaItem = state.mediaItemDetails.mediaItem;
 	if(!mediaItem) {
@@ -24,8 +24,7 @@ const mapStateToProps: MapStateToPropsParam<HeaderComponentInput, MediaItemDetai
  * Container component that handles Redux state for HeaderComponent
  */
 export const MediaItemDetailsHeaderContainer = connect(
-	mapStateToProps,
-	null
+	mapStateToProps
 )(HeaderComponent);
 
 /**

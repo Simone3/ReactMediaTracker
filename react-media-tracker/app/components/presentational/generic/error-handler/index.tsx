@@ -27,7 +27,9 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 			const messageDescription = typeof error === 'string' ? error : i18n.t(error.errorDescription);
 
 			showMessage({
-				message: i18n.t('error.flash.title'),
+				message: {
+					message: i18n.t('error.flash.title')
+				},
 				description: messageDescription,
 				type: 'danger',
 				duration: 3000

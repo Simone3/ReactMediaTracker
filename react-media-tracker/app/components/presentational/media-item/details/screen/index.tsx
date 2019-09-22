@@ -5,9 +5,9 @@ import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/media-item/details/screen/styles';
 import { MediaItemDetailsHeaderContainer } from 'app/components/containers/media-item/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { NavigationScreenProps } from 'react-navigation';
 import { MediaItemDetailsHeaderBackButtonContainer } from 'app/components/containers/media-item/details/header-back-button';
 import { MediaItemDetailsHeaderSaveIconContainer } from 'app/components/containers/media-item/details/header-save-icon';
+import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "media item details" screen, that works as the "add new media item", "update media item" and
@@ -18,12 +18,12 @@ export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsS
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: NavigationScreenProps) => {
+	public static readonly navigationOptions = (navigationScreenProps: NavigationStackScreenProps): NavigationStackOptions => {
 		return {
 			headerTitle: <MediaItemDetailsHeaderContainer
 				componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
 				componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
-			/>,
+			/> as unknown as string,
 			headerLeft: null
 		};
 	};
