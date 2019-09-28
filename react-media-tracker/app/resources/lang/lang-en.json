@@ -201,6 +201,13 @@
 					"message": "You have unsaved changes, are you sure you want to exit?"
 				}
 			}
+		},
+		"form": {
+			"input": {
+				"multiText": {
+					"placeholder": "Insert value"
+				}
+			}
 		}
 	}
 }
