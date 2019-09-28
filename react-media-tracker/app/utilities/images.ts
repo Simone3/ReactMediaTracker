@@ -303,6 +303,15 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_input_user_comment.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns genres field icon
+	 */
+	public genresField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_genre.png');
+	}
 }
 
 /**

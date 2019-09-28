@@ -9,6 +9,7 @@ import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/
 import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
 import { DatePickerInputComponent } from 'app/components/presentational/form/date-picker-input';
+import { MultiTextInputComponent } from 'app/components/presentational/form/multi-text-input';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -73,6 +74,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.importanceField()}
 					{this.releaseDate()}
 					{this.userCommentField()}
+					{this.genresField()}
 					{this.props.children}
 				</View>
 			</ScrollView>
@@ -158,6 +160,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='userComment'
 				placeholder={i18n.t('mediaItem.details.placeholders.userComment')}
 				icon={images.userCommentField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the genres component
+	 */
+	private genresField(): ReactNode {
+
+		return (
+			<MultiTextInputComponent
+				name='genres'
+				placeholder={i18n.t('mediaItem.details.placeholders.genres')}
+				icon={images.genresField()}
 			/>
 		);
 	}

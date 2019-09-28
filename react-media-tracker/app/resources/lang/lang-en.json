@@ -176,7 +176,8 @@
 				"duration": {
 					"MOVIE": "Runtime (minutes)"
 				},
-				"userComment": "Your notes"
+				"userComment": "Your notes",
+				"genres": "Genres"
 			},
 			"prompts": {
 				"importance": "Importance"
