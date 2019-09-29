@@ -8,12 +8,6 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center'
 	},
-	icon: {
-		padding: 10,
-
-		width: 30,
-		height: 30
-	},
 	nameCicleIconContainer: {
 		flex: 1,
 		flexDirection: 'row',

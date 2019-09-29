@@ -4,12 +4,12 @@ import { FormikProps, FormikValues } from 'formik';
 import { styles } from 'app/components/presentational/media-item/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
-import { TextInputComponent } from 'app/components/presentational/form/text-input';
+import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
-import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
+import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
-import { DatePickerInputComponent } from 'app/components/presentational/form/date-picker-input';
-import { MultiTextInputComponent } from 'app/components/presentational/form/multi-text-input';
+import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
+import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -103,7 +103,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	private descriptionField(): ReactNode {
 
 		return (
-			<TextInputComponent
+			<TextInputFieldComponent
 				name='description'
 				placeholder={i18n.t('mediaItem.details.placeholders.description')}
 				icon={images.descriptionField()}
@@ -126,7 +126,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='importance'
 				prompt={i18n.t('mediaItem.details.prompts.importance')}
 				items={items}
@@ -141,7 +141,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	private releaseDate(): ReactNode {
 
 		return (
-			<DatePickerInputComponent
+			<DatePickerFieldComponent
 				name='releaseDate'
 				icon={images.releaseDateField()}
 				placeholder={i18n.t('mediaItem.details.placeholders.releaseDate')}
@@ -156,7 +156,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	private userCommentField(): ReactNode {
 
 		return (
-			<TextInputComponent
+			<TextInputFieldComponent
 				name='userComment'
 				placeholder={i18n.t('mediaItem.details.placeholders.userComment')}
 				icon={images.userCommentField()}
@@ -171,7 +171,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	private genresField(): ReactNode {
 
 		return (
-			<MultiTextInputComponent
+			<MultiTextInputFieldComponent
 				name='genres'
 				placeholder={i18n.t('mediaItem.details.placeholders.genres')}
 				icon={images.genresField()}

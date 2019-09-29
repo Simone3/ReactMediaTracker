@@ -1,5 +1,6 @@
 
-import { SearchTextInputComponent, SearchTextInputComponentInput, SearchTextInputComponentOutput, SearchTextInputComponentSuggestion } from 'app/components/presentational/form/search-text-input';
+import { SearchTextInputComponentSuggestion } from 'app/components/presentational/form/components/text-input-search';
+import { SearchTextInputFieldComponent, SearchTextInputFieldComponentInput, SearchTextInputFieldComponentOutput } from 'app/components/presentational/form/fields/text-input-search';
 import { getMediaItemCatalogDetails, resetMediaItemsCatalogSearch, searchMediaItemsCatalog } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { i18n } from 'app/utilities/i18n';
@@ -7,7 +8,7 @@ import { ImageRequireSource } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: State, ownProps: MediaItemFormNameFieldContainerProps): SearchTextInputComponentInput => {
+const mapStateToProps = (state: State, ownProps: MediaItemFormNameFieldContainerProps): SearchTextInputFieldComponentInput => {
 	
 	const catalogSearchResults = state.mediaItemDetails.catalogSearchResults;
 	let suggestions: SearchTextInputComponentSuggestion[] | undefined;
@@ -28,7 +29,7 @@ const mapStateToProps = (state: State, ownProps: MediaItemFormNameFieldContainer
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): SearchTextInputComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch): SearchTextInputFieldComponentOutput => {
 
 	return {
 		onSearch: (term) => {
@@ -44,12 +45,12 @@ const mapDispatchToProps = (dispatch: Dispatch): SearchTextInputComponentOutput 
 };
 
 /**
- * Container component that handles Redux state for SearchTextInputComponent
+ * Container component that handles Redux state for SearchTextInputFieldComponent
  */
 export const MediaItemFormNameFieldContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SearchTextInputComponent);
+)(SearchTextInputFieldComponent);
 
 /**
  * MediaItemFormNameFieldContainer's props

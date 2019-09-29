@@ -4,9 +4,9 @@ import { FormikProps, FormikValues } from 'formik';
 import { MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
 import { styles } from 'app/components/presentational/category/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
-import { TextInputComponent } from 'app/components/presentational/form/text-input';
-import { PickerInputComponent } from 'app/components/presentational/form/picker-input';
-import { ColorPickerInputComponent } from 'app/components/presentational/form/color-picker-input';
+import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
+import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
+import { ColorPickerFieldComponent } from 'app/components/presentational/form/fields/color-picker';
 import { config } from 'app/config/config';
 import { images } from 'app/utilities/images';
 
@@ -81,7 +81,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 	private nameField(): ReactNode {
 
 		return (
-			<TextInputComponent
+			<TextInputFieldComponent
 				name='name'
 				placeholder={i18n.t('category.details.placeholders.name')}
 				icon={images.nameField()}
@@ -104,7 +104,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='mediaType'
 				prompt={i18n.t('category.details.prompts.mediaType')}
 				items={items}
@@ -119,7 +119,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 	private colorField(): ReactNode {
 
 		return (
-			<ColorPickerInputComponent
+			<ColorPickerFieldComponent
 				name='color'
 				icon={images.colorField()}
 				colors={config.ui.colors.availableCategoryColors}

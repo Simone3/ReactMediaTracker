@@ -1,12 +1,10 @@
 import React, { Component, ReactNode } from 'react';
 import { Field, FieldProps } from 'formik';
-import { StyleProp, ViewStyle, View } from 'react-native';
-import { styles } from 'app/components/presentational/form/field/styles';
 
 /**
  * Wrapper of Formik <Field> that:
  * - Handles focused state (input is currently active) since base <Field> does not at the moment
- * - Renders the common input container based on the current input state
+ * - Computes the current status of the component
  */
 export class FieldComponent extends Component<FieldComponentInput, FieldComponentState> {
 	
@@ -42,22 +40,18 @@ export class FieldComponent extends Component<FieldComponentInput, FieldComponen
 						}
 					};
 
-					return (
-						<View style={this.getContainerStyle(formikProps)}>
-							{this.props.children(field)}
-						</View>
-					);
+					return this.props.children(field, this.getFieldStatus(formikProps));
 				}}
 			</Field>
 		);
 	}
 	
 	/**
-	 * Helper to get the contatiner style(s) based on field status
+	 * Helper to get current field status
 	 * @param formikProps Formik data
 	 * @returns the container style(s)
 	 */
-	private getContainerStyle(formikProps: FieldProps): StyleProp<ViewStyle> {
+	private getFieldStatus(formikProps: FieldProps): FieldComponentStatus {
 
 		const {
 			name
@@ -72,15 +66,15 @@ export class FieldComponent extends Component<FieldComponentInput, FieldComponen
 
 		if(isFocus) {
 
-			return [ styles.container, styles.containerFocus ];
+			return 'FOCUSED';
 		}
 		else if(isError) {
 
-			return [ styles.container, styles.containerError ];
+			return 'ERROR';
 		}
 		else {
 
-			return styles.container;
+			return 'DEFAULT';
 		}
 	}
 
@@ -140,7 +134,7 @@ export type FieldComponentInput = {
 	/**
 	 * The component's child must be a function (render prop)
 	 */
-	children: (field: Field) => ReactNode;
+	children: (field: Field, status: FieldComponentStatus) => ReactNode;
 }
 
 /**
@@ -153,3 +147,8 @@ export type FieldComponentState = {
 	 */
 	focused: boolean;
 }
+
+/**
+ * Describes the current status of the field
+ */
+export type FieldComponentStatus = 'FOCUSED' | 'ERROR' | 'DEFAULT';

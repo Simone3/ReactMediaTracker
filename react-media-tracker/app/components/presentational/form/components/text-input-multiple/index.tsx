@@ -1,16 +1,14 @@
-import { styles } from 'app/components/presentational/form/multi-text-input/styles';
+import { styles } from 'app/components/presentational/form/components/text-input-multiple/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, ImageRequireSource, KeyboardTypeOptions, TouchableOpacity, FlatList, Text } from 'react-native';
-import { FieldComponent, Field } from 'app/components/presentational/form/field';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
-import { config } from 'app/config/config';
+import { View, TextInput, KeyboardTypeOptions, TouchableOpacity, FlatList, Text } from 'react-native';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
+import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 
 /**
- * Presentational component to display a multiple text input (result is array of user-defined strings) with Formik
+ * Presentational component to display a multiple text input (result is array of user-defined strings)
  */
-export class MultiTextInputComponent extends Component<MultiTextInputComponentInput, MultiTextInputComponentState> {
+export class MultiTextInputComponent extends Component<MultiTextInputComponentProps, MultiTextInputComponentState> {
 	
 	public state: MultiTextInputComponentState = { open: false, currentTemporaryValues: [ '' ] };
 
@@ -18,44 +16,28 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 	 * @override
 	 */
 	public render(): ReactNode {
-
-		const {
-			name,
-			icon
-		} = this.props;
-
+		
 		return (
-			<FieldComponent name={name}>
-				{(field) => {
-					return (
-						<View style={styles.container}>
-							<ColoredImage
-								source={icon}
-								tintColor={config.ui.colors.colorFormInputs}
-								style={styles.icon}
-							/>
-							{this.renderInput(field)}
-							{this.renderModal(field)}
-						</View>
-					);
-				}}
-			</FieldComponent>
+			<FormInputComponent {...this.props}>
+				{this.renderInput()}
+				{this.renderModal()}
+			</FormInputComponent>
 		);
 	}
 
 	/**
 	 * Helper to render the visibile form field
-	 * @param field the field
 	 * @returns the component
 	 */
-	private renderInput(field: Field): ReactNode {
+	private renderInput(): ReactNode {
 
 		const {
-			placeholder
+			placeholder,
+			currentValues,
+			onFocus
 		} = this.props;
 
-		const values = field.value as string[] | undefined;
-		const textValue = values ? values.join(', ') : '';
+		const textValue = currentValues ? currentValues.join(', ') : '';
 
 		return (
 			<TouchableOpacity
@@ -64,9 +46,9 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 
 					this.setState({
 						open: true,
-						currentTemporaryValues: values && values.length > 0 ? values : [ '' ]
+						currentTemporaryValues: currentValues && currentValues.length > 0 ? currentValues : [ '' ]
 					});
-					field.onFocus(event);
+					onFocus(event);
 				}}>
 				<TextInput
 					style={styles.input}
@@ -80,21 +62,24 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 
 	/**
 	 * Helper to render the modal
-	 * @param field the field
 	 * @returns the component
 	 */
-	private renderModal(field: Field): ReactNode {
+	private renderModal(): ReactNode {
+
+		const {
+			onBlur
+		} = this.props;
 
 		return (
 			<ModalComponent
 				visible={this.state.open}
 				onClose={() => {
 
-					field.onBlur('');
+					onBlur('');
 					this.setState({ open: false });
 				}}>
 				<View style={styles.modalContent}>
-					{this.renderModalContent(field)}
+					{this.renderModalContent()}
 				</View>
 			</ModalComponent>
 		);
@@ -102,10 +87,9 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 
 	/**
 	 * Helper to render the modal content
-	 * @param field the field
 	 * @returns the component
 	 */
-	private renderModalContent(field: Field): ReactNode {
+	private renderModalContent(): ReactNode {
 
 		return (
 			<View>
@@ -113,7 +97,7 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 					{this.renderModalInputs()}
 				</View>
 				<View style={styles.modalButtonsContainer}>
-					{this.renderModalConfirmButton(field)}
+					{this.renderModalConfirmButton()}
 				</View>
 			</View>
 		);
@@ -212,14 +196,18 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 
 	/**
 	 * Helper to render the modal confirm button
-	 * @param field the field
 	 * @returns the component
 	 */
-	private renderModalConfirmButton(field: Field): ReactNode {
+	private renderModalConfirmButton(): ReactNode {
 
 		const {
 			currentTemporaryValues
 		} = this.state;
+
+		const {
+			onValuesChange,
+			onBlur
+		} = this.props;
 
 		const valid = currentTemporaryValues.length === 1 || !currentTemporaryValues.some((value) => {
 			return !value || value.trim().length === 0;
@@ -232,8 +220,8 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 
 					const fieldValue = currentTemporaryValues.length === 1 && !currentTemporaryValues[0] ? [] : currentTemporaryValues;
 
-					field.setValue(fieldValue);
-					field.onBlur(event);
+					onValuesChange(fieldValue);
+					onBlur(event);
 					this.setState({ open: false });
 				}}>
 				<Text style={!valid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
@@ -247,12 +235,12 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentIn
 /**
  * MultiTextInputComponent's input props
  */
-export type MultiTextInputComponentInput = {
+export type MultiTextInputComponentInput = FormInputComponentInput & {
 
 	/**
-	 * The input name (unique in the form)
+	 * The current value
 	 */
-	name: string;
+	currentValues: string[] | undefined;
 
 	/**
 	 * The text placeholder
@@ -263,15 +251,26 @@ export type MultiTextInputComponentInput = {
 	 * The keyboard type
 	 */
 	keyboardType?: KeyboardTypeOptions;
-
-	/**
-	 * The input icon
-	 */
-	icon: ImageRequireSource;
 }
 
 /**
- * DatePickerInputComponent's state
+ * MultiTextInputComponent's output props
+ */
+export type MultiTextInputComponentOutput = FormInputComponentOutput;
+
+/**
+ * MultiTextInputComponent's props
+ */
+export type MultiTextInputComponentProps = MultiTextInputComponentInput & MultiTextInputComponentOutput & {
+
+	/**
+	 * Notifies input value change
+	 */
+	onValuesChange: (values: string[]) => void;
+}
+
+/**
+ * DatePickerComponent's state
  */
 export type MultiTextInputComponentState = {
 

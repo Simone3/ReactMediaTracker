@@ -1,16 +1,14 @@
-import { styles } from 'app/components/presentational/form/search-text-input/styles';
+import { styles } from 'app/components/presentational/form/components/text-input-search/styles';
 import React, { ReactNode, Component } from 'react';
 import { View, FlatList, TouchableOpacity, Text, ViewStyle } from 'react-native';
-import { FieldComponent } from 'app/components/presentational/form/field';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
-import { config } from 'app/config/config';
-import { TextInputComponentInput } from 'app/components/presentational/form/text-input';
 import { SearchBarComponent, SearchBarComponentInput, SearchBarComponentOutput } from 'app/components/presentational/generic/search-bar';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { AppError } from 'app/data/models/internal/error';
+import { TextInputComponentInput, TextInputComponentOutput } from 'app/components/presentational/form/components/text-input';
+import { FormInputComponent } from 'app/components/presentational/form/components/generic';
 
 /**
- * Presentational component to display a text input with Formik that also works as a search bar with suggestions
+ * Presentational component to display a text input that also works as a search bar with suggestions
  */
 export class SearchTextInputComponent extends Component<SearchTextInputComponentProps, SearchTextInputComponentState> {
 	
@@ -40,45 +38,32 @@ export class SearchTextInputComponent extends Component<SearchTextInputComponent
 	public render(): ReactNode {
 
 		const {
-			name,
-			icon
+			currentText,
+			onTextChange
 		} = this.props;
 
 		return (
-			<FieldComponent name={name}>
-				{(field) => {
-					return (
-						<View>
-							<View style={styles.container}>
-								<ColoredImage
-									source={icon}
-									tintColor={config.ui.colors.colorFormInputs}
-									style={styles.icon}
-								/>
-								<View
-									style={styles.inputContainer}
-									onLayout={() => {
-										// This empty callback seems to be required for measure() to work, why?
-									}}
-									ref={(ref) => {
-										
-										this.inputContainerRef = ref;
-									}}>
-									<SearchBarComponent
-										{...this.props}
-										onChangeText={field.onChange}
-										onFocus={field.onFocus}
-										onBlur={field.onBlur}
-										value={field.value}
-										style={styles.input}
-									/>
-								</View>
-							</View>
-							{this.displaySuggestions()}
-						</View>
-					);
-				}}
-			</FieldComponent>
+			<View>
+				<FormInputComponent {...this.props}>
+					<View
+						style={styles.inputContainer}
+						onLayout={() => {
+							// This empty callback seems to be required for measure() to work, why?
+						}}
+						ref={(ref) => {
+							
+							this.inputContainerRef = ref;
+						}}>
+						<SearchBarComponent
+							{...this.props}
+							onChangeText={onTextChange}
+							value={currentText}
+							style={styles.input}
+						/>
+					</View>
+				</FormInputComponent>
+				{this.displaySuggestions()}
+			</View>
 		);
 	}
 
@@ -180,9 +165,9 @@ export type SearchTextInputComponentInput = TextInputComponentInput & SearchBarC
 }
 
 /**
- * SearchTextInputComponent's output props
+ * SearchTextInputComponent's output props (search callbacks)
  */
-export type SearchTextInputComponentOutput = SearchBarComponentOutput & {
+export type SearchTextInputComponentSearchOutput = SearchBarComponentOutput & {
 
 	/**
 	 * The suggestion click callback
@@ -194,6 +179,11 @@ export type SearchTextInputComponentOutput = SearchBarComponentOutput & {
 	 */
 	onClearSuggestions: () => void;
 }
+
+/**
+ * SearchTextInputComponent's output props
+ */
+export type SearchTextInputComponentOutput = TextInputComponentOutput & SearchTextInputComponentSearchOutput;
 
 /**
  * SearchTextInputComponent's props

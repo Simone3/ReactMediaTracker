@@ -3,7 +3,7 @@ import { FormikProps, FormikValues } from 'formik';
 import { MediaItemFormViewComponent, MediaItemFormViewComponentInput, MediaItemFormViewComponentOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
-import { TextInputComponent } from 'app/components/presentational/form/text-input';
+import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 
 /**
  * Presentational component that contains all movie form input fields, all handled by the Formik container component
@@ -29,7 +29,7 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 	private durationField(): ReactNode {
 
 		return (
-			<TextInputComponent
+			<TextInputFieldComponent
 				name='durationMinutes'
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.MOVIE')}
 				icon={images.durationField()}

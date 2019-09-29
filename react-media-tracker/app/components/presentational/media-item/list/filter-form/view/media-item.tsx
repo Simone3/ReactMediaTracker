@@ -3,7 +3,8 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import { FormikProps, FormikValues } from 'formik';
 import { styles } from 'app/components/presentational/media-item/list/filter-form/view/styles';
 import { i18n } from 'app/utilities/i18n';
-import { PickerInputComponent, PickerInputComponentItem } from 'app/components/presentational/form/picker-input';
+import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
+import { PickerComponentItem } from 'app/components/presentational/form/components/picker';
 import { MEDIA_ITEM_FILTER_FORM_GROUP_VALUES, MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES, MEDIA_ITEM_FILTER_FORM_SORT_VALUES, MEDIA_ITEM_FILTER_FORM_STATUS_VALUES } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { images } from 'app/utilities/images';
@@ -44,11 +45,11 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='status'
 				prompt={i18n.t('mediaItem.list.filter.prompts.status')}
 				items={items}
-				defaultIcon={images.statusField()}
+				icon={images.statusField()}
 			/>
 		);
 	}
@@ -67,11 +68,11 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='group'
 				prompt={i18n.t('mediaItem.list.filter.prompts.group')}
 				items={items}
-				defaultIcon={images.groupField()}
+				icon={images.groupField()}
 			/>
 		);
 	}
@@ -90,11 +91,11 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='ownPlatform'
 				prompt={i18n.t('mediaItem.list.filter.prompts.ownPlatform')}
 				items={items}
-				defaultIcon={images.ownPlatformField()}
+				icon={images.ownPlatformField()}
 			/>
 		);
 	}
@@ -113,11 +114,11 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		});
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='sortBy'
 				prompt={i18n.t('mediaItem.list.filter.prompts.sort')}
 				items={items}
-				defaultIcon={images.sortField()}
+				icon={images.sortField()}
 			/>
 		);
 	}
@@ -128,7 +129,7 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 	 */
 	private importanceField(): ReactNode {
 
-		let items: PickerInputComponentItem[] = [{
+		let items: PickerComponentItem[] = [{
 			value: undefined,
 			label: i18n.t(`mediaItem.list.filter.values.importance.all`),
 			icon: images.none()
@@ -142,7 +143,7 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		}));
 
 		return (
-			<PickerInputComponent
+			<PickerFieldComponent
 				name='importanceLevel'
 				prompt={i18n.t('mediaItem.list.filter.prompts.importance')}
 				items={items}
