@@ -36,7 +36,7 @@ export class TextInputComponent extends Component<TextInputComponentInput> {
 								onChangeText={field.onChange}
 								onFocus={field.onFocus}
 								onBlur={field.onBlur}
-								value={field.value}
+								value={field.value ? String(field.value) : ''}
 								placeholder={placeholder}
 								keyboardType={keyboardType}
 								style={styles.input}
