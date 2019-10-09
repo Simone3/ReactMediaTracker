@@ -177,7 +177,8 @@
 					"MOVIE": "Runtime (minutes)"
 				},
 				"userComment": "Your notes",
-				"genres": "Genres"
+				"genres": "Genres",
+				"group": "Group"
 			},
 			"prompts": {
 				"importance": "Importance"
@@ -187,6 +188,17 @@
 					"fullLabel": "{{name}} [{{releaseDate}}]"
 				}
 			}
+		}
+	},
+	"group": {
+		"picker": {
+			"prompt": "Group",
+			"options": {
+				"none": "No group"
+			}
+		},
+		"order": {
+			"placeholder": "Order in group"
 		}
 	},
 	"common": {

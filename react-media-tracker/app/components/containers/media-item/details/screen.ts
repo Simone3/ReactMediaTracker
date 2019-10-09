@@ -6,8 +6,12 @@ const mapStateToProps = (state: State): MediaItemDetailsScreenComponentInput => 
 	
 	const details = state.mediaItemDetails;
 	
+	const mediaItemLoading = details.saveStatus === 'SAVING';
+	const catalogLoading = state.mediaItemDetails.catalogStatus === 'FETCHING';
+	const groupsLoading = state.groupsList.status === 'DELETING' || state.groupsList.status === 'FETCHING';
+
 	return {
-		isLoading: details.saveStatus === 'SAVING' || state.mediaItemDetails.catalogStatus === 'FETCHING',
+		isLoading: mediaItemLoading || catalogLoading || groupsLoading,
 		wasSaved: state.mediaItemDetails.saveStatus === 'SAVED'
 	};
 };

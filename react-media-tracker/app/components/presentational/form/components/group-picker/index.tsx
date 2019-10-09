@@ -1,0 +1,378 @@
+import { styles } from 'app/components/presentational/form/components/group-picker/styles';
+import React, { ReactNode, Component } from 'react';
+import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { ModalComponent } from 'app/components/presentational/generic/modal';
+import { i18n } from 'app/utilities/i18n';
+import { MediaItemGroupInternal } from 'app/data/models/internal/media-items/media-item';
+import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { GroupInternal } from 'app/data/models/internal/group';
+import { PickerComponent, PickerComponentItem } from 'app/components/presentational/form/components/picker';
+import { AppError } from 'app/data/models/internal/error';
+import { TextInputComponent } from 'app/components/presentational/form/components/text-input';
+
+/**
+ * Presentational component to display a media item group picker
+ */
+export class GroupPickerComponent extends Component<GroupPickerComponentProps, GroupPickerComponentState> {
+	
+	public state: GroupPickerComponentState = {
+		open: false,
+		currentTemporaryGroupId: undefined,
+		currentTemporaryOrder: undefined
+	};
+
+	/**
+	 * @override
+	 */
+	public componentDidMount(): void {
+
+		this.requestFetchIfRequired();
+	}
+
+	/**
+	 * @override
+	 */
+	public componentDidUpdate(): void {
+
+		this.requestFetchIfRequired();
+	}
+	
+	/**
+	 * @override
+	 */
+	public render(): ReactNode {
+
+		return (
+			<FormInputComponent {...this.props}>
+				{this.renderInput()}
+				{this.renderModal()}
+			</FormInputComponent>
+		);
+	}
+
+	/**
+	 * Helper to invoke the fetch callback if the modal is open and the input fetch flag is true
+	 */
+	private requestFetchIfRequired(): void {
+		
+		if(this.state.open && this.props.requiresFetch) {
+
+			this.props.fetchGroups();
+		}
+	}
+
+	/**
+	 * Helper to render the visibile form field
+	 * @returns the component
+	 */
+	private renderInput(): ReactNode {
+
+		const {
+			placeholder,
+			onFocus,
+			currentGroup
+		} = this.props;
+
+		const textValue = currentGroup ? `${i18n.t(`mediaItem.list.group`, { order: currentGroup.orderInGroup, groupName: currentGroup.groupData.name })}` : '';
+
+		return (
+			<TouchableOpacity
+				style={styles.inputContainer}
+				onPress={(event) => {
+
+					// Open the modal and set the temporary data state
+					this.setState({
+						open: true,
+						currentTemporaryGroupId: this.props.currentGroup ? this.props.currentGroup.groupData.id : undefined,
+						currentTemporaryOrder: this.props.currentGroup ? this.props.currentGroup.orderInGroup : undefined
+					});
+					onFocus(event);
+				}}>
+				<TextInput
+					style={styles.input}
+					editable={false}
+					value={textValue}
+					placeholder={placeholder}
+				/>
+			</TouchableOpacity>
+		);
+	}
+
+	/**
+	 * Helper to render the modal
+	 * @returns the component
+	 */
+	private renderModal(): ReactNode {
+
+		const {
+			onBlur
+		} = this.props;
+
+		return (
+			<ModalComponent
+				visible={this.state.open}
+				onClose={() => {
+
+					onBlur('');
+					this.setState({ open: false });
+				}}>
+				<View style={ styles.modalContent }>
+					{this.renderModalContent()}
+				</View>
+			</ModalComponent>
+		);
+	}
+
+	/**
+	 * Helper to render the modal content
+	 * @returns the component
+	 */
+	private renderModalContent(): ReactNode {
+
+		return (
+			<View>
+				<View style={styles.modalInputsContainer}>
+					{this.renderModalPicker()}
+					{this.renderModalOrderInput()}
+				</View>
+				<View style={styles.modalButtonsContainer}>
+					{this.renderModalConfirmButton()}
+				</View>
+			</View>
+		);
+	}
+	
+	/**
+	 * Helper to render the modal group picker
+	 * @returns the component
+	 */
+	private renderModalPicker(): ReactNode {
+
+		const {
+			groups
+		} = this.props;
+
+		const {
+			currentTemporaryGroupId
+		} = this.state;
+
+		// Options
+		const items: PickerComponentItem[] = [{
+			value: undefined,
+			label: i18n.t('group.picker.options.none')
+		}];
+		for(const group of groups) {
+
+			items.push({
+				value: group.id,
+				label: group.name
+			});
+		}
+
+		// Current selection
+		const selectedItem = currentTemporaryGroupId;
+
+		// Selection callback
+		const onSelectGroup = (groupId: string | null | undefined): void => {
+
+			this.setState({
+				currentTemporaryGroupId: groupId ? groupId : undefined
+			});
+		};
+
+		return (
+			<PickerComponent
+				currentItem={selectedItem}
+				items={items}
+				onSelectItem={onSelectGroup}
+				prompt={i18n.t('group.picker.prompt')}
+				status='DEFAULT'
+				onBlur={() => {
+					// Do nothing for now
+				}}
+				onFocus={() => {
+					// Do nothing for now
+				}}
+			/>
+		);
+	}
+	
+	/**
+	 * Helper to render the modal order in group input
+	 * @returns the component
+	 */
+	private renderModalOrderInput(): ReactNode {
+
+		const {
+			groups
+		} = this.props;
+
+		const {
+			currentTemporaryOrder
+		} = this.state;
+
+		// Options
+		const items: PickerComponentItem[] = [{
+			value: undefined,
+			label: i18n.t('group.picker.options.none')
+		}];
+		for(const group of groups) {
+
+			items.push({
+				value: group.id,
+				label: group.name
+			});
+		}
+
+		// Selection callback
+		const onTextChange = (order: string): void => {
+
+			this.setState({
+				currentTemporaryOrder: order ? Number(order) : undefined
+			});
+		};
+
+		return (
+			<TextInputComponent
+				currentText={currentTemporaryOrder ? String(currentTemporaryOrder) : undefined}
+				onTextChange={onTextChange}
+				keyboardType='number-pad'
+				placeholder={i18n.t('group.order.placeholder')}
+				status='DEFAULT'
+				onBlur={() => {
+					// Do nothing for now
+				}}
+				onFocus={() => {
+					// Do nothing for now
+				}}
+			/>
+		);
+	}
+
+	/**
+	 * Helper to render the modal confirm button
+	 * @returns the component
+	 */
+	private renderModalConfirmButton(): ReactNode {
+
+		const {
+			currentTemporaryGroupId,
+			currentTemporaryOrder
+		} = this.state;
+
+		const {
+			onBlur,
+			onSelectGroup,
+			groups
+		} = this.props;
+
+		const valid = (currentTemporaryGroupId && currentTemporaryOrder) || (!currentTemporaryGroupId && !currentTemporaryOrder);
+
+		return (
+			<TouchableOpacity
+				disabled={!valid}
+				onPress={(event) => {
+
+					if(currentTemporaryGroupId && currentTemporaryOrder) {
+
+						// If a group was selected, find it in the list
+						const group = groups.find((value) => {
+							return value.id === currentTemporaryGroupId;
+						});
+						if(!group) {
+
+							throw AppError.GENERIC.withDetails(`Group ${currentTemporaryGroupId} was not found in the list`);
+						}
+
+						// Callback with the selected group
+						onSelectGroup({
+							groupData: group,
+							orderInGroup: currentTemporaryOrder
+						});
+					}
+					else {
+
+						// Callback with empty group
+						onSelectGroup(undefined);
+					}
+					
+					// Close modal
+					onBlur(event);
+					this.setState({ open: false });
+				}}>
+				<Text style={!valid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
+					{i18n.t('common.alert.default.okButton')}
+				</Text>
+			</TouchableOpacity>
+		);
+	}
+}
+
+/**
+ * GroupPickerComponent's input props
+ */
+export type GroupPickerComponentInput = FormInputComponentInput & {
+
+	/**
+	 * The current input values
+	 */
+	currentGroup: MediaItemGroupInternal | undefined;
+
+	/**
+	 * The text placeholder
+	 */
+	placeholder: string;
+
+	/**
+	 * The list of all available groups
+	 */
+	groups: GroupInternal[];
+
+	/**
+	 * Flag to tell if the groups list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
+	 */
+	requiresFetch: boolean;
+}
+
+/**
+ * GroupPickerComponent's output props
+ */
+export type GroupPickerComponentOutput = FormInputComponentOutput & {
+
+	/**
+	 * Notifies input value change
+	 */
+	onSelectGroup: (group: MediaItemGroupInternal | undefined) => void;
+
+	/**
+	 * Callback to request the groups list (re)load
+	 */
+	fetchGroups: () => void;
+}
+
+/**
+ * GroupPickerComponent's props
+ */
+export type GroupPickerComponentProps = GroupPickerComponentInput & GroupPickerComponentOutput;
+
+/**
+ * GroupPickerComponent's state
+ */
+export type GroupPickerComponentState = {
+
+	/**
+	 * If the group picker modal is open
+	 */
+	open: boolean;
+
+	/**
+	 * The currently selected group, to be confirmed by the user
+	 */
+	currentTemporaryGroupId: string | undefined;
+
+	/**
+	 * The currently inserted order, to be confirmed by the user
+	 */
+	currentTemporaryOrder: number | undefined;
+}
+

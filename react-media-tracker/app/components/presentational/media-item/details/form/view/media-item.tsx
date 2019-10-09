@@ -10,6 +10,7 @@ import { PickerFieldComponent } from 'app/components/presentational/form/fields/
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
+import { GroupPickerFieldContainer } from 'app/components/containers/media-item/details/group-picker';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -75,6 +76,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.releaseDate()}
 					{this.userCommentField()}
 					{this.genresField()}
+					{this.groupField()}
 					{this.props.children}
 				</View>
 			</ScrollView>
@@ -175,6 +177,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='genres'
 				placeholder={i18n.t('mediaItem.details.placeholders.genres')}
 				icon={images.genresField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the group component
+	 */
+	private groupField(): ReactNode {
+
+		return (
+			<GroupPickerFieldContainer
+				name='group'
+				placeholder={i18n.t('mediaItem.details.placeholders.group')}
+				icon={images.groupField()}
 			/>
 		);
 	}
