@@ -2,12 +2,6 @@ import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-	container: {
-		flex: 0,
-		flexDirection: 'row',
-		justifyContent: 'center',
-		alignItems: 'center'
-	},
 	inputContainer: {
 		flex: 1
 	},

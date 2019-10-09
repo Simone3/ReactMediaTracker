@@ -74,18 +74,18 @@ export type PickerComponentInput = FormInputComponentInput & {
 /**
  * PickerComponent's output props
  */
-export type PickerComponentOutput = FormInputComponentOutput;
-
-/**
- * PickerComponent's props
- */
-export type PickerComponentProps = PickerComponentInput & PickerComponentOutput & {
+export type PickerComponentOutput = FormInputComponentOutput & {
 
 	/**
 	 * Notifies input value change
 	 */
 	onSelectItem: (value: string | undefined | null) => void;
 }
+
+/**
+ * PickerComponent's props
+ */
+export type PickerComponentProps = PickerComponentInput & PickerComponentOutput;
 
 /**
  * An item displayed by PickerComponent
