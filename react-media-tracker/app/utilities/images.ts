@@ -189,6 +189,15 @@ class ImagesHelper {
 
 	/**
 	 * Image getter
+	 * @returns the add icon
+	 */
+	public addButton(): ImageRequireSource {
+		
+		return require('app/resources/images/ic_action_add.png');
+	}
+
+	/**
+	 * Image getter
 	 * @returns the clear icon
 	 */
 	public clearButton(): ImageRequireSource {
@@ -311,6 +320,15 @@ class ImagesHelper {
 	public genresField(): ImageRequireSource {
 
 		return require('app/resources/images/ic_input_genre.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns menu button icon
+	 */
+	public menuButton(): ImageRequireSource {
+
+		return require('app/resources/images/ic_action_more.png');
 	}
 }
 

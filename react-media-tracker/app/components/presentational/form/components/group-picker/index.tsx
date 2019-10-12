@@ -9,6 +9,10 @@ import { GroupInternal } from 'app/data/models/internal/group';
 import { PickerComponent, PickerComponentItem } from 'app/components/presentational/form/components/picker';
 import { AppError } from 'app/data/models/internal/error';
 import { TextInputComponent } from 'app/components/presentational/form/components/text-input';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { images } from 'app/utilities/images';
+import { config } from 'app/config/config';
+import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
 
 /**
  * Presentational component to display a media item group picker
@@ -16,7 +20,8 @@ import { TextInputComponent } from 'app/components/presentational/form/component
 export class GroupPickerComponent extends Component<GroupPickerComponentProps, GroupPickerComponentState> {
 	
 	public state: GroupPickerComponentState = {
-		open: false,
+		mainModalOpen: false,
+		groupActionModalOpen: false,
 		currentTemporaryGroupId: undefined,
 		currentTemporaryOrder: undefined
 	};
@@ -45,7 +50,8 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 		return (
 			<FormInputComponent {...this.props}>
 				{this.renderInput()}
-				{this.renderModal()}
+				{this.renderMainModal()}
+				{this.renderGroupActionModal()}
 			</FormInputComponent>
 		);
 	}
@@ -55,7 +61,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 	 */
 	private requestFetchIfRequired(): void {
 		
-		if(this.state.open && this.props.requiresFetch) {
+		if(this.state.mainModalOpen && this.props.requiresFetch) {
 
 			this.props.fetchGroups();
 		}
@@ -82,7 +88,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 
 					// Open the modal and set the temporary data state
 					this.setState({
-						open: true,
+						mainModalOpen: true,
 						currentTemporaryGroupId: this.props.currentGroup ? this.props.currentGroup.groupData.id : undefined,
 						currentTemporaryOrder: this.props.currentGroup ? this.props.currentGroup.orderInGroup : undefined
 					});
@@ -99,10 +105,10 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 	}
 
 	/**
-	 * Helper to render the modal
+	 * Helper to render the main modal
 	 * @returns the component
 	 */
-	private renderModal(): ReactNode {
+	private renderMainModal(): ReactNode {
 
 		const {
 			onBlur
@@ -110,35 +116,25 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 
 		return (
 			<ModalComponent
-				visible={this.state.open}
+				visible={this.state.mainModalOpen}
 				onClose={() => {
 
 					onBlur('');
-					this.setState({ open: false });
+					this.setState({ mainModalOpen: false });
 				}}>
 				<View style={ styles.modalContent }>
-					{this.renderModalContent()}
+					<View style={styles.modalInputsContainer}>
+						<View style={styles.modalPickerContainer}>
+							{this.renderModalPicker()}
+							{this.renderModalActionButton()}
+						</View>
+						{this.renderModalOrderInput()}
+					</View>
+					<View style={styles.modalButtonsContainer}>
+						{this.renderModalConfirmButton()}
+					</View>
 				</View>
 			</ModalComponent>
-		);
-	}
-
-	/**
-	 * Helper to render the modal content
-	 * @returns the component
-	 */
-	private renderModalContent(): ReactNode {
-
-		return (
-			<View>
-				<View style={styles.modalInputsContainer}>
-					{this.renderModalPicker()}
-					{this.renderModalOrderInput()}
-				</View>
-				<View style={styles.modalButtonsContainer}>
-					{this.renderModalConfirmButton()}
-				</View>
-			</View>
 		);
 	}
 	
@@ -181,19 +177,39 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 		};
 
 		return (
-			<PickerComponent
-				currentItem={selectedItem}
-				items={items}
-				onSelectItem={onSelectGroup}
-				prompt={i18n.t('group.picker.prompt')}
-				status='DEFAULT'
-				onBlur={() => {
-					// Do nothing for now
-				}}
-				onFocus={() => {
-					// Do nothing for now
-				}}
-			/>
+			<View style={styles.modalPicker}>
+				<PickerComponent
+					currentItem={selectedItem}
+					items={items}
+					onSelectItem={onSelectGroup}
+					prompt={i18n.t('group.picker.prompt')}
+					status='DEFAULT'
+					onBlur={() => {
+						// Do nothing for now
+					}}
+					onFocus={() => {
+						// Do nothing for now
+					}}
+				/>
+			</View>
+		);
+	}
+
+	/**
+	 * Helper to render the button to show the extra group options
+	 * @returns the component
+	 */
+	private renderModalActionButton(): ReactNode {
+
+		return (
+			<TouchableOpacity onPress={() => {
+				this.setState({	groupActionModalOpen: true });
+			}} style={styles.modalActionButton}>
+				<ColoredImage
+					source={images.menuButton()}
+					tintColor={config.ui.colors.colorModalContent}
+				/>
+			</TouchableOpacity>
 		);
 	}
 	
@@ -298,12 +314,67 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 					
 					// Close modal
 					onBlur(event);
-					this.setState({ open: false });
+					this.setState({ mainModalOpen: false });
 				}}>
 				<Text style={!valid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
 					{i18n.t('common.alert.default.okButton')}
 				</Text>
 			</TouchableOpacity>
+		);
+	}
+
+	/**
+	 * Helper to render the secondary modal with the group actions
+	 * @returns the component
+	 */
+	private renderGroupActionModal(): ReactNode {
+
+		const {
+			currentTemporaryGroupId
+		} = this.state;
+
+		const buttons: ButtonsListComponentButton[] = [{
+			label: i18n.t('group.actions.add'),
+			icon: images.addButton(),
+			onClick: () => {
+
+				// TBD
+				this.setState({	groupActionModalOpen: false });
+			}
+		}, {
+			label: i18n.t('group.actions.edit'),
+			icon: images.editButton(),
+			onClick: () => {
+
+				// TBD
+				this.setState({	groupActionModalOpen: false });
+			},
+			disabled: !currentTemporaryGroupId
+		}, {
+			label: i18n.t('group.actions.delete'),
+			icon: images.deleteButton(),
+			onClick: () => {
+
+				// TBD
+				this.setState({	groupActionModalOpen: false });
+			},
+			disabled: !currentTemporaryGroupId
+		}];
+
+		return (
+			<ModalComponent
+				visible={this.state.groupActionModalOpen}
+				onClose={() => {
+					this.setState({	groupActionModalOpen: false });
+				}}
+				horizontalPosition='center'
+				verticalPosition='bottom'>
+				<ButtonsListComponent
+					title={i18n.t('group.picker.prompt')}
+					titleIcon={images.groupField()}
+					buttons={buttons}
+				/>
+			</ModalComponent>
 		);
 	}
 }
@@ -361,9 +432,14 @@ export type GroupPickerComponentProps = GroupPickerComponentInput & GroupPickerC
 export type GroupPickerComponentState = {
 
 	/**
-	 * If the group picker modal is open
+	 * If the main group picker modal is open
 	 */
-	open: boolean;
+	mainModalOpen: boolean;
+
+	/**
+	 * If the extra group actions modal is open
+	 */
+	groupActionModalOpen: boolean;
 
 	/**
 	 * The currently selected group, to be confirmed by the user

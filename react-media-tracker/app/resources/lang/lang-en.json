@@ -199,6 +199,11 @@
 		},
 		"order": {
 			"placeholder": "Order in group"
+		},
+		"actions": {
+			"add": "Add new group",
+			"edit": "Edit group",
+			"delete": "Delete group"
 		}
 	},
 	"common": {

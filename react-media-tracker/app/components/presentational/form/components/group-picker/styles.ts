@@ -19,8 +19,19 @@ export const styles = StyleSheet.create({
 		height: 190,
 		padding: 15
 	},
-	modalInputsList: {
-		padding: 20
+	modalPickerContainer: {
+		flex: 1,
+		flexDirection: 'row'
+	},
+	modalPicker: {
+		flex: 1,
+		justifyContent: 'center',
+		alignContent: 'center'
+	},
+	modalActionButton: {
+		flex: 0,
+		justifyContent: 'center',
+		alignContent: 'center'
 	},
 	modalInputContainer: {
 		flex: 1,

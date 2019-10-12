@@ -24,7 +24,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 		return (
 			<View style={[ styles.container, { width: Dimensions.get('window').width }]}>
 				<View style={styles.titleSectionContainer}>
-					{this.renderRow(title, titleIcon)}
+					{this.renderRow(title, titleIcon, false)}
 				</View>
 				<HrComponent/>
 				<FlatList
@@ -32,8 +32,8 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 					data={buttons}
 					renderItem={({ item }) => {
 						return (
-							<TouchableOpacity onPress={item.onClick}>
-								{this.renderRow(item.label, item.icon)}
+							<TouchableOpacity onPress={item.onClick} disabled={item.disabled}>
+								{this.renderRow(item.label, item.icon, item.disabled)}
 							</TouchableOpacity>
 						);
 					}}
@@ -49,22 +49,25 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 	 * Helper to render a row
 	 * @param label the text label
 	 * @param icon the icon
+	 * @param disabled the disabled status
 	 * @returns the rendered component
 	 */
-	private renderRow(label: string, icon: ImageRequireSource): ReactNode {
+	private renderRow(label: string, icon: ImageRequireSource, disabled: boolean | undefined): ReactNode {
+
+		const color = disabled ? config.ui.colors.colorModalButtonDisabled : config.ui.colors.colorModalContent;
 
 		return (
 			<View style={styles.rowContainer}>
 				<View style={styles.rowIconContainer}>
 					<ColoredImage
 						source={icon}
-						tintColor={config.ui.colors.colorModalContent}
+						tintColor={color}
 						style={styles.rowIcon}
 						resizeMode='center'
 					/>
 				</View>
 				<View style={styles.rowLabelContainer}>
-					<Text style={styles.rowLabel} numberOfLines={1}>
+					<Text style={[ styles.rowLabel, { color: color }]} numberOfLines={1}>
 						{label}
 					</Text>
 				</View>
@@ -115,6 +118,11 @@ export type ButtonsListComponentButton = {
 	 * Button icon
 	 */
 	icon: ImageRequireSource;
+
+	/**
+	 * If the button is currently disabled
+	 */
+	disabled?: boolean;
 
 	/**
 	 * Button click callback
