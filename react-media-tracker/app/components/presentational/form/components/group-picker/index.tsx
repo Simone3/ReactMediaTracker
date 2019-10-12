@@ -13,6 +13,7 @@ import { ColoredImage } from 'app/components/presentational/generic/colored-imag
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
+import { NavigationModalComponent } from 'app/components/presentational/generic/modal-navigation';
 
 /**
  * Presentational component to display a media item group picker
@@ -21,6 +22,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 	
 	public state: GroupPickerComponentState = {
 		mainModalOpen: false,
+		mainModalPage: 0,
 		groupActionModalOpen: false,
 		currentTemporaryGroupId: undefined,
 		currentTemporaryOrder: undefined
@@ -89,6 +91,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 					// Open the modal and set the temporary data state
 					this.setState({
 						mainModalOpen: true,
+						mainModalPage: 0,
 						currentTemporaryGroupId: this.props.currentGroup ? this.props.currentGroup.groupData.id : undefined,
 						currentTemporaryOrder: this.props.currentGroup ? this.props.currentGroup.orderInGroup : undefined
 					});
@@ -114,27 +117,64 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 			onBlur
 		} = this.props;
 
+		const {
+			mainModalOpen,
+			mainModalPage
+		} = this.state;
+
 		return (
-			<ModalComponent
-				visible={this.state.mainModalOpen}
+			<NavigationModalComponent
+				visible={mainModalOpen}
+				currentScreenIndex={mainModalPage}
 				onClose={() => {
 
 					onBlur('');
 					this.setState({ mainModalOpen: false });
-				}}>
-				<View style={ styles.modalContent }>
-					<View style={styles.modalInputsContainer}>
-						<View style={styles.modalPickerContainer}>
-							{this.renderModalPicker()}
-							{this.renderModalActionButton()}
-						</View>
-						{this.renderModalOrderInput()}
+				}}>{[
+					this.renderMainModalFirstScreen(),
+					this.renderMainModalSecondScreen()
+				]}
+			</NavigationModalComponent>
+		);
+	}
+
+	/**
+	 * Helper to render the first page of the main modal
+	 * @returns the component
+	 */
+	private renderMainModalFirstScreen(): ReactNode {
+		
+		return (
+			<View style={ styles.modalContent } key='group-screen-1'>
+				<View style={styles.modalInputsContainer}>
+					<View style={styles.modalPickerContainer}>
+						{this.renderModalPicker()}
+						{this.renderModalActionButton()}
 					</View>
-					<View style={styles.modalButtonsContainer}>
-						{this.renderModalConfirmButton()}
-					</View>
+					{this.renderModalOrderInput()}
 				</View>
-			</ModalComponent>
+				<View style={styles.modalButtonsContainer}>
+					{this.renderModalConfirmButton()}
+				</View>
+			</View>
+		);
+	}
+
+	/**
+	 * Helper to render the second page of the main modal
+	 * @returns the component
+	 */
+	private renderMainModalSecondScreen(): ReactNode {
+		
+		return (
+			<View style={ styles.modalContent } key='group-screen-2'>
+				<TouchableOpacity
+					onPress={() => {
+						this.setState({ mainModalPage: 0 });
+					}}>
+					<Text>Back!</Text>
+				</TouchableOpacity>
+			</View>
 		);
 	}
 	
@@ -338,16 +378,20 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 			icon: images.addButton(),
 			onClick: () => {
 
-				// TBD
-				this.setState({	groupActionModalOpen: false });
+				this.setState({
+					groupActionModalOpen: false,
+					mainModalPage: 1
+				});
 			}
 		}, {
 			label: i18n.t('group.actions.edit'),
 			icon: images.editButton(),
 			onClick: () => {
 
-				// TBD
-				this.setState({	groupActionModalOpen: false });
+				this.setState({
+					groupActionModalOpen: false,
+					mainModalPage: 1
+				});
 			},
 			disabled: !currentTemporaryGroupId
 		}, {
@@ -435,6 +479,11 @@ export type GroupPickerComponentState = {
 	 * If the main group picker modal is open
 	 */
 	mainModalOpen: boolean;
+
+	/**
+	 * The index of the current main modal screen
+	 */
+	mainModalPage: number;
 
 	/**
 	 * If the extra group actions modal is open

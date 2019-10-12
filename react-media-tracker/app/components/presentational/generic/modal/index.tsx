@@ -5,7 +5,7 @@ import { Modal, TouchableOpacity, View, TouchableWithoutFeedback, StyleProp, Vie
 /**
  * Presentational component to display a modal dialog
  */
-export class ModalComponent extends Component<ModalComponentInput & ModalComponentOutput> {
+export class ModalComponent extends Component<ModalComponentProps> {
 	
 	/**
 	 * @override
@@ -128,3 +128,8 @@ export type ModalComponentOutput = {
 	 */
 	onClose?: () => void;
 }
+
+/**
+ * ModalComponent's props
+ */
+export type ModalComponentProps = ModalComponentInput & ModalComponentOutput;
