@@ -17,7 +17,7 @@ export class NavigationModalComponent extends Component<NavigationModalComponent
 			currentScreenIndex
 		} = this.props;
 
-		if(currentScreenIndex < 0 || children.length >= currentScreenIndex) {
+		if(currentScreenIndex < 0 || currentScreenIndex >= children.length) {
 
 			throw AppError.GENERIC.withDetails(`${currentScreenIndex} is not a valid index for the navigation modal`);
 		}
