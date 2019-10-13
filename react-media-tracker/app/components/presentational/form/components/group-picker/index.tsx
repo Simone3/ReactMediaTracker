@@ -13,7 +13,9 @@ import { ColoredImage } from 'app/components/presentational/generic/colored-imag
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
-import { NavigationModalComponent } from 'app/components/presentational/generic/modal-navigation';
+import { navigationService } from 'app/utilities/navigation-service';
+import { AppScreens } from 'app/utilities/screens';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
  * Presentational component to display a media item group picker
@@ -22,7 +24,6 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 	
 	public state: GroupPickerComponentState = {
 		mainModalOpen: false,
-		mainModalPage: 0,
 		groupActionModalOpen: false,
 		currentTemporaryGroupId: undefined,
 		currentTemporaryOrder: undefined
@@ -91,7 +92,6 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 					// Open the modal and set the temporary data state
 					this.setState({
 						mainModalOpen: true,
-						mainModalPage: 0,
 						currentTemporaryGroupId: this.props.currentGroup ? this.props.currentGroup.groupData.id : undefined,
 						currentTemporaryOrder: this.props.currentGroup ? this.props.currentGroup.orderInGroup : undefined
 					});
@@ -118,63 +118,30 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 		} = this.props;
 
 		const {
-			mainModalOpen,
-			mainModalPage
+			mainModalOpen
 		} = this.state;
 
 		return (
-			<NavigationModalComponent
+			<ModalComponent
 				visible={mainModalOpen}
-				currentScreenIndex={mainModalPage}
 				onClose={() => {
 
 					onBlur('');
 					this.setState({ mainModalOpen: false });
-				}}>{[
-					this.renderMainModalFirstScreen(),
-					this.renderMainModalSecondScreen()
-				]}
-			</NavigationModalComponent>
-		);
-	}
-
-	/**
-	 * Helper to render the first page of the main modal
-	 * @returns the component
-	 */
-	private renderMainModalFirstScreen(): ReactNode {
-		
-		return (
-			<View style={ styles.modalContent } key='group-screen-1'>
-				<View style={styles.modalInputsContainer}>
-					<View style={styles.modalPickerContainer}>
-						{this.renderModalPicker()}
-						{this.renderModalActionButton()}
+				}}>
+				<View style={ styles.modalContent } key='group-screen-1'>
+					<View style={styles.modalInputsContainer}>
+						<View style={styles.modalPickerContainer}>
+							{this.renderModalPicker()}
+							{this.renderModalActionButton()}
+						</View>
+						{this.renderModalOrderInput()}
 					</View>
-					{this.renderModalOrderInput()}
+					<View style={styles.modalButtonsContainer}>
+						{this.renderModalConfirmButton()}
+					</View>
 				</View>
-				<View style={styles.modalButtonsContainer}>
-					{this.renderModalConfirmButton()}
-				</View>
-			</View>
-		);
-	}
-
-	/**
-	 * Helper to render the second page of the main modal
-	 * @returns the component
-	 */
-	private renderMainModalSecondScreen(): ReactNode {
-		
-		return (
-			<View style={ styles.modalContent } key='group-screen-2'>
-				<TouchableOpacity
-					onPress={() => {
-						this.setState({ mainModalPage: 0 });
-					}}>
-					<Text>Back!</Text>
-				</TouchableOpacity>
-			</View>
+			</ModalComponent>
 		);
 	}
 	
@@ -317,9 +284,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 		} = this.state;
 
 		const {
-			onBlur,
-			onSelectGroup,
-			groups
+			onBlur
 		} = this.props;
 
 		const valid = (currentTemporaryGroupId && currentTemporaryOrder) || (!currentTemporaryGroupId && !currentTemporaryOrder);
@@ -329,28 +294,8 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 				disabled={!valid}
 				onPress={(event) => {
 
-					if(currentTemporaryGroupId && currentTemporaryOrder) {
-
-						// If a group was selected, find it in the list
-						const group = groups.find((value) => {
-							return value.id === currentTemporaryGroupId;
-						});
-						if(!group) {
-
-							throw AppError.GENERIC.withDetails(`Group ${currentTemporaryGroupId} was not found in the list`);
-						}
-
-						// Callback with the selected group
-						onSelectGroup({
-							groupData: group,
-							orderInGroup: currentTemporaryOrder
-						});
-					}
-					else {
-
-						// Callback with empty group
-						onSelectGroup(undefined);
-					}
+					// Confirm group to the main form
+					this.confirmGroup(this.getCurrentlySelectedGroup(), currentTemporaryOrder);
 					
 					// Close modal
 					onBlur(event);
@@ -369,41 +314,27 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 	 */
 	private renderGroupActionModal(): ReactNode {
 
-		const {
-			currentTemporaryGroupId
-		} = this.state;
+		const group = this.getCurrentlySelectedGroup();
 
-		const buttons: ButtonsListComponentButton[] = [{
+		const addNewButton: ButtonsListComponentButton = {
 			label: i18n.t('group.actions.add'),
 			icon: images.addButton(),
-			onClick: () => {
+			onClick: this.onAddNewGroup.bind(this)
+		};
 
-				this.setState({
-					groupActionModalOpen: false,
-					mainModalPage: 1
-				});
-			}
-		}, {
+		const editButton: ButtonsListComponentButton = {
 			label: i18n.t('group.actions.edit'),
 			icon: images.editButton(),
-			onClick: () => {
+			onClick: this.onEditGroup.bind(this),
+			disabled: !group
+		};
 
-				this.setState({
-					groupActionModalOpen: false,
-					mainModalPage: 1
-				});
-			},
-			disabled: !currentTemporaryGroupId
-		}, {
+		const deleteButton: ButtonsListComponentButton = {
 			label: i18n.t('group.actions.delete'),
 			icon: images.deleteButton(),
-			onClick: () => {
-
-				// TBD
-				this.setState({	groupActionModalOpen: false });
-			},
-			disabled: !currentTemporaryGroupId
-		}];
+			onClick: this.onGroupDelete.bind(this),
+			disabled: !group
+		};
 
 		return (
 			<ModalComponent
@@ -416,10 +347,141 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 				<ButtonsListComponent
 					title={i18n.t('group.picker.prompt')}
 					titleIcon={images.groupField()}
-					buttons={buttons}
+					buttons={[ addNewButton, editButton, deleteButton ]}
 				/>
 			</ModalComponent>
 		);
+	}
+
+	/**
+	 * Retrieves the group data from the currently temporarily selected value, if any
+	 * @returns the group data or undefined if no group is selected
+	 */
+	private getCurrentlySelectedGroup(): GroupInternal | undefined {
+
+		const {
+			groups
+		} = this.props;
+
+		const {
+			currentTemporaryGroupId
+		} = this.state;
+
+		let group;
+		if(currentTemporaryGroupId) {
+
+			group = groups.find((value) => {
+				return value.id === currentTemporaryGroupId;
+			});
+			if(!group) {
+
+				throw AppError.GENERIC.withDetails(`Group ${currentTemporaryGroupId} was not found in the list`);
+			}
+		}
+
+		return group;
+	}
+
+	/**
+	 * Helper to "submit" the group value change to the main form
+	 * @param group the grup to send
+	 * @param order the order to send
+	 */
+	private confirmGroup(group: GroupInternal | undefined, order: number | undefined): void {
+
+		const {
+			onSelectGroup
+		} = this.props;
+
+		if(group && order) {
+
+			// Callback with the selected group
+			onSelectGroup({
+				groupData: group,
+				orderInGroup: order
+			});
+		}
+		else {
+
+			// Callback with empty group
+			onSelectGroup(undefined);
+		}
+	}
+
+	/**
+	 * Callback for the add new group button
+	 */
+	private onAddNewGroup(): void {
+
+		const {
+			addNewGroup
+		} = this.props;
+
+		// Load empty group details and navigate to the group form
+		addNewGroup();
+		navigationService.navigate(AppScreens.GroupDetails);
+
+		// Close all modals (for the future: see if there's a way to keep the main modal open)
+		this.setState({
+			mainModalOpen: false,
+			groupActionModalOpen: false
+		});
+	}
+
+	/**
+	 * Callback for the edit group button
+	 */
+	private onEditGroup(): void {
+		
+		const {
+			editGroup
+		} = this.props;
+
+		const group = this.getCurrentlySelectedGroup() as GroupInternal;
+
+		// Load group details and navigate to the group form
+		editGroup(group as GroupInternal);
+		navigationService.navigate(AppScreens.GroupDetails);
+
+		// Close all modals (for the future: see if there's a way to keep the main modal open)
+		this.setState({
+			mainModalOpen: false,
+			groupActionModalOpen: false
+		});
+	}
+
+	/**
+	 * Callback for the delete group button
+	 */
+	private onGroupDelete(): void {
+		
+		const {
+			deleteGroup,
+			currentGroup
+		} = this.props;
+
+		const group = this.getCurrentlySelectedGroup() as GroupInternal;
+
+		// Ask for confirmation
+		const title = i18n.t('group.common.alert.delete.title');
+		const message = i18n.t('group.common.alert.delete.message', { name: group.name });
+		ConfirmAlert.alert(title, message, () => {
+			
+			// Delete the group
+			deleteGroup(group);
+
+			// Close action modal and reset currently selected value
+			this.setState({
+				groupActionModalOpen: false,
+				currentTemporaryGroupId: undefined
+			});
+
+			// Also notify the main form if the selected component was the deleted one (to update the main input value even if the user closes the modal without confirming)
+			if(currentGroup && group.id === currentGroup.groupData.id) {
+
+				this.confirmGroup(undefined, undefined);
+			}
+		});
 	}
 }
 
@@ -463,6 +525,21 @@ export type GroupPickerComponentOutput = FormInputComponentOutput & {
 	 * Callback to request the groups list (re)load
 	 */
 	fetchGroups: () => void;
+
+	/**
+	 * Callback to add a new group
+	 */
+	addNewGroup: () => void;
+
+	/**
+	 * Callback to edit a group
+	 */
+	editGroup: (group: GroupInternal) => void;
+	
+	/**
+	 * Callback to delete a group
+	 */
+	deleteGroup: (group: GroupInternal) => void;
 }
 
 /**
@@ -481,11 +558,6 @@ export type GroupPickerComponentState = {
 	mainModalOpen: boolean;
 
 	/**
-	 * The index of the current main modal screen
-	 */
-	mainModalPage: number;
-
-	/**
 	 * If the extra group actions modal is open
 	 */
 	groupActionModalOpen: boolean;
@@ -500,4 +572,3 @@ export type GroupPickerComponentState = {
 	 */
 	currentTemporaryOrder: number | undefined;
 }
-

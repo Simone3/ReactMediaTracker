@@ -191,6 +191,14 @@
 		}
 	},
 	"group": {
+		"common": {
+			"alert": {
+				"delete": {
+					"title": "Delete Group",
+					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it. This will also remove all its media items."
+				}
+			}
+		},
 		"picker": {
 			"prompt": "Group",
 			"options": {
@@ -204,6 +212,14 @@
 			"add": "Add new group",
 			"edit": "Edit group",
 			"delete": "Delete group"
+		},
+		"details": {
+			"title": {
+				"new": "New Group"
+			},
+			"placeholders": {
+				"name": "Name"
+			}
 		}
 	},
 	"common": {

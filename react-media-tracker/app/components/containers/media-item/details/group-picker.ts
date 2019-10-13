@@ -1,6 +1,6 @@
 
 import { GroupPickerFieldComponent, GroupPickerFieldComponentInput, GroupPickerFieldComponentOutput } from 'app/components/presentational/form/fields/group-picker';
-import { fetchGroups } from 'app/redux/actions/group/generators';
+import { deleteGroup, fetchGroups, loadGroupDetails, loadNewGroupDetails } from 'app/redux/actions/group/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -20,6 +20,15 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContai
 		...ownProps,
 		fetchGroups: () => {
 			dispatch(fetchGroups());
+		},
+		addNewGroup: () => {
+			dispatch(loadNewGroupDetails());
+		},
+		editGroup: (group) => {
+			dispatch(loadGroupDetails(group));
+		},
+		deleteGroup: (group) => {
+			dispatch(deleteGroup(group));
 		}
 	};
 };

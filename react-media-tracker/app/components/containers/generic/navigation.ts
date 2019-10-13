@@ -1,5 +1,6 @@
 import { CategoryDetailsScreenContainer } from 'app/components/containers/category/details/screen';
 import { CategoriesListScreenContainer } from 'app/components/containers/category/list/screen';
+import { GroupDetailsScreenContainer } from 'app/components/containers/group/details/screen';
 import { MediaItemDetailsScreenContainer } from 'app/components/containers/media-item/details/screen';
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
 import { config } from 'app/config/config';
@@ -13,6 +14,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 const AppNavigator = createStackNavigator({
 	[AppScreens.CategoriesList]: CategoriesListScreenContainer,
 	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer,
+	[AppScreens.GroupDetails]: GroupDetailsScreenContainer,
 	[AppScreens.MediaItemsList]: MediaItemsListScreenContainer,
 	[AppScreens.MediaItemDetails]: MediaItemDetailsScreenContainer
 }, {
