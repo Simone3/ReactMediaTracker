@@ -38,6 +38,37 @@ export type InvalidateGroupsAction = Action & {
 };
 
 /**
+ * The load new group action
+ */
+export type LoadNewGroupDetailsAction = Action & {
+	
+};
+
+/**
+ * The load existing group action
+ */
+export type LoadGroupDetailsAction = Action & {
+	
+	group: GroupInternal;
+};
+
+/**
+ * The set group form status action
+ */
+export type SetGroupFormStatusAction = Action & {
+	
+	valid: boolean;
+	dirty: boolean;
+};
+
+/**
+ * The request group save action
+ */
+export type RequestGroupSaveAction = Action & {
+	
+};
+
+/**
  * The save group action
  */
 export type SaveGroupAction = Action & {
@@ -58,6 +89,7 @@ export type StartSavingGroupAction = Action & {
  */
 export type CompleteSavingGroupAction = Action & {
 	
+	group: GroupInternal;
 };
 
 /**
@@ -87,6 +119,7 @@ export type StartDeletingGroupAction = Action & {
  */
 export type CompleteDeletingGroupAction = Action & {
 	
+	groupId: string;
 };
 
 /**

@@ -28,7 +28,7 @@ const saveGroupSaga = function * (action: SaveGroupAction): SagaIterator {
 
 		// Save the group
 		yield call(groupController.saveGroup.bind(groupController), category.id, action.group);
-		yield put(completeSavingGroup());
+		yield put(completeSavingGroup(action.group));
 	}
 	catch(error) {
 

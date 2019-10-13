@@ -2,6 +2,7 @@ import { categoryDetails } from 'app/redux/reducers/category/details';
 import { categoryGlobal } from 'app/redux/reducers/category/global';
 import { categoriesList } from 'app/redux/reducers/category/list';
 import { error } from 'app/redux/reducers/error';
+import { groupDetails } from 'app/redux/reducers/group/details';
 import { groupsList } from 'app/redux/reducers/group/list';
 import { mediaItemDetails } from 'app/redux/reducers/media-item/details';
 import { mediaItemsList } from 'app/redux/reducers/media-item/list';
@@ -16,7 +17,8 @@ export const rootReducer = combineReducers<State, Action>({
 	categoryGlobal,
 	categoriesList,
 	categoryDetails,
-	mediaItemsList,
 	groupsList,
+	groupDetails,
+	mediaItemsList,
 	mediaItemDetails
 });

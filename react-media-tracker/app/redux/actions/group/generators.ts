@@ -1,6 +1,6 @@
 import { GroupInternal } from 'app/data/models/internal/group';
-import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, INVALIDATE_GROUPS, SAVE_GROUP, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
-import { CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, InvalidateGroupsAction, SaveGroupAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
+import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, INVALIDATE_GROUPS, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SAVE_GROUP, SET_GROUP_FORM_STATUS, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
+import { CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, InvalidateGroupsAction, LoadGroupDetailsAction, LoadNewGroupDetailsAction, RequestGroupSaveAction, SaveGroupAction, SetGroupFormStatusAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
 
 /**
  * Generator for the fetch groups list action, which causes the request groups action, the async groups fetch and then the receive groups action
@@ -60,6 +60,56 @@ export const invalidateGroups = (): InvalidateGroupsAction => {
 };
 
 /**
+ * Generator for the load new group action, which resets the group details state to the initial values
+ * @returns the action
+ */
+export const loadNewGroupDetails = (): LoadNewGroupDetailsAction => {
+	
+	return {
+		type: LOAD_NEW_GROUP_DETAILS
+	};
+};
+
+/**
+ * Generator for the load existing group action, which sets the group details state
+ * @param group the group data
+ * @returns the action
+ */
+export const loadGroupDetails = (group: GroupInternal): LoadGroupDetailsAction => {
+	
+	return {
+		type: LOAD_GROUP_DETAILS,
+		group: group
+	};
+};
+
+/**
+ * Generator for the set group form status, which sets the current status of the group details form
+ * @param valid true if the form is currently valid (no validation errors)
+ * @param dirty true if the form is currently dirty (one or more fields changed)
+ * @returns the action
+ */
+export const setGroupFormStatus = (valid: boolean, dirty: boolean): SetGroupFormStatusAction => {
+	
+	return {
+		type: SET_GROUP_FORM_STATUS,
+		valid: valid,
+		dirty: dirty
+	};
+};
+
+/**
+ * Generator for the request group save action, which requests the group form validation and, if OK, submission
+ * @returns the action
+ */
+export const requestGroupSave = (): RequestGroupSaveAction => {
+	
+	return {
+		type: REQUEST_GROUP_SAVE
+	};
+};
+
+/**
  * Generator for the save group action, which causes the start saving group action, the async group store and then the complete saving group action
  * @param group the group data
  * @returns the action
@@ -87,12 +137,14 @@ export const startSavingGroup = (group: GroupInternal): StartSavingGroupAction =
 
 /**
  * Generator for the complete saving group action, which marks the successful end of the group saving operation
+ * @param group the saved group
  * @returns the action
  */
-export const completeSavingGroup = (): CompleteSavingGroupAction => {
+export const completeSavingGroup = (group: GroupInternal): CompleteSavingGroupAction => {
 	
 	return {
-		type: COMPLETE_SAVING_GROUP
+		type: COMPLETE_SAVING_GROUP,
+		group: group
 	};
 };
 
@@ -133,12 +185,14 @@ export const startDeletingGroup = (): StartDeletingGroupAction => {
 
 /**
  * Generator for the complete deleting group action, which marks the successful end of the group deleting operation
+ * @param groupId the deleted group ID
  * @returns the action
  */
-export const completeDeletingGroup = (): CompleteDeletingGroupAction => {
+export const completeDeletingGroup = (groupId: string): CompleteDeletingGroupAction => {
 	
 	return {
-		type: COMPLETE_DELETING_GROUP
+		type: COMPLETE_DELETING_GROUP,
+		groupId: groupId
 	};
 };
 

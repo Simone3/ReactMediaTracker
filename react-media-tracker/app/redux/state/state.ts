@@ -1,6 +1,6 @@
 import { ErrorState } from 'app/data/models/internal/error';
 import { CategoriesListState, CategoryDetailsState, CategoryGlobalState } from 'app/redux/state/category';
-import { GroupsListState } from 'app/redux/state/group';
+import { GroupDetailsState, GroupsListState } from 'app/redux/state/group';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
 
 /**
@@ -37,6 +37,11 @@ export class State {
 	 * Portion of the state with the groups list information
 	 */
 	public readonly groupsList!: GroupsListState;
+
+	/**
+	 * Portion of the state with the group details information
+	 */
+	public readonly groupDetails!: GroupDetailsState;
 
 	/**
 	 * Portion of the state with the media item details information

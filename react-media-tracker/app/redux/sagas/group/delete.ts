@@ -28,7 +28,7 @@ const deleteGroupSaga = function * (action: DeleteGroupAction): SagaIterator {
 
 		// Delete the group
 		yield call(groupController.deleteGroup.bind(groupController), category.id, action.group.id);
-		yield put(completeDeletingGroup());
+		yield put(completeDeletingGroup(action.group.id));
 	}
 	catch(error) {
 
