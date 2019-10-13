@@ -17,15 +17,18 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 		const {
 			source,
 			clickStatus,
-			onClick
+			onClick,
+			tintColor
 		} = this.props;
+
+		const iconColor = tintColor ? tintColor : config.ui.colors.colorContrastText;
 
 		if(clickStatus === 'NOT_CLICKABLE') {
 
 			return (
 				<ColoredImage
 					source={source}
-					tintColor={config.ui.colors.colorContrastText}
+					tintColor={iconColor}
 					style={styles.icon}
 				/>
 			);
@@ -40,7 +43,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 					disabled={!iconClickEnabled}>
 					<ColoredImage
 						source={source}
-						tintColor={config.ui.colors.colorContrastText}
+						tintColor={iconColor}
 						style={iconClickEnabled ? styles.icon : [ styles.icon, styles.iconDisabled ]}
 					/>
 				</TouchableOpacity>
@@ -58,6 +61,11 @@ export type HeaderIconComponentInput = {
 	 * The icon source
 	 */
 	source: ImageRequireSource;
+
+	/**
+	 * The icon color
+	 */
+	tintColor?: string;
 
 	/**
 	 * The icon clickable status
