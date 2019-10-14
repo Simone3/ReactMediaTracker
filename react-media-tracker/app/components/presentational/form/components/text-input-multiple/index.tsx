@@ -4,6 +4,7 @@ import { View, TextInput, KeyboardTypeOptions, TouchableOpacity, FlatList, Text 
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
 
 /**
  * Presentational component to display a multiple text input (result is array of user-defined strings)
@@ -96,9 +97,7 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentPr
 				<View style={styles.modalInputsContainer}>
 					{this.renderModalInputs()}
 				</View>
-				<View style={styles.modalButtonsContainer}>
-					{this.renderModalConfirmButton()}
-				</View>
+				{this.renderModalConfirmButton()}
 			</View>
 		);
 	}
@@ -214,20 +213,17 @@ export class MultiTextInputComponent extends Component<MultiTextInputComponentPr
 		});
 
 		return (
-			<TouchableOpacity
-				disabled={!valid}
-				onPress={(event) => {
+			<ModalInputConfirmComponent
+				valid={valid}
+				onConfirm={(event) => {
 
 					const fieldValue = currentTemporaryValues.length === 1 && !currentTemporaryValues[0] ? [] : currentTemporaryValues;
 
 					onValuesChange(fieldValue);
 					onBlur(event);
 					this.setState({ open: false });
-				}}>
-				<Text style={!valid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
-					{i18n.t('common.alert.default.okButton')}
-				</Text>
-			</TouchableOpacity>
+				}}
+			/>
 		);
 	}
 }

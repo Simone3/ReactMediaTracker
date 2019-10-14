@@ -41,18 +41,5 @@ export const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderColor: config.ui.colors.colorFormInputs,
 		marginBottom: 10
-	},
-	modalButtonsContainer: {
-		height: 60,
-		padding: 20
-	},
-	submitText: {
-		textTransform: 'uppercase',
-		color: config.ui.colors.colorModalButton,
-		textAlign: 'right',
-		marginRight: 5
-	},
-	submitTextDisabled: {
-		color: config.ui.colors.colorModalButtonDisabled
 	}
 });

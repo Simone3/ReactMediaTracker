@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/form/components/group-picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
 import { MediaItemGroupInternal } from 'app/data/models/internal/media-items/media-item';
@@ -16,6 +16,7 @@ import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components
 import { navigationService } from 'app/utilities/navigation-service';
 import { AppScreens } from 'app/utilities/screens';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
+import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
 
 /**
  * Presentational component to display a media item group picker
@@ -137,9 +138,7 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 						</View>
 						{this.renderModalOrderInput()}
 					</View>
-					<View style={styles.modalButtonsContainer}>
-						{this.renderModalConfirmButton()}
-					</View>
+					{this.renderModalConfirmButton()}
 				</View>
 			</ModalComponent>
 		);
@@ -287,12 +286,12 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 			onBlur
 		} = this.props;
 
-		const valid = (currentTemporaryGroupId && currentTemporaryOrder) || (!currentTemporaryGroupId && !currentTemporaryOrder);
+		const valid = Boolean((currentTemporaryGroupId && currentTemporaryOrder) || (!currentTemporaryGroupId && !currentTemporaryOrder));
 
 		return (
-			<TouchableOpacity
-				disabled={!valid}
-				onPress={(event) => {
+			<ModalInputConfirmComponent
+				valid={valid}
+				onConfirm={(event) => {
 
 					// Confirm group to the main form
 					this.confirmGroup(this.getCurrentlySelectedGroup(), currentTemporaryOrder);
@@ -300,11 +299,8 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 					// Close modal
 					onBlur(event);
 					this.setState({ mainModalOpen: false });
-				}}>
-				<Text style={!valid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
-					{i18n.t('common.alert.default.okButton')}
-				</Text>
-			</TouchableOpacity>
+				}}
+			/>
 		);
 	}
 
