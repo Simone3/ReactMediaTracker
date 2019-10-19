@@ -22,6 +22,10 @@ export class AppError extends Error {
 	public static BACKEND_GROUP_SAVE = new AppError('backend.group.save', 'error.flash.messages.backendGroupSave');
 	public static BACKEND_GROUP_DELETE = new AppError('backend.group.delete', 'error.flash.messages.backendGroupDelete');
 
+	public static BACKEND_OWN_PLATFORM_FETCH = new AppError('backend.ownPlatform.fetch', 'error.flash.messages.backendOwnPlatformFetch');
+	public static BACKEND_OWN_PLATFORM_SAVE = new AppError('backend.ownPlatform.save', 'error.flash.messages.backendOwnPlatformSave');
+	public static BACKEND_OWN_PLATFORM_DELETE = new AppError('backend.ownPlatform.delete', 'error.flash.messages.backendOwnPlatformDelete');
+
 	private _errorCode: string;
 	private _errorDescription: string;
 	private _errorDetails?: string | AppError;
