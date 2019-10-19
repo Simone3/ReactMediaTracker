@@ -30,6 +30,7 @@ export type Config = {
 			cyan: string;
 			grey: string;
 			availableCategoryColors: string[];
+			availableOwnPlatformColors: string[];
 		};
 	};
 	mocks: {

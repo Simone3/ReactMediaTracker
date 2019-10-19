@@ -28,7 +28,8 @@ const config: Config = {
 			purple: '#e75fe7',
 			cyan: '#4bead7',
 			grey: '#6e6d66',
-			availableCategoryColors: []
+			availableCategoryColors: [],
+			availableOwnPlatformColors: []
 		}
 	},
 	mocks: {
@@ -36,7 +37,7 @@ const config: Config = {
 	}
 };
 
-config.ui.colors.availableCategoryColors = [
+config.ui.colors.availableCategoryColors = config.ui.colors.availableOwnPlatformColors = [
 	config.ui.colors.blue,
 	config.ui.colors.red,
 	config.ui.colors.green,
