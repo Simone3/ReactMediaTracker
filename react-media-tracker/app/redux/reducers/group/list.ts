@@ -1,3 +1,4 @@
+import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, INVALIDATE_GROUPS, START_DELETING_GROUP, START_FETCHING_GROUPS } from 'app/redux/actions/group/const';
 import { CompleteFetchingGroupsAction } from 'app/redux/actions/group/types';
 import { GroupsListState } from 'app/redux/state/group';
@@ -86,6 +87,14 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 			return {
 				...state,
 				status: 'FETCHED'
+			};
+		}
+
+		// When a category is selected, the group data is reset
+		case SELECT_CATEGORY: {
+
+			return {
+				...initialState
 			};
 		}
 
