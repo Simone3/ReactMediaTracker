@@ -4,7 +4,6 @@ import { View, TextInput, TouchableOpacity, ImageRequireSource } from 'react-nat
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { PickerComponent, PickerComponentItem } from 'app/components/presentational/form/components/picker';
-import { AppError } from 'app/data/models/internal/error';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
@@ -336,11 +335,6 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 
 				return getEntityValues(value).id === currentTemporaryEntity;
 			});
-
-			if(!entity) {
-
-				throw AppError.GENERIC.withDetails(`Entity ${currentTemporaryEntity} was not found in the list`);
-			}
 		}
 
 		return entity;
