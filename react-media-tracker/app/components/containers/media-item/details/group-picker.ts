@@ -21,10 +21,10 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContai
 		fetchGroups: () => {
 			dispatch(fetchGroups());
 		},
-		addNewGroup: () => {
+		loadNewGroupDetails: () => {
 			dispatch(loadNewGroupDetails());
 		},
-		editGroup: (group) => {
+		loadGroupDetails: (group) => {
 			dispatch(loadGroupDetails(group));
 		},
 		deleteGroup: (group) => {
