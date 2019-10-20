@@ -2,6 +2,7 @@ import { ErrorState } from 'app/data/models/internal/error';
 import { CategoriesListState, CategoryDetailsState, CategoryGlobalState } from 'app/redux/state/category';
 import { GroupDetailsState, GroupsListState } from 'app/redux/state/group';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
+import { OwnPlatformDetailsState, OwnPlatformsListState } from 'app/redux/state/own-platform';
 
 /**
  * The global application state (handled by Redux)
@@ -34,6 +35,11 @@ export class State {
 	public readonly mediaItemsList!: MediaItemsListState;
 
 	/**
+	 * Portion of the state with the media item details information
+	 */
+	public readonly mediaItemDetails!: MediaItemDetailsState;
+
+	/**
 	 * Portion of the state with the groups list information
 	 */
 	public readonly groupsList!: GroupsListState;
@@ -44,7 +50,12 @@ export class State {
 	public readonly groupDetails!: GroupDetailsState;
 
 	/**
-	 * Portion of the state with the media item details information
+	 * Portion of the state with the own platforms list information
 	 */
-	public readonly mediaItemDetails!: MediaItemDetailsState;
+	public readonly ownPlatformsList!: OwnPlatformsListState;
+
+	/**
+	 * Portion of the state with the own platform details information
+	 */
+	public readonly ownPlatformDetails!: OwnPlatformDetailsState;
 }

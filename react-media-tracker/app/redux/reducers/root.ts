@@ -6,6 +6,8 @@ import { groupDetails } from 'app/redux/reducers/group/details';
 import { groupsList } from 'app/redux/reducers/group/list';
 import { mediaItemDetails } from 'app/redux/reducers/media-item/details';
 import { mediaItemsList } from 'app/redux/reducers/media-item/list';
+import { ownPlatformDetails } from 'app/redux/reducers/own-platform/details';
+import { ownPlatformsList } from 'app/redux/reducers/own-platform/list';
 import { State } from 'app/redux/state/state';
 import { Action, combineReducers } from 'redux';
 
@@ -17,8 +19,10 @@ export const rootReducer = combineReducers<State, Action>({
 	categoryGlobal,
 	categoriesList,
 	categoryDetails,
+	mediaItemsList,
+	mediaItemDetails,
 	groupsList,
 	groupDetails,
-	mediaItemsList,
-	mediaItemDetails
+	ownPlatformsList,
+	ownPlatformDetails
 });

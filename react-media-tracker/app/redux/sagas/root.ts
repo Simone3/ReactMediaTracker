@@ -11,6 +11,9 @@ import { watchDeleteMediaItemSaga } from 'app/redux/sagas/media-item/delete';
 import { watchFetchMediaItemsSaga } from 'app/redux/sagas/media-item/fetch';
 import { watchInlineMediaItemUpdateSaga } from 'app/redux/sagas/media-item/inline-update';
 import { watchSaveMediaItemSaga } from 'app/redux/sagas/media-item/save';
+import { watchDeleteOwnPlatformSaga } from 'app/redux/sagas/own-platform/delete';
+import { watchFetchOwnPlatformsSaga } from 'app/redux/sagas/own-platform/fetch';
+import { watchSaveOwnPlatformSaga } from 'app/redux/sagas/own-platform/save';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -28,11 +31,14 @@ export const rootSaga = function * (): SagaIterator {
 		call(watchInlineMediaItemUpdateSaga),
 		call(watchSearchMediaItemsCatalogSaga),
 		call(watchGetMediaItemCatalogDetailsSaga),
+		call(watchSaveMediaItemSaga),
 
 		call(watchFetchGroupsSaga),
 		call(watchSaveGroupSaga),
 		call(watchDeleteGroupSaga),
-		call(watchSaveMediaItemSaga)
-		
+
+		call(watchFetchOwnPlatformsSaga),
+		call(watchSaveOwnPlatformSaga),
+		call(watchDeleteOwnPlatformSaga)
 	]);
 };
