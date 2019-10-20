@@ -178,7 +178,8 @@
 				},
 				"userComment": "Your notes",
 				"genres": "Genres",
-				"group": "Group"
+				"group": "Group",
+				"ownPlatform": "Owned at"
 			},
 			"prompts": {
 				"importance": "Importance"
@@ -216,6 +217,35 @@
 		"details": {
 			"title": {
 				"new": "New Group"
+			},
+			"placeholders": {
+				"name": "Name"
+			}
+		}
+	},
+	"ownPlatform": {
+		"common": {
+			"alert": {
+				"delete": {
+					"title": "Delete Platform",
+					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it. This will also remove all its media items."
+				}
+			}
+		},
+		"picker": {
+			"prompt": "Own Platform",
+			"options": {
+				"none": "I don't own it"
+			}
+		},
+		"actions": {
+			"add": "Add new platform",
+			"edit": "Edit platform",
+			"delete": "Delete platform"
+		},
+		"details": {
+			"title": {
+				"new": "New Platform"
 			},
 			"placeholders": {
 				"name": "Name"
