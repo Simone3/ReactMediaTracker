@@ -11,6 +11,7 @@ import { MediaItemFormNameFieldContainer } from 'app/components/containers/media
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 import { GroupPickerFieldContainer } from 'app/components/containers/media-item/details/group-picker';
+import { OwnPlatformPickerFieldContainer } from 'app/components/containers/media-item/details/own-platform-picker';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -77,6 +78,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.userCommentField()}
 					{this.genresField()}
 					{this.groupField()}
+					{this.ownPlatformField()}
 					{this.props.children}
 				</View>
 			</ScrollView>
@@ -192,6 +194,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='group'
 				placeholder={i18n.t('mediaItem.details.placeholders.group')}
 				icon={images.groupField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the own platform component
+	 */
+	private ownPlatformField(): ReactNode {
+
+		return (
+			<OwnPlatformPickerFieldContainer
+				name='ownPlatform'
+				placeholder={i18n.t('mediaItem.details.placeholders.ownPlatform')}
+				icon={images.ownPlatformField()}
 			/>
 		);
 	}

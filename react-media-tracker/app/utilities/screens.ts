@@ -4,7 +4,8 @@
 export const AppScreens = {
 	CategoriesList: 'CategoriesList',
 	CategoryDetails: 'CategoryDetails',
-	GroupDetails: 'GroupDetails',
 	MediaItemsList: 'MediaItemsList',
-	MediaItemDetails: 'MediaItemDetails'
+	MediaItemDetails: 'MediaItemDetails',
+	GroupDetails: 'GroupDetails',
+	OwnPlatformDetails: 'OwnPlatformDetails'
 };
