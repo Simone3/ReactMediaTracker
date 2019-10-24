@@ -13,6 +13,7 @@ type CoreMediaItemDataInternal = {
 	description?: string;
 	releaseDate?: Date;
 	imageUrl?: string;
+	catalogId?: string;
 }
 
 /**
@@ -59,7 +60,6 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
 	completedAt?: Date[];
 	active?: boolean;
 	markedAsRedo?: boolean;
-	catalogId?: string;
 }
 
 /**

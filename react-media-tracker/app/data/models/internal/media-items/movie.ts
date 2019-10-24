@@ -65,6 +65,7 @@ export const DEFAULT_MOVIE: MovieInternal = {
  * The default movie catalog details (with all fields required), internal type just for display purposes
  */
 export const DEFAULT_CATALOG_MOVIE: Required<CatalogMovieInternal> = {
+	catalogId: '',
 	name: '',
 	description: '',
 	directors: [],

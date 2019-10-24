@@ -69,6 +69,7 @@ export const DEFAULT_TV_SHOW: TvShowInternal = {
  * The default TV show catalog details (with all fields required), internal type just for display purposes
  */
 export const DEFAULT_CATALOG_TV_SHOW: Required<CatalogTvShowInternal> = {
+	catalogId: '',
 	name: '',
 	description: '',
 	genres: [],

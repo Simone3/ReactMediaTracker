@@ -65,6 +65,7 @@ export const DEFAULT_BOOK: BookInternal = {
  * The default book catalog details (with all fields required), internal type just for display purposes
  */
 export const DEFAULT_CATALOG_BOOK: Required<CatalogBookInternal> = {
+	catalogId: '',
 	name: '',
 	description: '',
 	authors: [],

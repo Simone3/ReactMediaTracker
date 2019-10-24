@@ -34,6 +34,14 @@ const config: Config = {
 	},
 	mocks: {
 		categories: false
+	},
+	external: {
+		googleSearch: (term) => {
+			return `https://www.google.com/search?q=${term}`;
+		},
+		wikipediaSearch: (term) => {
+			return `https://en.wikipedia.org/wiki/Special:Search?search=${term}`;
+		}
 	}
 };
 

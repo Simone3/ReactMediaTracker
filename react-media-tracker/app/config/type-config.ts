@@ -33,6 +33,10 @@ export type Config = {
 			availableOwnPlatformColors: string[];
 		};
 	};
+	external: {
+		googleSearch: (term: string) => string;
+		wikipediaSearch: (term: string) => string;
+	};
 	mocks: {
 		categories: boolean;
 	};

@@ -67,6 +67,7 @@ export const DEFAULT_VIDEOGAME: VideogameInternal = {
  * The default videogame catalog details (with all fields required), internal type just for display purposes
  */
 export const DEFAULT_CATALOG_VIDEOGAME: Required<CatalogVideogameInternal> = {
+	catalogId: '',
 	name: '',
 	description: '',
 	genres: [],

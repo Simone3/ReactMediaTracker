@@ -330,6 +330,42 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_action_more.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns default media item image (details form)
+	 */
+	public defaultMediaItemImage(): ImageRequireSource {
+
+		return require('app/resources/images/im_media_item_form_default.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns Google icon
+	 */
+	public googleIcon(): ImageRequireSource {
+
+		return require('app/resources/images/ic_google.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns Wikipedia icon
+	 */
+	public wikipediaIcon(): ImageRequireSource {
+
+		return require('app/resources/images/ic_wikipedia.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns download icon
+	 */
+	public downloadIcon(): ImageRequireSource {
+
+		return require('app/resources/images/ic_download.png');
+	}
 }
 
 /**

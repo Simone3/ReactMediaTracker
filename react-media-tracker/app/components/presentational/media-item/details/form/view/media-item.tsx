@@ -1,17 +1,18 @@
 import React, { Component, ReactNode } from 'react';
 import { View, ScrollView } from 'react-native';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { styles } from 'app/components/presentational/media-item/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
-import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
+import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 import { GroupPickerFieldContainer } from 'app/components/containers/media-item/details/group-picker';
 import { OwnPlatformPickerFieldContainer } from 'app/components/containers/media-item/details/own-platform-picker';
+import { MediaItemImageButtonsRowContainer } from 'app/components/containers/media-item/details/image-buttons-row';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -71,6 +72,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 		return (
 			<ScrollView style={styles.container}>
 				<View style={styles.content}>
+					{this.imageAndButtons()}
 					{this.nameField()}
 					{this.descriptionField()}
 					{this.importanceField()}
@@ -82,6 +84,19 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.props.children}
 				</View>
 			</ScrollView>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the image and buttons component
+	 */
+	private imageAndButtons(): ReactNode {
+
+		return (
+			<MediaItemImageButtonsRowContainer
+				mediaItem={this.props.values}
+			/>
 		);
 	}
 
@@ -241,4 +256,4 @@ export type MediaItemFormViewComponentOutput = {
 /**
  * All props of MediaItemFormViewComponent
  */
-export type MediaItemFormViewComponentProps = FormikProps<FormikValues> & MediaItemFormViewComponentInput & MediaItemFormViewComponentOutput;
+export type MediaItemFormViewComponentProps = FormikProps<MediaItemInternal> & MediaItemFormViewComponentInput & MediaItemFormViewComponentOutput;
