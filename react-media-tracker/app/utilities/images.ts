@@ -366,6 +366,15 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_download.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns creator field icon
+	 */
+	public creatorField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_creator.png');
+	}
 }
 
 /**

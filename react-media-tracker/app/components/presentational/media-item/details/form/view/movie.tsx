@@ -5,6 +5,7 @@ import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
+import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 
 /**
  * Presentational component that contains all movie form input fields, all handled by the Formik container component
@@ -19,6 +20,7 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 		return (
 			<MediaItemFormViewComponent {...this.props}>
 				{this.durationField()}
+				{this.directorsField()}
 			</MediaItemFormViewComponent>
 		);
 	}
@@ -35,6 +37,21 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.MOVIE')}
 				icon={images.durationField()}
 				keyboardType='number-pad'
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the directors component
+	 */
+	private directorsField(): ReactNode {
+
+		return (
+			<MultiTextInputFieldComponent
+				name='directors'
+				placeholder={i18n.t('mediaItem.details.placeholders.creators.MOVIE')}
+				icon={images.creatorField()}
 			/>
 		);
 	}

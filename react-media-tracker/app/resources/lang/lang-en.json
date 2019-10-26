@@ -134,7 +134,8 @@
 					"status": "Status",
 					"group": "Group",
 					"ownPlatform": "Owned",
-					"importance": "Importance"
+					"importance": "Importance",
+					"sort": "Order"
 				},
 				"values": {
 					"status": {
@@ -183,7 +184,10 @@
 				"userComment": "Your notes",
 				"genres": "Genres",
 				"group": "Group",
-				"ownPlatform": "Owned at"
+				"ownPlatform": "Owned at",
+				"creators": {
+					"MOVIE": "Directors"
+				}
 			},
 			"prompts": {
 				"importance": "Importance"
