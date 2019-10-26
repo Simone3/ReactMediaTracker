@@ -188,7 +188,7 @@
 				"creators": {
 					"MOVIE": "Directors"
 				},
-				"completedAt": "Completed on"
+				"completedOn": "Completed on"
 			},
 			"prompts": {
 				"importance": "Importance"

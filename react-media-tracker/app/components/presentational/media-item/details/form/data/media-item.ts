@@ -28,7 +28,7 @@ export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInter
 		color: string()
 	}),
 	userComment: string(),
-	completedAt: array().of(date()),
+	completedOn: array().of(date()),
 	active: boolean(),
 	markedAsRedo: boolean(),
 	catalogId: string()

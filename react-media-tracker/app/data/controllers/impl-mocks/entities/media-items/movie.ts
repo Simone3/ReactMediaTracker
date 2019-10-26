@@ -52,7 +52,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			status: 'COMPLETE',
 			name: 'My Fourth Movie',
 			importance: 'FAIRLY_IMPORTANT',
-			completedAt: [ new Date('2000-01-01'), new Date('2010-01-01') ],
+			completedOn: [ new Date('2000-01-01'), new Date('2010-01-01') ],
 			ownPlatform: {
 				id: '2',
 				name: 'Hulu',
@@ -64,7 +64,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			status: 'REDO',
 			name: 'My Fifth Movie',
 			importance: 'FAIRLY_IMPORTANT',
-			completedAt: [ new Date('2010-01-01') ],
+			completedOn: [ new Date('2010-01-01') ],
 			markedAsRedo: true
 		}, {
 			id: '6',

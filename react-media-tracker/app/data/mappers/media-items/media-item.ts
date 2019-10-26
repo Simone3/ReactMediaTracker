@@ -56,7 +56,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
-			completedAt: dateUtils.toStringList(source.completedAt),
+			completedOn: dateUtils.toStringList(source.completedOn),
 			releaseDate: dateUtils.toString(source.releaseDate),
 			active: source.active,
 			catalogId: source.catalogId,
@@ -102,7 +102,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
-			completedAt: dateUtils.toDateList(source.completedAt),
+			completedOn: dateUtils.toDateList(source.completedOn),
 			releaseDate: dateUtils.toDate(source.releaseDate),
 			active: source.active,
 			markedAsRedo: source.markedAsRedo,
@@ -149,7 +149,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			// Items with a future release date
 			return 'UPCOMING';
 		}
-		else if(source.completedAt && source.completedAt.length > 0) {
+		else if(source.completedOn && source.completedOn.length > 0) {
 
 			if(source.markedAsRedo) {
 

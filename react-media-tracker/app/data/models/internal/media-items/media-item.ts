@@ -57,7 +57,7 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
 	group?: MediaItemGroupInternal;
 	ownPlatform?: OwnPlatformInternal;
 	userComment?: string;
-	completedAt?: Date[];
+	completedOn?: Date[];
 	active?: boolean;
 	markedAsRedo?: boolean;
 }

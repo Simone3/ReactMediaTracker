@@ -40,9 +40,9 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 
 			case MARK_MEDIA_ITEM_AS_COMPLETE: {
 
-				const completionDates = mediaItem.completedAt ? mediaItem.completedAt : [];
+				const completionDates = mediaItem.completedOn ? mediaItem.completedOn : [];
 				completionDates.push(new Date());
-				mediaItem.completedAt = completionDates;
+				mediaItem.completedOn = completionDates;
 				mediaItem.status = 'COMPLETE';
 				break;
 			}

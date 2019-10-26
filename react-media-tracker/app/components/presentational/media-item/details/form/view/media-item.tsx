@@ -244,9 +244,9 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 
 		return (
 			<MultiDateInputFieldComponent
-				name='completedAt'
-				placeholder={i18n.t('mediaItem.details.placeholders.completedAt')}
-				icon={images.completedAtField()}
+				name='completedOn'
+				placeholder={i18n.t('mediaItem.details.placeholders.completedOn')}
+				icon={images.completedOnField()}
 			/>
 		);
 	}
