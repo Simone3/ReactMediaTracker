@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
-import { MediaItemFormViewComponent, MediaItemFormViewComponentInput, MediaItemFormViewComponentOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
+import { MediaItemFormViewComponent, MediaItemFormViewComponentCommonInput, MediaItemFormViewComponentCommonOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
@@ -18,10 +18,13 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 	public render(): ReactNode {
 		
 		return (
-			<MediaItemFormViewComponent {...this.props}>
-				{this.durationField()}
-				{this.directorsField()}
-			</MediaItemFormViewComponent>
+			<MediaItemFormViewComponent
+				{...this.props}
+				primarySpecificFields={[
+					this.durationField(),
+					this.directorsField()
+				]}
+			/>
 		);
 	}
 
@@ -33,6 +36,7 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 
 		return (
 			<TextInputFieldComponent
+				key='durationField'
 				name='durationMinutes'
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.MOVIE')}
 				icon={images.durationField()}
@@ -49,6 +53,7 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 
 		return (
 			<MultiTextInputFieldComponent
+				key='directorsField'
 				name='directors'
 				placeholder={i18n.t('mediaItem.details.placeholders.creators.MOVIE')}
 				icon={images.creatorField()}
@@ -60,12 +65,12 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 /**
  * MovieFormViewComponent's input props
  */
-export type MovieFormViewComponentInput = MediaItemFormViewComponentInput;
+export type MovieFormViewComponentInput = MediaItemFormViewComponentCommonInput;
 
 /**
  * MovieFormViewComponent's output props
  */
-export type MovieFormViewComponentOutput = MediaItemFormViewComponentOutput;
+export type MovieFormViewComponentOutput = MediaItemFormViewComponentCommonOutput;
 
 /**
  * All props of MovieFormViewComponent

@@ -69,6 +69,11 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	 * @override
 	 */
 	public render(): ReactNode {
+
+		const {
+			primarySpecificFields,
+			secondarySpecificFields
+		} = this.props;
 		
 		return (
 			<ScrollView style={styles.container}>
@@ -76,14 +81,15 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.imageAndButtons()}
 					{this.nameField()}
 					{this.descriptionField()}
-					{this.importanceField()}
-					{this.releaseDate()}
-					{this.userCommentField()}
+					{this.releaseDateField()}
+					{primarySpecificFields}
 					{this.genresField()}
-					{this.groupField()}
+					{this.importanceField()}
 					{this.ownPlatformField()}
+					{this.groupField()}
+					{secondarySpecificFields}
+					{this.userCommentField()}
 					{this.completionDatesField()}
-					{this.props.children}
 				</View>
 			</ScrollView>
 		);
@@ -159,7 +165,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 	 * Helper
 	 * @returns the release date component
 	 */
-	private releaseDate(): ReactNode {
+	private releaseDateField(): ReactNode {
 
 		return (
 			<DatePickerFieldComponent
@@ -247,9 +253,9 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 }
 
 /**
- * MediaItemFormViewComponent's input props
+ * MediaItemFormViewComponent's common input props
  */
-export type MediaItemFormViewComponentInput = {
+export type MediaItemFormViewComponentCommonInput = {
 
 	/**
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
@@ -258,9 +264,25 @@ export type MediaItemFormViewComponentInput = {
 }
 
 /**
- * MediaItemFormViewComponent's output props
+ * MediaItemFormViewComponent's input props
  */
-export type MediaItemFormViewComponentOutput = {
+export type MediaItemFormViewComponentInput = MediaItemFormViewComponentCommonInput & {
+
+	/**
+	 * Inputs for the specific media item (top)
+	 */
+	primarySpecificFields?: ReactNode[];
+
+	/**
+	 * Inputs for the specific media item (bottom)
+	 */
+	secondarySpecificFields?: ReactNode[];
+}
+
+/**
+ * MediaItemFormViewComponent's common output props
+ */
+export type MediaItemFormViewComponentCommonOutput = {
 
 	/**
 	 * Callback to notify the current status of the form
@@ -269,6 +291,11 @@ export type MediaItemFormViewComponentOutput = {
 	 */
 	notifyFormStatus: (valid: boolean, dirty: boolean) => void;
 }
+
+/**
+ * MediaItemFormViewComponent's output props
+ */
+export type MediaItemFormViewComponentOutput = MediaItemFormViewComponentCommonOutput;
 
 /**
  * All props of MediaItemFormViewComponent
