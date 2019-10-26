@@ -187,7 +187,8 @@
 				"ownPlatform": "Owned at",
 				"creators": {
 					"MOVIE": "Directors"
-				}
+				},
+				"completedAt": "Completed on"
 			},
 			"prompts": {
 				"importance": "Importance"
@@ -277,7 +278,10 @@
 		"form": {
 			"input": {
 				"multiText": {
-					"placeholder": "Insert value"
+					"placeholder": "Insert text"
+				},
+				"multiDate": {
+					"placeholder": "Insert date"
 				}
 			}
 		}

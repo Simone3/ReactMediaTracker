@@ -375,6 +375,15 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_input_creator.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns completion dates field icon
+	 */
+	public completedAtField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_complete_date.png');
+	}
 }
 
 /**

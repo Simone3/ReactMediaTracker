@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/form/components/date-picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TouchableOpacity, TextInput } from 'react-native';
+import { TouchableOpacity, TextInput } from 'react-native';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 
@@ -17,6 +17,30 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 	public render(): ReactNode {
 
 		const {
+			hideIconAndStatus
+		} = this.props;
+
+		if(hideIconAndStatus) {
+
+			return this.renderField();
+		}
+		else {
+
+			return (
+				<FormInputComponent {...this.props}>
+					{this.renderField()}
+				</FormInputComponent>
+			);
+		}
+	}
+
+	/**
+	 * Renders the field
+	 * @returns the cpmponent
+	 */
+	private renderField(): ReactNode {
+
+		const {
 			currentDate,
 			placeholder,
 			onFocus,
@@ -29,22 +53,18 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 		} = this.state;
 
 		return (
-			<View>
-				<FormInputComponent {...this.props}>
-					<TouchableOpacity
-						style={styles.inputButtonContainer}
-						onPress={(event) => {
-							this.setState({ open: true });
-							onFocus(event);
-						}}>
-						<TextInput
-							style={styles.inputButtonText}
-							placeholder={placeholder}
-							value={currentDate ? currentDate.toLocaleDateString() : ''}
-							editable={false}>
-						</TextInput>
-					</TouchableOpacity>
-				</FormInputComponent>
+			<TouchableOpacity
+				style={styles.inputButtonContainer}
+				onPress={(event) => {
+					this.setState({ open: true });
+					onFocus(event);
+				}}>
+				<TextInput
+					style={styles.inputButtonText}
+					placeholder={placeholder}
+					value={currentDate ? currentDate.toLocaleDateString() : ''}
+					editable={false}>
+				</TextInput>
 				<DateTimePicker
 					date={currentDate}
 					mode='date'
@@ -59,7 +79,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 						this.setState({ open: false });
 					}}
 				/>
-			</View>
+			</TouchableOpacity>
 		);
 	}
 }
@@ -78,6 +98,11 @@ export type DatePickerComponentInput = FormInputComponentInput & {
 	 * The input placeholder
 	 */
 	placeholder: string;
+
+	/**
+	 * If true, the icon and status underline are not displayed
+	 */
+	hideIconAndStatus?: boolean;
 }
 
 /**

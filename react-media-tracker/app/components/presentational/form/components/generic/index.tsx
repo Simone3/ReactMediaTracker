@@ -15,11 +15,12 @@ export class FormInputComponent extends Component<FormInputComponentProps> {
 	public render(): ReactNode {
 
 		const {
-			children
+			children,
+			style
 		} = this.props;
 
 		return (
-			<View style={this.getContainerStyle()}>
+			<View style={[ style, this.getContainerStyle() ]}>
 				<View style={styles.content}>
 					{this.renderIcon()}
 					{children}
@@ -93,6 +94,11 @@ export type FormInputComponentInput = {
 	 * The current status of the form input
 	 */
 	status: CommonFormComponentStatus;
+
+	/**
+	 * Extra component styles
+	 */
+	style?: ViewStyle;
 }
 
 /**

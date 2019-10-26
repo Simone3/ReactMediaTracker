@@ -10,6 +10,7 @@ import { PickerFieldComponent } from 'app/components/presentational/form/fields/
 import { MediaItemFormNameFieldContainer } from 'app/components/containers/media-item/details/form-name-field';
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
+import { MultiDateInputFieldComponent } from 'app/components/presentational/form/fields/date-picker-multiple';
 import { GroupPickerFieldContainer } from 'app/components/containers/media-item/details/group-picker';
 import { OwnPlatformPickerFieldContainer } from 'app/components/containers/media-item/details/own-platform-picker';
 import { MediaItemImageButtonsRowContainer } from 'app/components/containers/media-item/details/image-buttons-row';
@@ -81,6 +82,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.genresField()}
 					{this.groupField()}
 					{this.ownPlatformField()}
+					{this.completionDatesField()}
 					{this.props.children}
 				</View>
 			</ScrollView>
@@ -224,6 +226,21 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='ownPlatform'
 				placeholder={i18n.t('mediaItem.details.placeholders.ownPlatform')}
 				icon={images.ownPlatformField()}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the completion dates component
+	 */
+	private completionDatesField(): ReactNode {
+
+		return (
+			<MultiDateInputFieldComponent
+				name='completedAt'
+				placeholder={i18n.t('mediaItem.details.placeholders.completedAt')}
+				icon={images.completedAtField()}
 			/>
 		);
 	}
