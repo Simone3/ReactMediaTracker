@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { OptionalToUndefined } from 'app/utilities/helper-types';
 
 /**
  * Util type to extract common fields to both TV show entities and catalog entries
@@ -66,20 +67,20 @@ export const DEFAULT_TV_SHOW: TvShowInternal = {
 };
 
 /**
- * The default TV show catalog details (with all fields required), internal type just for display purposes
+ * The default TV show catalog details (with all fields set), internal type just for display purposes
  */
-export const DEFAULT_CATALOG_TV_SHOW: Required<CatalogTvShowInternal> = {
-	catalogId: '',
+export const DEFAULT_CATALOG_TV_SHOW: OptionalToUndefined<CatalogTvShowInternal> = {
+	catalogId: undefined,
 	name: '',
-	description: '',
-	genres: [],
-	imageUrl: '',
-	releaseDate: new Date(),
-	averageEpisodeRuntimeMinutes: 0,
-	creators: [],
-	episodesNumber: 0,
-	inProduction: false,
-	nextEpisodeAirDate: new Date(),
-	seasonsNumber: 0
+	description: undefined,
+	genres: undefined,
+	imageUrl: undefined,
+	releaseDate: undefined,
+	averageEpisodeRuntimeMinutes: undefined,
+	creators: undefined,
+	episodesNumber: undefined,
+	inProduction: undefined,
+	nextEpisodeAirDate: undefined,
+	seasonsNumber: undefined
 };
 

@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { OptionalToUndefined } from 'app/utilities/helper-types';
 
 /**
  * Util type to extract common fields to both videogame entities and catalog entries
@@ -64,17 +65,17 @@ export const DEFAULT_VIDEOGAME: VideogameInternal = {
 };
 
 /**
- * The default videogame catalog details (with all fields required), internal type just for display purposes
+ * The default videogame catalog details (with all fields set), internal type just for display purposes
  */
-export const DEFAULT_CATALOG_VIDEOGAME: Required<CatalogVideogameInternal> = {
-	catalogId: '',
+export const DEFAULT_CATALOG_VIDEOGAME: OptionalToUndefined<CatalogVideogameInternal> = {
+	catalogId: undefined,
 	name: '',
-	description: '',
-	genres: [],
-	imageUrl: '',
-	releaseDate: new Date(),
-	developers: [],
-	platforms: [],
-	publishers: []
+	description: undefined,
+	genres: undefined,
+	imageUrl: undefined,
+	releaseDate: undefined,
+	developers: undefined,
+	platforms: undefined,
+	publishers: undefined
 };
 

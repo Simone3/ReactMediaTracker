@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { OptionalToUndefined } from 'app/utilities/helper-types';
 
 /**
  * Util type to extract common fields to both book entities and catalog entries
@@ -62,15 +63,15 @@ export const DEFAULT_BOOK: BookInternal = {
 };
 
 /**
- * The default book catalog details (with all fields required), internal type just for display purposes
+ * The default book catalog details (with all fields set), internal type just for display purposes
  */
-export const DEFAULT_CATALOG_BOOK: Required<CatalogBookInternal> = {
-	catalogId: '',
+export const DEFAULT_CATALOG_BOOK: OptionalToUndefined<CatalogBookInternal> = {
+	catalogId: undefined,
 	name: '',
-	description: '',
-	authors: [],
-	pagesNumber: 0,
-	genres: [],
-	imageUrl: '',
-	releaseDate: new Date()
+	description: undefined,
+	authors: undefined,
+	pagesNumber: undefined,
+	genres: undefined,
+	imageUrl: undefined,
+	releaseDate: undefined
 };

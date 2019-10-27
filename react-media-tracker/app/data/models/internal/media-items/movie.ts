@@ -1,4 +1,5 @@
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { OptionalToUndefined } from 'app/utilities/helper-types';
 
 /**
  * Util type to extract common fields to both movie entities and catalog entries
@@ -62,15 +63,15 @@ export const DEFAULT_MOVIE: MovieInternal = {
 };
 
 /**
- * The default movie catalog details (with all fields required), internal type just for display purposes
+ * The default movie catalog details (with all fields set), internal type just for display purposes
  */
-export const DEFAULT_CATALOG_MOVIE: Required<CatalogMovieInternal> = {
-	catalogId: '',
+export const DEFAULT_CATALOG_MOVIE: OptionalToUndefined<CatalogMovieInternal> = {
+	catalogId: undefined,
 	name: '',
-	description: '',
-	directors: [],
-	durationMinutes: 0,
-	genres: [],
-	imageUrl: '',
-	releaseDate: new Date()
+	description: undefined,
+	directors: undefined,
+	durationMinutes: undefined,
+	genres: undefined,
+	imageUrl: undefined,
+	releaseDate: undefined
 };
