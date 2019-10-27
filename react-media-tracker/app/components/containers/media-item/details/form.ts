@@ -1,5 +1,5 @@
 
-import { MediaItemFormComponent, MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
+import { MediaItemFormComponent, MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
 import { AppError } from 'app/data/models/internal/error';
 import { resetMediaItemCatalogDetails, saveMediaItem, setMediaItemFormStatus } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';

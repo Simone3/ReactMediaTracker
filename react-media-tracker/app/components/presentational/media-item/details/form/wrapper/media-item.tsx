@@ -1,82 +1,124 @@
 import React, { Component, ReactNode } from 'react';
 import { MediaItemInternal, CatalogMediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { MediaTypeSwitcherComponent } from 'app/components/presentational/generic/media-switcher';
-import { MovieFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/movie';
+import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
+import { i18n } from 'app/utilities/i18n';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
+import { FormikProps, Formik } from 'formik';
+import { ObjectSchema } from 'yup';
 
 /**
  * Presentational component that handles the Formik wrapper component for the generic media item form
  */
-export class MediaItemFormComponent extends Component<MediaItemFormComponentProps> {
+export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormComponentProps> {
 	
+	private formikProps?: FormikProps<MediaItemInternal>;
+	private loadingCatalog = false;
+
+	/**
+	 * @override
+	 */
+	public componentDidUpdate(): void {
+
+		const {
+			loadCatalogDetails,
+			onCatalogDetailsLoaded,
+			sameNameConfirmationRequested,
+			saveMediaItem,
+			defaultCatalogItem
+		} = this.props;
+
+		// If we have new catalog details...
+		if(loadCatalogDetails && this.formikProps && !this.loadingCatalog) {
+
+			this.loadingCatalog = true;
+
+			const catalogDetails = loadCatalogDetails;
+			
+			// Reload EVERY catalog field (even if the current object has an undefined/null value)
+			const values: MediaItemInternal = {
+				...this.formikProps.values,
+				...defaultCatalogItem,
+				...catalogDetails
+			};
+			this.formikProps.setValues(values);
+
+			// Notify catalog details load completion
+			onCatalogDetailsLoaded();
+
+			this.loadingCatalog = false;
+		}
+
+		// If we need to ask for same-name confirmation...
+		if(sameNameConfirmationRequested && this.formikProps) {
+
+			const title = i18n.t('mediaItem.common.alert.addSameName.title');
+			const message = i18n.t(`mediaItem.common.alert.addSameName.message.${this.formikProps.values.mediaType}`);
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					saveMediaItem(this.formikProps.values, true);
+				}
+			});
+		}
+	}
+
 	/**
 	 * @override
 	 */
 	public render(): ReactNode {
 
+		const {
+			saveMediaItem,
+			initialValues,
+			children,
+			validationSchema
+		} = this.props;
+
 		return (
-			<MediaTypeSwitcherComponent
-				discriminator={this.props.initialValues}
-				book={null}
-				movie={<MovieFormComponent {...this.props} />}
-				tvShow={null}
-				videogame={null}
-			/>
+			<Formik<MediaItemInternal>
+				onSubmit={(result) => {
+					saveMediaItem(result, false);
+				}}
+				initialValues={initialValues}
+				validationSchema={validationSchema}>
+				{(formikProps: FormikProps<MediaItemInternal>) => {
+
+					this.formikProps = formikProps;
+					return children(formikProps);
+				}}
+			</Formik>
 		);
 	}
 }
 
 /**
- * MediaItemFormComponent's input props
+ * CommonMediaItemFormComponent's input props
  */
-export type MediaItemFormComponentInput = {
+export type CommonMediaItemFormComponentInput = MediaItemFormComponentInput & {
 
 	/**
-	 * The initial media item values for the form inputs
+	 * @override
 	 */
-	initialValues: MediaItemInternal;
+	children: (props: FormikProps<MediaItemInternal>) => ReactNode;
 
 	/**
-	 * If set, the media item catalog details are requested to be loaded into the form
+	 * The default empty catalog media item
 	 */
-	loadCatalogDetails?: CatalogMediaItemInternal;
+	defaultCatalogItem: CatalogMediaItemInternal;
 
 	/**
-	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
+	 * The media item form validation schema
 	 */
-	saveRequested: boolean;
-
-	/**
-	 * If an external component requests confirmation to save the media item even if there's already one with the same name
-	 */
-	sameNameConfirmationRequested: boolean;
+	validationSchema: ObjectSchema<MediaItemInternal>;
 }
 
 /**
- * MediaItemFormComponent's output props
+ * CommonMediaItemFormComponent's output props
  */
-export type MediaItemFormComponentOutput = {
-
-	/**
-	 * Callback to notify the current status of the form
-	 * @param valid true if the form is valid, i.e. no validation error occurred
-	 * @param dirty true if the form is dirty, i.e. one or more fields are different from initial values
-	 */
-	notifyFormStatus: (valid: boolean, dirty: boolean) => void;
-
-	/**
-	 * Callback to save the media item, after form validation is successful
-	 * @param mediaItem the media item to be saved
-	 * @param confirmSameName if the user confirmed to create a media item with the same name as an existing one
-	 */
-	saveMediaItem: (mediaItem: MediaItemInternal, confirmSameName: boolean) => void;
-
-	/**
-	 * Callback for when the form is done loading the input catalog details
-	 */
-	onCatalogDetailsLoaded(): void;
-}
+export type CommonMediaItemFormComponentOutput = MediaItemFormComponentOutput;
 
 /**
- * MediaItemFormComponent's props
+ * CommonMediaItemFormComponent's props
  */
-export type MediaItemFormComponentProps = MediaItemFormComponentInput & MediaItemFormComponentOutput;
+export type CommonMediaItemFormComponentProps = CommonMediaItemFormComponentInput & CommonMediaItemFormComponentOutput;
