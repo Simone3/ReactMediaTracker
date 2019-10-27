@@ -187,7 +187,8 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 		const target: MediaItemFilter = {
 			importanceLevels: source.importanceLevels ? importanceLevelMapper.toExternalList(source.importanceLevels) : undefined,
 			groups: this.toExternalGroupFilter(source.groups),
-			ownPlatforms: this.toExternalOwnPlatformFilter(source.ownPlatforms)
+			ownPlatforms: this.toExternalOwnPlatformFilter(source.ownPlatforms),
+			name: source.name
 		};
 		return this.setStatusFilterExternal(source.status, target);
 	}
@@ -203,7 +204,8 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 			importanceLevels: source.importanceLevels ? importanceLevelMapper.toInternalList(source.importanceLevels) : undefined,
 			groups: this.toInternalGroupFilter(source.groups),
 			ownPlatforms: this.toInternalOwnPlatformFilter(source.ownPlatforms),
-			status: this.toInternalStatusFilter(source)
+			status: this.toInternalStatusFilter(source),
+			name: source.name
 		};
 	}
 

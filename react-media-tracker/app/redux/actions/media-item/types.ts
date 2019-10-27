@@ -203,6 +203,7 @@ export type RequestMediaItemSaveAction = Action & {
 export type SaveMediaItemAction = Action & {
 	
 	mediaItem: MediaItemInternal;
+	confirmSameName: boolean;
 };
 
 /**
@@ -211,6 +212,13 @@ export type SaveMediaItemAction = Action & {
 export type StartSavingMediaItemAction = Action & {
 	
 	mediaItem: MediaItemInternal;
+};
+
+/**
+ * The ask confirmation before saving media item action
+ */
+export type AskConfirmationBeforeSavingMediaItemAction = Action & {
+	
 };
 
 /**

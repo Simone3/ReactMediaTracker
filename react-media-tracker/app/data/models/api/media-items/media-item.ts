@@ -263,6 +263,13 @@ export abstract class MediaItemFilter {
 	@IsOptional()
 	@IsBoolean()
 	public complete?: boolean;
+	
+	/**
+	 * Filter for name (case-insensitive exact match)
+	 */
+	@IsOptional()
+	@IsString()
+	public name?: string;
 }
 
 /**

@@ -95,7 +95,7 @@ export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS';
 /**
  * The current status of the media item saving process
  */
-export type MediaItemSaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';
+export type MediaItemSaveStatus = 'IDLE' | 'REQUESTED' | 'REQUIRES_CONFIRMATION' | 'SAVING' | 'SAVED';
 
 /**
  * The current status of the media item catalog retrieval process

@@ -16,15 +16,16 @@ const mapStateToProps = (state: State): MediaItemFormComponentInput => {
 	return {
 		initialValues: state.mediaItemDetails.mediaItem,
 		saveRequested: state.mediaItemDetails.saveStatus === 'REQUESTED',
-		loadCatalogDetails: state.mediaItemDetails.catalogDetails
+		loadCatalogDetails: state.mediaItemDetails.catalogDetails,
+		sameNameConfirmationRequested: state.mediaItemDetails.saveStatus === 'REQUIRES_CONFIRMATION'
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): MediaItemFormComponentOutput => {
 
 	return {
-		saveMediaItem: (mediaItem) => {
-			dispatch(saveMediaItem(mediaItem));
+		saveMediaItem: (mediaItem, confirmSameName) => {
+			dispatch(saveMediaItem(mediaItem, confirmSameName));
 		},
 		notifyFormStatus: (valid, dirty) => {
 			dispatch(setMediaItemFormStatus(valid, dirty));

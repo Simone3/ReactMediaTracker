@@ -4,6 +4,8 @@ import { MovieFormViewComponent } from 'app/components/presentational/media-item
 import { MovieInternal, DEFAULT_CATALOG_MOVIE, CatalogMovieInternal } from 'app/data/models/internal/media-items/movie';
 import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { movieFormValidationSchema } from 'app/components/presentational/media-item/details/form/data/movie';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
+import { i18n } from 'app/utilities/i18n';
 
 /**
  * Presentational component that handles the Formik wrapper component for the movie form
@@ -38,6 +40,20 @@ export class MovieFormComponent extends Component<MovieFormComponentProps> {
 
 			this.loadingCatalog = false;
 		}
+
+		// If we need to ask for same-name confirmation...
+		if(this.props.sameNameConfirmationRequested) {
+
+			const title = i18n.t('mediaItem.common.alert.addSameName.title');
+			const message = i18n.t('mediaItem.common.alert.addSameName.message.MOVIE');
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					this.props.saveMediaItem(this.formikProps.values, true);
+				}
+			});
+		}
 	}
 
 	/**
@@ -48,7 +64,7 @@ export class MovieFormComponent extends Component<MovieFormComponentProps> {
 		return (
 			<Formik<MovieInternal>
 				onSubmit={(result) => {
-					this.props.saveMediaItem(result);
+					this.props.saveMediaItem(result, false);
 				}}
 				initialValues={this.props.initialValues}
 				validationSchema={movieFormValidationSchema}>

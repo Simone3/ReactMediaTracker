@@ -1,7 +1,7 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FAIL_SAVING_MEDIA_ITEM, FAIL_SEARCHING_MEDIA_ITEMS_CATALOG, FETCH_MEDIA_ITEMS, GET_MEDIA_ITEM_CATALOG_DETAILS, HIGHLIGHT_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, REQUEST_MEDIA_ITEM_SAVE, RESET_MEDIA_ITEMS_CATALOG_SEARCH, RESET_MEDIA_ITEM_CATALOG_DETAILS, SAVE_MEDIA_ITEM, SEARCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS_CATALOG, SET_MEDIA_ITEM_FORM_STATUS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_GETTING_MEDIA_ITEM_CATALOG_DETAILS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_SAVING_MEDIA_ITEM, START_SEARCHING_MEDIA_ITEMS_CATALOG, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
-import { CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteGettingMediaItemCatalogDetailsAction, CompleteInlineUpdatingMediaItemAction, CompleteSavingMediaItemAction, CompleteSearchingMediaItemsCatalogAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailGettingMediaItemCatalogDetailsAction, FailInlineUpdatingMediaItemAction, FailSavingMediaItemAction, FailSearchingMediaItemsCatalogAction, FetchMediaItemsAction, GetMediaItemCatalogDetailsAction, HighlightMediaItemAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, RequestMediaItemSaveAction, ResetMediaItemCatalogDetailsAction, ResetMediaItemsCatalogSearchAction, SaveMediaItemAction, SearchMediaItemsAction, SearchMediaItemsCatalogAction, SetMediaItemFormStatusAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartGettingMediaItemCatalogDetailsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StartSavingMediaItemAction, StartSearchingMediaItemsCatalogAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_MEDIA_ITEM, COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG, DELETE_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS, FAIL_INLINE_UPDATING_MEDIA_ITEM, FAIL_SAVING_MEDIA_ITEM, FAIL_SEARCHING_MEDIA_ITEMS_CATALOG, FETCH_MEDIA_ITEMS, GET_MEDIA_ITEM_CATALOG_DETAILS, HIGHLIGHT_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, MARK_MEDIA_ITEM_AS_ACTIVE, MARK_MEDIA_ITEM_AS_COMPLETE, MARK_MEDIA_ITEM_AS_REDO, REMOVE_MEDIA_ITEM_HIGHTLIGHT, REQUEST_MEDIA_ITEM_SAVE, RESET_MEDIA_ITEMS_CATALOG_SEARCH, RESET_MEDIA_ITEM_CATALOG_DETAILS, SAVE_MEDIA_ITEM, SEARCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS_CATALOG, SET_MEDIA_ITEM_FORM_STATUS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_GETTING_MEDIA_ITEM_CATALOG_DETAILS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_SAVING_MEDIA_ITEM, START_SEARCHING_MEDIA_ITEMS_CATALOG, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from './const';
+import { AskConfirmationBeforeSavingMediaItemAction, CompleteDeletingMediaItemAction, CompleteFetchingMediaItemsAction, CompleteGettingMediaItemCatalogDetailsAction, CompleteInlineUpdatingMediaItemAction, CompleteSavingMediaItemAction, CompleteSearchingMediaItemsCatalogAction, DeleteMediaItemAction, FailDeletingMediaItemAction, FailFetchingMediaItemsAction, FailGettingMediaItemCatalogDetailsAction, FailInlineUpdatingMediaItemAction, FailSavingMediaItemAction, FailSearchingMediaItemsCatalogAction, FetchMediaItemsAction, GetMediaItemCatalogDetailsAction, HighlightMediaItemAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, MarkMediaItemAsActiveAction, MarkMediaItemAsCompleteAction, MarkMediaItemAsRedoAction, RemoveMediaItemHighlightAction, RequestMediaItemSaveAction, ResetMediaItemCatalogDetailsAction, ResetMediaItemsCatalogSearchAction, SaveMediaItemAction, SearchMediaItemsAction, SearchMediaItemsCatalogAction, SetMediaItemFormStatusAction, StartDeletingMediaItemAction, StartFetchingMediaItemsAction, StartGettingMediaItemCatalogDetailsAction, StartInlineUpdatingMediaItemAction, StartMediaItemsSearchModeAction, StartMediaItemsSetFiltersModeAction, StartSavingMediaItemAction, StartSearchingMediaItemsCatalogAction, StopMediaItemsSearchModeAction, StopMediaItemsSetFiltersModeAction, SubmitMediaItemsFiltersAction } from './types';
 
 /**
  * Generator for the fetch media items list action, which causes the request media items action, the async media items fetch and then the receive media items action
@@ -318,13 +318,15 @@ export const requestMediaItemSave = (): RequestMediaItemSaveAction => {
 /**
  * Generator for the save media item action, which causes the start saving media item action, the async media item store and then the complete saving media item action
  * @param mediaItem the media item data
+ * @param confirmSameName if the user confirmed to save the media item even if it has the same name as an existing item
  * @returns the action
  */
-export const saveMediaItem = (mediaItem: MediaItemInternal): SaveMediaItemAction => {
+export const saveMediaItem = (mediaItem: MediaItemInternal, confirmSameName: boolean): SaveMediaItemAction => {
 	
 	return {
 		type: SAVE_MEDIA_ITEM,
-		mediaItem: mediaItem
+		mediaItem: mediaItem,
+		confirmSameName: confirmSameName
 	};
 };
 
@@ -338,6 +340,17 @@ export const startSavingMediaItem = (mediaItem: MediaItemInternal): StartSavingM
 	return {
 		type: START_SAVING_MEDIA_ITEM,
 		mediaItem: mediaItem
+	};
+};
+
+/**
+ * Generator for the ask confirmation before saving media item action, which triggers a user pop-up to confirm a media item save process (e.g. same-name check on insert)
+ * @returns the action
+ */
+export const askConfirmationBeforeSavingMediaItem = (): AskConfirmationBeforeSavingMediaItemAction => {
+	
+	return {
+		type: ASK_CONFIRMATION_BEFORE_SAVING_MEDIA_ITEM
 	};
 };
 

@@ -69,6 +69,15 @@
 				"reloadCatalog": {
 					"title": "Reload Data",
 					"message": "Are you sure you want to reload the catalog data? This will overwrite any manual changes to the fields linked with the catalog."
+				},
+				"addSameName": {
+					"title": "Possible Duplicate",
+					"message": {
+						"BOOK": "Book(s) with the same name were found in this category. Are you sure you want to create it anyway?",
+						"MOVIE": "Movie(s) with the same name were found in this category. Are you sure you want to create it anyway?",
+						"TV_SHOW": "TV show(s) with the same name were found in this category. Are you sure you want to create it anyway?",
+						"VIDEOGAME": "Videogame(s) with the same name were found in this category. Are you sure you want to create it anyway?"
+					}
 				}
 			},
 			"importance": {

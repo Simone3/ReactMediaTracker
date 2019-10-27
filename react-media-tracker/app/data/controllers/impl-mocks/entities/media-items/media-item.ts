@@ -18,7 +18,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	/**
 	 * @override
 	 */
-	public async filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]> {
+	public async filter(categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]> {
 
 		return this.resolveResult(() => {
 
@@ -98,7 +98,12 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 * @param sortBy the sort request
 	 * @returns the sorted media items
 	 */
-	protected mockSort(mediaItems: TMediaItemInternal[], sortBy: TMediaItemSortByInternal[]): TMediaItemInternal[] {
+	protected mockSort(mediaItems: TMediaItemInternal[], sortBy?: TMediaItemSortByInternal[]): TMediaItemInternal[] {
+
+		if(!sortBy) {
+
+			return mediaItems;
+		}
 
 		console.log(`Back-End would sort by ${JSON.stringify(sortBy)} - mocked implementation is non complete...`);
 		
@@ -127,11 +132,23 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	 * @param filter the filter
 	 * @returns the filtered media items
 	 */
-	protected mockFilter(mediaItems: TMediaItemInternal[], filter: TMediaItemFilterInternal): TMediaItemInternal[] {
+	protected mockFilter(mediaItems: TMediaItemInternal[], filter?: TMediaItemFilterInternal): TMediaItemInternal[] {
+
+		if(!filter) {
+
+			return mediaItems;
+		}
 
 		console.log(`Back-End would filter by ${JSON.stringify(filter)} - mocked implementation is non complete...`);
 
-		if(filter.importanceLevels) {
+		if(filter.name) {
+
+			return mediaItems.filter((item) => {
+
+				return filter.name && filter.name.toUpperCase() === item.name.toUpperCase();
+			});
+		}
+		else if(filter.importanceLevels) {
 
 			return mediaItems.filter((item) => {
 

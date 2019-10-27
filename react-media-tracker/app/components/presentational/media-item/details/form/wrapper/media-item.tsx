@@ -44,6 +44,11 @@ export type MediaItemFormComponentInput = {
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
+
+	/**
+	 * If an external component requests confirmation to save the media item even if there's already one with the same name
+	 */
+	sameNameConfirmationRequested: boolean;
 }
 
 /**
@@ -61,8 +66,9 @@ export type MediaItemFormComponentOutput = {
 	/**
 	 * Callback to save the media item, after form validation is successful
 	 * @param mediaItem the media item to be saved
+	 * @param confirmSameName if the user confirmed to create a media item with the same name as an existing one
 	 */
-	saveMediaItem: (mediaItem: MediaItemInternal) => void;
+	saveMediaItem: (mediaItem: MediaItemInternal, confirmSameName: boolean) => void;
 
 	/**
 	 * Callback for when the form is done loading the input catalog details

@@ -12,7 +12,7 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 	 * @param sortBy the order to apply
 	 * @returns the list of media items, as a promise
 	 */
-	filter(categoryId: string, filter: TMediaItemFilterInternal, sortBy: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]>;
+	filter(categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]>;
 	
 	/**
 	 * Searches the media items of a category

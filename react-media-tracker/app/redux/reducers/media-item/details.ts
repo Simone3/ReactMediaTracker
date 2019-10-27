@@ -1,5 +1,5 @@
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
-import { COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS, COMPLETE_SAVING_MEDIA_ITEM, COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG, FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS, FAIL_SAVING_MEDIA_ITEM, FAIL_SEARCHING_MEDIA_ITEMS_CATALOG, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, REQUEST_MEDIA_ITEM_SAVE, RESET_MEDIA_ITEMS_CATALOG_SEARCH, RESET_MEDIA_ITEM_CATALOG_DETAILS, SET_MEDIA_ITEM_FORM_STATUS, START_GETTING_MEDIA_ITEM_CATALOG_DETAILS, START_SAVING_MEDIA_ITEM, START_SEARCHING_MEDIA_ITEMS_CATALOG } from 'app/redux/actions/media-item/const';
+import { ASK_CONFIRMATION_BEFORE_SAVING_MEDIA_ITEM, COMPLETE_GETTING_MEDIA_ITEM_CATALOG_DETAILS, COMPLETE_SAVING_MEDIA_ITEM, COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG, FAIL_GETTING_MEDIA_ITEM_CATALOG_DETAILS, FAIL_SAVING_MEDIA_ITEM, FAIL_SEARCHING_MEDIA_ITEMS_CATALOG, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS, REQUEST_MEDIA_ITEM_SAVE, RESET_MEDIA_ITEMS_CATALOG_SEARCH, RESET_MEDIA_ITEM_CATALOG_DETAILS, SET_MEDIA_ITEM_FORM_STATUS, START_GETTING_MEDIA_ITEM_CATALOG_DETAILS, START_SAVING_MEDIA_ITEM, START_SEARCHING_MEDIA_ITEMS_CATALOG } from 'app/redux/actions/media-item/const';
 import { CompleteGettingMediaItemCatalogDetailsAction, CompleteSearchingMediaItemsCatalogAction, LoadMediaItemDetailsAction, LoadNewMediaItemDetailsAction, SetMediaItemFormStatusAction, StartSavingMediaItemAction } from 'app/redux/actions/media-item/types';
 import { MediaItemDetailsState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
@@ -82,6 +82,15 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 				...state,
 				mediaItem: startSavingMediaItemAction.mediaItem,
 				saveStatus: 'SAVING'
+			};
+		}
+	
+		// When the app requires a confirmation before saving a media item, the status changes to show the alert
+		case ASK_CONFIRMATION_BEFORE_SAVING_MEDIA_ITEM: {
+
+			return {
+				...state,
+				saveStatus: 'REQUIRES_CONFIRMATION'
 			};
 		}
 	

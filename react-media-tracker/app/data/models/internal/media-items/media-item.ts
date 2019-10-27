@@ -96,6 +96,7 @@ export type MediaItemFilterInternal = {
 	groups?: MediaItemGroupFilterInternal;
 	ownPlatforms?: MediaItemOwnPlatformFilterInternal;
 	status?: MediaItemStatusFilterInternal;
+	name?: string;
 }
 
 /**
