@@ -188,14 +188,20 @@
 				"description": "Summary",
 				"releaseDate": "Release date",
 				"duration": {
-					"MOVIE": "Runtime (minutes)"
+					"BOOK": "Number of pages",
+					"MOVIE": "Runtime (minutes)",
+					"TV_SHOW": "Episode runtime (minutes)",
+					"VIDEOGAME": "Average length (hours)"
 				},
 				"userComment": "Your notes",
 				"genres": "Genres",
 				"group": "Group",
 				"ownPlatform": "Owned at",
 				"creators": {
-					"MOVIE": "Directors"
+					"BOOK": "Authors",
+					"MOVIE": "Directors",
+					"TV_SHOW": "Created by",
+					"VIDEOGAME": "Developers"
 				},
 				"completedOn": "Completed on"
 			},

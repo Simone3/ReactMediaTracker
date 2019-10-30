@@ -1,7 +1,10 @@
 import React, { Component, ReactNode } from 'react';
 import { MediaItemInternal, CatalogMediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { MediaTypeSwitcherComponent } from 'app/components/presentational/generic/media-switcher';
+import { BookFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/book';
 import { MovieFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/movie';
+import { TvShowFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/tv-show';
+import { VideogameFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/videogame';
 
 /**
  * Presentational component that switches on the correct media item form component based on its media type.
@@ -17,10 +20,10 @@ export class MediaItemFormComponent extends Component<MediaItemFormComponentProp
 		return (
 			<MediaTypeSwitcherComponent
 				discriminator={this.props.initialValues}
-				book={null}
+				book={<BookFormComponent {...this.props} />}
 				movie={<MovieFormComponent {...this.props} />}
-				tvShow={null}
-				videogame={null}
+				tvShow={<TvShowFormComponent {...this.props} />}
+				videogame={<VideogameFormComponent {...this.props} />}
 			/>
 		);
 	}
