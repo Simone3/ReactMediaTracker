@@ -203,7 +203,11 @@
 					"TV_SHOW": "Created by",
 					"VIDEOGAME": "Developers"
 				},
-				"completedOn": "Completed on"
+				"completedOn": "Completed on",
+				"episodesNumber": "Total number of episodes",
+				"seasonsNumber": "Number of seasons",
+				"inProduction": "In production",
+				"nextEpisodeAirDate": "Next episode air date"
 			},
 			"prompts": {
 				"importance": "Importance"

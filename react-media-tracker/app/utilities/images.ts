@@ -384,6 +384,42 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_input_complete_date.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns episodes field icon
+	 */
+	public episodesField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_episodes_number.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns seasons field icon
+	 */
+	public seasonsField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_season_number.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns production field icon
+	 */
+	public inProductionField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_in_production.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns next episode date field icon
+	 */
+	public nextEpisodeDateField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_next_episode.png');
+	}
 }
 
 /**
