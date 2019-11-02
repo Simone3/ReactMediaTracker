@@ -2,6 +2,10 @@ import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
 import { MediaItemFormViewComponent, MediaItemFormViewComponentCommonInput, MediaItemFormViewComponentCommonOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
 import { BookInternal } from 'app/data/models/internal/media-items/book';
+import { images } from 'app/utilities/images';
+import { i18n } from 'app/utilities/i18n';
+import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
+import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 
 /**
  * Presentational component that contains all book form input fields, all handled by the Formik container component
@@ -16,7 +20,43 @@ export class BookFormViewComponent extends Component<BookFormViewComponentProps>
 		return (
 			<MediaItemFormViewComponent
 				{...this.props}
-				primarySpecificFields={[]}
+				primarySpecificFields={[
+					this.durationField(),
+					this.authorsField()
+				]}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the duration component
+	 */
+	private durationField(): ReactNode {
+
+		return (
+			<TextInputFieldComponent
+				key='pagesNumber'
+				name='durationMinutes'
+				placeholder={i18n.t('mediaItem.details.placeholders.duration.BOOK')}
+				icon={images.durationField()}
+				keyboardType='number-pad'
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the authors component
+	 */
+	private authorsField(): ReactNode {
+
+		return (
+			<MultiTextInputFieldComponent
+				key='authorsField'
+				name='authors'
+				placeholder={i18n.t('mediaItem.details.placeholders.creators.BOOK')}
+				icon={images.creatorField()}
 			/>
 		);
 	}
