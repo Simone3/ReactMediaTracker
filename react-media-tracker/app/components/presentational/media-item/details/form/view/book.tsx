@@ -36,8 +36,8 @@ export class BookFormViewComponent extends Component<BookFormViewComponentProps>
 
 		return (
 			<TextInputFieldComponent
-				key='pagesNumber'
-				name='durationMinutes'
+				key='durationField'
+				name='pagesNumber'
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.BOOK')}
 				icon={images.durationField()}
 				keyboardType='number-pad'
