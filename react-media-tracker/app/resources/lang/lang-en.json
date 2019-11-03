@@ -190,7 +190,7 @@
 				"duration": {
 					"BOOK": "Number of pages",
 					"MOVIE": "Runtime (minutes)",
-					"TV_SHOW": "Episode runtime (minutes)",
+					"TV_SHOW": "Average episode runtime (minutes)",
 					"VIDEOGAME": "Average length (hours)"
 				},
 				"userComment": "Your notes",
@@ -207,7 +207,9 @@
 				"episodesNumber": "Total number of episodes",
 				"seasonsNumber": "Number of seasons",
 				"inProduction": "In production",
-				"nextEpisodeAirDate": "Next episode air date"
+				"nextEpisodeAirDate": "Next episode air date",
+				"publishers": "Publishers",
+				"platforms": "Platforms"
 			},
 			"prompts": {
 				"importance": "Importance"

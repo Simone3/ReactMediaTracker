@@ -420,6 +420,24 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_input_next_episode.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns publishers field icon
+	 */
+	public publishersField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_publisher.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns platforms field icon
+	 */
+	public platformsField(): ImageRequireSource {
+
+		return require('app/resources/images/ic_input_platform.png');
+	}
 }
 
 /**
