@@ -2,8 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { TvShowFilterFormValues, tvShowFilterFormMapper, tvShowFilterFormValidationSchema } from 'app/components/presentational/media-item/list/filter-form/data/tv-show';
 import { TvShowFilterFormViewComponent } from 'app/components/presentational/media-item/list/filter-form/view/tv-show';
-import { TvShowFilterInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
-import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper/media-item';
+import { TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
+import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper';
 
 /**
  * Presentational component that handles the Formik wrapper component for the TV show filter form
@@ -21,7 +21,7 @@ export class TvShowFilterFormComponent extends Component<TvShowFilterFormCompone
 			submitFilter
 		} = this.props;
 
-		const initialValues: TvShowFilterFormValues = tvShowFilterFormMapper.toFormValues(initialFilter, initialSortBy);
+		const initialValues: TvShowFilterFormValues = tvShowFilterFormMapper.toFormValues(initialFilter, initialSortBy as TvShowSortByInternal[]);
 
 		return (
 			<Formik<TvShowFilterFormValues>
@@ -48,7 +48,7 @@ export class TvShowFilterFormComponent extends Component<TvShowFilterFormCompone
 /**
  * TvShowFilterFormComponent's input props
  */
-export type TvShowFilterFormComponentInput = MediaItemFilterFormComponentInput<TvShowFilterInternal, TvShowSortByInternal>;
+export type TvShowFilterFormComponentInput = MediaItemFilterFormComponentInput;
 
 /**
  * TvShowFilterFormComponent's output props

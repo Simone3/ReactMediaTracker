@@ -2,8 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { MovieFilterFormValues, movieFilterFormMapper, movieFilterFormValidationSchema } from 'app/components/presentational/media-item/list/filter-form/data/movie';
 import { MovieFilterFormViewComponent } from 'app/components/presentational/media-item/list/filter-form/view/movie';
-import { MovieFilterInternal, MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
-import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper/media-item';
+import { MovieSortByInternal } from 'app/data/models/internal/media-items/movie';
+import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper';
 
 /**
  * Presentational component that handles the Formik wrapper component for the movie filter form
@@ -21,7 +21,7 @@ export class MovieFilterFormComponent extends Component<MovieFilterFormComponent
 			submitFilter
 		} = this.props;
 
-		const initialValues: MovieFilterFormValues = movieFilterFormMapper.toFormValues(initialFilter, initialSortBy);
+		const initialValues: MovieFilterFormValues = movieFilterFormMapper.toFormValues(initialFilter, initialSortBy as MovieSortByInternal[]);
 
 		return (
 			<Formik<MovieFilterFormValues>
@@ -48,7 +48,7 @@ export class MovieFilterFormComponent extends Component<MovieFilterFormComponent
 /**
  * MovieFilterFormComponent's input props
  */
-export type MovieFilterFormComponentInput = MediaItemFilterFormComponentInput<MovieFilterInternal, MovieSortByInternal>;
+export type MovieFilterFormComponentInput = MediaItemFilterFormComponentInput;
 
 /**
  * MovieFilterFormComponent's output props

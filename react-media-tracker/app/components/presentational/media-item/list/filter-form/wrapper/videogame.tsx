@@ -2,8 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import { Formik, FormikProps } from 'formik';
 import { VideogameFilterFormValues, videogameFilterFormMapper, videogameFilterFormValidationSchema } from 'app/components/presentational/media-item/list/filter-form/data/videogame';
 import { VideogameFilterFormViewComponent } from 'app/components/presentational/media-item/list/filter-form/view/videogame';
-import { VideogameFilterInternal, VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
-import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper/media-item';
+import { VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
+import { MediaItemFilterFormComponentInput, MediaItemFilterFormComponentOutput } from 'app/components/presentational/media-item/list/filter-form/wrapper';
 
 /**
  * Presentational component that handles the Formik wrapper component for the videogame filter form
@@ -21,7 +21,7 @@ export class VideogameFilterFormComponent extends Component<VideogameFilterFormC
 			submitFilter
 		} = this.props;
 
-		const initialValues: VideogameFilterFormValues = videogameFilterFormMapper.toFormValues(initialFilter, initialSortBy);
+		const initialValues: VideogameFilterFormValues = videogameFilterFormMapper.toFormValues(initialFilter, initialSortBy as VideogameSortByInternal[]);
 
 		return (
 			<Formik<VideogameFilterFormValues>
@@ -48,7 +48,7 @@ export class VideogameFilterFormComponent extends Component<VideogameFilterFormC
 /**
  * VideogameFilterFormComponent's input props
  */
-export type VideogameFilterFormComponentInput = MediaItemFilterFormComponentInput<VideogameFilterInternal, VideogameSortByInternal>;
+export type VideogameFilterFormComponentInput = MediaItemFilterFormComponentInput;
 
 /**
  * VideogameFilterFormComponent's output props
