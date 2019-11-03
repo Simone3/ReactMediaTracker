@@ -32,12 +32,15 @@ export class ColorPickerComponent extends Component<ColorPickerComponentProps, C
 
 		const {
 			currentColor,
-			onFocus
+			onFocus,
+			disabled
 		} = this.props;
 
 		return (
 			<FormInputComponent {...this.props}>
-				<TouchableOpacity style={styles.nameCicleIconContainer}
+				<TouchableOpacity
+					style={styles.nameCicleIconContainer}
+					disabled={disabled}
 					onPress={(event) => {
 						this.setState({ open: true });
 						onFocus(event);

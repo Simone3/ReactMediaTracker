@@ -19,7 +19,8 @@ export class TextInputComponent extends Component<TextInputComponentProps> {
 			currentText,
 			onFocus,
 			onBlur,
-			onTextChange
+			onTextChange,
+			disabled
 		} = this.props;
 
 		return (
@@ -28,6 +29,7 @@ export class TextInputComponent extends Component<TextInputComponentProps> {
 					onChangeText={onTextChange}
 					onFocus={onFocus}
 					onBlur={onBlur}
+					editable={!disabled}
 					value={currentText ? String(currentText) : ''}
 					placeholder={placeholder}
 					keyboardType={keyboardType}

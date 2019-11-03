@@ -39,7 +39,8 @@ export class SearchTextInputComponent extends Component<SearchTextInputComponent
 
 		const {
 			currentText,
-			onTextChange
+			onTextChange,
+			disabled
 		} = this.props;
 
 		return (
@@ -57,6 +58,7 @@ export class SearchTextInputComponent extends Component<SearchTextInputComponent
 						<SearchBarComponent
 							{...this.props}
 							onChangeText={onTextChange}
+							editable={!disabled}
 							value={currentText}
 							style={styles.input}
 						/>

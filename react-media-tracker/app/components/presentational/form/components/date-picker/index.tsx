@@ -45,7 +45,8 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 			placeholder,
 			onFocus,
 			onBlur,
-			onSelectDate
+			onSelectDate,
+			disabled
 		} = this.props;
 
 		const {
@@ -55,6 +56,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 		return (
 			<TouchableOpacity
 				style={styles.inputButtonContainer}
+				disabled={disabled}
 				onPress={(event) => {
 					this.setState({ open: true });
 					onFocus(event);

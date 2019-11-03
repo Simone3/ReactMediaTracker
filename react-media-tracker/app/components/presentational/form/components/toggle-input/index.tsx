@@ -16,7 +16,8 @@ export class ToggleComponent extends Component<ToggleComponentProps> {
 		const {
 			currentValue,
 			placeholder,
-			onValueChange
+			onValueChange,
+			disabled
 		} = this.props;
 
 		return (
@@ -31,6 +32,7 @@ export class ToggleComponent extends Component<ToggleComponentProps> {
 							style={styles.input}
 							onValueChange={onValueChange}
 							value={currentValue}
+							disabled={disabled}
 						/>
 					</View>
 				</TouchableWithoutFeedback>

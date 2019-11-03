@@ -18,7 +18,8 @@ export class PickerComponent extends Component<PickerComponentProps> {
 			prompt,
 			items,
 			currentItem,
-			onSelectItem
+			onSelectItem,
+			disabled
 		} = this.props;
 
 		const selectedItem = items.find((item) => {
@@ -32,6 +33,7 @@ export class PickerComponent extends Component<PickerComponentProps> {
 				<Picker
 					mode='dialog'
 					prompt={prompt}
+					enabled={!disabled}
 					selectedValue={currentItem}
 					style={styles.input}
 					onValueChange={onSelectItem}>

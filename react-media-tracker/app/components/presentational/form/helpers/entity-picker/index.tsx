@@ -86,7 +86,8 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 			currentEntity,
 			getInputDisplay,
 			onLoadFirstTemporaryValues,
-			getEntityValues
+			getEntityValues,
+			disabled
 		} = this.props;
 
 		const textValue = getInputDisplay(currentEntity);
@@ -94,6 +95,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 		return (
 			<TouchableOpacity
 				style={styles.inputContainer}
+				disabled={disabled}
 				onPress={(event) => {
 
 					// Open the modal and set the temporary data state

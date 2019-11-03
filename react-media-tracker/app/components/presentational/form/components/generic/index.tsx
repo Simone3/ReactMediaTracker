@@ -91,6 +91,11 @@ export type FormInputComponentInput = {
 	icon?: ImageRequireSource;
 
 	/**
+	 * If the input is disabled
+	 */
+	disabled?: boolean;
+
+	/**
 	 * The current status of the form input
 	 */
 	status: CommonFormComponentStatus;

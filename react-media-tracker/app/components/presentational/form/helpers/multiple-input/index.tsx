@@ -37,7 +37,8 @@ export class GenericMultipleInputComponent<I> extends Component<GenericMultipleI
 			currentValues,
 			onFocus,
 			defaultInputValue,
-			onBuildDisplayString
+			onBuildDisplayString,
+			disabled
 		} = this.props;
 
 		const textValue = currentValues ? onBuildDisplayString(currentValues) : '';
@@ -45,6 +46,7 @@ export class GenericMultipleInputComponent<I> extends Component<GenericMultipleI
 		return (
 			<TouchableOpacity
 				style={styles.inputContainer}
+				disabled={disabled}
 				onPress={(event) => {
 
 					this.setState({
