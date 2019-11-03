@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { FormikProps, FormikValues } from 'formik';
-import { MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
+import { FormikProps } from 'formik';
+import { MEDIA_TYPES_INTERNAL, CategoryInternal } from 'app/data/models/internal/category';
 import { styles } from 'app/components/presentational/category/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
@@ -107,6 +107,7 @@ export class CategoryFormViewComponent extends Component<CategoryFormViewCompone
 			<PickerFieldComponent
 				name='mediaType'
 				prompt={i18n.t('category.details.prompts.mediaType')}
+				disabled={Boolean(this.props.values.id)}
 				items={items}
 			/>
 		);
@@ -155,4 +156,4 @@ export type CategoryFormViewComponentOutput = {
 /**
  * All props of CategoryFormViewComponent
  */
-export type CategoryFormViewComponentProps = FormikProps<FormikValues> & CategoryFormViewComponentInput & CategoryFormViewComponentOutput;
+export type CategoryFormViewComponentProps = FormikProps<CategoryInternal> & CategoryFormViewComponentInput & CategoryFormViewComponentOutput;
