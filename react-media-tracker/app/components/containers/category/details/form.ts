@@ -15,15 +15,16 @@ const mapStateToProps = (state: State): CategoryFormComponentInput => {
 	
 	return {
 		initialValues: state.categoryDetails.category,
-		saveRequested: state.categoryDetails.saveStatus === 'REQUESTED'
+		saveRequested: state.categoryDetails.saveStatus === 'REQUESTED',
+		sameNameConfirmationRequested: state.categoryDetails.saveStatus === 'REQUIRES_CONFIRMATION'
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): CategoryFormComponentOutput => {
 
 	return {
-		saveCategory: (category) => {
-			dispatch(saveCategory(category));
+		saveCategory: (category, confirmSameName) => {
+			dispatch(saveCategory(category, confirmSameName));
 		},
 		notifyFormStatus: (valid, dirty) => {
 			dispatch(setCategoryFormStatus(valid, dirty));

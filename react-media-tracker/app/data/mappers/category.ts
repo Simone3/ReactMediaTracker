@@ -1,6 +1,6 @@
 import { ModelMapper } from 'app/data/mappers/common';
-import { IdentifiedCategory } from 'app/data/models/api/category';
-import { CategoryInternal } from 'app/data/models/internal/category';
+import { CategoryFilter, IdentifiedCategory } from 'app/data/models/api/category';
+import { CategoryFilterInternal, CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * Mapper for categories
@@ -35,7 +35,37 @@ class CategoryMapper extends ModelMapper<CategoryInternal, IdentifiedCategory, {
 }
 
 /**
+ * Mapper for category filters
+ */
+class CategoryFilterMapper extends ModelMapper<CategoryFilterInternal, CategoryFilter, {}> {
+		
+	/**
+	 * @override
+	 */
+	protected convertToExternal(source: CategoryFilterInternal): CategoryFilter {
+		
+		return {
+			name: source.name
+		};
+	}
+	
+	/**
+	 * @override
+	 */
+	protected convertToInternal(source: CategoryFilter): CategoryFilterInternal {
+		
+		return {
+			name: source.name
+		};
+	}
+}
+
+/**
  * Singleton instance of the categories mapper
  */
 export const categoryMapper = new CategoryMapper();
 
+/**
+ * Singleton instance of the category filter mapper
+ */
+export const categoryFilterMapper = new CategoryFilterMapper();

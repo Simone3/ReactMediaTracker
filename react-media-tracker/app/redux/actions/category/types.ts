@@ -74,6 +74,7 @@ export type RequestCategorySaveAction = Action & {
 export type SaveCategoryAction = Action & {
 	
 	category: CategoryInternal;
+	confirmSameName: boolean;
 };
 
 /**
@@ -82,6 +83,13 @@ export type SaveCategoryAction = Action & {
 export type StartSavingCategoryAction = Action & {
 	
 	category: CategoryInternal;
+};
+
+/**
+ * The ask confirmation before saving category action
+ */
+export type AskConfirmationBeforeSavingCategoryAction = Action & {
+	
 };
 
 /**

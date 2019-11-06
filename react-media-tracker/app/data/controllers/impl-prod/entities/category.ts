@@ -1,9 +1,9 @@
 import { config } from 'app/config/config';
 import { restJsonInvoker } from 'app/data/controllers/core/common/rest-json-invoker';
 import { CategoryController } from 'app/data/controllers/core/entities/category';
-import { categoryMapper } from 'app/data/mappers/category';
-import { AddCategoryRequest, AddCategoryResponse, DeleteCategoryResponse, GetAllCategoriesResponse, UpdateCategoryRequest, UpdateCategoryResponse } from 'app/data/models/api/category';
-import { CategoryInternal } from 'app/data/models/internal/category';
+import { categoryFilterMapper, categoryMapper } from 'app/data/mappers/category';
+import { AddCategoryRequest, AddCategoryResponse, DeleteCategoryResponse, FilterCategoriesRequest, FilterCategoriesResponse, GetAllCategoriesResponse, UpdateCategoryRequest, UpdateCategoryResponse } from 'app/data/models/api/category';
+import { CategoryFilterInternal, CategoryInternal } from 'app/data/models/internal/category';
 import { miscUtils } from 'app/utilities/misc-utils';
 
 /**
@@ -28,6 +28,27 @@ export class CategoryBackEndController implements CategoryController {
 		return categoryMapper.toInternalList(response.categories);
 	}
 
+	/**
+	 * @override
+	 */
+	public async filter(filter?: CategoryFilterInternal): Promise<CategoryInternal[]> {
+		
+		const request: FilterCategoriesRequest = {
+			filter: filter ? categoryFilterMapper.toExternal(filter) : undefined
+		};
+
+		const response = await restJsonInvoker.invoke({
+			method: 'POST',
+			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/filter' ], {
+				userId: config.tempToDelete.userId
+			}),
+			requestBody: request,
+			responseBodyClass: FilterCategoriesResponse
+		});
+		
+		return categoryMapper.toInternalList(response.categories);
+	}
+	
 	/**
 	 * @override
 	 */

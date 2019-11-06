@@ -1,6 +1,6 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REMOVE_CATEGORY_HIGHTLIGHT, REQUEST_CATEGORY_SAVE, SAVE_CATEGORY, SELECT_CATEGORY, SET_CATEGORY_FORM_STATUS, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
-import { CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, HighlightCategoryAction, InvalidateCategoriesAction, LoadCategoryDetailsAction, LoadNewCategoryDetailsAction, RemoveCategoryHighlightAction, RequestCategorySaveAction, SaveCategoryAction, SelectCategoryAction, SetCategoryFormStatusAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_CATEGORY, COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, DELETE_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, FAIL_SAVING_CATEGORY, FETCH_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REMOVE_CATEGORY_HIGHTLIGHT, REQUEST_CATEGORY_SAVE, SAVE_CATEGORY, SELECT_CATEGORY, SET_CATEGORY_FORM_STATUS, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES, START_SAVING_CATEGORY } from './const';
+import { AskConfirmationBeforeSavingCategoryAction, CompleteDeletingCategoryAction, CompleteFetchingCategoriesAction, CompleteSavingCategoryAction, DeleteCategoryAction, FailDeletingCategoryAction, FailFetchingCategoriesAction, FailSavingCategoryAction, FetchCategoriesAction, HighlightCategoryAction, InvalidateCategoriesAction, LoadCategoryDetailsAction, LoadNewCategoryDetailsAction, RemoveCategoryHighlightAction, RequestCategorySaveAction, SaveCategoryAction, SelectCategoryAction, SetCategoryFormStatusAction, StartDeletingCategoryAction, StartFetchingCategoriesAction, StartSavingCategoryAction } from './types';
 
 /**
  * Generator for the fetch categories list action, which causes the request categories action, the async categories fetch and then the receive categories action
@@ -112,13 +112,15 @@ export const requestCategorySave = (): RequestCategorySaveAction => {
 /**
  * Generator for the save category action, which causes the start saving category action, the async category store and then the complete saving category action
  * @param category the category data
+ * @param confirmSameName if the user confirmed to save the category even if it has the same name as an existing item
  * @returns the action
  */
-export const saveCategory = (category: CategoryInternal): SaveCategoryAction => {
+export const saveCategory = (category: CategoryInternal, confirmSameName: boolean): SaveCategoryAction => {
 	
 	return {
 		type: SAVE_CATEGORY,
-		category: category
+		category: category,
+		confirmSameName: confirmSameName
 	};
 };
 
@@ -132,6 +134,17 @@ export const startSavingCategory = (category: CategoryInternal): StartSavingCate
 	return {
 		type: START_SAVING_CATEGORY,
 		category: category
+	};
+};
+
+/**
+ * Generator for the ask confirmation before saving category action, which triggers a user pop-up to confirm a category save process (e.g. same-name check on insert)
+ * @returns the action
+ */
+export const askConfirmationBeforeSavingCategory = (): AskConfirmationBeforeSavingCategoryAction => {
+	
+	return {
+		type: ASK_CONFIRMATION_BEFORE_SAVING_CATEGORY
 	};
 };
 

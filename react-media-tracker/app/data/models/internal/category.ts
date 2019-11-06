@@ -23,6 +23,14 @@ export type CategoryInternal = {
 }
 
 /**
+ * A filter for categories, internal type just for display purposes
+ */
+export type CategoryFilterInternal = {
+
+	name?: string;
+}
+
+/**
  * The default initial category, internal type just for display purposes
  */
 export const DEFAULT_CATEGORY: CategoryInternal = {

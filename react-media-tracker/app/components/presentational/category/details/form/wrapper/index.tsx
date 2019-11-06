@@ -3,11 +3,40 @@ import { Formik, FormikProps } from 'formik';
 import { CategoryFormViewComponent } from 'app/components/presentational/category/details/form/view';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { categoryFormValidationSchema } from 'app/components/presentational/category/details/form/data';
+import { i18n } from 'app/utilities/i18n';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
  * Presentational component that handles the Formik wrapper component for the category form
  */
 export class CategoryFormComponent extends Component<CategoryFormComponentInput & CategoryFormComponentOutput> {
+	
+	private formikProps?: FormikProps<CategoryInternal>;
+
+	/**
+	 * @override
+	 */
+	public componentDidUpdate(): void {
+
+		const {
+			sameNameConfirmationRequested,
+			saveCategory
+		} = this.props;
+
+		// If we need to ask for same-name confirmation...
+		if(sameNameConfirmationRequested && this.formikProps) {
+
+			const title = i18n.t('category.common.alert.addSameName.title');
+			const message = i18n.t('category.common.alert.addSameName.message');
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					saveCategory(this.formikProps.values, true);
+				}
+			});
+		}
+	}
 
 	/**
 	 * @override
@@ -17,11 +46,13 @@ export class CategoryFormComponent extends Component<CategoryFormComponentInput 
 		return (
 			<Formik<CategoryInternal>
 				onSubmit={(result) => {
-					this.props.saveCategory(result);
+					this.props.saveCategory(result, false);
 				}}
 				initialValues={this.props.initialValues}
 				validationSchema={categoryFormValidationSchema}>
 				{(formikProps: FormikProps<CategoryInternal>) => {
+					
+					this.formikProps = formikProps;
 					
 					return (
 						<CategoryFormViewComponent
@@ -50,6 +81,11 @@ export type CategoryFormComponentInput = {
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
+
+	/**
+	 * If an external component requests confirmation to save the category even if there's already one with the same name
+	 */
+	sameNameConfirmationRequested: boolean;
 }
 
 /**
@@ -67,6 +103,7 @@ export type CategoryFormComponentOutput = {
 	/**
 	 * Callback to save the category, after form validation is successful
 	 * @param category the category to be saved
+	 * @param confirmSameName if the user confirmed to create a category with the same name as an existing one
 	 */
-	saveCategory: (category: CategoryInternal) => void;
+	saveCategory: (category: CategoryInternal, confirmSameName: boolean) => void;
 }

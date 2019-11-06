@@ -27,6 +27,10 @@
 				"delete": {
 					"title": "Delete Category",
 					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it. This will also remove all its media items, groups and platforms."
+				},
+				"addSameName": {
+					"title": "Possible Duplicate",
+					"message": "Category(es) with the same name were found. Are you sure you want to create it anyway?"
 				}
 			}
 		},
@@ -227,6 +231,10 @@
 				"delete": {
 					"title": "Delete Group",
 					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it. This will also remove all its media items."
+				},
+				"addSameName": {
+					"title": "Possible Duplicate",
+					"message": "Group(s) with the same name were found in this category. Are you sure you want to create it anyway?"
 				}
 			}
 		},
@@ -259,6 +267,10 @@
 				"delete": {
 					"title": "Delete Platform",
 					"message": "Are you sure you want to delete {{name}}? You won't be able to restore it. This will also remove all its media items."
+				},
+				"addSameName": {
+					"title": "Possible Duplicate",
+					"message": "Platform(s) with the same name were found in this category. Are you sure you want to create it anyway?"
 				}
 			}
 		},

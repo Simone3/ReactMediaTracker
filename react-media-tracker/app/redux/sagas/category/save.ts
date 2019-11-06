@@ -1,8 +1,9 @@
 import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { categoryController } from 'app/data/controllers/core/entities/category';
+import { CategoryFilterInternal, CategoryInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { SAVE_CATEGORY } from 'app/redux/actions/category/const';
-import { completeSavingCategory, failSavingCategory, startSavingCategory } from 'app/redux/actions/category/generators';
+import { askConfirmationBeforeSavingCategory, completeSavingCategory, failSavingCategory, startSavingCategory } from 'app/redux/actions/category/generators';
 import { SaveCategoryAction } from 'app/redux/actions/category/types';
 import { setError } from 'app/redux/actions/error/generators';
 import { SagaIterator } from 'redux-saga';
@@ -13,18 +14,37 @@ import { SagaIterator } from 'redux-saga';
  */
 const saveCategorySaga = function * (action: SaveCategoryAction): SagaIterator {
 
-	yield put(startSavingCategory(action.category));
+	const category = action.category;
+
+	yield put(startSavingCategory(category));
 
 	try {
 
-		yield call(categoryController.saveCategory.bind(categoryController), action.category);
-		
+		// If we are adding a new category and the user has not confirmed a same-name creation...
+		if(!category.id && !action.confirmSameName) {
+
+			// Check if there are other categories with the same name
+			const filter: CategoryFilterInternal = {
+				name: category.name
+			};
+			const mediaItemsWithSameName: CategoryInternal[] = yield call(categoryController.filter.bind(categoryController), filter);
+			
+			// If so, dispatch confirmation request action and exit
+			if(mediaItemsWithSameName.length > 0) {
+
+				yield put(askConfirmationBeforeSavingCategory());
+				return;
+			}
+		}
+
+		// Save the category
+		yield call(categoryController.saveCategory.bind(categoryController), category);
 		yield put(completeSavingCategory());
 	}
 	catch(error) {
 
+		// Send the failure action
 		yield put(failSavingCategory());
-		
 		yield put(setError(AppError.BACKEND_CATEGORY_SAVE.withDetails(error)));
 	}
 };

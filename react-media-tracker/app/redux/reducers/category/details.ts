@@ -1,5 +1,5 @@
 import { DEFAULT_CATEGORY } from 'app/data/models/internal/category';
-import { COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, SET_CATEGORY_FORM_STATUS, START_SAVING_CATEGORY } from 'app/redux/actions/category/const';
+import { ASK_CONFIRMATION_BEFORE_SAVING_CATEGORY, COMPLETE_SAVING_CATEGORY, FAIL_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, REQUEST_CATEGORY_SAVE, SET_CATEGORY_FORM_STATUS, START_SAVING_CATEGORY } from 'app/redux/actions/category/const';
 import { LoadCategoryDetailsAction, SetCategoryFormStatusAction, StartSavingCategoryAction } from 'app/redux/actions/category/types';
 import { CategoryDetailsState } from 'app/redux/state/category';
 import { Action } from 'redux';
@@ -76,6 +76,15 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 				...state,
 				category: startSavingCategoryAction.category,
 				saveStatus: 'SAVING'
+			};
+		}
+	
+		// When the app requires a confirmation before saving a category, the status changes to show the alert
+		case ASK_CONFIRMATION_BEFORE_SAVING_CATEGORY: {
+
+			return {
+				...state,
+				saveStatus: 'REQUIRES_CONFIRMATION'
 			};
 		}
 	

@@ -67,4 +67,4 @@ export type CategoriesListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | '
 /**
  * The current status of the category saving process
  */
-export type CategorySaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';
+export type CategorySaveStatus = 'IDLE' | 'REQUESTED' | 'REQUIRES_CONFIRMATION' | 'SAVING' | 'SAVED';

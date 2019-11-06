@@ -1,6 +1,6 @@
 import { CategoryController } from 'app/data/controllers/core/entities/category';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { CategoryInternal } from 'app/data/models/internal/category';
+import { CategoryFilterInternal, CategoryInternal } from 'app/data/models/internal/category';
 
 /**
  * Mocked implementation of the CategoryController that contains an in-memory list of categories
@@ -42,6 +42,27 @@ export class CategoryMockedController extends MockControllerHelper implements Ca
 
 			this.categories = this.categories.slice();
 			return this.categories;
+		});
+	}
+
+	/**
+	 * @override
+	 */
+	public async filter(filter?: CategoryFilterInternal): Promise<CategoryInternal[]> {
+
+		return this.resolveResult(() => {
+
+			if(filter && filter.name) {
+
+				return this.categories.filter((category) => {
+	
+					return filter.name && filter.name.toUpperCase() === category.name.toUpperCase();
+				});
+			}
+			else {
+
+				return this.categories.slice();
+			}
 		});
 	}
 
