@@ -1,6 +1,6 @@
 import { OwnPlatformController } from 'app/data/controllers/core/entities/own-platform';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { OwnPlatformFilterInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
  * Mocked implementation of the OwnPlatformController that contains an in-memory list of own platforms
@@ -31,6 +31,29 @@ export class OwnPlatformMockedController extends MockControllerHelper implements
 		return this.resolveResult(() => {
 
 			return this.getCategoryOwnPlatforms(categoryId).slice();
+		});
+	}
+
+	/**
+	 * @override
+	 */
+	public async filter(categoryId: string, filter?: OwnPlatformFilterInternal): Promise<OwnPlatformInternal[]> {
+
+		return this.resolveResult(() => {
+
+			const categoryOwnPlatforms = this.getCategoryOwnPlatforms(categoryId);
+
+			if(filter && filter.name) {
+
+				return categoryOwnPlatforms.filter((platform) => {
+	
+					return filter.name && filter.name.toUpperCase() === platform.name.toUpperCase();
+				});
+			}
+			else {
+
+				return categoryOwnPlatforms.slice();
+			}
 		});
 	}
 

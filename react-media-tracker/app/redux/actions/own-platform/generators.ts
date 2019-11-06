@@ -1,6 +1,6 @@
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
-import { COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, DELETE_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, FAIL_SAVING_OWN_PLATFORM, FETCH_OWN_PLATFORMS, INVALIDATE_OWN_PLATFORMS, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SAVE, SAVE_OWN_PLATFORM, SET_OWN_PLATFORM_FORM_STATUS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS, START_SAVING_OWN_PLATFORM } from './const';
-import { CompleteDeletingOwnPlatformAction, CompleteFetchingOwnPlatformsAction, CompleteSavingOwnPlatformAction, DeleteOwnPlatformAction, FailDeletingOwnPlatformAction, FailFetchingOwnPlatformsAction, FailSavingOwnPlatformAction, FetchOwnPlatformsAction, InvalidateOwnPlatformsAction, LoadNewOwnPlatformDetailsAction, LoadOwnPlatformDetailsAction, RequestOwnPlatformSaveAction, SaveOwnPlatformAction, SetOwnPlatformFormStatusAction, StartDeletingOwnPlatformAction, StartFetchingOwnPlatformsAction, StartSavingOwnPlatformAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM, COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, DELETE_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, FAIL_SAVING_OWN_PLATFORM, FETCH_OWN_PLATFORMS, INVALIDATE_OWN_PLATFORMS, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SAVE, SAVE_OWN_PLATFORM, SET_OWN_PLATFORM_FORM_STATUS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS, START_SAVING_OWN_PLATFORM } from './const';
+import { AskConfirmationBeforeSavingOwnPlatformAction, CompleteDeletingOwnPlatformAction, CompleteFetchingOwnPlatformsAction, CompleteSavingOwnPlatformAction, DeleteOwnPlatformAction, FailDeletingOwnPlatformAction, FailFetchingOwnPlatformsAction, FailSavingOwnPlatformAction, FetchOwnPlatformsAction, InvalidateOwnPlatformsAction, LoadNewOwnPlatformDetailsAction, LoadOwnPlatformDetailsAction, RequestOwnPlatformSaveAction, SaveOwnPlatformAction, SetOwnPlatformFormStatusAction, StartDeletingOwnPlatformAction, StartFetchingOwnPlatformsAction, StartSavingOwnPlatformAction } from './types';
 
 /**
  * Generator for the fetch own platforms list action, which causes the request own platforms action, the async own platforms fetch and then the receive own platforms action
@@ -112,13 +112,15 @@ export const requestOwnPlatformSave = (): RequestOwnPlatformSaveAction => {
 /**
  * Generator for the save own platform action, which causes the start saving own platform action, the async own platform store and then the complete saving own platform action
  * @param ownPlatform the own platform data
+ * @param confirmSameName if the user confirmed to save the own platform even if it has the same name as an existing item
  * @returns the action
  */
-export const saveOwnPlatform = (ownPlatform: OwnPlatformInternal): SaveOwnPlatformAction => {
+export const saveOwnPlatform = (ownPlatform: OwnPlatformInternal, confirmSameName: boolean): SaveOwnPlatformAction => {
 	
 	return {
 		type: SAVE_OWN_PLATFORM,
-		ownPlatform: ownPlatform
+		ownPlatform: ownPlatform,
+		confirmSameName: confirmSameName
 	};
 };
 
@@ -132,6 +134,17 @@ export const startSavingOwnPlatform = (ownPlatform: OwnPlatformInternal): StartS
 	return {
 		type: START_SAVING_OWN_PLATFORM,
 		ownPlatform: ownPlatform
+	};
+};
+
+/**
+ * Generator for the ask confirmation before saving own platform action, which triggers a user pop-up to confirm a own platform save process (e.g. same-name check on insert)
+ * @returns the action
+ */
+export const askConfirmationBeforeSavingOwnPlatform = (): AskConfirmationBeforeSavingOwnPlatformAction => {
+	
+	return {
+		type: ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM
 	};
 };
 

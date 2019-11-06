@@ -1,5 +1,5 @@
 import { DEFAULT_OWN_PLATFORM } from 'app/data/models/internal/own-platform';
-import { COMPLETE_SAVING_OWN_PLATFORM, FAIL_SAVING_OWN_PLATFORM, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SAVE, SET_OWN_PLATFORM_FORM_STATUS, START_SAVING_OWN_PLATFORM } from 'app/redux/actions/own-platform/const';
+import { ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM, COMPLETE_SAVING_OWN_PLATFORM, FAIL_SAVING_OWN_PLATFORM, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SAVE, SET_OWN_PLATFORM_FORM_STATUS, START_SAVING_OWN_PLATFORM } from 'app/redux/actions/own-platform/const';
 import { LoadOwnPlatformDetailsAction, SetOwnPlatformFormStatusAction, StartSavingOwnPlatformAction } from 'app/redux/actions/own-platform/types';
 import { OwnPlatformDetailsState } from 'app/redux/state/own-platform';
 import { Action } from 'redux';
@@ -76,6 +76,15 @@ export const ownPlatformDetails = (state: OwnPlatformDetailsState = initialState
 				...state,
 				ownPlatform: startSavingOwnPlatformAction.ownPlatform,
 				saveStatus: 'SAVING'
+			};
+		}
+	
+		// When the app requires a confirmation before saving an own platform, the status changes to show the alert
+		case ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM: {
+
+			return {
+				...state,
+				saveStatus: 'REQUIRES_CONFIRMATION'
 			};
 		}
 	

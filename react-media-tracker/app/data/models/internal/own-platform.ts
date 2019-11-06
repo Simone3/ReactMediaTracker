@@ -11,6 +11,14 @@ export type OwnPlatformInternal = {
 }
 
 /**
+ * A filter for own platforms, internal type just for display purposes
+ */
+export type OwnPlatformFilterInternal = {
+
+	name?: string;
+}
+
+/**
  * The default initial own platform, internal type just for display purposes
  */
 export const DEFAULT_OWN_PLATFORM: OwnPlatformInternal = {

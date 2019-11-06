@@ -15,15 +15,16 @@ const mapStateToProps = (state: State): OwnPlatformFormComponentInput => {
 	
 	return {
 		initialValues: state.ownPlatformDetails.ownPlatform,
-		saveRequested: state.ownPlatformDetails.saveStatus === 'REQUESTED'
+		saveRequested: state.ownPlatformDetails.saveStatus === 'REQUESTED',
+		sameNameConfirmationRequested: state.ownPlatformDetails.saveStatus === 'REQUIRES_CONFIRMATION'
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): OwnPlatformFormComponentOutput => {
 
 	return {
-		saveOwnPlatform: (ownPlatform) => {
-			dispatch(saveOwnPlatform(ownPlatform));
+		saveOwnPlatform: (ownPlatform, confirmSameName) => {
+			dispatch(saveOwnPlatform(ownPlatform, confirmSameName));
 		},
 		notifyFormStatus: (valid, dirty) => {
 			dispatch(setOwnPlatformFormStatus(valid, dirty));

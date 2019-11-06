@@ -50,4 +50,4 @@ export type OwnPlatformsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' |
 /**
  * The current status of the own platform saving process
  */
-export type OwnPlatformSaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';
+export type OwnPlatformSaveStatus = 'IDLE' | 'REQUESTED' | 'REQUIRES_CONFIRMATION' | 'SAVING' | 'SAVED';

@@ -3,11 +3,40 @@ import { Formik, FormikProps } from 'formik';
 import { OwnPlatformFormViewComponent } from 'app/components/presentational/own-platform/details/form/view';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 import { ownPlatformFormValidationSchema } from 'app/components/presentational/own-platform/details/form/data';
+import { i18n } from 'app/utilities/i18n';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
  * Presentational component that handles the Formik wrapper component for the own platform form
  */
 export class OwnPlatformFormComponent extends Component<OwnPlatformFormComponentInput & OwnPlatformFormComponentOutput> {
+
+	private formikProps?: FormikProps<OwnPlatformInternal>;
+
+	/**
+	 * @override
+	 */
+	public componentDidUpdate(): void {
+
+		const {
+			sameNameConfirmationRequested,
+			saveOwnPlatform
+		} = this.props;
+
+		// If we need to ask for same-name confirmation...
+		if(sameNameConfirmationRequested && this.formikProps) {
+
+			const title = i18n.t('ownPlatform.common.alert.addSameName.title');
+			const message = i18n.t('ownPlatform.common.alert.addSameName.message');
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					saveOwnPlatform(this.formikProps.values, true);
+				}
+			});
+		}
+	}
 
 	/**
 	 * @override
@@ -17,12 +46,14 @@ export class OwnPlatformFormComponent extends Component<OwnPlatformFormComponent
 		return (
 			<Formik<OwnPlatformInternal>
 				onSubmit={(result) => {
-					this.props.saveOwnPlatform(result);
+					this.props.saveOwnPlatform(result, false);
 				}}
 				initialValues={this.props.initialValues}
 				validationSchema={ownPlatformFormValidationSchema}>
 				{(formikProps: FormikProps<OwnPlatformInternal>) => {
 					
+					this.formikProps = formikProps;
+
 					return (
 						<OwnPlatformFormViewComponent
 							{...formikProps}
@@ -50,6 +81,11 @@ export type OwnPlatformFormComponentInput = {
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
+
+	/**
+	 * If an external component requests confirmation to save the own platform even if there's already one with the same name
+	 */
+	sameNameConfirmationRequested: boolean;
 }
 
 /**
@@ -67,6 +103,7 @@ export type OwnPlatformFormComponentOutput = {
 	/**
 	 * Callback to save the own platform, after form validation is successful
 	 * @param ownPlatform the own platform to be saved
+	 * @param confirmSameName if the user confirmed to create a own platform with the same name as an existing one
 	 */
-	saveOwnPlatform: (ownPlatform: OwnPlatformInternal) => void;
+	saveOwnPlatform: (ownPlatform: OwnPlatformInternal, confirmSameName: boolean) => void;
 }

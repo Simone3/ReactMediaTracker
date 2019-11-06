@@ -74,6 +74,7 @@ export type RequestOwnPlatformSaveAction = Action & {
 export type SaveOwnPlatformAction = Action & {
 	
 	ownPlatform: OwnPlatformInternal;
+	confirmSameName: boolean;
 };
 
 /**
@@ -82,6 +83,13 @@ export type SaveOwnPlatformAction = Action & {
 export type StartSavingOwnPlatformAction = Action & {
 	
 	ownPlatform: OwnPlatformInternal;
+};
+
+/**
+ * The ask confirmation before saving own platform action
+ */
+export type AskConfirmationBeforeSavingOwnPlatformAction = Action & {
+	
 };
 
 /**

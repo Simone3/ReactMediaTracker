@@ -1,5 +1,5 @@
 import { OwnPlatformMockedController } from 'app/data/controllers/impl-mocks/entities/own-platform';
-import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { OwnPlatformFilterInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
  * The data controller for the own platform entities
@@ -12,6 +12,14 @@ export interface OwnPlatformController {
 	 * @returns the list of own platforms, as a promise
 	 */
 	getAllOwnPlatforms(categoryId: string): Promise<OwnPlatformInternal[]>;
+
+	/**
+	 * Filters the own platforms of a given category
+	 * @param categoryId the category
+	 * @param filter the filter to apply
+	 * @returns the list of own platforms, as a promise
+	 */
+	filter(categoryId: string, filter?: OwnPlatformFilterInternal): Promise<OwnPlatformInternal[]>;
 
 	/**
 	 * Saves a own platform, adding it if the ID is not specified or updating it otherwise
