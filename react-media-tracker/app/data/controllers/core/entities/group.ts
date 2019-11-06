@@ -1,5 +1,5 @@
 import { GroupMockedController } from 'app/data/controllers/impl-mocks/entities/group';
-import { GroupInternal } from 'app/data/models/internal/group';
+import { GroupFilterInternal, GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * The data controller for the group entities
@@ -12,6 +12,14 @@ export interface GroupController {
 	 * @returns the list of groups, as a promise
 	 */
 	getAllGroups(categoryId: string): Promise<GroupInternal[]>;
+
+	/**
+	 * Filters the groups of a given category
+	 * @param categoryId the category
+	 * @param filter the filter to apply
+	 * @returns the list of groups, as a promise
+	 */
+	filter(categoryId: string, filter?: GroupFilterInternal): Promise<GroupInternal[]>;
 
 	/**
 	 * Saves a group, adding it if the ID is not specified or updating it otherwise

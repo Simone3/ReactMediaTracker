@@ -1,6 +1,6 @@
 import { GroupController } from 'app/data/controllers/core/entities/group';
 import { MockControllerHelper } from 'app/data/controllers/impl-mocks/mock-helper';
-import { GroupInternal } from 'app/data/models/internal/group';
+import { GroupFilterInternal, GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * Mocked implementation of the GroupController that contains an in-memory list of groups
@@ -29,6 +29,29 @@ export class GroupMockedController extends MockControllerHelper implements Group
 		return this.resolveResult(() => {
 
 			return this.getCategoryGroups(categoryId).slice();
+		});
+	}
+
+	/**
+	 * @override
+	 */
+	public async filter(categoryId: string, filter?: GroupFilterInternal): Promise<GroupInternal[]> {
+
+		return this.resolveResult(() => {
+
+			const categoryGroups = this.getCategoryGroups(categoryId);
+
+			if(filter && filter.name) {
+
+				return categoryGroups.filter((group) => {
+	
+					return filter.name && filter.name.toUpperCase() === group.name.toUpperCase();
+				});
+			}
+			else {
+
+				return categoryGroups.slice();
+			}
 		});
 	}
 

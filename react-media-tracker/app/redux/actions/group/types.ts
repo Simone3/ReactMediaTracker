@@ -74,6 +74,7 @@ export type RequestGroupSaveAction = Action & {
 export type SaveGroupAction = Action & {
 	
 	group: GroupInternal;
+	confirmSameName: boolean;
 };
 
 /**
@@ -82,6 +83,13 @@ export type SaveGroupAction = Action & {
 export type StartSavingGroupAction = Action & {
 	
 	group: GroupInternal;
+};
+
+/**
+ * The ask confirmation before saving group action
+ */
+export type AskConfirmationBeforeSavingGroupAction = Action & {
+	
 };
 
 /**

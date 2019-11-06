@@ -15,15 +15,16 @@ const mapStateToProps = (state: State): GroupFormComponentInput => {
 	
 	return {
 		initialValues: state.groupDetails.group,
-		saveRequested: state.groupDetails.saveStatus === 'REQUESTED'
+		saveRequested: state.groupDetails.saveStatus === 'REQUESTED',
+		sameNameConfirmationRequested: state.groupDetails.saveStatus === 'REQUIRES_CONFIRMATION'
 	};
 };
 
 const mapDispatchToProps = (dispatch: Dispatch): GroupFormComponentOutput => {
 
 	return {
-		saveGroup: (group) => {
-			dispatch(saveGroup(group));
+		saveGroup: (group, confirmSameName) => {
+			dispatch(saveGroup(group, confirmSameName));
 		},
 		notifyFormStatus: (valid, dirty) => {
 			dispatch(setGroupFormStatus(valid, dirty));

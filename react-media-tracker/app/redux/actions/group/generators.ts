@@ -1,6 +1,6 @@
 import { GroupInternal } from 'app/data/models/internal/group';
-import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, INVALIDATE_GROUPS, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SAVE_GROUP, SET_GROUP_FORM_STATUS, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
-import { CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, InvalidateGroupsAction, LoadGroupDetailsAction, LoadNewGroupDetailsAction, RequestGroupSaveAction, SaveGroupAction, SetGroupFormStatusAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_GROUP, COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, INVALIDATE_GROUPS, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SAVE_GROUP, SET_GROUP_FORM_STATUS, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
+import { AskConfirmationBeforeSavingGroupAction, CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, InvalidateGroupsAction, LoadGroupDetailsAction, LoadNewGroupDetailsAction, RequestGroupSaveAction, SaveGroupAction, SetGroupFormStatusAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
 
 /**
  * Generator for the fetch groups list action, which causes the request groups action, the async groups fetch and then the receive groups action
@@ -112,13 +112,15 @@ export const requestGroupSave = (): RequestGroupSaveAction => {
 /**
  * Generator for the save group action, which causes the start saving group action, the async group store and then the complete saving group action
  * @param group the group data
+ * @param confirmSameName if the user confirmed to save the group even if it has the same name as an existing item
  * @returns the action
  */
-export const saveGroup = (group: GroupInternal): SaveGroupAction => {
+export const saveGroup = (group: GroupInternal, confirmSameName: boolean): SaveGroupAction => {
 	
 	return {
 		type: SAVE_GROUP,
-		group: group
+		group: group,
+		confirmSameName: confirmSameName
 	};
 };
 
@@ -132,6 +134,17 @@ export const startSavingGroup = (group: GroupInternal): StartSavingGroupAction =
 	return {
 		type: START_SAVING_GROUP,
 		group: group
+	};
+};
+
+/**
+ * Generator for the ask confirmation before saving group action, which triggers a user pop-up to confirm a group save process (e.g. same-name check on insert)
+ * @returns the action
+ */
+export const askConfirmationBeforeSavingGroup = (): AskConfirmationBeforeSavingGroupAction => {
+	
+	return {
+		type: ASK_CONFIRMATION_BEFORE_SAVING_GROUP
 	};
 };
 

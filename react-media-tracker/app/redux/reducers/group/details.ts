@@ -1,5 +1,5 @@
 import { DEFAULT_GROUP } from 'app/data/models/internal/group';
-import { COMPLETE_SAVING_GROUP, FAIL_SAVING_GROUP, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SET_GROUP_FORM_STATUS, START_SAVING_GROUP } from 'app/redux/actions/group/const';
+import { ASK_CONFIRMATION_BEFORE_SAVING_GROUP, COMPLETE_SAVING_GROUP, FAIL_SAVING_GROUP, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SET_GROUP_FORM_STATUS, START_SAVING_GROUP } from 'app/redux/actions/group/const';
 import { LoadGroupDetailsAction, SetGroupFormStatusAction, StartSavingGroupAction } from 'app/redux/actions/group/types';
 import { GroupDetailsState } from 'app/redux/state/group';
 import { Action } from 'redux';
@@ -76,6 +76,15 @@ export const groupDetails = (state: GroupDetailsState = initialState, action: Ac
 				...state,
 				group: startSavingGroupAction.group,
 				saveStatus: 'SAVING'
+			};
+		}
+	
+		// When the app requires a confirmation before saving a group, the status changes to show the alert
+		case ASK_CONFIRMATION_BEFORE_SAVING_GROUP: {
+
+			return {
+				...state,
+				saveStatus: 'REQUIRES_CONFIRMATION'
 			};
 		}
 	

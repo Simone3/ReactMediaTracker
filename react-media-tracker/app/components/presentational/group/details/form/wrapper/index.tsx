@@ -3,11 +3,40 @@ import { Formik, FormikProps } from 'formik';
 import { GroupFormViewComponent } from 'app/components/presentational/group/details/form/view';
 import { GroupInternal } from 'app/data/models/internal/group';
 import { groupFormValidationSchema } from 'app/components/presentational/group/details/form/data';
+import { i18n } from 'app/utilities/i18n';
+import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 
 /**
  * Presentational component that handles the Formik wrapper component for the group form
  */
 export class GroupFormComponent extends Component<GroupFormComponentInput & GroupFormComponentOutput> {
+
+	private formikProps?: FormikProps<GroupInternal>;
+
+	/**
+	 * @override
+	 */
+	public componentDidUpdate(): void {
+
+		const {
+			sameNameConfirmationRequested,
+			saveGroup
+		} = this.props;
+
+		// If we need to ask for same-name confirmation...
+		if(sameNameConfirmationRequested && this.formikProps) {
+
+			const title = i18n.t('group.common.alert.addSameName.title');
+			const message = i18n.t('group.common.alert.addSameName.message');
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					saveGroup(this.formikProps.values, true);
+				}
+			});
+		}
+	}
 
 	/**
 	 * @override
@@ -17,12 +46,14 @@ export class GroupFormComponent extends Component<GroupFormComponentInput & Grou
 		return (
 			<Formik<GroupInternal>
 				onSubmit={(result) => {
-					this.props.saveGroup(result);
+					this.props.saveGroup(result, false);
 				}}
 				initialValues={this.props.initialValues}
 				validationSchema={groupFormValidationSchema}>
 				{(formikProps: FormikProps<GroupInternal>) => {
 					
+					this.formikProps = formikProps;
+
 					return (
 						<GroupFormViewComponent
 							{...formikProps}
@@ -50,6 +81,11 @@ export type GroupFormComponentInput = {
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
+
+	/**
+	 * If an external component requests confirmation to save the group even if there's already one with the same name
+	 */
+	sameNameConfirmationRequested: boolean;
 }
 
 /**
@@ -67,6 +103,7 @@ export type GroupFormComponentOutput = {
 	/**
 	 * Callback to save the group, after form validation is successful
 	 * @param group the group to be saved
+	 * @param confirmSameName if the user confirmed to create a group with the same name as an existing one
 	 */
-	saveGroup: (group: GroupInternal) => void;
+	saveGroup: (group: GroupInternal, confirmSameName: boolean) => void;
 }

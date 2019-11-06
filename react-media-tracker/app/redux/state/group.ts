@@ -50,4 +50,4 @@ export type GroupsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | 'DELE
 /**
  * The current status of the group saving process
  */
-export type GroupSaveStatus = 'IDLE' | 'REQUESTED' | 'SAVING' | 'SAVED';
+export type GroupSaveStatus = 'IDLE' | 'REQUESTED' | 'REQUIRES_CONFIRMATION' | 'SAVING' | 'SAVED';
