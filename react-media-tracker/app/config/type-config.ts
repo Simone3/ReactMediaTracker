@@ -29,6 +29,7 @@ export type Config = {
 			purple: string;
 			cyan: string;
 			grey: string;
+			white: string;
 			availableCategoryColors: string[];
 			availableOwnPlatformColors: string[];
 		};

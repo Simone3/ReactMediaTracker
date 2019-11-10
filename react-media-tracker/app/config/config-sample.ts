@@ -28,6 +28,7 @@ const config: Config = {
 			purple: '#e75fe7',
 			cyan: '#4bead7',
 			grey: '#6e6d66',
+			white: 'white',
 			availableCategoryColors: [],
 			availableOwnPlatformColors: []
 		}

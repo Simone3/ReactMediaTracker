@@ -142,7 +142,7 @@ class ImagesHelper {
 
 				return {
 					source: require('app/resources/images/ic_status_new.png'),
-					tintColor: config.ui.colors.colorDefaultIcon
+					tintColor: config.ui.colors.white
 				};
 			
 			default:
