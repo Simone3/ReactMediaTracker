@@ -41,18 +41,20 @@
      id="namedview3729"
      showgrid="false"
      inkscape:zoom="0.84225"
-     inkscape:cx="458.88988"
+     inkscape:cx="476.10567"
      inkscape:cy="714.1585"
      inkscape:window-x="-11"
      inkscape:window-y="-11"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg3727" />
   <g
-     id="surface1">
+     id="surface1"
+     transform="matrix(0.86033366,0,0,0.81493024,69.833151,92.53591)">
     <path
-       style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;"
-       d="M 22.000031 3 L 1.999969 3 L 10.000031 12.460031 L 10.000031 19.000031 L 13.999969 21 L 13.999969 12.460031 Z M 22.000031 3 "
-       transform="matrix(41.666667,0,0,41.666667,0,0)"
-       id="path3724" />
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1"
+       d="M 22.000031,3 H 1.999969 l 8.000062,9.460031 v 6.54 L 13.999969,21 v -8.539969 z m 0,0"
+       transform="scale(41.666667)"
+       id="path3724"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
