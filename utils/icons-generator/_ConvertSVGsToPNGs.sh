@@ -9,16 +9,14 @@
 # Credits: based on https://coderwall.com/p/m84xgg/svg-to-png-in-multiple-sizes-and-colors
 #
 
-# All sizes to generate
+# Settings
 sizes=("30" "60" "120")
 sizesCount=${#sizes[@]}
+imagesFolder="../../react-media-tracker/app/resources/images"
 
 # Create target directories if necessary
 if [ ! -d pngs ] ; then
 	mkdir pngs
-fi
-if [ ! -d pngs/big ] ; then
-	mkdir pngs/big
 fi
 
 # Loop all SVGs in the current directory
@@ -28,7 +26,7 @@ for svg in `ls *svg` ; do
     fileName=`echo $svg | sed s/.svg//`
 	
 	# Create a big PNG starting from the SVG, as a source for all required sizes
-	bigPng=pngs/big/$fileName.png
+	bigPng=pngs/$fileName.png
 	if [ ! -f $bigPng ] ; then
 		"$IMAGEMAGICK_CONVERT_PATH" -depth 16 -background transparent -fill "#000" -colorize 100% -resize 1024x1024 $svg $bigPng
 	fi
@@ -40,7 +38,7 @@ for svg in `ls *svg` ; do
 		size=${sizes[i - 1]}
 		
 		# Create the $size x $size PNG
-		png=`[ $i == 1 ] && echo "pngs/$fileName.png" || echo "pngs/$fileName@${i}x.png"`
+		png=`[ $i == 1 ] && echo "$imagesFolder/$fileName.png" || echo "$imagesFolder/$fileName@${i}x.png"`
 		if [ ! -f $png ] ; then
 			"$IMAGEMAGICK_CONVERT_PATH" $bigPng -resize $size"x"$size $png
 		fi
