@@ -29,8 +29,11 @@ for svg in `ls *svg` ; do
 	bigPng=pngs/$fileName.png
 	if [ ! -f $bigPng ] ; then
 		"$IMAGEMAGICK_CONVERT_PATH" -depth 16 -background transparent -fill "#000" -colorize 100% -resize 1024x1024 $svg $bigPng
+		echo "[***] Created $fileName big"
+	else
+		echo "Found $fileName big"
 	fi
-	echo "Created $bigPng"
+	
 
 	# Loop all sizes
 	for i in `seq 1 $sizesCount` ; do
@@ -41,10 +44,11 @@ for svg in `ls *svg` ; do
 		png=`[ $i == 1 ] && echo "$imagesFolder/$fileName.png" || echo "$imagesFolder/$fileName@${i}x.png"`
 		if [ ! -f $png ] ; then
 			"$IMAGEMAGICK_CONVERT_PATH" $bigPng -resize $size"x"$size $png
+			echo "[***] Created $fileName @ $size"
+		else
+			echo "Found $fileName @ $size"
 		fi
-
-		echo "Created $png"
-			
+	
 	done
 
 done
