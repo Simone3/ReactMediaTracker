@@ -14,12 +14,19 @@ export class OwnPlatformMockedController extends MockControllerHelper implements
 	protected readonly ownPlatforms: {[category: string]: OwnPlatformInternal[]} = {
 		2: [{
 			id: '1',
-			name: 'OwnPlatform 1',
-			color: '#FF0000'
+			name: 'Netflix',
+			color: '#f25a5a',
+			icon: 'netflix'
 		}, {
 			id: '2',
-			name: 'OwnPlatform 2',
-			color: '#008000'
+			name: 'Hulu',
+			color: '#74eb74',
+			icon: 'hulu'
+		}, {
+			id: '3',
+			name: 'Disc',
+			color: '#4bead7',
+			icon: 'disc'
 		}]
 	};
 

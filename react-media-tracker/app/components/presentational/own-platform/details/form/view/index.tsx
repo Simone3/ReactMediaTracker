@@ -7,6 +7,8 @@ import { TextInputFieldComponent } from 'app/components/presentational/form/fiel
 import { images } from 'app/utilities/images';
 import { ColorPickerFieldComponent } from 'app/components/presentational/form/fields/color-picker';
 import { config } from 'app/config/config';
+import { OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
+import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 
 /**
  * Presentational component that contains all own platform form input fields, all handled by the Formik container component
@@ -67,6 +69,7 @@ export class OwnPlatformFormViewComponent extends Component<OwnPlatformFormViewC
 			<View style={styles.container}>
 				{this.nameField()}
 				{this.colorField()}
+				{this.iconField()}
 			</View>
 		);
 	}
@@ -97,6 +100,29 @@ export class OwnPlatformFormViewComponent extends Component<OwnPlatformFormViewC
 				name='color'
 				icon={images.colorField()}
 				colors={config.ui.colors.availableOwnPlatformColors}
+			/>
+		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the icon component
+	 */
+	private iconField(): ReactNode {
+
+		const items = OWN_PLATFORM_ICON_INTERNAL_VALUES.map((icon) => {
+			return {
+				value: icon,
+				label: i18n.t(`ownPlatform.icons.${icon}`),
+				icon: images.ownPlatform(icon)
+			};
+		});
+
+		return (
+			<PickerFieldComponent
+				name='icon'
+				prompt={i18n.t('ownPlatform.details.prompts.icon')}
+				items={items}
 			/>
 		);
 	}

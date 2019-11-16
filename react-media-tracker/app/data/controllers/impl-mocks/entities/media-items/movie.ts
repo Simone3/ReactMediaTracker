@@ -36,7 +36,8 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			ownPlatform: {
 				id: '1',
 				name: 'Netflix',
-				color: 'red'
+				color: '#f25a5a',
+				icon: 'netflix'
 			},
 			active: true
 		}, {
@@ -56,7 +57,8 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 			ownPlatform: {
 				id: '2',
 				name: 'Hulu',
-				color: 'green'
+				color: '#74eb74',
+				icon: 'hulu'
 			}
 		}, {
 			id: '5',

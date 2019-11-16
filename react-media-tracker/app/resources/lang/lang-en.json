@@ -291,7 +291,24 @@
 			},
 			"placeholders": {
 				"name": "Name"
+			},
+			"prompts": {
+				"icon": "Icon"
 			}
+		},
+		"icons": {
+			"book": "Book",
+			"default": "Generic",
+			"disc": "Disc",
+			"download": "Download",
+			"epic": "Epic Games",
+			"gog": "GOG",
+			"hulu": "Hulu",
+			"kindle": "Kindle",
+			"netflix": "Netflix",
+			"origin": "Origin",
+			"steam": "Steam",
+			"uplay": "Uplay"
 		}
 	},
 	"common": {

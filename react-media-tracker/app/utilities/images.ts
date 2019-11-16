@@ -3,6 +3,7 @@ import { config } from 'app/config/config';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemImportanceInternal, MediaItemStatusInternal } from 'app/data/models/internal/media-items/media-item';
+import { OwnPlatformIconInternal } from 'app/data/models/internal/own-platform';
 import { ImageRequireSource } from 'react-native';
 
 /**
@@ -437,6 +438,56 @@ class ImagesHelper {
 	public platformsField(): ImageRequireSource {
 
 		return require('app/resources/images/ic_input_platform.png');
+	}
+
+	/**
+	 * Image getter
+	 * @param iconId the icon ID
+	 * @returns a platform icon
+	 */
+	public ownPlatform(iconId: OwnPlatformIconInternal): ImageRequireSource {
+
+		switch(iconId) {
+
+			case 'book':
+				return require('app/resources/images/ic_platform_book.png');
+
+			case 'default':
+				return require('app/resources/images/ic_input_own_platform.png');
+
+			case 'disc':
+				return require('app/resources/images/ic_platform_disc.png');
+
+			case 'download':
+				return require('app/resources/images/ic_platform_download.png');
+							
+			case 'epic':
+				return require('app/resources/images/ic_platform_epic.png');
+				
+			case 'gog':
+				return require('app/resources/images/ic_platform_gog.png');
+				
+			case 'hulu':
+				return require('app/resources/images/ic_platform_hulu.png');
+				
+			case 'kindle':
+				return require('app/resources/images/ic_platform_kindle.png');
+
+			case 'netflix':
+				return require('app/resources/images/ic_platform_netflix.png');
+						
+			case 'origin':
+				return require('app/resources/images/ic_platform_origin.png');
+				
+			case 'steam':
+				return require('app/resources/images/ic_platform_steam.png');
+				
+			case 'uplay':
+				return require('app/resources/images/ic_platform_uplay.png');
+			
+			default:
+				throw AppError.GENERIC.withDetails(`Own platform icon ID ${iconId} is not mapped to an actual image`);
+		}
 	}
 }
 

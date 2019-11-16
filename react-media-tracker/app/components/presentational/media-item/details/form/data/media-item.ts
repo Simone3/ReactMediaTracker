@@ -1,5 +1,6 @@
 import { MediaTypeInternal, MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
 import { MediaItemImportanceInternal, MediaItemInternal, MediaItemStatusInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
+import { OwnPlatformIconInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
 import { array, boolean, date, number, object, ObjectSchemaDefinition, string, StringSchema } from 'yup';
 
 /**
@@ -25,7 +26,8 @@ export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInter
 	ownPlatform: object({
 		id: string(),
 		name: string(),
-		color: string()
+		color: string(),
+		icon: string().oneOf(OWN_PLATFORM_ICON_INTERNAL_VALUES) as StringSchema<OwnPlatformIconInternal>
 	}),
 	userComment: string(),
 	completedOn: array().of(date()),
