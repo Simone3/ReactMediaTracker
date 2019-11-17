@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	
+		<!-- Info -->
+		<meta charset="UTF-8">
+		<title>SVG Tester</title>
+
+		<!-- Logic -->
+		<script>
+			
+			const svgs = [
+				'ic_action_add',
+				'ic_action_clear',
+				'ic_action_delete',
+				'ic_action_edit',
+				'ic_action_filter',
+				'ic_action_more',
+				'ic_action_save',
+				'ic_action_search',
+				'ic_download',
+				'ic_importance_1',
+				'ic_importance_2',
+				'ic_importance_3',
+				'ic_importance_4',
+				'ic_input_color',
+				'ic_input_complete_date',
+				'ic_input_creator',
+				'ic_input_description',
+				'ic_input_duration',
+				'ic_input_episodes_number',
+				'ic_input_genre',
+				'ic_input_group',
+				'ic_input_in_production',
+				'ic_input_name',
+				'ic_input_next_episode',
+				'ic_input_own_platform',
+				'ic_input_platform',
+				'ic_input_publisher',
+				'ic_input_release_date',
+				'ic_input_season_number',
+				'ic_input_sort',
+				'ic_input_status',
+				'ic_input_user_comment',
+				'ic_media_book',
+				'ic_media_movie',
+				'ic_media_tvshow',
+				'ic_media_videogame',
+				'ic_none',
+				'ic_platform_book',
+				'ic_platform_disc',
+				'ic_platform_download',
+				'ic_platform_epic',
+				'ic_platform_gog',
+				'ic_platform_hulu',
+				'ic_platform_kindle',
+				'ic_platform_netflix',
+				'ic_platform_origin',
+				'ic_platform_steam',
+				'ic_platform_uplay',
+				'ic_status_complete',
+				'ic_status_playing',
+				'ic_status_reading',
+				'ic_status_redoing',
+				'ic_status_upcoming',
+				'ic_status_watching'
+			];
+			
+			document.addEventListener('DOMContentLoaded', (event) => {
+			
+				const container = document.querySelector('#container');
+				
+				for(const svg of svgs) {
+					
+					container.innerHTML += '<div class="svgContainer"><image class="svg" src="./' + svg + '.svg"/></div>';
+				}
+			});
+		
+		</script>
+		
+		<!-- Styles -->
+		<style>
+		
+			.svgContainer {
+				margin: 20px;
+			}
+		
+			.svg {
+				width: 100px;
+				height: 100px;
+				border: 5px solid red;
+			}
+		
+		</style>
+	
+	</head>
+	
+	<body>
+
+		<div id="container">
+		
+		</div>
+
+	</body>
+</html>
