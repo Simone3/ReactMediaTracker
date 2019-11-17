@@ -148,7 +148,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 			return {
 				value: importance,
 				label: i18n.t(`mediaItem.common.importance.${importance}`),
-				icon: images.mediaItemImportance(importance).source
+				icon: images.mediaItemImportance(importance)
 			};
 		});
 

@@ -1,7 +1,10 @@
 import React, { Component, ReactNode } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import { styles } from 'app/components/presentational/media-item/common/own-platform-icon/styles';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { images } from 'app/utilities/images';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display an icon for the media item own platform
@@ -20,20 +23,24 @@ export class MediaItemOwnPlatformIconComponent extends Component<MediaItemOwnPla
 		if(ownPlatform) {
 		
 			return (
-				<View style={[ styles.circle, { backgroundColor: ownPlatform.color }]}>
-					<Text style={styles.nameInitial}>
-						{ownPlatform.name.charAt(0).toUpperCase()}
-					</Text>
+				<View style={styles.container}>
+					<ColoredImage
+						style={styles.icon}
+						source={images.ownPlatform(ownPlatform.icon)}
+						tintColor={ownPlatform.color}
+					/>
 				</View>
 			);
 		}
 		else {
 
 			return (
-				<View style={[ styles.circle, styles.circleNone ]}>
-					<Text style={styles.nameInitial}>
-						/
-					</Text>
+				<View style={styles.container}>
+					<ColoredImage
+						style={styles.icon}
+						source={images.none()}
+						tintColor={config.ui.colors.grey}
+					/>
 				</View>
 			);
 		}

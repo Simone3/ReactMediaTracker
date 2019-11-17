@@ -20,6 +20,7 @@ const config: Config = {
 			colorModalButtonDisabled: '#CDCDCD',
 			colorFormInputs: 'black',
 			colorDefaultIcon: 'black',
+			separator: 'rgb(219,219,219)',
 			blue: '#3c82eb',
 			red: '#f25a5a',
 			green: '#74eb74',
@@ -29,6 +30,7 @@ const config: Config = {
 			cyan: '#4bead7',
 			grey: '#6e6d66',
 			white: 'white',
+			black: 'black',
 			availableCategoryColors: [],
 			availableOwnPlatformColors: []
 		}

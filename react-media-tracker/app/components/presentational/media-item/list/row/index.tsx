@@ -34,7 +34,7 @@ export class MediaItemRowComponent extends Component<MediaItemRowComponentInput 
 						<MediaItemRowDataComponent mediaItem={mediaItem} />
 					</View>
 					<View style={styles.secondaryIconsContainer}>
-						<MediaItemRowIconsComponent mediaItem={mediaItem} />
+						<MediaItemRowIconsComponent mediaItem={mediaItem} showOptionsMenu={showOptionsMenu} />
 					</View>
 				</View>
 			</TouchableWithoutFeedback>

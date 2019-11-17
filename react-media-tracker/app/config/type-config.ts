@@ -21,6 +21,7 @@ export type Config = {
 			colorModalButtonDisabled: string;
 			colorFormInputs: string;
 			colorDefaultIcon: string;
+			separator: string;
 			blue: string;
 			red: string;
 			green: string;
@@ -30,6 +31,7 @@ export type Config = {
 			cyan: string;
 			grey: string;
 			white: string;
+			black: string;
 			availableCategoryColors: string[];
 			availableOwnPlatformColors: string[];
 		};

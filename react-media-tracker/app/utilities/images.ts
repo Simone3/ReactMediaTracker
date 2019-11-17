@@ -1,8 +1,6 @@
-import { ColoredImageDescriptor } from 'app/components/presentational/generic/colored-image';
-import { config } from 'app/config/config';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
-import { MediaItemImportanceInternal, MediaItemStatusInternal } from 'app/data/models/internal/media-items/media-item';
+import { MediaItemImportanceInternal, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { OwnPlatformIconInternal } from 'app/data/models/internal/own-platform';
 import { ImageRequireSource } from 'react-native';
 
@@ -47,34 +45,22 @@ class ImagesHelper {
 	 * @param importance the importance level
 	 * @returns the media item importance icon
 	 */
-	public mediaItemImportance(importance: MediaItemImportanceInternal): ColoredImageDescriptor {
+	public mediaItemImportance(importance: MediaItemImportanceInternal): ImageRequireSource {
 
 		switch(importance) {
 
 			case 'VERY_IMPORTANT':
-				return {
-					source: require('app/resources/images/ic_importance_1.png'),
-					tintColor: config.ui.colors.colorDefaultIcon
-				};
+				return require('app/resources/images/ic_importance_1.png');
 			
 			case 'IMPORTANT':
-				return {
-					source: require('app/resources/images/ic_importance_2.png'),
-					tintColor: config.ui.colors.colorDefaultIcon
-				};
+				return require('app/resources/images/ic_importance_2.png');
 
 			case 'FAIRLY_IMPORTANT':
-				return {
-					source: require('app/resources/images/ic_importance_3.png'),
-					tintColor: config.ui.colors.colorDefaultIcon
-				};
+				return require('app/resources/images/ic_importance_3.png');
 
 			case 'UNIMPORTANT':
-				return {
-					source: require('app/resources/images/ic_importance_4.png'),
-					tintColor: config.ui.colors.colorDefaultIcon
-				};
-				
+				return require('app/resources/images/ic_importance_4.png');
+			
 			default:
 				throw AppError.GENERIC.withDetails(`Importance level ${importance} not mapped for icon`);
 		}
@@ -82,73 +68,78 @@ class ImagesHelper {
 
 	/**
 	 * Image getter
-	 * @param status the media item "status"
-	 * @param mediaType the media item type
+	 * @param mediaItem the media item
 	 * @returns the media item status icon
 	 */
-	public mediaItemStatus(status: MediaItemStatusInternal, mediaType: MediaTypeInternal): ColoredImageDescriptor {
+	public mediaItemStatus(mediaItem: MediaItemInternal): ImageRequireSource {
 
-		switch(status) {
+		switch(mediaItem.status) {
 
 			case 'ACTIVE':
 
-				switch(mediaType) {
-					
-					case 'BOOK':
-						return {
-							source: require('app/resources/images/ic_status_reading.png'),
-							tintColor: config.ui.colors.green
-						};
-		
-					case 'MOVIE':
-					case 'TV_SHOW':
-						return {
-							source: require('app/resources/images/ic_status_watching.png'),
-							tintColor: config.ui.colors.green
-						};
-		
-					case 'VIDEOGAME':
-						return {
-							source: require('app/resources/images/ic_status_playing.png'),
-							tintColor: config.ui.colors.green
-						};
-		
-					default: {
-						throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized for media item status icon`);
-					}
-				}
+				return this.activeIcon(mediaItem.mediaType);
 
 			case 'UPCOMING':
 			
-				return {
-					source: require('app/resources/images/ic_status_upcoming.png'),
-					tintColor: config.ui.colors.orange
-				};
+				return require('app/resources/images/ic_status_upcoming.png');
 			
 			case 'REDO':
 
-				return {
-					source: require('app/resources/images/ic_status_redoing.png'),
-					tintColor: config.ui.colors.cyan
-				};
+				return this.redoIcon();
 			
 			case 'COMPLETE':
 
-				return {
-					source: require('app/resources/images/ic_status_complete.png'),
-					tintColor: config.ui.colors.purple
-				};
+				return this.completeIcon();
 
 			case 'NEW':
 
-				return {
-					source: require('app/resources/images/ic_status_new.png'),
-					tintColor: config.ui.colors.white
-				};
+				return this.mediaItemImportance(mediaItem.importance);
 			
 			default:
 				
-				throw AppError.GENERIC.withDetails(`Status ${status} not recognized for media item status icon`);
+				throw AppError.GENERIC.withDetails(`Status ${mediaItem.status} not recognized for media item status icon`);
+		}
+	}
+
+	/**
+	 * Image getter
+	 * @returns complete status icon
+	 */
+	public completeIcon(): ImageRequireSource {
+		
+		return require('app/resources/images/ic_status_complete.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns redo status icon
+	 */
+	public redoIcon(): ImageRequireSource {
+		
+		return require('app/resources/images/ic_status_redoing.png');
+	}
+
+	/**
+	 * Image getter
+	 * @param mediaType the media type
+	 * @returns the active status icon
+	 */
+	public activeIcon(mediaType: MediaTypeInternal): ImageRequireSource {
+		
+		switch(mediaType) {
+					
+			case 'BOOK':
+				return require('app/resources/images/ic_status_reading.png');
+
+			case 'MOVIE':
+			case 'TV_SHOW':
+				return require('app/resources/images/ic_status_watching.png');
+
+			case 'VIDEOGAME':
+				return require('app/resources/images/ic_status_playing.png');
+
+			default:
+				throw AppError.GENERIC.withDetails(`Media type ${mediaType} not recognized for active status icon`);
 		}
 	}
 

@@ -138,7 +138,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`mediaItem.list.markActive.${mediaItem.mediaType}`),
-			icon: images.mediaItemStatus('ACTIVE', mediaItem.mediaType).source,
+			icon: images.activeIcon(mediaItem.mediaType),
 			onClick: () => {
 
 				markAsActive(mediaItem);
@@ -161,7 +161,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`mediaItem.list.markComplete.${mediaItem.mediaType}`),
-			icon: images.mediaItemStatus('COMPLETE', mediaItem.mediaType).source,
+			icon: images.completeIcon(),
 			onClick: () => {
 
 				markAsComplete(mediaItem);
@@ -184,7 +184,7 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 		return {
 			label: i18n.t(`mediaItem.list.markRedo.${mediaItem.mediaType}`),
-			icon: images.mediaItemStatus('REDO', mediaItem.mediaType).source,
+			icon: images.redoIcon(),
 			onClick: () => {
 
 				markAsRedo(mediaItem);

@@ -27,6 +27,7 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 				{this.renderFirstRow(movie)}
 				{this.renderSecondRow(movie)}
 				{this.renderThirdRow(movie)}
+				{this.renderFourthRow(movie)}
 			</View>
 		);
 	}
@@ -38,18 +39,11 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 	 */
 	private renderFirstRow(mediaItem: MediaItemInternal): ReactNode {
 
-		let groupData = '';
-		if(mediaItem.group) {
-
-			const group = mediaItem.group;
-			groupData = ` [${i18n.t(`mediaItem.list.group`, { order: group.orderInGroup, groupName: group.groupData.name })}]`;
-		}
-
 		return (
 			<Text
 				style={styles.firstRow}
 				numberOfLines={1}>
-				{mediaItem.name + groupData}
+				{mediaItem.name}
 			</Text>
 		);
 	}
@@ -121,6 +115,30 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 					style={styles.thirdRow}
 					numberOfLines={1}>
 					{values.join(' • ')}
+				</Text>
+			);
+		}
+		else {
+			
+			return null;
+		}
+	}
+
+	/**
+	 * Renders the fourth row
+	 * @param mediaItem the media item
+	 * @returns the component
+	 */
+	private renderFourthRow(mediaItem: MediaItemInternal): ReactNode {
+
+		if(mediaItem.group) {
+
+			const group = mediaItem.group;
+			return (
+				<Text
+					style={styles.fourthRow}
+					numberOfLines={1}>
+					{i18n.t(`mediaItem.list.group`, { order: group.orderInGroup, groupName: group.groupData.name })}
 				</Text>
 			);
 		}

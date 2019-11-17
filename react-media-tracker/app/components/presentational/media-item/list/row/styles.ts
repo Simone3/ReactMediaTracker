@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -6,14 +7,9 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
-
-		paddingTop: 10,
-		paddingBottom: 10,
-		paddingLeft: 10,
-		paddingRight: 10,
-
+		padding: 10,
 		borderBottomWidth: 1,
-		borderColor: 'rgb(219,219,219)'
+		borderColor: config.ui.colors.separator
 	},
 	primaryIconContainer: {
 		flex: 0
