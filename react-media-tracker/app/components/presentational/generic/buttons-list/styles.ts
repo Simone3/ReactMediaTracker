@@ -35,8 +35,8 @@ export const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	rowIcon: {
-		width: 25,
-		height: 25,
+		width: 20,
+		height: 20,
 		marginRight: 18
 	},
 	rowLabelContainer: {

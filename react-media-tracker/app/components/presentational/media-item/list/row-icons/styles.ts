@@ -19,15 +19,15 @@ export const styles = StyleSheet.create({
 		borderWidth: 1
 	},
 	statusIcon: {
-		width: 10,
-		height: 10
+		width: 15,
+		height: 15
 	},
 	optionsContainer: {
 		flex: 0,
 		marginTop: 10
 	},
 	optionsIcon: {
-		width: 25,
-		height: 25
+		width: 15,
+		height: 15
 	}
 });

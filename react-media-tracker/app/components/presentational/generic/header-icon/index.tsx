@@ -39,6 +39,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 
 			return (
 				<TouchableOpacity
+					style={styles.container}
 					onPress={onClick}
 					disabled={!iconClickEnabled}>
 					<ColoredImage

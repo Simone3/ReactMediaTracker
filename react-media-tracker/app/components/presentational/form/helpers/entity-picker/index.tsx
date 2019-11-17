@@ -224,6 +224,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 				this.setState({	actionModalOpen: true });
 			}} style={styles.modalActionButton}>
 				<ColoredImage
+					style={styles.modalActionButtonIcon}
 					source={images.menuButton()}
 					tintColor={config.ui.colors.colorModalContent}
 				/>

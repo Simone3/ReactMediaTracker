@@ -26,8 +26,8 @@ export const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	icon: {
-		width: 40,
-		height: 40,
+		width: 30,
+		height: 30,
 		marginRight: 18
 	},
 	nameContainer: {

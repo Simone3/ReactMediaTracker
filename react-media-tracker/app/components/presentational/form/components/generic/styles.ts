@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
 	},
 	icon: {
 		padding: 10,
-		width: 30,
-		height: 30
+		width: 25,
+		height: 25
 	}
 });

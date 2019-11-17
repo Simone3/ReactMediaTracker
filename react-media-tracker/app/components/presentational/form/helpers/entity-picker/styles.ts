@@ -33,6 +33,10 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignContent: 'center'
 	},
+	modalActionButtonIcon: {
+		width: 15,
+		height: 15
+	},
 	modalInputContainer: {
 		flex: 1,
 		flexDirection: 'row',

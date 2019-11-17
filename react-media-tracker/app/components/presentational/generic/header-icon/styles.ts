@@ -1,12 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
+	container: {
+		flex: 0,
+		alignSelf: 'center'
+	},
 	icon: {
 		margin: 10,
-		marginRight: 15,
-		alignSelf: 'center',
-		width: 30,
-		height: 30
+		width: 20,
+		height: 20
 	},
 	iconDisabled: {
 		opacity: 0.5
