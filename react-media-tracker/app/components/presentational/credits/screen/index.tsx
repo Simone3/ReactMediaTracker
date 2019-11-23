@@ -5,6 +5,7 @@ import { HeaderHamburgerComponent } from 'app/components/presentational/generic/
 import { ScreenProps, ScreenConfig } from 'app/components/containers/generic/navigation';
 import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
+import { HyperlinkComponent } from 'app/components/presentational/generic/hyperlink';
 
 /**
  * Presentational component that contains the whole credits screen
@@ -30,7 +31,13 @@ export class CreditsScreenComponent extends Component<CreditsScreenComponentProp
 		
 		return (
 			<View style={styles.container}>
-				<Text>Credits Screen!</Text>
+				<Text style={styles.text}>
+					Movies and TV Shows data provided by <HyperlinkComponent url='https://www.themoviedb.org'>The Movie Database (TMDb)</HyperlinkComponent> (this product uses the TMDb API but is not endorsed or certified by TMDb).
+					{'\n\n'}
+					Videogames data provided by <HyperlinkComponent url='http://www.giantbomb.com'>Giant Bomb</HyperlinkComponent>.
+					{'\n\n'}
+					Books data provided by <HyperlinkComponent url='https://books.google.com'>Google Books</HyperlinkComponent>.
+				</Text>
 			</View>
 		);
 	}
