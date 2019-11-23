@@ -7,7 +7,7 @@ import { MediaItemDetailsHeaderContainer } from 'app/components/containers/media
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { MediaItemDetailsHeaderBackButtonContainer } from 'app/components/containers/media-item/details/header-back-button';
 import { MediaItemDetailsHeaderSaveIconContainer } from 'app/components/containers/media-item/details/header-save-icon';
-import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
+import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
 
 /**
  * Presentational component that contains the whole "media item details" screen, that works as the "add new media item", "update media item" and
@@ -18,13 +18,12 @@ export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsS
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: NavigationStackScreenProps): NavigationStackOptions => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
 		return {
 			headerTitle: <MediaItemDetailsHeaderContainer
 				componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
 				componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
-			/> as unknown as string,
-			headerLeft: null
+			/>
 		};
 	};
 

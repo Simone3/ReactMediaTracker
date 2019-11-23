@@ -4,11 +4,12 @@ import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/components/containers/category/list/list';
 import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/category/list/screen/styles';
-import { i18n } from 'app/utilities/i18n';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { HeaderComponent } from 'app/components/presentational/generic/header';
-import { NavigationStackOptions } from 'react-navigation-stack';
+import { i18n } from 'app/utilities/i18n';
+import { HeaderHamburgerComponent } from 'app/components/presentational/generic/header-hamburger';
+import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -18,11 +19,13 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions: NavigationStackOptions = {
-		headerTitle: <HeaderComponent
-			title={i18n.t('category.list.title')}
-		/> as unknown as string,
-		headerLeft: null
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
+		return {
+			headerTitle: <HeaderComponent
+				title={i18n.t('category.list.title')}
+				componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation} />}
+			/>
+		};
 	};
 
 	/**

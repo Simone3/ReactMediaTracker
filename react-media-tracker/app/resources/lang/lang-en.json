@@ -334,6 +334,21 @@
 					"placeholder": "Insert date"
 				}
 			}
+		},
+		"drawer": {
+			"home": "Home",
+			"settings": "Settings",
+			"credits": "Credits"
+		}
+	},
+	"settings": {
+		"screen": {
+			"title": "Settings"
+		}
+	},
+	"credits": {
+		"screen": {
+			"title": "Credits"
 		}
 	}
 }

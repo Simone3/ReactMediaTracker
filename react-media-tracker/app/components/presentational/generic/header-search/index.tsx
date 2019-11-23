@@ -5,7 +5,6 @@ import { SearchBarComponent, SearchBarComponentInput, SearchBarComponentOutput }
 import { HeaderBackButton } from 'react-navigation-stack';
 import { View } from 'react-native';
 import { config } from 'app/config/config';
-import { Scene } from 'react-navigation-stack/lib/typescript/types';
 
 /**
  * Presentational component to display an header that supports two modes: normal (title + icons) or search (search input + back button to exit search)
@@ -55,8 +54,6 @@ export class SearchHeaderComponent extends Component<SearchHeaderComponentProps>
 				<HeaderBackButton
 					onPress={onRequestSearchModeExit}
 					tintColor={config.ui.colors.colorContrastText}
-					layoutPreset='left'
-					scene={{} as Scene}
 				/>
 				<SearchBarComponent
 					{...searchHeaderInput}

@@ -7,7 +7,7 @@ import { CategoryDetailsHeaderContainer } from 'app/components/containers/catego
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { CategoryDetailsHeaderBackButtonContainer } from 'app/components/containers/category/details/header-back-button';
 import { CategoryDetailsHeaderSaveIconContainer } from 'app/components/containers/category/details/header-save-icon';
-import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
+import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
@@ -18,13 +18,12 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: NavigationStackScreenProps): NavigationStackOptions => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
 		return {
 			headerTitle: <CategoryDetailsHeaderContainer
 				componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
 				componentsRight={<CategoryDetailsHeaderSaveIconContainer />}
-			/> as unknown as string,
-			headerLeft: null
+			/>
 		};
 	};
 

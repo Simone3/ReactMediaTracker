@@ -7,7 +7,7 @@ import { OwnPlatformDetailsHeaderContainer } from 'app/components/containers/own
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { OwnPlatformDetailsHeaderBackButtonContainer } from 'app/components/containers/own-platform/details/header-back-button';
 import { OwnPlatformDetailsHeaderSaveIconContainer } from 'app/components/containers/own-platform/details/header-save-icon';
-import { NavigationStackOptions, NavigationStackScreenProps } from 'react-navigation-stack';
+import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
 
 /**
  * Presentational component that contains the whole "own platform details" screen, that works as the "add new own platform", "update own platform" and
@@ -18,13 +18,12 @@ export class OwnPlatformDetailsScreenComponent extends Component<OwnPlatformDeta
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: NavigationStackScreenProps): NavigationStackOptions => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
 		return {
 			headerTitle: <OwnPlatformDetailsHeaderContainer
 				componentsLeft={<OwnPlatformDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
 				componentsRight={<OwnPlatformDetailsHeaderSaveIconContainer />}
-			/> as unknown as string,
-			headerLeft: null
+			/>
 		};
 	};
 

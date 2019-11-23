@@ -1,6 +1,6 @@
 import { HeaderFormExitBackComponent, HeaderFormExitBackComponentInput } from 'app/components/presentational/generic/header-form-exit-back';
 import { State } from 'app/redux/state/state';
-import { NavigationStackProp } from 'react-navigation-stack';
+import { NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: State, ownProps: CategoryDetailsHeaderBackButtonContainerProps): HeaderFormExitBackComponentInput => {
@@ -26,6 +26,6 @@ export type CategoryDetailsHeaderBackButtonContainerProps = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationStackProp<object>;
+	navigation: NavigationScreenProp<object>;
 }
 
