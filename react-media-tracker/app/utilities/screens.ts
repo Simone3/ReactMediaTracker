@@ -1,22 +1,27 @@
 /**
- * Util object to define all app screens as constants
+ * Defines all app screens as constants
  */
 export const AppScreens = {
-	CategoriesList: 'CategoriesList',
-	CategoryDetails: 'CategoryDetails',
-	MediaItemsList: 'MediaItemsList',
-	MediaItemDetails: 'MediaItemDetails',
-	GroupDetails: 'GroupDetails',
-	OwnPlatformDetails: 'OwnPlatformDetails',
-	Settings: 'Settings',
-	Credits: 'Credits'
+	AuthLoading: 'AuthLoadingScreen',
+	UserSignup: 'UserSignupScreen',
+	UserLogin: 'UserLoginScreen',
+	CategoriesList: 'CategoriesListScreen',
+	CategoryDetails: 'CategoryDetailsScreen',
+	MediaItemsList: 'MediaItemsListScreen',
+	MediaItemDetails: 'MediaItemDetailsScreen',
+	GroupDetails: 'GroupDetailsScreen',
+	OwnPlatformDetails: 'OwnPlatformDetailsScreen',
+	Settings: 'SettingsScreen',
+	Credits: 'CreditsScreen'
 };
 
 /**
- * Util object to define all app sections (drawer) as constants
+ * Defines all app sections (collections of screens)
  */
 export const AppSections = {
-	MainApp: 'MainAppSection',
+	Unauthenticated: 'UnauthenticatedSection',
+	Authenticated: 'AuthenticatedSection',
+	Media: 'MediaSection',
 	Settings: 'SettingsSection',
 	Credits: 'CreditsSection'
 };

@@ -13,16 +13,16 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	protected delay = 0;
 	protected errorProbability = 0;
 
-	protected readonly mediaItems: {[category: string]: TMediaItemInternal[]} = {};
+	protected readonly mediaItems: {[user: string]: {[category: string]: TMediaItemInternal[]}} = {};
 
 	/**
 	 * @override
 	 */
-	public async filter(categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]> {
 
 		return this.resolveResult(() => {
 
-			let categoryMediaItems = this.getCategoryMediaItems(categoryId);
+			let categoryMediaItems = this.getCategoryMediaItems(userId, categoryId);
 			
 			categoryMediaItems = this.mockFilter(categoryMediaItems, filter);
 			categoryMediaItems = this.mockSort(categoryMediaItems, sortBy);
@@ -34,11 +34,11 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	/**
 	 * @override
 	 */
-	public async search(categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]> {
+	public async search(userId: string, categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]> {
 			
 		return this.resolveResult(() => {
 
-			return this.getCategoryMediaItems(categoryId)
+			return this.getCategoryMediaItems(userId, categoryId)
 				.filter((item) => {
 					return item.name.toLowerCase().includes(searchTerm.toLowerCase());
 				})
@@ -49,11 +49,11 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 	/**
 	 * @override
 	 */
-	public async save(categoryId: string, mediaItem: TMediaItemInternal): Promise<void> {
+	public async save(userId: string, categoryId: string, mediaItem: TMediaItemInternal): Promise<void> {
 		
 		return this.resolveResult(() => {
 			
-			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
+			const categoryMediaItems = this.getCategoryMediaItems(userId, categoryId);
 			
 			if(mediaItem.id) {
 
@@ -69,18 +69,18 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 				categoryMediaItems.push(mediaItem);
 			}
 			
-			this.mediaItems[categoryId] = categoryMediaItems;
+			this.mediaItems[userId][categoryId] = categoryMediaItems;
 		});
 	}
 
 	/**
 	 * @override
 	 */
-	public async delete(categoryId: string, mediaItemId: string): Promise<void> {
+	public async delete(userId: string, categoryId: string, mediaItemId: string): Promise<void> {
 		
 		return this.resolveResult(() => {
 			
-			const categoryMediaItems = this.getCategoryMediaItems(categoryId);
+			const categoryMediaItems = this.getCategoryMediaItems(userId, categoryId);
 			
 			const i = categoryMediaItems.findIndex((item) => {
 				return item.id === mediaItemId;
@@ -88,7 +88,7 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 			
 			categoryMediaItems.splice(i, 1);
 
-			this.mediaItems[categoryId] = categoryMediaItems;
+			this.mediaItems[userId][categoryId] = categoryMediaItems;
 		});
 	}
 
@@ -163,15 +163,16 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 
 	/**
 	 * Helper to get all media items in the category
-	 * @param categoryId the category ID
+	 * @param userId the user
+	 * @param categoryId the category
 	 * @returns the media items
 	 */
-	private getCategoryMediaItems(categoryId: string): TMediaItemInternal[] {
+	private getCategoryMediaItems(userId: string, categoryId: string): TMediaItemInternal[] {
 
 		let categoryMediaItems: TMediaItemInternal[];
-		if(categoryId in this.mediaItems) {
+		if(userId in this.mediaItems && categoryId in this.mediaItems[userId]) {
 
-			categoryMediaItems = this.mediaItems[categoryId];
+			categoryMediaItems = this.mediaItems[userId][categoryId];
 		}
 		else {
 			

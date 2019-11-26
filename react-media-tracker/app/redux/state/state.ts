@@ -1,8 +1,9 @@
-import { ErrorState } from 'app/data/models/internal/error';
 import { CategoriesListState, CategoryDetailsState, CategoryGlobalState } from 'app/redux/state/category';
+import { ErrorState } from 'app/redux/state/error';
 import { GroupDetailsState, GroupsListState } from 'app/redux/state/group';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
 import { OwnPlatformDetailsState, OwnPlatformsListState } from 'app/redux/state/own-platform';
+import { UserGlobalState, UserOperationsState } from 'app/redux/state/user';
 
 /**
  * The global application state (handled by Redux)
@@ -13,6 +14,16 @@ export class State {
 	 * Portion of the state with the global error data
 	 */
 	public readonly error!: ErrorState;
+
+	/**
+	 * Portion of the state with the global user information
+	 */
+	public readonly userGlobal!: UserGlobalState;
+
+	/**
+	 * Portion of the state with the user operations progress state
+	 */
+	public readonly userOperations!: UserOperationsState;
 
 	/**
 	 * Portion of the state with the global category data

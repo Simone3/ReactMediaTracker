@@ -22,7 +22,8 @@ const saveOwnPlatformSaga = function * (action: SaveOwnPlatformAction): SagaIter
 	// Get values from state
 	const state: State = yield select();
 	const category = state.categoryGlobal.selectedCategory;
-	if(!category) {
+	const user = state.userGlobal.user;
+	if(!category || !user) {
 
 		throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while saving own platform');
 	}
@@ -36,7 +37,7 @@ const saveOwnPlatformSaga = function * (action: SaveOwnPlatformAction): SagaIter
 			const filter: OwnPlatformFilterInternal = {
 				name: ownPlatform.name
 			};
-			const mediaItemsWithSameName: OwnPlatformInternal[] = yield call(ownPlatformController.filter.bind(ownPlatformController), category.id, filter);
+			const mediaItemsWithSameName: OwnPlatformInternal[] = yield call(ownPlatformController.filter.bind(ownPlatformController), user.id, category.id, filter);
 			
 			// If so, dispatch confirmation request action and exit
 			if(mediaItemsWithSameName.length > 0) {
@@ -47,7 +48,7 @@ const saveOwnPlatformSaga = function * (action: SaveOwnPlatformAction): SagaIter
 		}
 
 		// Save the own platform
-		yield call(ownPlatformController.saveOwnPlatform.bind(ownPlatformController), category.id, ownPlatform);
+		yield call(ownPlatformController.saveOwnPlatform.bind(ownPlatformController), user.id, category.id, ownPlatform);
 		yield put(completeSavingOwnPlatform(ownPlatform));
 	}
 	catch(error) {

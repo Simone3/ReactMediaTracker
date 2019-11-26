@@ -21,7 +21,8 @@ const deleteMediaItemSaga = function * (action: DeleteMediaItemAction): SagaIter
 		// Get values from state
 		const state: State = yield select();
 		const category = state.categoryGlobal.selectedCategory;
-		if(!category) {
+		const user = state.userGlobal.user;
+		if(!category || !user) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while deleting media item');
 		}
@@ -30,7 +31,7 @@ const deleteMediaItemSaga = function * (action: DeleteMediaItemAction): SagaIter
 		const mediaItemController = mediaItemControllerFactory.get(category);
 
 		// Delete the media item
-		yield call(mediaItemController.delete.bind(mediaItemController), category.id, action.mediaItem.id);
+		yield call(mediaItemController.delete.bind(mediaItemController), user.id, category.id, action.mediaItem.id);
 		yield put(completeDeletingMediaItem());
 	}
 	catch(error) {

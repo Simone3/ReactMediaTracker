@@ -3,6 +3,7 @@ import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { SelectCategoryAction } from 'app/redux/actions/category/types';
 import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from 'app/redux/actions/media-item/const';
 import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, SearchMediaItemsAction, SubmitMediaItemsFiltersAction } from 'app/redux/actions/media-item/types';
+import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
 
@@ -220,6 +221,14 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 			return {
 				...state,
 				mode: 'NORMAL'
+			};
+		}
+
+		// When the user logs out, everything gets reset
+		case COMPLETE_LOGGING_USER_OUT: {
+
+			return {
+				...initialState
 			};
 		}
 

@@ -8,34 +8,36 @@ import { CatalogVideogameInternal, SearchVideogameCatalogResultInternal, Videoga
  */
 export class VideogameMockedController extends MediaItemMockedController<VideogameInternal, VideogameSortByInternal, VideogameFilterInternal> implements VideogameController {
 
-	protected readonly mediaItems: {[category: string]: VideogameInternal[]} = {
-		4: [{
-			id: '1',
-			mediaType: 'VIDEOGAME',
-			status: 'NEW',
-			name: 'My First Videogame',
-			importance: 'VERY_IMPORTANT'
-		}, {
-			id: '2',
-			mediaType: 'VIDEOGAME',
-			status: 'NEW',
-			name: 'My Second Videogame',
-			importance: 'UNIMPORTANT',
-			averageLengthHours: 20
-		}, {
-			id: '3',
-			mediaType: 'VIDEOGAME',
-			status: 'ACTIVE',
-			name: 'My Third Videogame',
-			importance: 'IMPORTANT',
-			active: true
-		}, {
-			id: '4',
-			mediaType: 'VIDEOGAME',
-			status: 'NEW',
-			name: 'My Fourth Videogame',
-			importance: 'FAIRLY_IMPORTANT'
-		}]
+	protected readonly mediaItems: {[user: string]: {[category: string]: VideogameInternal[]}} = {
+		test: {
+			4: [{
+				id: '1',
+				mediaType: 'VIDEOGAME',
+				status: 'NEW',
+				name: 'My First Videogame',
+				importance: 'VERY_IMPORTANT'
+			}, {
+				id: '2',
+				mediaType: 'VIDEOGAME',
+				status: 'NEW',
+				name: 'My Second Videogame',
+				importance: 'UNIMPORTANT',
+				averageLengthHours: 20
+			}, {
+				id: '3',
+				mediaType: 'VIDEOGAME',
+				status: 'ACTIVE',
+				name: 'My Third Videogame',
+				importance: 'IMPORTANT',
+				active: true
+			}, {
+				id: '4',
+				mediaType: 'VIDEOGAME',
+				status: 'NEW',
+				name: 'My Fourth Videogame',
+				importance: 'FAIRLY_IMPORTANT'
+			}]
+		}
 	};
 }
 

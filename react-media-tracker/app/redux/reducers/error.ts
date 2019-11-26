@@ -1,6 +1,7 @@
-import { AppError, ErrorState } from 'app/data/models/internal/error';
+import { AppError } from 'app/data/models/internal/error';
 import { CLEAR_ERROR, SET_ERROR } from 'app/redux/actions/error/const';
 import { SetErrorAction } from 'app/redux/actions/error/types';
+import { ErrorState } from 'app/redux/state/error';
 import { Action } from 'redux';
 
 /**

@@ -11,57 +11,59 @@ export class CategoryMockedController extends MockControllerHelper implements Ca
 	protected delay = 0;
 	protected errorProbability = 0;
 
-	private categories: CategoryInternal[] = [{
-		id: '1',
-		color: '#FF0000',
-		mediaType: 'BOOK',
-		name: 'My Books'
-	}, {
-		id: '2',
-		color: '#008000',
-		mediaType: 'MOVIE',
-		name: 'My Movies'
-	}, {
-		id: '3',
-		color: '#1E90FF',
-		mediaType: 'TV_SHOW',
-		name: 'My TV Shows'
-	}, {
-		id: '4',
-		color: '#FFA500',
-		mediaType: 'VIDEOGAME',
-		name: 'My Videogames'
-	}];
+	private categories: {[user: string]: CategoryInternal[]} = {
+		test: [{
+			id: '1',
+			color: '#FF0000',
+			mediaType: 'BOOK',
+			name: 'My Books'
+		}, {
+			id: '2',
+			color: '#008000',
+			mediaType: 'MOVIE',
+			name: 'My Movies'
+		}, {
+			id: '3',
+			color: '#1E90FF',
+			mediaType: 'TV_SHOW',
+			name: 'My TV Shows'
+		}, {
+			id: '4',
+			color: '#FFA500',
+			mediaType: 'VIDEOGAME',
+			name: 'My Videogames'
+		}]
+	};
 
 	/**
 	 * @override
 	 */
-	public async getAllCategories(): Promise<CategoryInternal[]> {
+	public async getAllCategories(userId: string): Promise<CategoryInternal[]> {
 		
 		return this.resolveResult(() => {
 
-			this.categories = this.categories.slice();
-			return this.categories;
+			const userCategories = this.getUserCategories(userId);
+			return userCategories.slice();
 		});
 	}
 
 	/**
 	 * @override
 	 */
-	public async filter(filter?: CategoryFilterInternal): Promise<CategoryInternal[]> {
+	public async filter(userId: string, filter?: CategoryFilterInternal): Promise<CategoryInternal[]> {
 
 		return this.resolveResult(() => {
 
 			if(filter && filter.name) {
 
-				return this.categories.filter((category) => {
+				return this.getUserCategories(userId).filter((category) => {
 	
 					return filter.name && filter.name.toUpperCase() === category.name.toUpperCase();
 				});
 			}
 			else {
 
-				return this.categories.slice();
+				return this.getUserCategories(userId).slice();
 			}
 		});
 	}
@@ -69,11 +71,11 @@ export class CategoryMockedController extends MockControllerHelper implements Ca
 	/**
 	 * @override
 	 */
-	public async saveCategory(category: CategoryInternal): Promise<void> {
+	public async saveCategory(userId: string, category: CategoryInternal): Promise<void> {
 
 		return this.resolveResult(() => {
 				
-			const categories = this.categories = this.categories.slice();
+			const categories = this.getUserCategories(userId).slice();
 
 			if(category.id) {
 
@@ -87,23 +89,46 @@ export class CategoryMockedController extends MockControllerHelper implements Ca
 				category.id = this.randomId();
 				categories.push(category);
 			}
+
+			this.categories[userId] = categories;
 		});
 	}
 
 	/**
 	 * @override
 	 */
-	public async deleteCategory(categoryId: string): Promise<void> {
+	public async deleteCategory(userId: string, categoryId: string): Promise<void> {
 
 		return this.resolveResult(() => {
 		
-			const categories = this.categories = this.categories.slice();
+			const categories = this.getUserCategories(userId).slice();
 
 			const i = categories.findIndex((cat) => {
 				return categoryId === cat.id;
 			});
 			
 			categories.splice(i, 1);
+
+			this.categories[userId] = categories;
 		});
+	}
+
+	/**
+	 * Helper to get all categories of a user
+	 * @param userId the user
+	 * @returns the media items
+	 */
+	private getUserCategories(userId: string): CategoryInternal[] {
+
+		let userCategories: CategoryInternal[];
+		if(userId in this.categories) {
+
+			userCategories = this.categories[userId];
+		}
+		else {
+			
+			userCategories = [];
+		}
+		return userCategories;
 	}
 }

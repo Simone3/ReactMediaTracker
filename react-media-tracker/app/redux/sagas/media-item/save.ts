@@ -25,7 +25,8 @@ const saveMediaItemSaga = function * (action: SaveMediaItemAction): SagaIterator
 	// Get values from state
 	const state: State = yield select();
 	const category = state.categoryGlobal.selectedCategory;
-	if(!category) {
+	const user = state.userGlobal.user;
+	if(!category || !user) {
 
 		throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while saving media item');
 	}
@@ -39,7 +40,7 @@ const saveMediaItemSaga = function * (action: SaveMediaItemAction): SagaIterator
 			const filter: MediaItemFilterInternal = {
 				name: mediaItem.name
 			};
-			const mediaItemsWithSameName: MediaItemInternal[] = yield call(mediaItemController.filter.bind(mediaItemController), category.id, filter);
+			const mediaItemsWithSameName: MediaItemInternal[] = yield call(mediaItemController.filter.bind(mediaItemController), user.id, category.id, filter);
 			
 			// If so, dispatch confirmation request action and exit
 			if(mediaItemsWithSameName.length > 0) {
@@ -50,7 +51,7 @@ const saveMediaItemSaga = function * (action: SaveMediaItemAction): SagaIterator
 		}
 
 		// Save the media item
-		yield call(mediaItemController.save.bind(mediaItemController), category.id, mediaItem);
+		yield call(mediaItemController.save.bind(mediaItemController), user.id, category.id, mediaItem);
 		yield put(completeSavingMediaItem());
 	}
 	catch(error) {

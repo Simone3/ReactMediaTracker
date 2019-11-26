@@ -1,6 +1,7 @@
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, INVALIDATE_GROUPS, START_DELETING_GROUP, START_FETCHING_GROUPS } from 'app/redux/actions/group/const';
 import { CompleteFetchingGroupsAction } from 'app/redux/actions/group/types';
+import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { GroupsListState } from 'app/redux/state/group';
 import { Action } from 'redux';
 
@@ -92,6 +93,14 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 
 		// When a category is selected, the group data is reset
 		case SELECT_CATEGORY: {
+
+			return {
+				...initialState
+			};
+		}
+
+		// When the user logs out, everything gets reset
+		case COMPLETE_LOGGING_USER_OUT: {
 
 			return {
 				...initialState

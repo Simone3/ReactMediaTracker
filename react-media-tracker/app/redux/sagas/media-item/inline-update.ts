@@ -23,7 +23,8 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 		// Get values from state
 		const state: State = yield select();
 		const category = state.categoryGlobal.selectedCategory;
-		if(!category) {
+		const user = state.userGlobal.user;
+		if(!category || !user) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while inline updating media item');
 		}
@@ -64,7 +65,7 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 		const mediaItemController = mediaItemControllerFactory.get(category);
 
 		// Update the media item
-		yield call(mediaItemController.save.bind(mediaItemController), category.id, mediaItem);
+		yield call(mediaItemController.save.bind(mediaItemController), user.id, category.id, mediaItem);
 		yield put(completeInlineUpdatingMediaItem());
 	}
 	catch(error) {
