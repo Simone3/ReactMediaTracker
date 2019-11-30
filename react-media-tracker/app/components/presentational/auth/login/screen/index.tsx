@@ -4,8 +4,8 @@ import { styles } from 'app/components/presentational/auth/login/screen/styles';
 import { UserSecretInternal } from 'app/data/models/internal/user';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { navigationService } from 'app/utilities/navigation-service';
-import { AppSections, AppScreens } from 'app/utilities/screens';
 import { i18n } from 'app/utilities/i18n';
+import { AppScreens } from 'app/utilities/screens';
 
 /**
  * Presentational component that contains the add new user form
@@ -19,36 +19,17 @@ export class UserLoginScreenComponent extends Component<UserLoginScreenComponent
 	/**
 	 * @override
 	 */
-	public componentDidUpdate(): void {
-
-		if(this.props.wasLoggedIn) {
-
-			// When login is completed, go to the authenticated section
-			navigationService.navigate(AppSections.Authenticated);
-		}
-	}
-
-	/**
-	 * @override
-	 */
 	public render(): ReactNode {
 		
-		if(this.props.wasLoggedIn) {
-
-			return null;
-		}
-		else {
-
-			return (
-				<View style={styles.container}>
-					{this.renderForm()}
-					<LoadingIndicatorComponent
-						visible={this.props.isLoading}
-						fullScreen={true}
-					/>
-				</View>
-			);
-		}
+		return (
+			<View style={styles.container}>
+				{this.renderForm()}
+				<LoadingIndicatorComponent
+					visible={this.props.isLoading}
+					fullScreen={true}
+				/>
+			</View>
+		);
 	}
 
 	/**
@@ -96,11 +77,6 @@ export type UserLoginScreenComponentInput = {
 	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
 	isLoading: boolean;
-
-	/**
-	 * Flag to tell if the user was successfully signed in. If true, navigates the authenticated section of the app.
-	 */
-	wasLoggedIn: boolean;
 }
 
 /**

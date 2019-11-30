@@ -1,6 +1,4 @@
 import React, { Component, ReactNode } from 'react';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppSections } from 'app/utilities/screens';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 
 /**
@@ -14,21 +12,6 @@ export class AuthLoadingScreenComponent extends Component<AuthLoadingScreenCompo
 	public componentDidMount(): void {
 		
 		this.props.fetchLoginStatus();
-	}
-
-	/**
-	 * @override
-	 */
-	public componentDidUpdate(): void {
-
-		const {
-			isLoggedIn
-		} = this.props;
-
-		if(isLoggedIn !== undefined) {
-
-			navigationService.navigate(isLoggedIn ? AppSections.Authenticated : AppSections.Unauthenticated);
-		}
 	}
 
 	/**
@@ -50,13 +33,6 @@ export class AuthLoadingScreenComponent extends Component<AuthLoadingScreenCompo
  */
 export type AuthLoadingScreenComponentInput = {
 
-	/**
-	 * Tells if the current user is logged in.
-	 * * undefined = waiting for user status
-	 * * true = authenticated
-	 * * false = not authenticated
-	 */
-	isLoggedIn: boolean | undefined;
 }
 
 /**

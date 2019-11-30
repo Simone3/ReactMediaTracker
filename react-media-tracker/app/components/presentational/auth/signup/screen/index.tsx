@@ -4,7 +4,6 @@ import { styles } from 'app/components/presentational/auth/signup/screen/styles'
 import { UserSecretInternal } from 'app/data/models/internal/user';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { navigationService } from 'app/utilities/navigation-service';
-import { AppSections } from 'app/utilities/screens';
 import { i18n } from 'app/utilities/i18n';
 
 /**
@@ -19,36 +18,17 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 	/**
 	 * @override
 	 */
-	public componentDidUpdate(): void {
-
-		if(this.props.wasSignedUp) {
-
-			// When signup is completed, go to the authenticated section
-			navigationService.navigate(AppSections.Authenticated);
-		}
-	}
-
-	/**
-	 * @override
-	 */
 	public render(): ReactNode {
 		
-		if(this.props.wasSignedUp) {
-
-			return null;
-		}
-		else {
-
-			return (
-				<View style={styles.container}>
-					{this.renderForm()}
-					<LoadingIndicatorComponent
-						visible={this.props.isLoading}
-						fullScreen={true}
-					/>
-				</View>
-			);
-		}
+		return (
+			<View style={styles.container}>
+				{this.renderForm()}
+				<LoadingIndicatorComponent
+					visible={this.props.isLoading}
+					fullScreen={true}
+				/>
+			</View>
+		);
 	}
 
 	/**
@@ -96,11 +76,6 @@ export type UserSignupScreenComponentInput = {
 	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
 	isLoading: boolean;
-
-	/**
-	 * Flag to tell if the user was successfully signed up. If true, navigates the authenticated section of the app.
-	 */
-	wasSignedUp: boolean;
 }
 
 /**
