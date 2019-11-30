@@ -11,29 +11,32 @@ export interface OwnPlatformController {
 	 * @param categoryId the category
 	 * @returns the list of own platforms, as a promise
 	 */
-	getAllOwnPlatforms(categoryId: string): Promise<OwnPlatformInternal[]>;
+	getAllOwnPlatforms(userId: string, categoryId: string): Promise<OwnPlatformInternal[]>;
 
 	/**
 	 * Filters the own platforms of a given category
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param filter the filter to apply
 	 * @returns the list of own platforms, as a promise
 	 */
-	filter(categoryId: string, filter?: OwnPlatformFilterInternal): Promise<OwnPlatformInternal[]>;
+	filter(userId: string, categoryId: string, filter?: OwnPlatformFilterInternal): Promise<OwnPlatformInternal[]>;
 
 	/**
 	 * Saves a own platform, adding it if the ID is not specified or updating it otherwise
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param ownPlatform the own platform
 	 */
-	saveOwnPlatform(categoryId: string, ownPlatform: OwnPlatformInternal): Promise<void>;
+	saveOwnPlatform(userId: string, categoryId: string, ownPlatform: OwnPlatformInternal): Promise<void>;
 
 	/**
 	 * Deletes a own platform
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param ownPlatformId the own platform ID
 	 */
-	deleteOwnPlatform(categoryId: string, ownPlatformId: string): Promise<void>;
+	deleteOwnPlatform(userId: string, categoryId: string, ownPlatformId: string): Promise<void>;
 }
 
 /**

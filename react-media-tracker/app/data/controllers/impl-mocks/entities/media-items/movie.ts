@@ -8,75 +8,77 @@ import { CatalogMovieInternal, MovieFilterInternal, MovieInternal, MovieSortByIn
  */
 export class MovieMockedController extends MediaItemMockedController<MovieInternal, MovieSortByInternal, MovieFilterInternal> implements MovieController {
 
-	protected readonly mediaItems: {[category: string]: MovieInternal[]} = {
-		2: [{
-			id: '1',
-			mediaType: 'MOVIE',
-			status: 'NEW',
-			name: 'My First Movie',
-			importance: 'VERY_IMPORTANT',
-			durationMinutes: 123,
-			directors: [ 'Some One' ],
-			genres: [ 'Genre 1', 'Genre 2' ],
-			releaseDate: new Date('2010-01-01'),
-			group: {
-				orderInGroup: 3,
-				groupData: {
-					id: '1',
-					name: 'My Group'
-				}
-			}
-		}, {
-			id: '2',
-			mediaType: 'MOVIE',
-			status: 'ACTIVE',
-			name: 'My Second Movie',
-			importance: 'UNIMPORTANT',
-			durationMinutes: 89,
-			ownPlatform: {
+	protected readonly mediaItems: {[user: string]: {[category: string]: MovieInternal[]}} = {
+		test: {
+			2: [{
 				id: '1',
-				name: 'Netflix',
-				color: '#f25a5a',
-				icon: 'netflix'
-			},
-			active: true
-		}, {
-			id: '3',
-			mediaType: 'MOVIE',
-			status: 'UPCOMING',
-			name: 'My Third Movie',
-			importance: 'IMPORTANT',
-			releaseDate: new Date('2050-01-01')
-		}, {
-			id: '4',
-			mediaType: 'MOVIE',
-			status: 'COMPLETE',
-			name: 'My Fourth Movie',
-			importance: 'FAIRLY_IMPORTANT',
-			completedOn: [ new Date('2000-01-01'), new Date('2010-01-01') ],
-			ownPlatform: {
+				mediaType: 'MOVIE',
+				status: 'NEW',
+				name: 'My First Movie',
+				importance: 'VERY_IMPORTANT',
+				durationMinutes: 123,
+				directors: [ 'Some One' ],
+				genres: [ 'Genre 1', 'Genre 2' ],
+				releaseDate: new Date('2010-01-01'),
+				group: {
+					orderInGroup: 3,
+					groupData: {
+						id: '1',
+						name: 'My Group'
+					}
+				}
+			}, {
 				id: '2',
-				name: 'Hulu',
-				color: '#74eb74',
-				icon: 'hulu'
-			}
-		}, {
-			id: '5',
-			mediaType: 'MOVIE',
-			status: 'REDO',
-			name: 'My Fifth Movie',
-			importance: 'FAIRLY_IMPORTANT',
-			completedOn: [ new Date('2010-01-01') ],
-			markedAsRedo: true
-		}, {
-			id: '6',
-			mediaType: 'MOVIE',
-			status: 'NEW',
-			name: 'My Sixth Movie With a Very Very Very Very Very Very Very Very Very Very Very Very Long Title',
-			importance: 'FAIRLY_IMPORTANT',
-			genres: [ 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre' ],
-			directors: [ 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One' ]
-		}]
+				mediaType: 'MOVIE',
+				status: 'ACTIVE',
+				name: 'My Second Movie',
+				importance: 'UNIMPORTANT',
+				durationMinutes: 89,
+				ownPlatform: {
+					id: '1',
+					name: 'Netflix',
+					color: '#f25a5a',
+					icon: 'netflix'
+				},
+				active: true
+			}, {
+				id: '3',
+				mediaType: 'MOVIE',
+				status: 'UPCOMING',
+				name: 'My Third Movie',
+				importance: 'IMPORTANT',
+				releaseDate: new Date('2050-01-01')
+			}, {
+				id: '4',
+				mediaType: 'MOVIE',
+				status: 'COMPLETE',
+				name: 'My Fourth Movie',
+				importance: 'FAIRLY_IMPORTANT',
+				completedOn: [ new Date('2000-01-01'), new Date('2010-01-01') ],
+				ownPlatform: {
+					id: '2',
+					name: 'Hulu',
+					color: '#74eb74',
+					icon: 'hulu'
+				}
+			}, {
+				id: '5',
+				mediaType: 'MOVIE',
+				status: 'REDO',
+				name: 'My Fifth Movie',
+				importance: 'FAIRLY_IMPORTANT',
+				completedOn: [ new Date('2010-01-01') ],
+				markedAsRedo: true
+			}, {
+				id: '6',
+				mediaType: 'MOVIE',
+				status: 'NEW',
+				name: 'My Sixth Movie With a Very Very Very Very Very Very Very Very Very Very Very Very Long Title',
+				importance: 'FAIRLY_IMPORTANT',
+				genres: [ 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre', 'Genre' ],
+				directors: [ 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One', 'Some One' ]
+			}]
+		}
 	};
 }
 

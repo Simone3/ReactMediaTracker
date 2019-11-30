@@ -21,13 +21,14 @@ const deleteGroupSaga = function * (action: DeleteGroupAction): SagaIterator {
 		// Get values from state
 		const state: State = yield select();
 		const category = state.categoryGlobal.selectedCategory;
-		if(!category) {
+		const user = state.userGlobal.user;
+		if(!category || !user) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while deleting group');
 		}
 
 		// Delete the group
-		yield call(groupController.deleteGroup.bind(groupController), category.id, action.group.id);
+		yield call(groupController.deleteGroup.bind(groupController), user.id, category.id, action.group.id);
 		yield put(completeDeletingGroup(action.group.id));
 	}
 	catch(error) {

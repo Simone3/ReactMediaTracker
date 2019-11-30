@@ -15,6 +15,10 @@ import { watchNavigationSaga } from 'app/redux/sagas/navigation/navigation';
 import { watchDeleteOwnPlatformSaga } from 'app/redux/sagas/own-platform/delete';
 import { watchFetchOwnPlatformsSaga } from 'app/redux/sagas/own-platform/fetch';
 import { watchSaveOwnPlatformSaga } from 'app/redux/sagas/own-platform/save';
+import { watchCheckUserLoginStatusSaga } from 'app/redux/sagas/user/check-login';
+import { watchUserLoginSaga } from 'app/redux/sagas/user/login';
+import { watchUserLogoutSaga } from 'app/redux/sagas/user/logout';
+import { watchUserSignupSaga } from 'app/redux/sagas/user/signup';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -24,6 +28,11 @@ export const rootSaga = function * (): SagaIterator {
 	yield all([
 
 		call(watchNavigationSaga),
+
+		call(watchCheckUserLoginStatusSaga),
+		call(watchUserSignupSaga),
+		call(watchUserLoginSaga),
+		call(watchUserLogoutSaga),
 
 		call(watchFetchCategoriesSaga),
 		call(watchSaveCategorySaga),

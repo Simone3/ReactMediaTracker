@@ -22,7 +22,8 @@ const saveGroupSaga = function * (action: SaveGroupAction): SagaIterator {
 	// Get values from state
 	const state: State = yield select();
 	const category = state.categoryGlobal.selectedCategory;
-	if(!category) {
+	const user = state.userGlobal.user;
+	if(!category || !user) {
 
 		throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while saving group');
 	}
@@ -36,7 +37,7 @@ const saveGroupSaga = function * (action: SaveGroupAction): SagaIterator {
 			const filter: GroupFilterInternal = {
 				name: group.name
 			};
-			const mediaItemsWithSameName: GroupInternal[] = yield call(groupController.filter.bind(groupController), category.id, filter);
+			const mediaItemsWithSameName: GroupInternal[] = yield call(groupController.filter.bind(groupController), user.id, category.id, filter);
 			
 			// If so, dispatch confirmation request action and exit
 			if(mediaItemsWithSameName.length > 0) {
@@ -47,7 +48,7 @@ const saveGroupSaga = function * (action: SaveGroupAction): SagaIterator {
 		}
 
 		// Save the group
-		yield call(groupController.saveGroup.bind(groupController), category.id, group);
+		yield call(groupController.saveGroup.bind(groupController), user.id, category.id, group);
 		yield put(completeSavingGroup(group));
 	}
 	catch(error) {

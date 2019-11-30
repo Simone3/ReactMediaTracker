@@ -1,9 +1,6 @@
 import { Config } from 'app/config/type-config';
 
 const config: Config = {
-	tempToDelete: {
-		userId: '<temp_user_id>'
-	},
 	backEnd: {
 		defaultTimeoutMilliseconds: 5000,
 		baseUrl: '<backend_server_url>'

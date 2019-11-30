@@ -1,5 +1,6 @@
 import { COMPLETE_DELETING_CATEGORY, COMPLETE_FETCHING_CATEGORIES, COMPLETE_SAVING_CATEGORY, FAIL_DELETING_CATEGORY, FAIL_FETCHING_CATEGORIES, HIGHLIGHT_CATEGORY, INVALIDATE_CATEGORIES, REMOVE_CATEGORY_HIGHTLIGHT, START_DELETING_CATEGORY, START_FETCHING_CATEGORIES } from 'app/redux/actions/category/const';
 import { CompleteFetchingCategoriesAction, HighlightCategoryAction } from 'app/redux/actions/category/types';
+import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { CategoriesListState } from 'app/redux/state/category';
 import { Action } from 'redux';
 
@@ -107,6 +108,14 @@ export const categoriesList = (state: CategoriesListState = initialState, action
 			return {
 				...state,
 				highlightedCategory: undefined
+			};
+		}
+
+		// When the user logs out, everything gets reset
+		case COMPLETE_LOGGING_USER_OUT: {
+
+			return {
+				...initialState
 			};
 		}
 

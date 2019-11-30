@@ -20,13 +20,14 @@ const fetchGroupsSaga = function * (): SagaIterator {
 		// Get values from state
 		const state: State = yield select();
 		const category = state.categoryGlobal.selectedCategory;
-		if(!category) {
+		const user = state.userGlobal.user;
+		if(!category || !user) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find values while fetching groups');
 		}
 
 		// Retrieve the groups
-		const groups: GroupInternal[] = yield call(groupController.getAllGroups.bind(groupController), category.id);
+		const groups: GroupInternal[] = yield call(groupController.getAllGroups.bind(groupController), user.id, category.id);
 		yield put(completeFetchingGroups(groups));
 	}
 	catch(error) {

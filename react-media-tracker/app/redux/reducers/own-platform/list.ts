@@ -1,6 +1,7 @@
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, INVALIDATE_OWN_PLATFORMS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS } from 'app/redux/actions/own-platform/const';
 import { CompleteFetchingOwnPlatformsAction } from 'app/redux/actions/own-platform/types';
+import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { OwnPlatformsListState } from 'app/redux/state/own-platform';
 import { Action } from 'redux';
 
@@ -92,6 +93,14 @@ export const ownPlatformsList = (state: OwnPlatformsListState = initialState, ac
 
 		// When a category is selected, the own platform data is reset
 		case SELECT_CATEGORY: {
+
+			return {
+				...initialState
+			};
+		}
+
+		// When the user logs out, everything gets reset
+		case COMPLETE_LOGGING_USER_OUT: {
 
 			return {
 				...initialState

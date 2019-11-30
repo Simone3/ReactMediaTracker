@@ -10,28 +10,32 @@ export interface CategoryController {
 
 	/**
 	 * Gets all saved categories for the given user
+	 * @param userId the user
 	 * @returns the list of categories, as a promise
 	 */
-	getAllCategories(): Promise<CategoryInternal[]>;
+	getAllCategories(userId: string): Promise<CategoryInternal[]>;
 
 	/**
 	 * Filters the categories of a given user
+	 * @param userId the user
 	 * @param filter the filter to apply
 	 * @returns the list of categories, as a promise
 	 */
-	filter(filter?: CategoryFilterInternal): Promise<CategoryInternal[]>;
+	filter(userId: string, filter?: CategoryFilterInternal): Promise<CategoryInternal[]>;
 
 	/**
 	 * Saves a category, adding it if the ID is not specified or updating it otherwise
+	 * @param userId the user
 	 * @param category the category
 	 */
-	saveCategory(category: CategoryInternal): Promise<void>;
+	saveCategory(userId: string, category: CategoryInternal): Promise<void>;
 
 	/**
 	 * Deletes a category
+	 * @param userId the user
 	 * @param categoryId the category ID
 	 */
-	deleteCategory(categoryId: string): Promise<void>;
+	deleteCategory(userId: string, categoryId: string): Promise<void>;
 }
 
 /**

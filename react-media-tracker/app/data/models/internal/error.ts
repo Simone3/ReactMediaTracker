@@ -8,6 +8,11 @@ export class AppError extends Error {
 	public static BACKEND_GENERIC_ERROR = new AppError('backend.generic', 'error.flash.messages.backendGeneric');
 	public static BACKEND_PARSE = new AppError('backend.parse', 'error.flash.messages.backendParse');
 
+	public static BACKEND_USER_CHECK_LOGIN_STATUS = new AppError('backend.user.checkLoginStatus', 'error.flash.messages.localCheckLoginStatus');
+	public static BACKEND_USER_SIGNUP = new AppError('backend.user.signup', 'error.flash.messages.backendSignup');
+	public static BACKEND_USER_LOGIN = new AppError('backend.user.login', 'error.flash.messages.backendLogin');
+	public static BACKEND_USER_LOGOUT = new AppError('backend.user.logout', 'error.flash.messages.backendLogout');
+
 	public static BACKEND_CATEGORY_FETCH = new AppError('backend.category.fetch', 'error.flash.messages.backendCategoryFetch');
 	public static BACKEND_CATEGORY_SAVE = new AppError('backend.category.save', 'error.flash.messages.backendCategorySave');
 	public static BACKEND_CATEGORY_DELETE = new AppError('backend.category.delete', 'error.flash.messages.backendCategoryDelete');
@@ -93,15 +98,3 @@ export class AppError extends Error {
 		return new AppError(this.errorCode, this.errorDescription, convertedErrorDetails);
 	}
 }
-
-/**
- * Portion of the state with the global error data
- */
-export type ErrorState = {
-
-	/**
-	 * The error that occurred, if any.
-	 * A string is displayed as is, an AppError gets displayed as its description.
-	 */
-	error?: AppError | string;
-};

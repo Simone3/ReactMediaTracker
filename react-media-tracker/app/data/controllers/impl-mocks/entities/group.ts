@@ -11,35 +11,37 @@ export class GroupMockedController extends MockControllerHelper implements Group
 	protected delay = 0;
 	protected errorProbability = 0;
 
-	protected readonly groups: {[category: string]: GroupInternal[]} = {
-		2: [{
-			id: '1',
-			name: 'Group 1'
-		}, {
-			id: '2',
-			name: 'Group 2'
-		}]
+	protected readonly groups: {[user: string]: {[category: string]: GroupInternal[]}} = {
+		test: {
+			2: [{
+				id: '1',
+				name: 'Group 1'
+			}, {
+				id: '2',
+				name: 'Group 2'
+			}]
+		}
 	};
 
 	/**
 	 * @override
 	 */
-	public async getAllGroups(categoryId: string): Promise<GroupInternal[]> {
+	public async getAllGroups(userId: string, categoryId: string): Promise<GroupInternal[]> {
 		
 		return this.resolveResult(() => {
 
-			return this.getCategoryGroups(categoryId).slice();
+			return this.getCategoryGroups(userId, categoryId).slice();
 		});
 	}
 
 	/**
 	 * @override
 	 */
-	public async filter(categoryId: string, filter?: GroupFilterInternal): Promise<GroupInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: GroupFilterInternal): Promise<GroupInternal[]> {
 
 		return this.resolveResult(() => {
 
-			const categoryGroups = this.getCategoryGroups(categoryId);
+			const categoryGroups = this.getCategoryGroups(userId, categoryId);
 
 			if(filter && filter.name) {
 
@@ -58,11 +60,11 @@ export class GroupMockedController extends MockControllerHelper implements Group
 	/**
 	 * @override
 	 */
-	public async saveGroup(categoryId: string, group: GroupInternal): Promise<void> {
+	public async saveGroup(userId: string, categoryId: string, group: GroupInternal): Promise<void> {
 
 		return this.resolveResult(() => {
 			
-			const categoryGroups = this.getCategoryGroups(categoryId);
+			const categoryGroups = this.getCategoryGroups(userId, categoryId);
 			
 			if(group.id) {
 
@@ -78,18 +80,18 @@ export class GroupMockedController extends MockControllerHelper implements Group
 				categoryGroups.push(group);
 			}
 			
-			this.groups[categoryId] = categoryGroups;
+			this.groups[userId][categoryId] = categoryGroups;
 		});
 	}
 
 	/**
 	 * @override
 	 */
-	public async deleteGroup(categoryId: string, groupId: string): Promise<void> {
+	public async deleteGroup(userId: string, categoryId: string, groupId: string): Promise<void> {
 
 		return this.resolveResult(() => {
 			
-			const categoryGroups = this.getCategoryGroups(categoryId);
+			const categoryGroups = this.getCategoryGroups(userId, categoryId);
 			
 			const i = categoryGroups.findIndex((item) => {
 				return item.id === groupId;
@@ -97,21 +99,22 @@ export class GroupMockedController extends MockControllerHelper implements Group
 			
 			categoryGroups.splice(i, 1);
 
-			this.groups[categoryId] = categoryGroups;
+			this.groups[userId][categoryId] = categoryGroups;
 		});
 	}
 
 	/**
 	 * Helper to get all groups in the category
-	 * @param categoryId the category ID
+	 * @param userId the user
+	 * @param categoryId the category
 	 * @returns the groups
 	 */
-	private getCategoryGroups(categoryId: string): GroupInternal[] {
+	private getCategoryGroups(userId: string, categoryId: string): GroupInternal[] {
 
 		let categoryGroups: GroupInternal[];
-		if(categoryId in this.groups) {
+		if(userId in this.groups && categoryId in this.groups[userId]) {
 
-			categoryGroups = this.groups[categoryId];
+			categoryGroups = this.groups[userId][categoryId];
 		}
 		else {
 			

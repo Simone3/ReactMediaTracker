@@ -21,7 +21,8 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 		const state: State = yield select();
 		const mode = state.mediaItemsList.mode;
 		const category = state.categoryGlobal.selectedCategory;
-		if(!category) {
+		const user = state.userGlobal.user;
+		if(!category || !user) {
 
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find category while fetching media items');
 		}
@@ -43,7 +44,7 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find filter and sort options');
 				}
 
-				mediaItems = yield call(mediaItemController.filter.bind(mediaItemController), category.id, filter, sortBy);
+				mediaItems = yield call(mediaItemController.filter.bind(mediaItemController), user.id, category.id, filter, sortBy);
 
 				break;
 			}
@@ -57,7 +58,7 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find search term');
 				}
 
-				mediaItems = yield call(mediaItemController.search.bind(mediaItemController), category.id, term);
+				mediaItems = yield call(mediaItemController.search.bind(mediaItemController), user.id, category.id, term);
 
 				break;
 			}

@@ -1,17 +1,20 @@
+import { AuthLoadingScreenContainer } from 'app/components/containers/auth/loading';
+import { UserLoginScreenContainer } from 'app/components/containers/auth/login';
+import { UserSignupScreenContainer } from 'app/components/containers/auth/signup';
 import { CategoryDetailsScreenContainer } from 'app/components/containers/category/details/screen';
 import { CategoriesListScreenContainer } from 'app/components/containers/category/list/screen';
 import { GroupDetailsScreenContainer } from 'app/components/containers/group/details/screen';
 import { MediaItemDetailsScreenContainer } from 'app/components/containers/media-item/details/screen';
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
 import { OwnPlatformDetailsScreenContainer } from 'app/components/containers/own-platform/details/screen';
+import { UserSettingsScreenContainer } from 'app/components/containers/settings/screen';
 import { CreditsScreenComponent } from 'app/components/presentational/credits/screen';
 import { drawerIconBuilder } from 'app/components/presentational/generic/drawer-icon';
-import { SettingsScreenComponent } from 'app/components/presentational/settings/screen';
 import { config } from 'app/config/config';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { AppScreens, AppSections } from 'app/utilities/screens';
-import { createAppContainer, NavigationRoute, NavigationScreenConfig } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator, NavigationRoute, NavigationScreenConfig } from 'react-navigation';
 import { createDrawerNavigator, NavigationDrawerScreenProps } from 'react-navigation-drawer';
 import { createStackNavigator, NavigationStackOptions, NavigationStackProp, NavigationStackScreenProps } from 'react-navigation-stack';
 
@@ -40,9 +43,20 @@ const defaultScreenOptions: ScreenConfig = {
 };
 
 /**
- * The navigator for the main section of the app, with the categories and media items lists
+ * The navigator for the unauthenticated section of the app
  */
-const MainAppStackNavigator = createStackNavigator({
+const UnauthenticatedStackNavigator = createStackNavigator({
+	[AppScreens.UserLogin]: UserLoginScreenContainer,
+	[AppScreens.UserSignup]: UserSignupScreenContainer
+}, {
+	initialRouteName: AppScreens.UserLogin,
+	defaultNavigationOptions: defaultScreenOptions
+});
+
+/**
+ * The navigator for the main section of the authenticated app, with the categories and media items lists
+ */
+const MediaStackNavigator = createStackNavigator({
 	[AppScreens.CategoriesList]: CategoriesListScreenContainer,
 	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer,
 	[AppScreens.MediaItemsList]: MediaItemsListScreenContainer,
@@ -58,8 +72,7 @@ const MainAppStackNavigator = createStackNavigator({
  * The navigator for the settings section of the app
  */
 const SettingsStackNavigator = createStackNavigator({
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[AppScreens.Settings]: SettingsScreenComponent as any
+	[AppScreens.Settings]: UserSettingsScreenContainer
 }, {
 	initialRouteName: AppScreens.Settings,
 	defaultNavigationOptions: defaultScreenOptions
@@ -77,11 +90,11 @@ const CreditsStackNavigator = createStackNavigator({
 });
 
 /**
- * The navigator to switch between the app sections via drawer
+ * The navigator to switch between the main authenticated app sections via drawer
  */
-const DrawerStackNavigator = createDrawerNavigator({
-	[AppSections.MainApp]: {
-		screen: MainAppStackNavigator,
+const AuthenticatedDrawerNavigator = createDrawerNavigator({
+	[AppSections.Media]: {
+		screen: MediaStackNavigator,
 		navigationOptions: {
 			drawerLabel: i18n.t('common.drawer.home'),
 			drawerIcon: drawerIconBuilder(images.none())
@@ -102,10 +115,21 @@ const DrawerStackNavigator = createDrawerNavigator({
 		}
 	}
 }, {
-	initialRouteName: AppSections.MainApp
+	initialRouteName: AppSections.Media
+});
+
+/**
+ * The navigator to switch between unauthenticated and authenticated flows
+ */
+const AuthSwitchNavigator = createSwitchNavigator({
+	[AppScreens.AuthLoading]: AuthLoadingScreenContainer,
+	[AppSections.Unauthenticated]: UnauthenticatedStackNavigator,
+	[AppSections.Authenticated]: AuthenticatedDrawerNavigator
+}, {
+	initialRouteName: AppScreens.AuthLoading
 });
 
 /**
  * The root container that wraps the navigation logic
  */
-export const AppNavigationContainer = createAppContainer(DrawerStackNavigator);
+export const AppNavigationContainer = createAppContainer(AuthSwitchNavigator);

@@ -8,6 +8,8 @@ import { mediaItemDetails } from 'app/redux/reducers/media-item/details';
 import { mediaItemsList } from 'app/redux/reducers/media-item/list';
 import { ownPlatformDetails } from 'app/redux/reducers/own-platform/details';
 import { ownPlatformsList } from 'app/redux/reducers/own-platform/list';
+import { userGlobal } from 'app/redux/reducers/user/global';
+import { userOperations } from 'app/redux/reducers/user/operations';
 import { State } from 'app/redux/state/state';
 import { Action, combineReducers } from 'redux';
 
@@ -16,6 +18,8 @@ import { Action, combineReducers } from 'redux';
  */
 export const rootReducer = combineReducers<State, Action>({
 	error,
+	userGlobal,
+	userOperations,
 	categoryGlobal,
 	categoriesList,
 	categoryDetails,

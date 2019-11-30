@@ -8,34 +8,36 @@ import { BookFilterInternal, BookInternal, BookSortByInternal, CatalogBookIntern
  */
 export class BookMockedController extends MediaItemMockedController<BookInternal, BookSortByInternal, BookFilterInternal> implements BookController {
 
-	protected readonly mediaItems: {[category: string]: BookInternal[]} = {
-		1: [{
-			id: '1',
-			mediaType: 'BOOK',
-			status: 'NEW',
-			name: 'My First Book',
-			importance: 'VERY_IMPORTANT'
-		}, {
-			id: '2',
-			mediaType: 'BOOK',
-			status: 'NEW',
-			name: 'My Second Book',
-			importance: 'UNIMPORTANT',
-			pagesNumber: 500
-		}, {
-			id: '3',
-			mediaType: 'BOOK',
-			status: 'ACTIVE',
-			name: 'My Third Book',
-			importance: 'IMPORTANT',
-			active: true
-		}, {
-			id: '4',
-			mediaType: 'BOOK',
-			status: 'NEW',
-			name: 'My Fourth Book',
-			importance: 'FAIRLY_IMPORTANT'
-		}]
+	protected readonly mediaItems: {[user: string]: {[category: string]: BookInternal[]}} = {
+		test: {
+			1: [{
+				id: '1',
+				mediaType: 'BOOK',
+				status: 'NEW',
+				name: 'My First Book',
+				importance: 'VERY_IMPORTANT'
+			}, {
+				id: '2',
+				mediaType: 'BOOK',
+				status: 'NEW',
+				name: 'My Second Book',
+				importance: 'UNIMPORTANT',
+				pagesNumber: 500
+			}, {
+				id: '3',
+				mediaType: 'BOOK',
+				status: 'ACTIVE',
+				name: 'My Third Book',
+				importance: 'IMPORTANT',
+				active: true
+			}, {
+				id: '4',
+				mediaType: 'BOOK',
+				status: 'NEW',
+				name: 'My Fourth Book',
+				importance: 'FAIRLY_IMPORTANT'
+			}]
+		}
 	};
 }
 

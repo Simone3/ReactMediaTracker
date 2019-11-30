@@ -7,36 +7,40 @@ export interface MediaItemController<TMediaItemInternal extends MediaItemInterna
 
 	/**
 	 * Filters and orders the media items of a category
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param filter the filter to apply
 	 * @param sortBy the order to apply
 	 * @returns the list of media items, as a promise
 	 */
-	filter(categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]>;
+	filter(userId: string, categoryId: string, filter?: TMediaItemFilterInternal, sortBy?: TMediaItemSortByInternal[]): Promise<TMediaItemInternal[]>;
 	
 	/**
 	 * Searches the media items of a category
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param searchTerm the search term
 	 * @returns the list of media items, as a promise
 	 */
-	search(categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]>;
+	search(userId: string, categoryId: string, searchTerm: string): Promise<TMediaItemInternal[]>;
 
 	/**
 	 * Saves a media item into the given category, adding it if the ID is not specified or updating it otherwise
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param mediaItem the media item
 	 * @returns a void promise
 	 */
-	save(categoryId: string, mediaItem: TMediaItemInternal): Promise<void>;
+	save(userId: string, categoryId: string, mediaItem: TMediaItemInternal): Promise<void>;
 
 	/**
 	 * Deletes a media item from the given category
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @param mediaItemId the media item
 	 * @returns a void promise
 	 */
-	delete(categoryId: string, mediaItemId: string): Promise<void>;
+	delete(userId: string, categoryId: string, mediaItemId: string): Promise<void>;
 }
 
 /**
