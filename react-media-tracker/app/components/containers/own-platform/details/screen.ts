@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state: State): OwnPlatformDetailsScreenComponentInput => {
 	
 	return {
-		isLoading: state.ownPlatformDetails.saveStatus === 'SAVING',
-		wasSaved: state.ownPlatformDetails.saveStatus === 'SAVED'
+		isLoading: state.ownPlatformDetails.saveStatus === 'SAVING'
 	};
 };
 

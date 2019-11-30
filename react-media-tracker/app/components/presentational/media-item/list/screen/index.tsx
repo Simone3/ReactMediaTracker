@@ -1,8 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { AppScreens } from 'app/utilities/screens';
 import { MediaItemsListContainer } from 'app/components/containers/media-item/list/list';
-import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/media-item/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
@@ -79,7 +77,6 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 					text={'+'}
 					onPress={() => {
 						loadNewMediaItemDetails(category);
-						navigationService.navigate(AppScreens.MediaItemDetails);
 					}}
 				/>
 				<MediaItemFilterModalContainer />

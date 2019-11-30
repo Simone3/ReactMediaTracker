@@ -3,8 +3,6 @@ import { CategoryInternal } from 'app/data/models/internal/category';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens } from 'app/utilities/screens';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { images } from 'app/utilities/images';
 
@@ -97,7 +95,6 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 
 				edit(category);
 				close();
-				navigationService.navigate(AppScreens.CategoryDetails);
 			}
 		};
 	}

@@ -11,8 +11,7 @@ const mapStateToProps = (state: State): MediaItemDetailsScreenComponentInput => 
 	const groupsLoading = state.groupsList.status === 'DELETING' || state.groupsList.status === 'FETCHING';
 
 	return {
-		isLoading: mediaItemLoading || catalogLoading || groupsLoading,
-		wasSaved: state.mediaItemDetails.saveStatus === 'SAVED'
+		isLoading: mediaItemLoading || catalogLoading || groupsLoading
 	};
 };
 

@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state: State): CategoryDetailsScreenComponentInput => {
 	
 	return {
-		isLoading: state.categoryDetails.saveStatus === 'SAVING',
-		wasSaved: state.categoryDetails.saveStatus === 'SAVED'
+		isLoading: state.categoryDetails.saveStatus === 'SAVING'
 	};
 };
 

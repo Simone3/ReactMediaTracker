@@ -3,8 +3,6 @@ import { MediaItemInternal } from 'app/data/models/internal/media-items/media-it
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens } from 'app/utilities/screens';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { images } from 'app/utilities/images';
 
@@ -91,7 +89,6 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 
 				edit(mediaItem);
 				close();
-				navigationService.navigate(AppScreens.MediaItemDetails);
 			}
 		};
 	}

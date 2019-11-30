@@ -88,13 +88,12 @@ export const groupDetails = (state: GroupDetailsState = initialState, action: Ac
 			};
 		}
 	
-		// When the app completes the save process, the status changes and the group is reset (at this point a navigation back to the list is expected)
+		// When the app completes the save process, the status changes (at this point a navigation back to the list is expected)
 		case COMPLETE_SAVING_GROUP: {
 
 			return {
 				...state,
-				saveStatus: 'SAVED',
-				group: undefined
+				saveStatus: 'SAVED'
 			};
 		}
 	

@@ -88,13 +88,12 @@ export const categoryDetails = (state: CategoryDetailsState = initialState, acti
 			};
 		}
 	
-		// When the app completes the save process, the status changes and the category is reset (at this point a navigation back to the list is expected)
+		// When the app completes the save process, the status changes (at this point a navigation back to the list is expected)
 		case COMPLETE_SAVING_CATEGORY: {
 
 			return {
 				...state,
-				saveStatus: 'SAVED',
-				category: undefined
+				saveStatus: 'SAVED'
 			};
 		}
 	

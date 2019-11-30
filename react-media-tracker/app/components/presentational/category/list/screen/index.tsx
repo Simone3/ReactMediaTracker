@@ -1,8 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { AppScreens } from 'app/utilities/screens';
 import { CategoriesListContainer } from 'app/components/containers/category/list/list';
-import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/category/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
@@ -56,7 +54,6 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 					text={'+'}
 					onPress={() => {
 						this.props.loadNewCategoryDetails();
-						navigationService.navigate(AppScreens.CategoryDetails);
 					}}
 				/>
 				<LoadingIndicatorComponent

@@ -94,13 +94,12 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 			};
 		}
 	
-		// When the app completes the save process, the status changes and the media item is reset (at this point a navigation back to the list is expected)
+		// When the app completes the save process, the status changes (at this point a navigation back to the list is expected)
 		case COMPLETE_SAVING_MEDIA_ITEM: {
 
 			return {
 				...state,
-				saveStatus: 'SAVED',
-				mediaItem: undefined
+				saveStatus: 'SAVED'
 			};
 		}
 	

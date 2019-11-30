@@ -1,7 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { CategoryFormContainer } from 'app/components/containers/category/details/form';
-import { navigationService } from 'app/utilities/navigation-service';
 import { styles } from 'app/components/presentational/category/details/screen/styles';
 import { CategoryDetailsHeaderContainer } from 'app/components/containers/category/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
@@ -30,36 +29,17 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	/**
 	 * @override
 	 */
-	public componentDidUpdate(): void {
-
-		if(this.props.wasSaved) {
-
-			// When save is completed, go back to the list
-			navigationService.back();
-		}
-	}
-
-	/**
-	 * @override
-	 */
 	public render(): ReactNode {
 	
-		if(this.props.wasSaved) {
-
-			return null;
-		}
-		else {
-
-			return (
-				<View style={styles.container}>
-					<CategoryFormContainer/>
-					<LoadingIndicatorComponent
-						visible={this.props.isLoading}
-						fullScreen={true}
-					/>
-				</View>
-			);
-		}
+		return (
+			<View style={styles.container}>
+				<CategoryFormContainer/>
+				<LoadingIndicatorComponent
+					visible={this.props.isLoading}
+					fullScreen={true}
+				/>
+			</View>
+		);
 	}
 }
 
@@ -72,11 +52,6 @@ export type CategoryDetailsScreenComponentInput = {
 	 * Flag to tell if the component is currently waiting on an async operation. If true, shows the loading screen.
 	 */
 	isLoading: boolean;
-
-	/**
-	 * Flag to tell if the category was successfully saved. If true, navigates back the stack.
-	 */
-	wasSaved: boolean;
 }
 
 /**

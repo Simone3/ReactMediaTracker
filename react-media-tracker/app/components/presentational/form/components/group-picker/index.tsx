@@ -5,7 +5,6 @@ import { FormInputComponentInput, FormInputComponentOutput } from 'app/component
 import { GroupInternal } from 'app/data/models/internal/group';
 import { TextInputComponent } from 'app/components/presentational/form/components/text-input';
 import { GenericEntityPickerComponent, GenericEntityPickerComponentLabels, EntityDescriptor } from 'app/components/presentational/form/helpers/entity-picker';
-import { AppScreens } from 'app/utilities/screens';
 import { images } from 'app/utilities/images';
 
 /**
@@ -48,7 +47,6 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 				{...this.props}
 				entities={groups}
 				currentEntity={currentGroup ? currentGroup.groupData : undefined}
-				entityDetailsScreenName={AppScreens.GroupDetails}
 				labels={this.labels}
 				modalIcon={images.groupField()}
 				extraModalFields={this.renderModalOrderInput()}

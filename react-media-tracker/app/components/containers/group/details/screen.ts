@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state: State): GroupDetailsScreenComponentInput => {
 	
 	return {
-		isLoading: state.groupDetails.saveStatus === 'SAVING',
-		wasSaved: state.groupDetails.saveStatus === 'SAVED'
+		isLoading: state.groupDetails.saveStatus === 'SAVING'
 	};
 };
 

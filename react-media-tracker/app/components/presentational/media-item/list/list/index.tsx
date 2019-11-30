@@ -6,8 +6,6 @@ import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemContextMenuContainer } from 'app/components/containers/media-item/list/context-menu';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens } from 'app/utilities/screens';
 
 /**
  * Presentational component to display the list of user media items
@@ -74,7 +72,6 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 								mediaItem={item}
 								open={() => {
 									selectMediaItem(item);
-									navigationService.navigate(AppScreens.MediaItemDetails);
 								}}
 								showOptionsMenu={() => {
 									highlightMediaItem(item);

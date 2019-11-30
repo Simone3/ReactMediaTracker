@@ -88,13 +88,12 @@ export const ownPlatformDetails = (state: OwnPlatformDetailsState = initialState
 			};
 		}
 	
-		// When the app completes the save process, the status changes and the own platform is reset (at this point a navigation back to the list is expected)
+		// When the app completes the save process, the status changes (at this point a navigation back to the list is expected)
 		case COMPLETE_SAVING_OWN_PLATFORM: {
 
 			return {
 				...state,
-				saveStatus: 'SAVED',
-				ownPlatform: undefined
+				saveStatus: 'SAVED'
 			};
 		}
 	

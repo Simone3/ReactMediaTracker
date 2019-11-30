@@ -5,8 +5,6 @@ import { CategoryRowComponent } from 'app/components/presentational/category/lis
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/category/list/list/styles';
 import { CategoryContextMenuContainer } from 'app/components/containers/category/list/context-menu';
-import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens } from 'app/utilities/screens';
 
 /**
  * Presentational component to display the list of user categories
@@ -73,7 +71,6 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 								category={item}
 								open={() => {
 									selectCategory(item);
-									navigationService.navigate(AppScreens.MediaItemsList);
 								}}
 								showOptionsMenu={() => {
 									highlightCategory(item);

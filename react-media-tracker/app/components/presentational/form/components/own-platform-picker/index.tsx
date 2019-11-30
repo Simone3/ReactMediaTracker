@@ -3,7 +3,6 @@ import { i18n } from 'app/utilities/i18n';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 import { GenericEntityPickerComponent, GenericEntityPickerComponentLabels, EntityDescriptor } from 'app/components/presentational/form/helpers/entity-picker';
-import { AppScreens } from 'app/utilities/screens';
 import { images } from 'app/utilities/images';
 
 /**
@@ -42,7 +41,6 @@ export class OwnPlatformPickerComponent extends Component<OwnPlatformPickerCompo
 				{...this.props}
 				entities={ownPlatforms}
 				currentEntity={currentOwnPlatform}
-				entityDetailsScreenName={AppScreens.OwnPlatformDetails}
 				labels={this.labels}
 				modalIcon={images.ownPlatformField()}
 				fetchEntities={fetchOwnPlatforms}

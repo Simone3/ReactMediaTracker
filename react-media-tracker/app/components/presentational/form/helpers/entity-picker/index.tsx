@@ -8,7 +8,6 @@ import { ColoredImage } from 'app/components/presentational/generic/colored-imag
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
-import { navigationService } from 'app/utilities/navigation-service';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
 
@@ -349,13 +348,11 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 	private onAddNewEntity(): void {
 
 		const {
-			loadNewEntityDetails,
-			entityDetailsScreenName
+			loadNewEntityDetails
 		} = this.props;
 
 		// Load empty entity details and navigate to the entity form
 		loadNewEntityDetails();
-		navigationService.navigate(entityDetailsScreenName);
 
 		// Close all modals (for the future: see if there's a way to keep the main modal open)
 		this.setState({
@@ -370,8 +367,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 	private onEditEntity(): void {
 		
 		const {
-			loadEntityDetails,
-			entityDetailsScreenName
+			loadEntityDetails
 		} = this.props;
 
 		// Get currently selected entity (for sure defined since the edit button is disabled if none is selected)
@@ -379,7 +375,6 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 
 		// Load entity details and navigate to the entity form
 		loadEntityDetails(entity);
-		navigationService.navigate(entityDetailsScreenName);
 
 		// Close all modals (for the future: see if there's a way to keep the main modal open)
 		this.setState({
@@ -449,11 +444,6 @@ export type GenericEntityPickerComponentInput<E> = FormInputComponentInput & {
 	 * Flag to tell if the entities list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
 	requiresFetch: boolean;
-
-	/**
-	 * Navigation screen name for the entity form (it will be navigated to when adding or updating an entity)
-	 */
-	entityDetailsScreenName: string;
 
 	/**
 	 * The icon for the modal context menu
