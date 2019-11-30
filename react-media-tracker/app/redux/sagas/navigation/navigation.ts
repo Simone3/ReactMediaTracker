@@ -1,4 +1,4 @@
-import { put, takeLatest } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { COMPLETE_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETAILS, SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { setError } from 'app/redux/actions/error/generators';
@@ -48,54 +48,54 @@ const navigationSaga = function * (action: Action): SagaIterator {
 			case COMPLETE_CHECKING_USER_LOGIN_STATUS: {
 
 				const completeCheckLoginAction = action as CompleteCheckingUserLoginStatusAction;
-				navigationService.navigate(completeCheckLoginAction.user ? AppSections.Authenticated : AppSections.Unauthenticated);
+				yield call(navigationService.navigate.bind(navigationService), completeCheckLoginAction.user ? AppSections.Authenticated : AppSections.Unauthenticated);
 				break;
 			}
 
 			case COMPLETE_SIGNING_USER_UP:
 			case COMPLETE_LOGGING_USER_IN: {
 
-				navigationService.navigate(AppSections.Authenticated);
+				yield call(navigationService.navigate.bind(navigationService), AppSections.Authenticated);
 				break;
 			}
 
 			case COMPLETE_LOGGING_USER_OUT: {
 
-				navigationService.navigate(AppSections.Unauthenticated);
+				yield call(navigationService.navigate.bind(navigationService), AppSections.Unauthenticated);
 				break;
 			}
 
 			case SELECT_CATEGORY: {
 
-				navigationService.navigate(AppScreens.MediaItemsList);
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.MediaItemsList);
 				break;
 			}
 
 			case LOAD_NEW_CATEGORY_DETAILS:
 			case LOAD_CATEGORY_DETAILS: {
 
-				navigationService.navigate(AppScreens.CategoryDetails);
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.CategoryDetails);
 				break;
 			}
 
 			case LOAD_NEW_MEDIA_ITEM_DETAILS:
 			case LOAD_MEDIA_ITEM_DETAILS: {
 
-				navigationService.navigate(AppScreens.MediaItemDetails);
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.MediaItemDetails);
 				break;
 			}
 
 			case LOAD_NEW_GROUP_DETAILS:
 			case LOAD_GROUP_DETAILS: {
 				
-				navigationService.navigate(AppScreens.GroupDetails);
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.GroupDetails);
 				break;
 			}
 
 			case LOAD_NEW_OWN_PLATFORM_DETAILS:
 			case LOAD_OWN_PLATFORM_DETAILS: {
 				
-				navigationService.navigate(AppScreens.OwnPlatformDetails);
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.OwnPlatformDetails);
 				break;
 			}
 
@@ -104,7 +104,7 @@ const navigationSaga = function * (action: Action): SagaIterator {
 			case COMPLETE_SAVING_GROUP:
 			case COMPLETE_SAVING_OWN_PLATFORM: {
 
-				navigationService.back();
+				yield call(navigationService.back.bind(navigationService));
 				break;
 			}
 
