@@ -9,15 +9,13 @@ export const styles = StyleSheet.create({
 	},
 	loadingIcon: {
 		padding: 10,
-
 		width: 30,
 		height: 30
 	},
 	clearIcon: {
-		padding: 10,
-
-		width: 25,
-		height: 25
+		marginRight: 10,
+		width: 15,
+		height: 15
 	},
 	input: {
 		flex: 1,
