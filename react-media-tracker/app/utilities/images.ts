@@ -480,6 +480,42 @@ class ImagesHelper {
 				throw AppError.GENERIC.withDetails(`Own platform icon ID ${iconId} is not mapped to an actual image`);
 		}
 	}
+
+	/**
+	 * Image getter
+	 * @returns hamburger menu icon
+	 */
+	public menu(): ImageRequireSource {
+
+		return require('app/resources/images/ic_menu.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns settings icon
+	 */
+	public settings(): ImageRequireSource {
+
+		return require('app/resources/images/ic_settings.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns credits icon
+	 */
+	public credits(): ImageRequireSource {
+
+		return require('app/resources/images/ic_credits.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns home icon
+	 */
+	public home(): ImageRequireSource {
+
+		return require('app/resources/images/ic_home.png');
+	}
 }
 
 /**

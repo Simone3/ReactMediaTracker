@@ -97,21 +97,21 @@ const AuthenticatedDrawerNavigator = createDrawerNavigator({
 		screen: MediaStackNavigator,
 		navigationOptions: {
 			drawerLabel: i18n.t('common.drawer.home'),
-			drawerIcon: drawerIconBuilder(images.none())
+			drawerIcon: drawerIconBuilder(images.home())
 		}
 	},
 	[AppSections.Settings]: {
 		screen: SettingsStackNavigator,
 		navigationOptions: {
 			drawerLabel: i18n.t('common.drawer.settings'),
-			drawerIcon: drawerIconBuilder(images.none())
+			drawerIcon: drawerIconBuilder(images.settings())
 		}
 	},
 	[AppSections.Credits]: {
 		screen: CreditsStackNavigator,
 		navigationOptions: {
 			drawerLabel: i18n.t('common.drawer.credits'),
-			drawerIcon: drawerIconBuilder(images.none())
+			drawerIcon: drawerIconBuilder(images.credits())
 		}
 	}
 }, {

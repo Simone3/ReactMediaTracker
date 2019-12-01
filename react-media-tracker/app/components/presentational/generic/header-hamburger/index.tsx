@@ -16,7 +16,7 @@ export class HeaderHamburgerComponent extends Component<HeaderHamburgerComponent
 
 		return (
 			<HeaderIconComponent
-				source={images.none()}
+				source={images.menu()}
 				tintColor={config.ui.colors.colorContrastText}
 				onClick={() => {
 					this.props.navigation.openDrawer();
