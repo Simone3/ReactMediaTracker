@@ -1,4 +1,4 @@
-import { COMPLETE_CHECKING_USER_LOGIN_STATUS, COMPLETE_LOGGING_USER_IN, COMPLETE_LOGGING_USER_OUT, COMPLETE_SIGNING_USER_UP } from 'app/redux/actions/user/const';
+import { COMPLETE_CHECKING_USER_LOGIN_STATUS, COMPLETE_LOGGING_USER_IN, COMPLETE_SIGNING_USER_UP } from 'app/redux/actions/user/const';
 import { CompleteCheckingUserLoginStatusAction, CompleteLoggingUserInAction, CompleteSigningUserUpAction } from 'app/redux/actions/user/types';
 import { UserGlobalState } from 'app/redux/state/user';
 import { Action } from 'redux';
@@ -42,15 +42,6 @@ export const userGlobal = (state: UserGlobalState = initialState, action: Action
 			return {
 				user: authAction.user,
 				status: 'AUTHENTICATED'
-			};
-		}
-
-		// When the user logs out, the current user and status are reset
-		case COMPLETE_LOGGING_USER_OUT: {
-
-			return {
-				user: undefined,
-				status: 'UNAUTHENTICATED'
 			};
 		}
 

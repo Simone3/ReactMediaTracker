@@ -1,3 +1,4 @@
+import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { categoryDetails } from 'app/redux/reducers/category/details';
 import { categoryGlobal } from 'app/redux/reducers/category/global';
 import { categoriesList } from 'app/redux/reducers/category/list';
@@ -14,9 +15,9 @@ import { State } from 'app/redux/state/state';
 import { Action, combineReducers } from 'redux';
 
 /**
- * The combined root reducer
+ * Combination of all app reducers
  */
-export const rootReducer = combineReducers<State, Action>({
+export const allReduces = combineReducers<State, Action>({
 	error,
 	userGlobal,
 	userOperations,
@@ -30,3 +31,20 @@ export const rootReducer = combineReducers<State, Action>({
 	ownPlatformsList,
 	ownPlatformDetails
 });
+
+/**
+ * The application root reducer
+ * @param state previous state
+ * @param action an action
+ * @returns the new state
+ */
+export const rootReducer = (state: State | undefined, action: Action): State => {
+
+	// When the user logs out, the whole state is reset (child reducers all set their initial state)
+	if(action.type === COMPLETE_LOGGING_USER_OUT) {
+
+		state = undefined;
+	}
+
+	return allReduces(state, action);
+};

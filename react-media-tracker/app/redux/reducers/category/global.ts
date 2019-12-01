@@ -1,6 +1,5 @@
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { SelectCategoryAction } from 'app/redux/actions/category/types';
-import { COMPLETE_LOGGING_USER_OUT } from 'app/redux/actions/user/const';
 import { CategoryGlobalState } from 'app/redux/state/category';
 import { Action } from 'redux';
 
@@ -31,14 +30,6 @@ export const categoryGlobal = (state: CategoryGlobalState = initialState, action
 			return {
 				...initialState,
 				selectedCategory: category
-			};
-		}
-
-		// When the user logs out, everything gets reset
-		case COMPLETE_LOGGING_USER_OUT: {
-
-			return {
-				...initialState
 			};
 		}
 
