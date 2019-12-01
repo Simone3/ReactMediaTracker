@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View, Dimensions } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { CategoryRowComponent } from 'app/components/presentational/category/list/row';
 import { i18n } from 'app/utilities/i18n';
@@ -15,19 +15,6 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 	 * @override
 	 */
 	public render(): ReactNode {
-
-		return (
-			<View>
-				{this.renderCategories()}
-			</View>
-		);
-	}
-
-	/**
-	 * Helper method to render the main list
-	 * @returns the node portion
-	 */
-	private renderCategories(): ReactNode {
 
 		if(this.props.categories.length > 0) {
 
@@ -61,9 +48,9 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 		} = this.props;
 
 		return (
-			<View>
+			<View style={styles.container}>
 				<FlatList
-					style={[ styles.list, { width: Dimensions.get('window').width }]}
+					style={styles.list}
 					data={categories}
 					renderItem={({ item }) => {
 						return (

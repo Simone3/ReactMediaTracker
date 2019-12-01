@@ -14,9 +14,7 @@ export const styles = StyleSheet.create({
 		paddingBottom: 10,
 		paddingLeft: 18,
 		paddingRight: 18,
-
-		marginLeft: 14,
-		marginRight: 14,
+		
 		marginTop: 3,
 		marginBottom: 3
 	},
