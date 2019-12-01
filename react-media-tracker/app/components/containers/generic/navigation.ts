@@ -115,7 +115,8 @@ const AuthenticatedDrawerNavigator = createDrawerNavigator({
 		}
 	}
 }, {
-	initialRouteName: AppSections.Media
+	initialRouteName: AppSections.Media,
+	unmountInactiveRoutes: true
 });
 
 /**
