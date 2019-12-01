@@ -368,8 +368,20 @@
 	"settings": {
 		"screen": {
 			"title": "Settings",
-			"buttons": {
-				"logout": "Logout"
+			"sections": {
+				"user": "User"
+			},
+			"rows": {
+				"logout": {
+					"title": "Logout",
+					"subtitle": "Logged in as {{username}}"
+				}
+			},
+			"alert": {
+				"logout": {
+					"title": "Logout",
+					"message": "Are you sure you want to logout? All your data will be kept and will be available after you login again."
+				}
 			}
 		}
 	},
