@@ -6,12 +6,20 @@ export const styles = StyleSheet.create({
 		paddingBottom: 10,
 		flex: 1,
 		alignItems: 'center',
-		justifyContent: 'center'
+		justifyContent: 'center',
+		width: '100%'
 	},
 	formContainer: {
-		
+		width: '100%',
+		padding: 40
 	},
-	formInput: {
+	titleSectionContainer: {
+		marginBottom: 60
+	},
+	inputsContainer: {
+		marginBottom: 40
+	},
+	submitContainer: {
 		
 	}
 });

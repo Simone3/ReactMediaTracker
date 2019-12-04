@@ -316,6 +316,9 @@
 		}
 	},
 	"common": {
+		"app": {
+			"name": "Media Tracker"
+		},
 		"alert": {
 			"default": {
 				"okButton": "OK",

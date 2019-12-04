@@ -516,6 +516,15 @@ class ImagesHelper {
 
 		return require('app/resources/images/ic_home.png');
 	}
+
+	/**
+	 * Image getter
+	 * @returns app logo
+	 */
+	public appLogo(): ImageRequireSource {
+
+		return require('app/resources/images/ic_app_logo.png');
+	}
 }
 
 /**
