@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
 	},
 	optionsContainer: {
 		flex: 0,
-		marginTop: 10
+		padding: 10
 	},
 	optionsIcon: {
 		width: 15,
