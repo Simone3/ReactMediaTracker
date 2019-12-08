@@ -14,11 +14,6 @@ class NavigationService {
 	 */
 	public initialize(navigator: NavigationContainerComponent): void {
 		
-		if(this.navigator) {
-
-			throw AppError.GENERIC.withDetails('Cannot initialize navigation service twice');
-		}
-
 		this.navigator = navigator;
 	}
 

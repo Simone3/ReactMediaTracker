@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { initializeRedux } from 'app/redux/initializer';
 import { AppNavigationContainer } from 'app/components/containers/generic/navigation';
 import { navigationService } from 'app/utilities/navigation-service';
-import { AppError } from 'app/data/models/internal/error';
 import { ErrorHandlerContainer } from 'app/components/containers/generic/error-handler';
 
 // Initialize app components
@@ -25,7 +24,7 @@ export class App extends Component {
 					<AppNavigationContainer
 						ref={(navigatorRef) => {
 							if(!navigatorRef) {
-								throw AppError.GENERIC.withDetails('Unexpected null navigator reference');
+								return;
 							}
 							navigationService.initialize(navigatorRef);
 						}}/>
