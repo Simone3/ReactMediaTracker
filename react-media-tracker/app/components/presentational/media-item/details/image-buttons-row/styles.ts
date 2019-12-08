@@ -14,9 +14,10 @@ export const styles = StyleSheet.create({
 		alignItems: 'center'
 	},
 	image: {
-		height: 170,
-		width: 310,
-		resizeMode: 'center'
+		flex: 1,
+		alignSelf: 'stretch',
+		width: undefined,
+		height: undefined
 	},
 	buttonsContainer: {
 		flex: 0,
