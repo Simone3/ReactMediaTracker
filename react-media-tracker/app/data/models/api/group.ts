@@ -73,7 +73,7 @@ export class GetAllGroupsResponse extends CommonResponse {
 }
 
 /**
- * Movie filtering options, publicly exposed via API
+ * Group filtering options, publicly exposed via API
  */
 export class GroupFilter {
 

@@ -99,7 +99,7 @@ export class GetAllCategoriesResponse extends CommonResponse {
 }
 
 /**
- * Movie filtering options, publicly exposed via API
+ * Category filtering options, publicly exposed via API
  */
 export class CategoryFilter {
 

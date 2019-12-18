@@ -87,7 +87,7 @@ export class GetAllOwnPlatformsResponse extends CommonResponse {
 }
 
 /**
- * Movie filtering options, publicly exposed via API
+ * Own platform filtering options, publicly exposed via API
  */
 export class OwnPlatformFilter {
 
