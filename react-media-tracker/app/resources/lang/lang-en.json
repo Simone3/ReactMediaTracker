@@ -351,16 +351,18 @@
 	"auth": {
 		"signup": {
 			"placeholders": {
-				"name": "Username"
+				"email": "E-mail",
+				"password": "Password"
 			},
 			"buttons": {
 				"submit": "Signup",
-				"alreadyUser": "Already have a username?"
+				"alreadyUser": "Already have an account?"
 			}
 		},
 		"login": {
 			"placeholders": {
-				"name": "Username"
+				"email": "E-mail",
+				"password": "Password"
 			},
 			"buttons": {
 				"submit": "Login",

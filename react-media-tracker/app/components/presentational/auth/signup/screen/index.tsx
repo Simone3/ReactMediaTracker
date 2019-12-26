@@ -26,7 +26,8 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 	};
 
 	public state: UserSecretInternal = {
-		name: ''
+		email: '',
+		password: ''
 	};
 
 	/**
@@ -58,17 +59,32 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 					<AuthTextInputComponent
 						onChangeText={(value) => {
 							this.setState({
-								name: value
+								email: value
 							});
 						}}
-						value={this.state.name}
-						placeholder={i18n.t('auth.signup.placeholders.name')}
+						value={this.state.email}
+						placeholder={i18n.t('auth.signup.placeholders.email')}
+						textContentType='username'
+						autoCompleteType='email'
+						keyboardType='email-address'
+					/>
+					<AuthTextInputComponent
+						onChangeText={(value) => {
+							this.setState({
+								password: value
+							});
+						}}
+						value={this.state.password}
+						placeholder={i18n.t('auth.signup.placeholders.password')}
+						secureTextEntry={true}
+						textContentType='password'
+						autoCompleteType='password'
 					/>
 				</View>
 				<View style={styles.submitContainer}>
 					<AuthSubmitComponent
 						text={i18n.t('auth.signup.buttons.submit')}
-						disabled={!this.state.name}
+						disabled={!this.state.email || !this.state.password}
 						onPress={() => {
 							this.props.signup(this.state);
 						}}

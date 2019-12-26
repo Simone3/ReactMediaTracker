@@ -1,4 +1,4 @@
-import { UserMockedController } from 'app/data/controllers/impl-mocks/entities/user';
+import { UserFirebaseController } from 'app/data/controllers/impl-prod/entities/user';
 import { UserInternal, UserSecretInternal } from 'app/data/models/internal/user';
 
 /**
@@ -10,7 +10,13 @@ export interface UserController {
 	 * Gets the user (if any) currently saved locally on this device
 	 * @returns the saved user or undefined, as a promise
 	 */
-	getStoredUser(): Promise<UserInternal | undefined>;
+	getCurrentUser(): Promise<UserInternal | undefined>;
+
+	/**
+	 * Gets the user current user authorization token. Throws an error if no user is currently logged in.
+	 * @returns the auth token, as a promise
+	 */
+	getCurrentUserAccessToken(): Promise<string>;
 
 	/**
 	 * Signs a user up
@@ -36,5 +42,6 @@ export interface UserController {
 /**
  * Singleton implementation of the user controller
  */
-export const userController: UserController = new UserMockedController();
+// export const userController: UserController = new UserMockedController();
+export const userController: UserController = new UserFirebaseController();
 

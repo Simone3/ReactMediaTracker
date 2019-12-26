@@ -4,7 +4,7 @@
 export type UserInternal = {
 
 	id: string;
-	name: string;
+	email: string;
 }
 
 /**
@@ -12,7 +12,8 @@ export type UserInternal = {
  */
 export type UserSecretInternal = {
 
-	name: string;
+	email: string;
+	password: string;
 }
 
 /**
@@ -20,12 +21,13 @@ export type UserSecretInternal = {
  */
 export const DEFAULT_USER: UserInternal = {
 	id: '',
-	name: ''
+	email: ''
 };
 
 /**
  * The default initial user with secret data, internal type just for display purposes
  */
 export const DEFAULT_USER_SECRET: UserSecretInternal = {
-	name: ''
+	email: '',
+	password: ''
 };

@@ -17,16 +17,29 @@ export class UserMockedController extends MockControllerHelper implements UserCo
 
 	protected readonly users: UserInternal[] = [{
 		id: 'test',
-		name: 'test'
+		email: 'test@test.test'
 	}];
 
 	/**
 	 * @override
 	 */
-	public async getStoredUser(): Promise<UserInternal | undefined> {
+	public async getCurrentUser(): Promise<UserInternal | undefined> {
 
 		const value = await localStorage.getValue(UserMockedController.LOCAL_STORAGE_KEY);
 		return value ? JSON.parse(value) : undefined;
+	}
+
+	/**
+	 * @override
+	 */
+	public async getCurrentUserAccessToken(): Promise<string> {
+
+		const user = await this.getCurrentUser();
+		if(!user) {
+
+			throw AppError.GENERIC.withDetails('Cannot get the access token if no user is logged in');
+		}
+		return '-fake-access-token-';
 	}
 
 	/**
@@ -37,7 +50,7 @@ export class UserMockedController extends MockControllerHelper implements UserCo
 		return this.resolveResult(async() => {
 
 			const sameNameUser = this.users.find((existingUser) => {
-				return existingUser.name === user.name;
+				return existingUser.email === user.email;
 			});
 			if(sameNameUser) {
 
@@ -65,7 +78,7 @@ export class UserMockedController extends MockControllerHelper implements UserCo
 		return this.resolveResult(async() => {
 
 			const matchingUser = this.users.find((existingUser) => {
-				return existingUser.name === user.name;
+				return existingUser.email === user.email;
 			});
 
 			if(!matchingUser) {

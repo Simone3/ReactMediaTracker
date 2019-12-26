@@ -59,7 +59,7 @@ export class SettingsScreenComponent extends Component<SettingsScreenComponentPr
 		return (
 			<ClickableSettingsRowComponent
 				title={i18n.t('settings.screen.rows.logout.title')}
-				subtitle={i18n.t('settings.screen.rows.logout.subtitle', { username: user ? user.name : '' })}
+				subtitle={i18n.t('settings.screen.rows.logout.subtitle', { username: user ? user.email : '' })}
 				onPress={() => {
 
 					const title = i18n.t('settings.screen.alert.logout.title');

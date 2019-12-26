@@ -17,7 +17,7 @@ const checkUserLoginStatusSaga = function * (): SagaIterator {
 	try {
 
 		// Get user saved on device
-		const user: UserInternal | undefined = yield call(userController.getStoredUser.bind(userController));
+		const user: UserInternal | undefined = yield call(userController.getCurrentUser.bind(userController));
 		yield put(completeCheckingUserLoginStatus(user));
 	}
 	catch(error) {

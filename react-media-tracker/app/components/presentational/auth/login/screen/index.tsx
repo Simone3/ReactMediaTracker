@@ -27,7 +27,8 @@ export class UserLoginScreenComponent extends Component<UserLoginScreenComponent
 	};
 
 	public state: UserSecretInternal = {
-		name: ''
+		email: '',
+		password: ''
 	};
 
 	/**
@@ -59,17 +60,32 @@ export class UserLoginScreenComponent extends Component<UserLoginScreenComponent
 					<AuthTextInputComponent
 						onChangeText={(value) => {
 							this.setState({
-								name: value
+								email: value
 							});
 						}}
-						value={this.state.name}
-						placeholder={i18n.t('auth.login.placeholders.name')}
+						value={this.state.email}
+						placeholder={i18n.t('auth.login.placeholders.email')}
+						textContentType='username'
+						autoCompleteType='email'
+						keyboardType='email-address'
+					/>
+					<AuthTextInputComponent
+						onChangeText={(value) => {
+							this.setState({
+								password: value
+							});
+						}}
+						value={this.state.password}
+						placeholder={i18n.t('auth.login.placeholders.password')}
+						secureTextEntry={true}
+						textContentType='password'
+						autoCompleteType='password'
 					/>
 				</View>
 				<View style={styles.submitContainer}>
 					<AuthSubmitComponent
 						text={i18n.t('auth.login.buttons.submit')}
-						disabled={!this.state.name}
+						disabled={!this.state.email || !this.state.password}
 						onPress={() => {
 							this.props.login(this.state);
 						}}
