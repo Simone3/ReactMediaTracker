@@ -89,10 +89,10 @@
 				}
 			},
 			"importance": {
-				"VERY_IMPORTANT": "Very important",
-				"IMPORTANT": "Important",
-				"FAIRLY_IMPORTANT" : "Fairly important",
-				"UNIMPORTANT": "Unimportant"
+				"400": "Very important",
+				"300": "Important",
+				"200" : "Fairly important",
+				"100": "Unimportant"
 			}
 		},
 		"list": {

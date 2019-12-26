@@ -3,38 +3,8 @@ import { groupMapper } from 'app/data/mappers/group';
 import { ownPlatformMapper } from 'app/data/mappers/own-platform';
 import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemGroupFilter, MediaItemOwnPlatformFilter, MediaItemSortBy, MediaItemSortField, SearchMediaItemCatalogResult } from 'app/data/models/api/media-items/media-item';
 import { AppError } from 'app/data/models/internal/error';
-import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemImportanceInternal, MediaItemInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusFilterInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
+import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusFilterInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
-
-/**
- * Helper for importance mapping (exact match instead of numeric intervals to avoid inconsistencies with back-end filtering)
- */
-const importanceLevelMapper = new class ImportanceLevelMapper extends ModelMapper<MediaItemImportanceInternal, number, {}> {
-	
-	protected convertToExternal(source: MediaItemImportanceInternal): number {
-
-		switch(source) {
-
-			case 'VERY_IMPORTANT': return 350;
-			case 'IMPORTANT': return 250;
-			case 'FAIRLY_IMPORTANT': return 150;
-			case 'UNIMPORTANT': return 50;
-			default: throw AppError.GENERIC.withDetails(`Importance level ${source} not mapped`);
-		}
-	}
-
-	protected convertToInternal(source: number): MediaItemImportanceInternal {
-
-		switch(source) {
-
-			case 350: return 'VERY_IMPORTANT';
-			case 250: return 'IMPORTANT';
-			case 150: return 'FAIRLY_IMPORTANT';
-			case 50: return 'UNIMPORTANT';
-			default: throw AppError.GENERIC.withDetails(`Importance level ${source} not mapped`);
-		}
-	}
-}();
 
 /**
  * Abstract mapper for media items
@@ -52,7 +22,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 		
 		const target: MediaItem = {
 			name: source.name,
-			importance: importanceLevelMapper.toExternal(source.importance),
+			importance: source.importance,
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -98,7 +68,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			
 			name: source.name,
 			status: this.buildStatusLabel(source),
-			importance: importanceLevelMapper.toInternal(source.importance),
+			importance: source.importance,
 			genres: source.genres,
 			description: source.description,
 			userComment: source.userComment,
@@ -185,7 +155,7 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	protected commonToExternal(source: MediaItemFilterInternal): MediaItemFilter {
 
 		const target: MediaItemFilter = {
-			importanceLevels: source.importanceLevels ? importanceLevelMapper.toExternalList(source.importanceLevels) : undefined,
+			importanceLevels: source.importanceLevels,
 			groups: this.toExternalGroupFilter(source.groups),
 			ownPlatforms: this.toExternalOwnPlatformFilter(source.ownPlatforms),
 			name: source.name
@@ -201,7 +171,7 @@ export abstract class MediaItemFilterMapper<TMediaItemFilterInternal extends Med
 	protected commonToInternal(source: MediaItemFilter): MediaItemFilterInternal {
 
 		return {
-			importanceLevels: source.importanceLevels ? importanceLevelMapper.toInternalList(source.importanceLevels) : undefined,
+			importanceLevels: source.importanceLevels,
 			groups: this.toInternalGroupFilter(source.groups),
 			ownPlatforms: this.toInternalOwnPlatformFilter(source.ownPlatforms),
 			status: this.toInternalStatusFilter(source),

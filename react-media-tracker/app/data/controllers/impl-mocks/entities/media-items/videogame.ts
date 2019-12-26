@@ -15,27 +15,27 @@ export class VideogameMockedController extends MediaItemMockedController<Videoga
 				mediaType: 'VIDEOGAME',
 				status: 'NEW',
 				name: 'My First Videogame',
-				importance: 'VERY_IMPORTANT'
+				importance: '400'
 			}, {
 				id: '2',
 				mediaType: 'VIDEOGAME',
 				status: 'NEW',
 				name: 'My Second Videogame',
-				importance: 'UNIMPORTANT',
+				importance: '100',
 				averageLengthHours: 20
 			}, {
 				id: '3',
 				mediaType: 'VIDEOGAME',
 				status: 'ACTIVE',
 				name: 'My Third Videogame',
-				importance: 'IMPORTANT',
+				importance: '300',
 				active: true
 			}, {
 				id: '4',
 				mediaType: 'VIDEOGAME',
 				status: 'NEW',
 				name: 'My Fourth Videogame',
-				importance: 'FAIRLY_IMPORTANT'
+				importance: '200'
 			}]
 		}
 	};

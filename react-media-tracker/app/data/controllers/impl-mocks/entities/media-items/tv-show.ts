@@ -15,27 +15,27 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 				mediaType: 'TV_SHOW',
 				status: 'NEW',
 				name: 'My First TV Show',
-				importance: 'VERY_IMPORTANT'
+				importance: '400'
 			}, {
 				id: '2',
 				mediaType: 'TV_SHOW',
 				status: 'NEW',
 				name: 'My Second TV Show',
-				importance: 'UNIMPORTANT',
+				importance: '100',
 				averageEpisodeRuntimeMinutes: 50
 			}, {
 				id: '3',
 				mediaType: 'TV_SHOW',
 				status: 'ACTIVE',
 				name: 'My Third TV Show',
-				importance: 'IMPORTANT',
+				importance: '300',
 				active: true
 			}, {
 				id: '4',
 				mediaType: 'TV_SHOW',
 				status: 'NEW',
 				name: 'My Fourth TV Show',
-				importance: 'FAIRLY_IMPORTANT'
+				importance: '200'
 			}]
 		}
 	};

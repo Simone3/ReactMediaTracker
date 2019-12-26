@@ -59,7 +59,7 @@ export const DEFAULT_BOOK: BookInternal = {
 	name: '',
 	mediaType: 'BOOK',
 	status: 'NEW',
-	importance: 'VERY_IMPORTANT'
+	importance: '400'
 };
 
 /**

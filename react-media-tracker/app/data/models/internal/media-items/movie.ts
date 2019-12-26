@@ -59,7 +59,7 @@ export const DEFAULT_MOVIE: MovieInternal = {
 	name: '',
 	mediaType: 'MOVIE',
 	status: 'NEW',
-	importance: 'VERY_IMPORTANT'
+	importance: '400'
 };
 
 /**

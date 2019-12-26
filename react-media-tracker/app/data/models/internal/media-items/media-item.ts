@@ -28,7 +28,7 @@ export type MediaItemGroupInternal = {
 /**
  * Array of all media item importance levels, internal type just for display purposes
  */
-export const MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES: [ 'VERY_IMPORTANT', 'IMPORTANT', 'FAIRLY_IMPORTANT', 'UNIMPORTANT' ] = [ 'VERY_IMPORTANT', 'IMPORTANT', 'FAIRLY_IMPORTANT', 'UNIMPORTANT' ];
+export const MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES: [ '400', '300', '200', '100' ] = [ '400', '300', '200', '100' ];
 
 /**
  * The media item importance levels, internal type just for display purposes

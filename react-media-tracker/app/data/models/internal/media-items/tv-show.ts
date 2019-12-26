@@ -63,7 +63,7 @@ export const DEFAULT_TV_SHOW: TvShowInternal = {
 	name: '',
 	mediaType: 'TV_SHOW',
 	status: 'NEW',
-	importance: 'VERY_IMPORTANT'
+	importance: '400'
 };
 
 /**

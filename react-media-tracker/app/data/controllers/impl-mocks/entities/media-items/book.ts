@@ -15,27 +15,27 @@ export class BookMockedController extends MediaItemMockedController<BookInternal
 				mediaType: 'BOOK',
 				status: 'NEW',
 				name: 'My First Book',
-				importance: 'VERY_IMPORTANT'
+				importance: '400'
 			}, {
 				id: '2',
 				mediaType: 'BOOK',
 				status: 'NEW',
 				name: 'My Second Book',
-				importance: 'UNIMPORTANT',
+				importance: '100',
 				pagesNumber: 500
 			}, {
 				id: '3',
 				mediaType: 'BOOK',
 				status: 'ACTIVE',
 				name: 'My Third Book',
-				importance: 'IMPORTANT',
+				importance: '300',
 				active: true
 			}, {
 				id: '4',
 				mediaType: 'BOOK',
 				status: 'NEW',
 				name: 'My Fourth Book',
-				importance: 'FAIRLY_IMPORTANT'
+				importance: '200'
 			}]
 		}
 	};

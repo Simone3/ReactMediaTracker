@@ -49,16 +49,16 @@ class ImagesHelper {
 
 		switch(importance) {
 
-			case 'VERY_IMPORTANT':
+			case '400':
 				return require('app/resources/images/ic_importance_1.png');
 			
-			case 'IMPORTANT':
+			case '300':
 				return require('app/resources/images/ic_importance_2.png');
 
-			case 'FAIRLY_IMPORTANT':
+			case '200':
 				return require('app/resources/images/ic_importance_3.png');
 
-			case 'UNIMPORTANT':
+			case '100':
 				return require('app/resources/images/ic_importance_4.png');
 			
 			default:
