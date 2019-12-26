@@ -1,5 +1,5 @@
 import { config } from 'app/config/config';
-import { restJsonInvoker } from 'app/data/controllers/core/common/rest-json-invoker';
+import { backEndInvoker } from 'app/data/controllers/core/common/back-end-invoker';
 import { CategoryController } from 'app/data/controllers/core/entities/category';
 import { categoryFilterMapper, categoryMapper } from 'app/data/mappers/category';
 import { AddCategoryRequest, AddCategoryResponse, DeleteCategoryResponse, FilterCategoriesRequest, FilterCategoriesResponse, GetAllCategoriesResponse, UpdateCategoryRequest, UpdateCategoryResponse } from 'app/data/models/api/category';
@@ -17,7 +17,7 @@ export class CategoryBackEndController implements CategoryController {
 	 */
 	public async getAllCategories(userId: string): Promise<CategoryInternal[]> {
 		
-		const response = await restJsonInvoker.invoke({
+		const response = await backEndInvoker.invoke({
 			method: 'GET',
 			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories' ], {
 				userId: userId
@@ -37,7 +37,7 @@ export class CategoryBackEndController implements CategoryController {
 			filter: filter ? categoryFilterMapper.toExternal(filter) : undefined
 		};
 
-		const response = await restJsonInvoker.invoke({
+		const response = await backEndInvoker.invoke({
 			method: 'POST',
 			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/filter' ], {
 				userId: userId
@@ -60,7 +60,7 @@ export class CategoryBackEndController implements CategoryController {
 				category: categoryMapper.toExternal(category)
 			};
 	
-			await restJsonInvoker.invoke({
+			await backEndInvoker.invoke({
 				method: 'PUT',
 				url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/:id' ], {
 					userId: userId,
@@ -76,7 +76,7 @@ export class CategoryBackEndController implements CategoryController {
 				newCategory: categoryMapper.toExternal(category)
 			};
 	
-			await restJsonInvoker.invoke({
+			await backEndInvoker.invoke({
 				method: 'POST',
 				url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories' ], {
 					userId: userId
@@ -92,7 +92,7 @@ export class CategoryBackEndController implements CategoryController {
 	 */
 	public async deleteCategory(userId: string, categoryId: string): Promise<void> {
 
-		await restJsonInvoker.invoke({
+		await backEndInvoker.invoke({
 			method: 'DELETE',
 			url: miscUtils.buildUrl([ config.backEnd.baseUrl, '/users/:userId/categories/:id' ], {
 				userId: userId,

@@ -1,6 +1,7 @@
 import { config } from 'app/config/config';
-import { InvocationParams, RestJsonInvoker } from 'app/data/controllers/core/common/rest-json-invoker';
+import { RestJsonInvoker } from 'app/data/controllers/core/common/rest-json-invoker';
 import { AppError } from 'app/data/models/internal/error';
+import { InvocationParams } from 'app/utilities/helper-types';
 import { parserValidator } from 'app/utilities/parser-validator';
 import axios, { AxiosError, AxiosRequestConfig, Cancel } from 'axios';
 
@@ -28,6 +29,7 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 				data: parameters.requestBody ? JSON.stringify(parameters.requestBody) : parameters.requestBody,
 				cancelToken: cancelTokenSource.token,
 				headers: {
+					...parameters.headers,
 					'Content-Type': 'application/json',
 					Accept: 'application/json',
 					'Accept-Charset': 'utf-8'

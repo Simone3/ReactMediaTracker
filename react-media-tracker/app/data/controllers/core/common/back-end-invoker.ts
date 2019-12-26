@@ -1,13 +1,13 @@
-import { RestJsonInvokerAxios } from 'app/data/controllers/impl-prod/common/rest-json-invoker';
+import { BackEndInvokerRestJson } from 'app/data/controllers/impl-prod/common/back-end-invoker';
 import { InvocationParams } from 'app/utilities/helper-types';
 
 /**
- * Helper controller to invoke external JSON-based REST services
+ * Helper controller to invoke the Media Tracker back-end APIs
  */
-export interface RestJsonInvoker {
+export interface BackEndInvoker {
 
 	/**
-	 * Invokes a JSON-based service
+	 * Invokes a Media Tracker back-end API
 	 * @param parameters the method parameters container
 	 * @returns the 200 service response, as a promise
 	 * @template TRequest the request class
@@ -17,6 +17,6 @@ export interface RestJsonInvoker {
 }
 
 /**
- * Singleton implementation of the JSON REST invoker
+ * Singleton implementation of the Media Tracker back-end APIs invoker
  */
-export const restJsonInvoker = new RestJsonInvokerAxios();
+export const backEndInvoker = new BackEndInvokerRestJson();
