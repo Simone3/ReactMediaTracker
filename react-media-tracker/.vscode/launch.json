@@ -9,7 +9,10 @@
 			"cwd": "${workspaceFolder}",
 			"type": "reactnative",
 			"request": "launch",
-			"platform": "android"
+			"platform": "android",
+			"env": {
+				"ENVFILE": ".env"
+			}
 		}
 	]
 }

@@ -65,7 +65,16 @@ buck-out/
 
 ############### PROJECT-SPECIFIC
 
-app/config/config-*.ts
-!app/config/config-test.ts
-!app/config/config-sample.ts
+# Configuration properties
+app/config/properties/config-*.ts
+!app/config/properties/config-test.ts
+!app/config/properties/config-sample.ts
+
+# Configuration files
+app/config/files/config-*
+!app/config/files/config-test
+!app/config/files/config-sample
+
+# Firebase config (loaded dynamically from app/config/files/)
+android/app/google-services.json
 

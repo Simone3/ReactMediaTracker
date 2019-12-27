@@ -38,6 +38,7 @@ export type Config = {
 		wikipediaSearch: (term: string) => string;
 	};
 	mocks: {
+		user: boolean;
 		categories: boolean;
 	};
 }

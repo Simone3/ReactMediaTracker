@@ -33,6 +33,7 @@ const config: Config = {
 		}
 	},
 	mocks: {
+		user: false,
 		categories: false
 	},
 	external: {
