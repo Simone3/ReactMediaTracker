@@ -40,5 +40,6 @@ export type Config = {
 	mocks: {
 		user: boolean;
 		categories: boolean;
+		groups: boolean;
 	};
 }

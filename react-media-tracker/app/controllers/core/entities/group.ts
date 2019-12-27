@@ -1,4 +1,6 @@
+import { config } from 'app/config/config';
 import { GroupMockedController } from 'app/controllers/impl-mocks/entities/group';
+import { GroupBackEndController } from 'app/controllers/impl-prod/entities/group';
 import { GroupFilterInternal, GroupInternal } from 'app/data/models/internal/group';
 
 /**
@@ -43,5 +45,5 @@ export interface GroupController {
 /**
  * Singleton implementation of the group controller
  */
-export const groupController: GroupController = new GroupMockedController();
+export const groupController: GroupController = config.mocks.groups ? new GroupMockedController() : new GroupBackEndController();
 
