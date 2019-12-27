@@ -35,7 +35,8 @@ const config: Config = {
 	mocks: {
 		user: false,
 		categories: false,
-		groups: false
+		groups: false,
+		ownPlatforms: false
 	},
 	external: {
 		googleSearch: (term) => {

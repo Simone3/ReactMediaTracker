@@ -41,5 +41,6 @@ export type Config = {
 		user: boolean;
 		categories: boolean;
 		groups: boolean;
+		ownPlatforms: boolean;
 	};
 }

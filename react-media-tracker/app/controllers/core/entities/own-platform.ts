@@ -1,4 +1,6 @@
+import { config } from 'app/config/config';
 import { OwnPlatformMockedController } from 'app/controllers/impl-mocks/entities/own-platform';
+import { OwnPlatformBackEndController } from 'app/controllers/impl-prod/entities/own-platform';
 import { OwnPlatformFilterInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
@@ -42,5 +44,5 @@ export interface OwnPlatformController {
 /**
  * Singleton implementation of the own platform controller
  */
-export const ownPlatformController: OwnPlatformController = new OwnPlatformMockedController();
+export const ownPlatformController: OwnPlatformController = config.mocks.ownPlatforms ? new OwnPlatformMockedController() : new OwnPlatformBackEndController();
 
