@@ -1,5 +1,5 @@
 import { MediaItemFilterFormMapper, MediaItemFilterFormSortBy, mediaItemFilterFormValidationShape, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
-import { tvShowDefinitionsController } from 'app/data/controllers/core/entities/media-items/tv-show';
+import { tvShowDefinitionsController } from 'app/controllers/core/entities/media-items/tv-show';
 import { AppError } from 'app/data/models/internal/error';
 import { TvShowFilterInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
 import { object, ObjectSchema } from 'yup';

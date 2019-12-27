@@ -1,8 +1,8 @@
-import { bookCatalogController, bookController, bookDefinitionsController } from 'app/data/controllers/core/entities/media-items/book';
-import { MediaItemCatalogController, MediaItemController, MediaItemDefinitionsController } from 'app/data/controllers/core/entities/media-items/media-item';
-import { movieCatalogController, movieController, movieDefinitionsController } from 'app/data/controllers/core/entities/media-items/movie';
-import { tvShowCatalogController, tvShowController, tvShowDefinitionsController } from 'app/data/controllers/core/entities/media-items/tv-show';
-import { videogameCatalogController, videogameController, videogameDefinitionsController } from 'app/data/controllers/core/entities/media-items/videogame';
+import { bookCatalogController, bookController, bookDefinitionsController } from 'app/controllers/core/entities/media-items/book';
+import { MediaItemCatalogController, MediaItemController, MediaItemDefinitionsController } from 'app/controllers/core/entities/media-items/media-item';
+import { movieCatalogController, movieController, movieDefinitionsController } from 'app/controllers/core/entities/media-items/movie';
+import { tvShowCatalogController, tvShowController, tvShowDefinitionsController } from 'app/controllers/core/entities/media-items/tv-show';
+import { videogameCatalogController, videogameController, videogameDefinitionsController } from 'app/controllers/core/entities/media-items/videogame';
 import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
