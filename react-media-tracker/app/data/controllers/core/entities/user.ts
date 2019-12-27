@@ -1,3 +1,5 @@
+import { config } from 'app/config/config';
+import { UserMockedController } from 'app/data/controllers/impl-mocks/entities/user';
 import { UserFirebaseController } from 'app/data/controllers/impl-prod/entities/user';
 import { UserInternal, UserSecretInternal } from 'app/data/models/internal/user';
 
@@ -42,6 +44,5 @@ export interface UserController {
 /**
  * Singleton implementation of the user controller
  */
-// export const userController: UserController = new UserMockedController();
-export const userController: UserController = new UserFirebaseController();
+export const userController: UserController = config.mocks.user ? new UserMockedController() : new UserFirebaseController();
 
