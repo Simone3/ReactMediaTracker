@@ -1,5 +1,5 @@
 import { CategoryController } from 'app/controllers/core/entities/category';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/common/mock-helper';
 import { CategoryFilterInternal, CategoryInternal } from 'app/data/models/internal/category';
 
 /**

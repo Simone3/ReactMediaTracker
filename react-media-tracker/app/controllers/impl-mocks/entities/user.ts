@@ -1,6 +1,6 @@
 import { localStorage } from 'app/controllers/core/common/local-storage';
 import { UserController } from 'app/controllers/core/entities/user';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/common/mock-helper';
 import { AppError } from 'app/data/models/internal/error';
 import { UserInternal, UserSecretInternal } from 'app/data/models/internal/user';
 

@@ -1,5 +1,5 @@
 import { MediaItemCatalogController, MediaItemController } from 'app/controllers/core/entities/media-items/media-item';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/common/mock-helper';
 import { AppError } from 'app/data/models/internal/error';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { MovieSortByInternal } from 'app/data/models/internal/media-items/movie';

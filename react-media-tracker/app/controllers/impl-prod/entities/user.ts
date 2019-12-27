@@ -1,6 +1,5 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import { UserController } from 'app/controllers/core/entities/user';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
 import { AppError } from 'app/data/models/internal/error';
 import { UserInternal, UserSecretInternal } from 'app/data/models/internal/user';
 
@@ -8,7 +7,7 @@ import { UserInternal, UserSecretInternal } from 'app/data/models/internal/user'
  * Implementation of the UserController that uses the Firebase API
  * @see UserController
  */
-export class UserFirebaseController extends MockControllerHelper implements UserController {
+export class UserFirebaseController implements UserController {
 
 	/**
 	 * @override

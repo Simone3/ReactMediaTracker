@@ -1,5 +1,5 @@
 import { GroupController } from 'app/controllers/core/entities/group';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/common/mock-helper';
 import { GroupFilterInternal, GroupInternal } from 'app/data/models/internal/group';
 
 /**

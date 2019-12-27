@@ -1,5 +1,5 @@
 import { OwnPlatformController } from 'app/controllers/core/entities/own-platform';
-import { MockControllerHelper } from 'app/controllers/impl-mocks/mock-helper';
+import { MockControllerHelper } from 'app/controllers/impl-mocks/common/mock-helper';
 import { OwnPlatformFilterInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
