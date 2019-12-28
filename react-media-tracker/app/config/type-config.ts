@@ -42,5 +42,6 @@ export type Config = {
 		categories: boolean;
 		groups: boolean;
 		ownPlatforms: boolean;
+		mediaItems: boolean;
 	};
 }

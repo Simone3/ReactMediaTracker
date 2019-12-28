@@ -36,7 +36,8 @@ const config: Config = {
 		user: false,
 		categories: false,
 		groups: false,
-		ownPlatforms: false
+		ownPlatforms: false,
+		mediaItems: false
 	},
 	external: {
 		googleSearch: (term) => {
