@@ -44,6 +44,7 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 				const completionDates = mediaItem.completedOn ? mediaItem.completedOn : [];
 				completionDates.push(new Date());
 				mediaItem.completedOn = completionDates;
+				mediaItem.markedAsRedo = false;
 				mediaItem.status = 'COMPLETE';
 				break;
 			}

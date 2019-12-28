@@ -29,6 +29,7 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			completedOn: dateUtils.toStringList(source.completedOn),
 			releaseDate: dateUtils.toString(source.releaseDate),
 			active: source.active,
+			markedAsRedo: source.markedAsRedo,
 			catalogId: source.catalogId,
 			imageUrl: source.imageUrl
 		};
