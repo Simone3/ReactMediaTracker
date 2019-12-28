@@ -428,6 +428,7 @@ export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal ex
 	protected commonToExternal(source: CatalogMediaItemInternal): CatalogMediaItem {
 
 		return {
+			catalogId: source.catalogId,
 			name: source.name,
 			genres: source.genres,
 			description: source.description,
@@ -444,6 +445,7 @@ export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal ex
 	protected commonToInternal(source: CatalogMediaItem): CatalogMediaItemInternal {
 		
 		return {
+			catalogId: source.catalogId,
 			name: source.name,
 			genres: source.genres,
 			description: source.description,
