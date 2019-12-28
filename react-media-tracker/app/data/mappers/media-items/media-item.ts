@@ -109,28 +109,25 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 	 */
 	private buildStatusLabel(source: MediaItem): MediaItemStatusInternal {
 		
-		if(source.active) {
+		if(source.completedOn && source.completedOn.length > 0 && !source.markedAsRedo) {
+
+			// Items that have been completed
+			return 'COMPLETE';
+		}
+		else if(source.active) {
 
 			// Items marked as currently active (e.g. currently reading)
 			return 'ACTIVE';
+		}
+		else if(source.completedOn && source.completedOn.length > 0 && source.markedAsRedo) {
+			
+			// Items that have been completed but have been marked for redo (e.g. rewatch)
+			return 'REDO';
 		}
 		else if(source.releaseDate && new Date(source.releaseDate) > new Date()) {
 		
 			// Items with a future release date
 			return 'UPCOMING';
-		}
-		else if(source.completedOn && source.completedOn.length > 0) {
-
-			if(source.markedAsRedo) {
-
-				// Items that have been completed but have been marked for redo (e.g. rewatch)
-				return 'REDO';
-			}
-			else {
-
-				// Items that have been completed
-				return 'COMPLETE';
-			}
 		}
 		else {
 
