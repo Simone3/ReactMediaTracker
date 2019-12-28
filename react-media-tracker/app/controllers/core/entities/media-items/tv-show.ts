@@ -1,6 +1,7 @@
+import { config } from 'app/config/config';
 import { MediaItemCatalogController, MediaItemController, MediaItemDefinitionsController } from 'app/controllers/core/entities/media-items/media-item';
 import { TvShowMockedCatalogController, TvShowMockedController } from 'app/controllers/impl-mocks/entities/media-items/tv-show';
-import { TvShowDefinitionsControllerImpl } from 'app/controllers/impl-prod/entities/media-items/tv-show';
+import { TvShowBackEndController, TvShowCatalogBackEndController, TvShowDefinitionsControllerImpl } from 'app/controllers/impl-prod/entities/media-items/tv-show';
 import { CatalogTvShowInternal, SearchTvShowCatalogResultInternal, TvShowFilterInternal, TvShowInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
 
 /**
@@ -24,12 +25,12 @@ export type TvShowDefinitionsController = MediaItemDefinitionsController<TvShowI
 /**
  * Singleton implementation of the TV shows controller
  */
-export const tvShowController: TvShowController = new TvShowMockedController();
+export const tvShowController: TvShowController = config.mocks.mediaItems ? new TvShowMockedController() : new TvShowBackEndController();
 
 /**
  * Singleton implementation of the TV shows catalog controller
  */
-export const tvShowCatalogController: TvShowCatalogController = new TvShowMockedCatalogController();
+export const tvShowCatalogController: TvShowCatalogController = config.mocks.mediaItems ? new TvShowMockedCatalogController() : new TvShowCatalogBackEndController();
 
 /**
  * Singleton implementation of the TV shows definitions controller
