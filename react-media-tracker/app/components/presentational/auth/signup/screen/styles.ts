@@ -14,10 +14,10 @@ export const styles = StyleSheet.create({
 		padding: 40
 	},
 	titleSectionContainer: {
-		marginBottom: 60
+		marginBottom: 50
 	},
 	inputsContainer: {
-		marginBottom: 40
+		marginBottom: 30
 	},
 	submitContainer: {
 		
