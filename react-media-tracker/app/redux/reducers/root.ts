@@ -5,6 +5,7 @@ import { categoriesList } from 'app/redux/reducers/category/list';
 import { error } from 'app/redux/reducers/error';
 import { groupDetails } from 'app/redux/reducers/group/details';
 import { groupsList } from 'app/redux/reducers/group/list';
+import { importExport } from 'app/redux/reducers/import-export/import-export';
 import { mediaItemDetails } from 'app/redux/reducers/media-item/details';
 import { mediaItemsList } from 'app/redux/reducers/media-item/list';
 import { ownPlatformDetails } from 'app/redux/reducers/own-platform/details';
@@ -29,7 +30,8 @@ export const allReduces = combineReducers<State, Action>({
 	groupsList,
 	groupDetails,
 	ownPlatformsList,
-	ownPlatformDetails
+	ownPlatformDetails,
+	importExport
 });
 
 /**
