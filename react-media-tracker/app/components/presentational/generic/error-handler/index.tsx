@@ -1,9 +1,10 @@
 import React, { Component, ReactNode } from 'react';
 import { AppError } from 'app/data/models/internal/error';
-import FlashMessage, { showMessage } from 'react-native-flash-message';
+import FlashMessage from 'react-native-flash-message';
 import { View } from 'react-native';
 import { styles } from 'app/components/presentational/generic/error-handler/styles';
 import { i18n } from 'app/utilities/i18n';
+import { FlashError } from 'app/components/presentational/generic/error-flash';
 
 /**
  * Simple wrapper presentational component that handles global errors
@@ -26,12 +27,7 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 
 			const messageDescription = typeof error === 'string' ? error : i18n.t(error.errorDescription);
 
-			showMessage({
-				message: i18n.t('error.flash.title'),
-				description: messageDescription,
-				type: 'danger',
-				duration: 3000
-			});
+			FlashError.showError(messageDescription);
 
 			this.props.clearError();
 		}
