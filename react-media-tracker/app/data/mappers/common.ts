@@ -1,3 +1,5 @@
+import { config } from 'app/config/config';
+
 /**
  * Generic model mapper between some internal model and some external model,
  * with optional extra supporting parameters
@@ -84,7 +86,10 @@ export abstract class ModelMapper<TInternal, TExternal, TParams> {
 	 */
 	private logMapping(source: unknown, target: unknown): void {
 
-		console.log('Mapping: %s --------> %s', source, target);
+		if(config.logging.logMapping) {
+			
+			console.log(`Mapping: ${JSON.stringify(source)} --------> ${JSON.stringify(target)}`);
+		}
 	}
 }
 

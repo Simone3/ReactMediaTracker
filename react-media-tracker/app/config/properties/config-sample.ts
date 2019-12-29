@@ -55,6 +55,10 @@ const config: Config = {
 		wikipediaSearch: (term) => {
 			return `https://en.wikipedia.org/wiki/Special:Search?search=${term}`;
 		}
+	},
+	logging: {
+		logInvocations: false,
+		logMapping: false
 	}
 };
 

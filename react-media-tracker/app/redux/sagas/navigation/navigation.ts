@@ -116,7 +116,6 @@ const navigationSaga = function * (action: Action): SagaIterator {
 	}
 	catch(error) {
 
-		console.log(error);
 		yield put(setError(AppError.GENERIC.withDetails(error)));
 	}
 };

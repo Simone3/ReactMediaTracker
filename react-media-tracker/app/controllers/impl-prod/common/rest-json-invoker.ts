@@ -35,6 +35,7 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 					'Accept-Charset': 'utf-8'
 				}
 			};
+			this.logRequest(options);
 
 			// Custom timeout handling (timeout field in options only handles connection timeout)
 			const timeout = parameters.timeoutMilliseconds ? parameters.timeoutMilliseconds : config.backEnd.defaultTimeoutMilliseconds;
@@ -47,6 +48,7 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 				.then((axiosResponse) => {
 	
 					const rawResponseBody = axiosResponse.data;
+					this.logSuccessfulResponse(options, rawResponseBody);
 
 					// Parse the raw response
 					parserValidator.parseAndValidate(parameters.responseBodyClass, rawResponseBody)
@@ -56,14 +58,11 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 						})
 						.catch((error) => {
 	
-							console.info('External API response parse error: %s', error);
 							reject(AppError.BACKEND_PARSE.withDetails(error));
 						});
 				})
 				.catch((error) => {
 
-					console.info('External API invocation error: %s', error);
-					
 					if(this.isTimeout(error)) {
 
 						reject(AppError.BACKEND_TIMEOUT.withDetails(error));
@@ -122,5 +121,30 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Helper to log the request
+	 * @param options the request options
+	 */
+	private logRequest(options: AxiosRequestConfig): void {
+		
+		if(config.logging.logInvocations) {
+
+			console.log(`Invoking ${options.method} ${options.url} with params = ${JSON.stringify(options.params)} and body = ${options.data}`);
+		}
+	}
+
+	/**
+	 * Helper to log the successful response
+	 * @param options the request options
+	 * @param rawResponseBody the response body
+	 */
+	private logSuccessfulResponse(options: AxiosRequestConfig, rawResponseBody: unknown): void {
+		
+		if(config.logging.logInvocations) {
+
+			console.log(`Received response from ${options.method} ${options.url}: ${JSON.stringify(rawResponseBody)}`);
+		}
 	}
 }

@@ -1,4 +1,4 @@
-import { OwnPlatform } from "app/data/models/api/own-platform";
+import { OwnPlatform } from 'app/data/models/api/own-platform';
 
 /**
  * Type for configuration files
@@ -50,5 +50,9 @@ export type Config = {
 		ownPlatforms: boolean;
 		mediaItems: boolean;
 		import: boolean;
+	};
+	logging: {
+		logInvocations: boolean;
+		logMapping: boolean;
 	};
 }
