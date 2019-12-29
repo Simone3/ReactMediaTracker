@@ -1,7 +1,7 @@
 import { config } from 'app/config/config';
 import { backEndInvoker } from 'app/controllers/core/common/back-end-invoker';
 import { BookCatalogController, BookController, BookDefinitionsController } from 'app/controllers/core/entities/media-items/book';
-import { bookCatalogDetailsMapper, bookCatalogSearchMapper, bookFilterMapper, bookMapper } from 'app/data/mappers/media-items/book';
+import { bookCatalogDetailsMapper, bookCatalogSearchMapper, bookFilterMapper, bookMapper, bookSortMapper } from 'app/data/mappers/media-items/book';
 import { AddBookRequest, FilterBooksRequest, FilterBooksResponse, GetBookFromCatalogResponse, SearchBookCatalogResponse, SearchBooksRequest, SearchBooksResponse, UpdateBookRequest } from 'app/data/models/api/media-items/book';
 import { AddMediaItemResponse, DeleteMediaItemResponse, UpdateMediaItemResponse } from 'app/data/models/api/media-items/media-item';
 import { BookFilterInternal, BookInternal, BookSortByInternal, CatalogBookInternal, DEFAULT_BOOK, SearchBookCatalogResultInternal } from 'app/data/models/internal/media-items/book';
@@ -16,10 +16,11 @@ export class BookBackEndController implements BookController {
 	/**
 	 * @override
 	 */
-	public async filter(userId: string, categoryId: string, filter?: BookFilterInternal): Promise<BookInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: BookFilterInternal, sortBy?: BookSortByInternal[]): Promise<BookInternal[]> {
 		
 		const request: FilterBooksRequest = {
-			filter: filter ? bookFilterMapper.toExternal(filter) : undefined
+			filter: filter ? bookFilterMapper.toExternal(filter) : undefined,
+			sortBy: sortBy ? bookSortMapper.toExternalList(sortBy) : undefined
 		};
 
 		const response = await backEndInvoker.invoke({

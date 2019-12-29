@@ -355,6 +355,9 @@ export abstract class MediaItemSortMapper<TMediaItemSortByInternal extends Media
 			case 'NAME': return MediaItemSortField.NAME;
 			case 'GROUP': return MediaItemSortField.GROUP;
 			case 'OWN_PLATFORM': return MediaItemSortField.OWN_PLATFORM;
+			case 'ACTIVE': return MediaItemSortField.ACTIVE;
+			case 'COMPLETION_DATE': return MediaItemSortField.COMPLETION_DATE;
+			case 'RELEASE_DATE': return MediaItemSortField.RELEASE_DATE;
 			default: throw AppError.GENERIC.withDetails(`Cannot map ${source}`);
 		}
 	}

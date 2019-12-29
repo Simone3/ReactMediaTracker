@@ -1,7 +1,7 @@
 import { config } from 'app/config/config';
 import { backEndInvoker } from 'app/controllers/core/common/back-end-invoker';
 import { VideogameCatalogController, VideogameController, VideogameDefinitionsController } from 'app/controllers/core/entities/media-items/videogame';
-import { videogameCatalogDetailsMapper, videogameCatalogSearchMapper, videogameFilterMapper, videogameMapper } from 'app/data/mappers/media-items/videogame';
+import { videogameCatalogDetailsMapper, videogameCatalogSearchMapper, videogameFilterMapper, videogameMapper, videogameSortMapper } from 'app/data/mappers/media-items/videogame';
 import { AddMediaItemResponse, DeleteMediaItemResponse, UpdateMediaItemResponse } from 'app/data/models/api/media-items/media-item';
 import { AddVideogameRequest, FilterVideogamesRequest, FilterVideogamesResponse, GetVideogameFromCatalogResponse, SearchVideogameCatalogResponse, SearchVideogamesRequest, SearchVideogamesResponse, UpdateVideogameRequest } from 'app/data/models/api/media-items/videogame';
 import { CatalogVideogameInternal, DEFAULT_VIDEOGAME, SearchVideogameCatalogResultInternal, VideogameFilterInternal, VideogameInternal, VideogameSortByInternal } from 'app/data/models/internal/media-items/videogame';
@@ -16,10 +16,11 @@ export class VideogameBackEndController implements VideogameController {
 	/**
 	 * @override
 	 */
-	public async filter(userId: string, categoryId: string, filter?: VideogameFilterInternal): Promise<VideogameInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: VideogameFilterInternal, sortBy?: VideogameSortByInternal[]): Promise<VideogameInternal[]> {
 		
 		const request: FilterVideogamesRequest = {
-			filter: filter ? videogameFilterMapper.toExternal(filter) : undefined
+			filter: filter ? videogameFilterMapper.toExternal(filter) : undefined,
+			sortBy: sortBy ? videogameSortMapper.toExternalList(sortBy) : undefined
 		};
 
 		const response = await backEndInvoker.invoke({

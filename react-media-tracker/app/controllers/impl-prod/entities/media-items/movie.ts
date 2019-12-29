@@ -1,7 +1,7 @@
 import { config } from 'app/config/config';
 import { backEndInvoker } from 'app/controllers/core/common/back-end-invoker';
 import { MovieCatalogController, MovieController, MovieDefinitionsController } from 'app/controllers/core/entities/media-items/movie';
-import { movieCatalogDetailsMapper, movieCatalogSearchMapper, movieFilterMapper, movieMapper } from 'app/data/mappers/media-items/movie';
+import { movieCatalogDetailsMapper, movieCatalogSearchMapper, movieFilterMapper, movieMapper, movieSortMapper } from 'app/data/mappers/media-items/movie';
 import { AddMediaItemResponse, DeleteMediaItemResponse, UpdateMediaItemResponse } from 'app/data/models/api/media-items/media-item';
 import { AddMovieRequest, FilterMoviesRequest, FilterMoviesResponse, GetMovieFromCatalogResponse, SearchMovieCatalogResponse, SearchMoviesRequest, SearchMoviesResponse, UpdateMovieRequest } from 'app/data/models/api/media-items/movie';
 import { CatalogMovieInternal, DEFAULT_MOVIE, MovieFilterInternal, MovieInternal, MovieSortByInternal, SearchMovieCatalogResultInternal } from 'app/data/models/internal/media-items/movie';
@@ -16,10 +16,11 @@ export class MovieBackEndController implements MovieController {
 	/**
 	 * @override
 	 */
-	public async filter(userId: string, categoryId: string, filter?: MovieFilterInternal): Promise<MovieInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: MovieFilterInternal, sortBy?: MovieSortByInternal[]): Promise<MovieInternal[]> {
 		
 		const request: FilterMoviesRequest = {
-			filter: filter ? movieFilterMapper.toExternal(filter) : undefined
+			filter: filter ? movieFilterMapper.toExternal(filter) : undefined,
+			sortBy: sortBy ? movieSortMapper.toExternalList(sortBy) : undefined
 		};
 
 		const response = await backEndInvoker.invoke({

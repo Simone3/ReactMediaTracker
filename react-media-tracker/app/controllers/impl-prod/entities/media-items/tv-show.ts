@@ -1,7 +1,7 @@
 import { config } from 'app/config/config';
 import { backEndInvoker } from 'app/controllers/core/common/back-end-invoker';
 import { TvShowCatalogController, TvShowController, TvShowDefinitionsController } from 'app/controllers/core/entities/media-items/tv-show';
-import { tvShowCatalogDetailsMapper, tvShowCatalogSearchMapper, tvShowFilterMapper, tvShowMapper } from 'app/data/mappers/media-items/tv-show';
+import { tvShowCatalogDetailsMapper, tvShowCatalogSearchMapper, tvShowFilterMapper, tvShowMapper, tvShowSortMapper } from 'app/data/mappers/media-items/tv-show';
 import { AddMediaItemResponse, DeleteMediaItemResponse, UpdateMediaItemResponse } from 'app/data/models/api/media-items/media-item';
 import { AddTvShowRequest, FilterTvShowsRequest, FilterTvShowsResponse, GetTvShowFromCatalogResponse, SearchTvShowCatalogResponse, SearchTvShowsRequest, SearchTvShowsResponse, UpdateTvShowRequest } from 'app/data/models/api/media-items/tv-show';
 import { CatalogTvShowInternal, DEFAULT_TV_SHOW, SearchTvShowCatalogResultInternal, TvShowFilterInternal, TvShowInternal, TvShowSortByInternal } from 'app/data/models/internal/media-items/tv-show';
@@ -16,10 +16,11 @@ export class TvShowBackEndController implements TvShowController {
 	/**
 	 * @override
 	 */
-	public async filter(userId: string, categoryId: string, filter?: TvShowFilterInternal): Promise<TvShowInternal[]> {
+	public async filter(userId: string, categoryId: string, filter?: TvShowFilterInternal, sortBy?: TvShowSortByInternal[]): Promise<TvShowInternal[]> {
 		
 		const request: FilterTvShowsRequest = {
-			filter: filter ? tvShowFilterMapper.toExternal(filter) : undefined
+			filter: filter ? tvShowFilterMapper.toExternal(filter) : undefined,
+			sortBy: sortBy ? tvShowSortMapper.toExternalList(sortBy) : undefined
 		};
 
 		const response = await backEndInvoker.invoke({
