@@ -21,7 +21,12 @@
 				"backendMediaItemCatalogDetails": "Cannot get the media item catalog details",
 				"backendGroupFetch": "Cannot fetch groups from the server",
 				"backendGroupSave": "Cannot save the group to the server",
-				"backendGroupDelete": "Cannot delete the group from the server"
+				"backendGroupDelete": "Cannot delete the group from the server",
+				"backendOwnPlatformFetch": "Cannot fetch platforms from the server",
+				"backendOwnPlatformSave": "Cannot save the platform to the server",
+				"backendOwnPlatformDelete": "Cannot delete the platform from the server",
+				"backendOldAppImport": "Cannot import the old Media Tracker data",
+				"fileNotJson": "File is not in the correct format, make sure to select a file with .json extension"
 			}
 		}
 	},
@@ -374,18 +379,33 @@
 		"screen": {
 			"title": "Settings",
 			"sections": {
-				"user": "User"
+				"user": "User",
+				"data": "Data"
 			},
 			"rows": {
 				"logout": {
 					"title": "Logout",
 					"subtitle": "Logged in as {{username}}"
+				},
+				"oldAppImport": {
+					"title": "Import previous app version data",
+					"subtitle": "Select the export (.json file) from the original Android Media Tracker app"
 				}
 			},
 			"alert": {
 				"logout": {
 					"title": "Logout",
 					"message": "Are you sure you want to logout? All your data will be kept and will be available after you login again."
+				},
+				"oldAppImport": {
+					"prePicker": {
+						"title": "Import",
+						"message": "This will delete all your current categories, media items, groups, etc., replacing them with the file contents. Are you sure?"
+					}, 
+					"postPicker": {
+						"title": "Import",
+						"message": "Delete all categories, media items, groups, etc. and import {{filename}}? This might take a few minutes."
+					}
 				}
 			}
 		}

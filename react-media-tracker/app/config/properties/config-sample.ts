@@ -3,7 +3,15 @@ import { Config } from 'app/config/type-config';
 const config: Config = {
 	backEnd: {
 		defaultTimeoutMilliseconds: 5000,
-		baseUrl: '<backend_server_url>'
+		baseUrl: '<backend_server_url>',
+		bulkImport: {
+			timeoutMilliseconds: 300000,
+			defaultOwnPlatform: {
+				name: 'Default',
+				color: '#6e6d66',
+				icon: 'default'
+			}
+		}
 	},
 	ui: {
 		colors: {
@@ -37,7 +45,8 @@ const config: Config = {
 		categories: false,
 		groups: false,
 		ownPlatforms: false,
-		mediaItems: false
+		mediaItems: false,
+		import: false
 	},
 	external: {
 		googleSearch: (term) => {
