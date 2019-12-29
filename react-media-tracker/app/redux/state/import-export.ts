@@ -12,4 +12,4 @@ export type ImportExportState = {
 /**
  * The current status of the import-export operations
  */
-export type ImportExportStatus = 'IDLE' | 'PERFORMING' | 'COMPLETED';
+export type ImportExportStatus = 'IDLE' | 'IN_PROGRESS' | 'COMPLETED';

@@ -27,7 +27,7 @@ export const userOperations = (state: UserOperationsState = initialState, action
 
 			return {
 				...state,
-				checkLoginStatus: 'PERFORMING'
+				checkLoginStatus: 'IN_PROGRESS'
 			};
 		}
 
@@ -57,7 +57,7 @@ export const userOperations = (state: UserOperationsState = initialState, action
 
 			return {
 				...state,
-				signupStatus: 'PERFORMING'
+				signupStatus: 'IN_PROGRESS'
 			};
 		}
 
@@ -87,7 +87,7 @@ export const userOperations = (state: UserOperationsState = initialState, action
 
 			return {
 				...state,
-				loginStatus: 'PERFORMING'
+				loginStatus: 'IN_PROGRESS'
 			};
 		}
 
@@ -117,7 +117,7 @@ export const userOperations = (state: UserOperationsState = initialState, action
 
 			return {
 				...state,
-				logoutStatus: 'PERFORMING'
+				logoutStatus: 'IN_PROGRESS'
 			};
 		}
 

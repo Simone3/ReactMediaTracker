@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 const mapStateToProps = (state: State): UserSignupScreenComponentInput => {
 	
 	return {
-		isLoading: state.userOperations.signupStatus === 'PERFORMING'
+		isLoading: state.userOperations.signupStatus === 'IN_PROGRESS'
 	};
 };
 

@@ -8,7 +8,7 @@ import { Dispatch } from 'redux';
 const mapStateToProps = (state: State): SettingsScreenComponentInput => {
 	
 	return {
-		isLoading: state.userOperations.logoutStatus === 'PERFORMING' || state.importExport.status === 'PERFORMING',
+		isLoading: state.userOperations.logoutStatus === 'IN_PROGRESS' || state.importExport.status === 'IN_PROGRESS',
 		user: state.userGlobal.user
 	};
 };

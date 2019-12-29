@@ -50,4 +50,4 @@ export type UserStatus = 'REQUIRES_CHECK' | 'UNAUTHENTICATED' | 'AUTHENTICATED';
 /**
  * The current status of a user operation
  */
-export type UserOperationStatus = 'IDLE' | 'PERFORMING' | 'COMPLETED';
+export type UserOperationStatus = 'IDLE' | 'IN_PROGRESS' | 'COMPLETED';

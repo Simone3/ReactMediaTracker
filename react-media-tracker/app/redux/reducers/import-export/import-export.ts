@@ -24,7 +24,7 @@ export const importExport = (state: ImportExportState = initialState, action: Ac
 
 			return {
 				...state,
-				status: 'PERFORMING'
+				status: 'IN_PROGRESS'
 			};
 		}
 	
