@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "android-dev": "SET ENVFILE=.env && react-native run-android",
-	"android-prod": "SET ENVFILE=.env.production && react-native run-android --variant=release",
-	"clean": "cd android && \"./gradlew\" clean && cd .. && react-native start -- --reset-cache",
+    "android-prod": "SET ENVFILE=.env.production && react-native run-android --variant=release",
+    "clean": "cd android && \"./gradlew\" clean && cd ..",
+    "reset": "react-native start -- --reset-cache",
     "lint": "eslint app/**/*.ts app/**/*.tsx"
   },
   "dependencies": {
