@@ -10,6 +10,7 @@ import { i18n } from 'app/utilities/i18n';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { UserInternal } from 'app/data/models/internal/user';
+import { FilePicker } from 'app/components/presentational/generic/file-picker';
 
 /**
  * Presentational component that contains the whole settings screen
@@ -37,6 +38,8 @@ export class SettingsScreenComponent extends Component<SettingsScreenComponentPr
 			<View style={styles.container}>
 				<SettingsSectionTitleComponent title={i18n.t('settings.screen.sections.user')} />
 				{this.renderLogoutButton()}
+				<SettingsSectionTitleComponent title={i18n.t('settings.screen.sections.data')} />
+				{this.renderOldAppImportButton()}
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
 					fullScreen={true}
@@ -72,6 +75,42 @@ export class SettingsScreenComponent extends Component<SettingsScreenComponentPr
 			/>
 		);
 	}
+
+	/**
+	 * Helper to render the button to import the old Media Tracker app JSON export
+	 * @returns the component
+	 */
+	private renderOldAppImportButton(): ReactNode {
+
+		const {
+			importOldAppExport
+		} = this.props;
+
+		return (
+			<ClickableSettingsRowComponent
+				title={i18n.t('settings.screen.rows.oldAppImport.title')}
+				subtitle={i18n.t('settings.screen.rows.oldAppImport.subtitle')}
+				onPress={() => {
+
+					const preTitle = i18n.t('settings.screen.alert.oldAppImport.prePicker.title');
+					const preMessage = i18n.t('settings.screen.alert.oldAppImport.prePicker.message');
+					ConfirmAlert.alert(preTitle, preMessage, async() => {
+		
+						const oldAppJson = await FilePicker.pickJson();
+						if(oldAppJson) {
+
+							const postTitle = i18n.t('settings.screen.alert.oldAppImport.postPicker.title');
+							const postMessage = i18n.t('settings.screen.alert.oldAppImport.postPicker.message', { filename: oldAppJson.name });
+							ConfirmAlert.alert(postTitle, postMessage, () => {
+
+								importOldAppExport(oldAppJson.uri);
+							});
+						}
+					});
+				}}
+			/>
+		);
+	}
 }
 
 /**
@@ -99,6 +138,11 @@ export type SettingsScreenComponentOutput = {
 	 * Callback to log the user out
 	 */
 	logout: () => void;
+
+	/**
+	 * Callback to handle the old Media Tracker app export (JSON file)
+	 */
+	importOldAppExport: (jsonFileUri: string) => void;
 }
 
 /**
