@@ -5,7 +5,7 @@ const config: Config = {
 		defaultTimeoutMilliseconds: 5000,
 		baseUrl: '<backend_server_url>',
 		bulkImport: {
-			timeoutMilliseconds: 300000,
+			timeoutMilliseconds: 60000,
 			defaultOwnPlatform: {
 				name: 'Default',
 				color: '#6e6d66',
