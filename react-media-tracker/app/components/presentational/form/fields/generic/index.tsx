@@ -32,7 +32,11 @@ export class FieldComponent extends Component<FieldComponentInput, FieldComponen
 						},
 						onBlur: (event) => {
 							this.toggleFocus(false);
-							formikProps.field.onBlur(name)(event);
+							const fieldOnBlur = formikProps.field.onBlur(name);
+							fieldOnBlur({
+								event: event,
+								target: name
+							});
 						},
 						value: formikProps.field.value,
 						setValue: (value) => {
