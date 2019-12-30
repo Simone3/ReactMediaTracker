@@ -24,7 +24,8 @@ module.exports = {
         jsdoc: {
             allowOverrideWithoutParam: true,
             allowImplementsWithoutParam: true,
-            allowAugmentsExtendsWithoutParam: true
+            allowAugmentsExtendsWithoutParam: true,
+            mode: 'typescript'
 		},
 		react: {
 			version: 'detect'
