@@ -1,6 +1,6 @@
-import React, { ReactNode, Component } from 'react';
+import React, { ReactNode, Component, ChangeEvent } from 'react';
 import { ColoredImage } from 'app/components/presentational/generic/colored-image';
-import { ImageRequireSource, StyleProp, ViewStyle, View } from 'react-native';
+import { ImageRequireSource, StyleProp, ViewStyle, View, StyleSheet } from 'react-native';
 import { config } from 'app/config/config';
 import { styles } from 'app/components/presentational/form/components/generic/styles';
 
@@ -20,7 +20,7 @@ export class FormInputComponent extends Component<FormInputComponentProps> {
 		} = this.props;
 
 		return (
-			<View style={[ style, this.getContainerStyle() ]}>
+			<View style={StyleSheet.compose(style, this.getContainerStyle())}>
 				<View style={styles.content}>
 					{this.renderIcon()}
 					{children}
@@ -114,12 +114,12 @@ export type FormInputComponentOutput = {
 	/**
 	 * Notifies input focus (input is currently active)
 	 */
-	onFocus: (event: unknown) => void;
+	onFocus: (event: string | ChangeEvent<unknown>) => void;
 	
 	/**
 	 * Notifies input blur (input is no longer active)
 	 */
-	onBlur: (event: unknown) => void;
+	onBlur: (event: string | ChangeEvent<unknown>) => void;
 }
 
 /**

@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { MediaItemFilterFormViewComponent, MediaItemFilterFormViewComponentInput, MediaItemFilterFormViewComponentOutput } from 'app/components/presentational/media-item/list/filter-form/view/media-item';
+import { MovieFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/movie';
 
 /**
  * Presentational component that contains all movie filter form input fields, all handled by the Formik container component
@@ -31,4 +32,4 @@ export type MovieFilterFormViewComponentOutput = MediaItemFilterFormViewComponen
 /**
  * All props of MovieFilterFormViewComponent
  */
-export type MovieFilterFormViewComponentProps = FormikProps<FormikValues> & MovieFilterFormViewComponentInput & MovieFilterFormViewComponentOutput;
+export type MovieFilterFormViewComponentProps = FormikProps<MovieFilterFormValues> & MovieFilterFormViewComponentInput & MovieFilterFormViewComponentOutput;

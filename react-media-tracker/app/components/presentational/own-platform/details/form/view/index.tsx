@@ -1,13 +1,13 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { styles } from 'app/components/presentational/own-platform/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { images } from 'app/utilities/images';
 import { ColorPickerFieldComponent } from 'app/components/presentational/form/fields/color-picker';
 import { config } from 'app/config/config';
-import { OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
+import { OWN_PLATFORM_ICON_INTERNAL_VALUES, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 
 /**
@@ -155,4 +155,4 @@ export type OwnPlatformFormViewComponentOutput = {
 /**
  * All props of OwnPlatformFormViewComponent
  */
-export type OwnPlatformFormViewComponentProps = FormikProps<FormikValues> & OwnPlatformFormViewComponentInput & OwnPlatformFormViewComponentOutput;
+export type OwnPlatformFormViewComponentProps = FormikProps<OwnPlatformInternal> & OwnPlatformFormViewComponentInput & OwnPlatformFormViewComponentOutput;

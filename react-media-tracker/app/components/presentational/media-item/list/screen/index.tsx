@@ -10,8 +10,8 @@ import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containe
 import { MediaItemFilterModalContainer } from 'app/components/containers/media-item/list/filter-modal';
 import { images } from 'app/utilities/images';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { ScreenConfig } from 'app/components/containers/generic/navigation';
 import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
@@ -21,7 +21,7 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (): ScreenConfig => {
+	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
 			headerTitle: <MediaItemsListHeaderContainer
 				componentsLeft={

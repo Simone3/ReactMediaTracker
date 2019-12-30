@@ -7,7 +7,8 @@ import { LoadingIndicatorComponent } from 'app/components/presentational/generic
 import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
 import { HeaderHamburgerComponent } from 'app/components/presentational/generic/header-hamburger';
-import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
+import { ScreenProps } from 'app/components/containers/generic/navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
@@ -17,7 +18,7 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
 			headerTitle: <HeaderComponent
 				title={i18n.t('category.list.title')}

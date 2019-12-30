@@ -7,10 +7,10 @@ import { LoadingIndicatorComponent } from 'app/components/presentational/generic
 import { navigationService } from 'app/utilities/navigation-service';
 import { i18n } from 'app/utilities/i18n';
 import { AppScreens } from 'app/utilities/screens';
-import { ScreenConfig } from 'app/components/containers/generic/navigation';
 import { AppTitleComponent } from 'app/components/presentational/auth/common/app-title';
 import { AuthSubmitComponent } from 'app/components/presentational/auth/common/auth-submit';
 import { AuthLinkComponent } from 'app/components/presentational/auth/common/auth-link';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the add new user form
@@ -20,7 +20,7 @@ export class UserLoginScreenComponent extends Component<UserLoginScreenComponent
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (): ScreenConfig => {
+	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
 			header: null
 		};

@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/auth/common/app-title/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, Image, Text, ViewProps } from 'react-native';
+import { View, Image, Text, ViewProps, StyleSheet, ViewStyle } from 'react-native';
 import { images } from 'app/utilities/images';
 import { i18n } from 'app/utilities/i18n';
 
@@ -17,7 +17,7 @@ export class AppTitleComponent extends Component<AppTitleComponentProps> {
 		return (
 			<View
 				{...this.props}
-				style={[ styles.container, this.props.style ]}>
+				style={StyleSheet.compose<ViewStyle>(styles.container, this.props.style)}>
 				<View style={styles.logoContainer}>
 					<Image
 						source={images.appLogo()}

@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { MediaItemFilterFormViewComponent, MediaItemFilterFormViewComponentInput, MediaItemFilterFormViewComponentOutput } from 'app/components/presentational/media-item/list/filter-form/view/media-item';
+import { VideogameFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/videogame';
 
 /**
  * Presentational component that contains all videogame filter form input fields, all handled by the Formik container component
@@ -31,4 +32,4 @@ export type VideogameFilterFormViewComponentOutput = MediaItemFilterFormViewComp
 /**
  * All props of VideogameFilterFormViewComponent
  */
-export type VideogameFilterFormViewComponentProps = FormikProps<FormikValues> & VideogameFilterFormViewComponentInput & VideogameFilterFormViewComponentOutput;
+export type VideogameFilterFormViewComponentProps = FormikProps<VideogameFilterFormValues> & VideogameFilterFormViewComponentInput & VideogameFilterFormViewComponentOutput;

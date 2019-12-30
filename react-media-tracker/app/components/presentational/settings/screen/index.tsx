@@ -4,13 +4,14 @@ import { styles } from 'app/components/presentational/settings/screen/styles';
 import { ClickableSettingsRowComponent } from 'app/components/presentational/settings/row-clickable';
 import { SettingsSectionTitleComponent } from 'app/components/presentational/settings/section-title';
 import { HeaderHamburgerComponent } from 'app/components/presentational/generic/header-hamburger';
-import { ScreenProps, ScreenConfig } from 'app/components/containers/generic/navigation';
+import { ScreenProps } from 'app/components/containers/generic/navigation';
 import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { UserInternal } from 'app/data/models/internal/user';
 import { FilePicker } from 'app/components/presentational/generic/file-picker';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole settings screen
@@ -20,7 +21,7 @@ export class SettingsScreenComponent extends Component<SettingsScreenComponentPr
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
 			headerTitle: <HeaderComponent
 				title={i18n.t('settings.screen.title')}

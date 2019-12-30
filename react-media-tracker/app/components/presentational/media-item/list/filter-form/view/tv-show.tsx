@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { MediaItemFilterFormViewComponent, MediaItemFilterFormViewComponentInput, MediaItemFilterFormViewComponentOutput } from 'app/components/presentational/media-item/list/filter-form/view/media-item';
+import { TvShowFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/tv-show';
 
 /**
  * Presentational component that contains all TV show filter form input fields, all handled by the Formik container component
@@ -31,4 +32,4 @@ export type TvShowFilterFormViewComponentOutput = MediaItemFilterFormViewCompone
 /**
  * All props of TvShowFilterFormViewComponent
  */
-export type TvShowFilterFormViewComponentProps = FormikProps<FormikValues> & TvShowFilterFormViewComponentInput & TvShowFilterFormViewComponentOutput;
+export type TvShowFilterFormViewComponentProps = FormikProps<TvShowFilterFormValues> & TvShowFilterFormViewComponentInput & TvShowFilterFormViewComponentOutput;

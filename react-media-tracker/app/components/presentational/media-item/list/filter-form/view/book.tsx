@@ -1,6 +1,7 @@
 import React, { Component, ReactNode } from 'react';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { MediaItemFilterFormViewComponent, MediaItemFilterFormViewComponentInput, MediaItemFilterFormViewComponentOutput } from 'app/components/presentational/media-item/list/filter-form/view/media-item';
+import { BookFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/book';
 
 /**
  * Presentational component that contains all book filter form input fields, all handled by the Formik container component
@@ -31,4 +32,4 @@ export type BookFilterFormViewComponentOutput = MediaItemFilterFormViewComponent
 /**
  * All props of BookFilterFormViewComponent
  */
-export type BookFilterFormViewComponentProps = FormikProps<FormikValues> & BookFilterFormViewComponentInput & BookFilterFormViewComponentOutput;
+export type BookFilterFormViewComponentProps = FormikProps<BookFilterFormValues> & BookFilterFormViewComponentInput & BookFilterFormViewComponentOutput;

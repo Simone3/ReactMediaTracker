@@ -1,11 +1,11 @@
 import React, { Component, ReactNode } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { styles } from 'app/components/presentational/media-item/list/filter-form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 import { PickerComponentItem } from 'app/components/presentational/form/components/picker';
-import { MEDIA_ITEM_FILTER_FORM_GROUP_VALUES, MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES, MEDIA_ITEM_FILTER_FORM_SORT_VALUES, MEDIA_ITEM_FILTER_FORM_STATUS_VALUES } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
+import { MEDIA_ITEM_FILTER_FORM_GROUP_VALUES, MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES, MEDIA_ITEM_FILTER_FORM_SORT_VALUES, MEDIA_ITEM_FILTER_FORM_STATUS_VALUES, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { images } from 'app/utilities/images';
 
@@ -193,4 +193,4 @@ export type MediaItemFilterFormViewComponentOutput = {
 /**
  * All props of MediaItemFilterFormViewComponent
  */
-export type MediaItemFilterFormViewComponentProps = FormikProps<FormikValues> & MediaItemFilterFormViewComponentInput & MediaItemFilterFormViewComponentOutput;
+export type MediaItemFilterFormViewComponentProps = FormikProps<MediaItemFilterFormValues> & MediaItemFilterFormViewComponentInput & MediaItemFilterFormViewComponentOutput;

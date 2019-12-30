@@ -1,10 +1,11 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { FormikProps, FormikValues } from 'formik';
+import { FormikProps } from 'formik';
 import { styles } from 'app/components/presentational/group/details/form/view/styles';
 import { i18n } from 'app/utilities/i18n';
 import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { images } from 'app/utilities/images';
+import { GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * Presentational component that contains all group form input fields, all handled by the Formik container component
@@ -111,4 +112,4 @@ export type GroupFormViewComponentOutput = {
 /**
  * All props of GroupFormViewComponent
  */
-export type GroupFormViewComponentProps = FormikProps<FormikValues> & GroupFormViewComponentInput & GroupFormViewComponentOutput;
+export type GroupFormViewComponentProps = FormikProps<GroupInternal> & GroupFormViewComponentInput & GroupFormViewComponentOutput;

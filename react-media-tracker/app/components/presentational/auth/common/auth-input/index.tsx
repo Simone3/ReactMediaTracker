@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/auth/common/auth-input/styles';
 import React, { ReactNode, Component } from 'react';
-import { TextInput, TextInputProps } from 'react-native';
+import { TextInput, TextInputProps, StyleSheet, TextStyle } from 'react-native';
 
 /**
  * Presentational component to display a text input for the auth screens
@@ -15,7 +15,7 @@ export class AuthTextInputComponent extends Component<AuthTextInputComponentProp
 		return (
 			<TextInput
 				{...this.props}
-				style={[ styles.input, this.props.style ]}
+				style={StyleSheet.compose<TextStyle>(styles.input, this.props.style)}
 			/>
 		);
 	}

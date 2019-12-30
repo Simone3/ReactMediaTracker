@@ -6,7 +6,8 @@ import { GroupDetailsHeaderContainer } from 'app/components/containers/group/det
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
 import { GroupDetailsHeaderBackButtonContainer } from 'app/components/containers/group/details/header-back-button';
 import { GroupDetailsHeaderSaveIconContainer } from 'app/components/containers/group/details/header-save-icon';
-import { ScreenConfig, ScreenProps } from 'app/components/containers/generic/navigation';
+import { ScreenProps } from 'app/components/containers/generic/navigation';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "group details" screen, that works as the "add new group", "update group" and
@@ -17,7 +18,7 @@ export class GroupDetailsScreenComponent extends Component<GroupDetailsScreenCom
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
 			headerTitle: <GroupDetailsHeaderContainer
 				componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}

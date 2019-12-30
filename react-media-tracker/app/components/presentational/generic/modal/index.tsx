@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/modal/styles';
 import React, { Component, ReactNode } from 'react';
-import { Modal, TouchableOpacity, View, TouchableWithoutFeedback, StyleProp, ViewStyle } from 'react-native';
+import { Modal, TouchableOpacity, View, TouchableWithoutFeedback, StyleProp, ViewStyle, StyleSheet } from 'react-native';
 
 /**
  * Presentational component to display a modal dialog
@@ -31,7 +31,7 @@ export class ModalComponent extends Component<ModalComponentProps> {
 					}
 				}}>
 				<TouchableOpacity
-					style={[ styles.container, transparentBackground ? null : styles.containerGrayed, this.getContainerPositionStyle() ] }
+					style={StyleSheet.compose<ViewStyle>(StyleSheet.compose<ViewStyle>(styles.container, transparentBackground ? null : styles.containerGrayed), this.getContainerPositionStyle())}
 					activeOpacity={1}
 					onPressOut={() => {
 						if(onClose) {

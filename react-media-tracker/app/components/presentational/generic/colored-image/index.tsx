@@ -1,5 +1,5 @@
 import React, { Component, ReactNode } from 'react';
-import { Image, ImageProps, ImageRequireSource } from 'react-native';
+import { Image, ImageProps, ImageRequireSource, StyleSheet, ImageStyle } from 'react-native';
 
 /**
  * Presentational component that wraps the default Image to specify the tint color via prop, plus some default style values
@@ -28,7 +28,7 @@ export class ColoredImage extends Component<ColoredImageInput> {
 		return (
 			<Image
 				{...this.props}
-				style={[ defaultSizeStyle, colorStyle, style ]}>
+				style={StyleSheet.compose<ImageStyle>(StyleSheet.compose<ImageStyle>(defaultSizeStyle, colorStyle), style)}>
 				{this.props.children}
 			</Image>
 		);

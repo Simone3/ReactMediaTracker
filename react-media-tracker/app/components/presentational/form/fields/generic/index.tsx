@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component, ReactNode, ChangeEvent } from 'react';
 import { Field, FieldProps } from 'formik';
 
 /**
@@ -96,17 +96,17 @@ export type Field = {
 	/**
 	 * Allows children to notify input change
 	 */
-	onChange: (event: unknown) => void;
+	onChange: (event: string | ChangeEvent<unknown>) => void;
 
 	/**
 	 * Allows children to notify input focus (input is currently active)
 	 */
-	onFocus: (event: unknown) => void;
+	onFocus: (event: string | ChangeEvent<unknown>) => void;
 	
 	/**
 	 * Allows children to notify input blur (input is no longer active)
 	 */
-	onBlur: (event: unknown) => void;
+	onBlur: (event: string | ChangeEvent<unknown>) => void;
 
 	/**
 	 * Allows children to get the input value
