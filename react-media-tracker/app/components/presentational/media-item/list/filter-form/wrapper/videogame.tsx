@@ -32,7 +32,7 @@ export class VideogameFilterFormComponent extends Component<VideogameFilterFormC
 					submitFilter(filter, sortBy);
 				}}
 				initialValues={initialValues}
-				isInitialValid={true}
+				initialErrors={{}}
 				validationSchema={videogameFilterFormValidationSchema}>
 				{(formikProps: FormikProps<VideogameFilterFormValues>) => {
 					

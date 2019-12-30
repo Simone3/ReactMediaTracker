@@ -32,7 +32,7 @@ export class BookFilterFormComponent extends Component<BookFilterFormComponentPr
 					submitFilter(filter, sortBy);
 				}}
 				initialValues={initialValues}
-				isInitialValid={true}
+				initialErrors={{}}
 				validationSchema={bookFilterFormValidationSchema}>
 				{(formikProps: FormikProps<BookFilterFormValues>) => {
 					

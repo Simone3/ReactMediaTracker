@@ -32,7 +32,7 @@ export class TvShowFilterFormComponent extends Component<TvShowFilterFormCompone
 					submitFilter(filter, sortBy);
 				}}
 				initialValues={initialValues}
-				isInitialValid={true}
+				initialErrors={{}}
 				validationSchema={tvShowFilterFormValidationSchema}>
 				{(formikProps: FormikProps<TvShowFilterFormValues>) => {
 					

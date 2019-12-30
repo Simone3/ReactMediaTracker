@@ -32,7 +32,7 @@ export class MovieFilterFormComponent extends Component<MovieFilterFormComponent
 					submitFilter(filter, sortBy);
 				}}
 				initialValues={initialValues}
-				isInitialValid={true}
+				initialErrors={{}}
 				validationSchema={movieFilterFormValidationSchema}>
 				{(formikProps: FormikProps<MovieFilterFormValues>) => {
 					
