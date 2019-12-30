@@ -4,6 +4,7 @@ import { DatePickerComponent } from 'app/components/presentational/form/componen
 import React, { ReactNode, Component } from 'react';
 import { i18n } from 'app/utilities/i18n';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { View } from 'react-native';
 
 /**
  * Presentational component to display a multiple date input (result is array of user-defined dates)
@@ -44,20 +45,21 @@ export class MultiDateInputComponent extends Component<MultiDateInputComponentPr
 	private onBuildInput(value: (Date | undefined), onValueChange: (newValue: (Date | undefined)) => void): ReactNode {
 		
 		return (
-			<DatePickerComponent
-				style={styles.modalInput}
-				placeholder={i18n.t('common.form.input.multiDate.placeholder')}
-				currentDate={value}
-				onSelectDate={onValueChange}
-				status='DEFAULT'
-				onFocus={() => {
-					// Do nothing for now
-				}}
-				onBlur={() => {
-					// Do nothing for now
-				}}
-				hideIconAndStatus={true}
-			/>
+			<View style={styles.modalInput}>
+				<DatePickerComponent
+					placeholder={i18n.t('common.form.input.multiDate.placeholder')}
+					currentDate={value}
+					onSelectDate={onValueChange}
+					status='DEFAULT'
+					onFocus={() => {
+						// Do nothing for now
+					}}
+					onBlur={() => {
+						// Do nothing for now
+					}}
+					hideIconAndStatus={true}
+				/>
+			</View>
 		);
 	}
 

@@ -1,8 +1,9 @@
-import { styles } from 'app/components/presentational/form/components/date-picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { TouchableOpacity, TextInput } from 'react-native';
-import DateTimePicker from 'react-native-modal-datetime-picker';
+import { styles } from 'app/components/presentational/form/components/date-picker/styles';
+import { View, TouchableOpacity, TextInput } from 'react-native';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { AppError } from 'app/data/models/internal/error';
 
 /**
  * Presentational component to display a date picker
@@ -16,73 +17,110 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 	 */
 	public render(): ReactNode {
 
+		return (
+			<View>
+				{this.renderInput()}
+				{this.renderModal()}
+			</View>
+		);
+	}
+
+	/**
+	 * Helper to render the main input (full)
+	 * @returns the component
+	 */
+	private renderInput(): ReactNode {
+
 		const {
 			hideIconAndStatus
 		} = this.props;
 
 		if(hideIconAndStatus) {
 
-			return this.renderField();
+			return this.renderInputInternal();
 		}
 		else {
 
 			return (
 				<FormInputComponent {...this.props}>
-					{this.renderField()}
+					{this.renderInputInternal()}
 				</FormInputComponent>
 			);
 		}
 	}
 
 	/**
-	 * Renders the field
-	 * @returns the cpmponent
+	 * Helper to render the main input (internal part)
+	 * @returns the component
 	 */
-	private renderField(): ReactNode {
+	private renderInputInternal(): ReactNode {
 
 		const {
 			currentDate,
 			placeholder,
 			onFocus,
-			onBlur,
-			onSelectDate,
 			disabled
 		} = this.props;
 
-		const {
-			open
-		} = this.state;
-
 		return (
 			<TouchableOpacity
-				style={styles.inputButtonContainer}
+				style={styles.inputContainer}
 				disabled={disabled}
 				onPress={(event) => {
 					this.setState({ open: true });
 					onFocus(event);
 				}}>
 				<TextInput
-					style={styles.inputButtonText}
+					style={styles.input}
 					placeholder={placeholder}
 					value={currentDate ? currentDate.toLocaleDateString() : ''}
 					editable={false}>
 				</TextInput>
-				<DateTimePicker
-					date={currentDate}
-					mode='date'
-					isVisible={open}
-					onConfirm={(newValue) => {
-						onSelectDate(newValue);
-						onBlur('');
-						this.setState({ open: false });
-					}}
-					onCancel={() => {
-						onBlur('');
-						this.setState({ open: false });
-					}}
-				/>
 			</TouchableOpacity>
 		);
+	}
+
+	/**
+	 * Helper to render the modal
+	 * @returns the component
+	 */
+	private renderModal(): ReactNode {
+
+		const {
+			currentDate,
+			onBlur,
+			onSelectDate
+		} = this.props;
+
+		if(this.state.open) {
+
+			return (
+				<DateTimePicker
+					value={currentDate || new Date()}
+					mode={'date'}
+					is24Hour={true}
+					display='default'
+					onChange={(event, newValue) => {
+
+						if(event.type === 'dismissed') {
+							
+							this.setState({ open: false });
+							onBlur(event);
+						}
+						else if(event.type === 'set') {
+
+							this.setState({ open: false });
+							onSelectDate(newValue);
+							onBlur(event);
+						}
+						else {
+
+							throw AppError.GENERIC.withDetails(`Date picker event type not recognized: ${event.type}`);
+						}
+					}}
+				/>
+			);
+		}
 	}
 }
 
@@ -115,7 +153,7 @@ export type DatePickerComponentOutput = FormInputComponentOutput & {
 	/**
 	 * Notifies input value change
 	 */
-	onSelectDate: (date: Date) => void;
+	onSelectDate: (date: Date | undefined) => void;
 }
 
 /**
@@ -129,7 +167,7 @@ export type DatePickerComponentProps = DatePickerComponentInput & DatePickerComp
 export type DatePickerComponentState = {
 
 	/**
-	 * If the date picker modal is open
+	 * If the modal is open
 	 */
 	open: boolean;
 }
