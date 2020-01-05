@@ -21,14 +21,14 @@ export class ImportBackEndController implements ImportController {
 		const content = await readFile(jsonFileUri);
 		if(!content || !content.trim()) {
 
-			throw AppError.GENERIC.withDetails(`JSON file is empty: ${content}`);
+			throw AppError.IMPORT_FILE.withDetails(`JSON file is empty: ${content}`);
 		}
 
 		// Parse the file contents as a JavaScript object
 		const parsedContent = JSON.parse(content);
 		if(!parsedContent || typeof parsedContent !== 'object') {
 
-			throw AppError.GENERIC.withDetails(`Parsed JSON file is not an object: ${parsedContent}`);
+			throw AppError.IMPORT_FILE.withDetails(`Parsed JSON file is not an object: ${parsedContent}`);
 		}
 
 		// Build back-end request

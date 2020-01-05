@@ -1,5 +1,3 @@
-import { FlashError } from 'app/components/presentational/generic/error-flash';
-import { i18n } from 'app/utilities/i18n';
 import DocumentPicker, { DocumentPickerResponse } from 'react-native-document-picker';
 
 /**
@@ -15,19 +13,9 @@ export class FilePicker {
 
 		try {
 
-			const pickedFile = await DocumentPicker.pick({
+			return await DocumentPicker.pick({
 				type: [ DocumentPicker.types.allFiles ]
 			});
-
-			if(pickedFile.type !== 'application/json') {
-
-				FlashError.showError(i18n.t('error.flash.messages.fileNotJson'));
-				return undefined;
-			}
-			else {
-
-				return pickedFile;
-			}
 		}
 		catch(error) {
 			

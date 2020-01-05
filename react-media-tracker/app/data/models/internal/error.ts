@@ -32,6 +32,7 @@ export class AppError extends Error {
 	public static BACKEND_OWN_PLATFORM_DELETE = new AppError('backend.ownPlatform.delete', 'error.flash.messages.backendOwnPlatformDelete');
 
 	public static BACKEND_IMPORT_OLD_APP = new AppError('backend.import.oldApp', 'error.flash.messages.backendOldAppImport');
+	public static IMPORT_FILE = new AppError('import.fileNotValid', 'error.flash.messages.importFileNotValid');
 
 	private _errorCode: string;
 	private _errorDescription: string;
