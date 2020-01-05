@@ -25,7 +25,7 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 			console.log('ErrorHandlerComponent: error intercepted');
 			console.log(error);
 
-			const messageDescription = typeof error === 'string' ? error : i18n.t(error.errorDescription);
+			const messageDescription = typeof error === 'string' ? error : this.getAppErrorDescription(error);
 
 			FlashError.showError(messageDescription);
 
@@ -44,6 +44,23 @@ export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput 
 				<FlashMessage position='bottom' />
 			</View>
 		);
+	}
+
+	/**
+	 * Helper to extract the correct description from an AppError object
+	 * @param error the source error
+	 * @returns the description to be shown
+	 */
+	private getAppErrorDescription(error: AppError): string {
+		
+		let originalAppError: AppError = error;
+
+		while(originalAppError.errorDetails && originalAppError.errorDetails instanceof AppError) {
+
+			originalAppError = originalAppError.errorDetails;
+		}
+
+		return i18n.t(originalAppError.errorDescription);
 	}
 }
 
