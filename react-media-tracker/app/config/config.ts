@@ -1,4 +1,5 @@
 import { devConfig } from 'app/config/properties/config-dev';
+import { prodConfig } from 'app/config/properties/config-prod';
 import { Config } from 'app/config/type-config';
 import { AppError } from 'app/data/models/internal/error';
 import ReactNativeConfig from 'react-native-config';
@@ -22,6 +23,10 @@ switch(environment) {
 
 	case 'dev':
 		envConfig = devConfig;
+		break;
+
+	case 'prod':
+		envConfig = prodConfig;
 		break;
 
 	default:
