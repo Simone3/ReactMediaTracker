@@ -2,12 +2,12 @@ import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
 import { MediaItemFormViewComponent, MediaItemFormViewComponentCommonInput, MediaItemFormViewComponentCommonOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
 import { TvShowInternal } from 'app/data/models/internal/media-items/tv-show';
-import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { ToggleFieldComponent } from 'app/components/presentational/form/fields/toggle-input';
+import { NumericTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-number';
 
 /**
  * Presentational component that contains all TV show form input fields, all handled by the Formik container component
@@ -41,12 +41,11 @@ export class TvShowFormViewComponent extends Component<TvShowFormViewComponentPr
 	private durationField(): ReactNode {
 
 		return (
-			<TextInputFieldComponent
+			<NumericTextInputFieldComponent
 				key='durationField'
 				name='averageEpisodeRuntimeMinutes'
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.TV_SHOW')}
 				icon={images.durationField()}
-				keyboardType='number-pad'
 			/>
 		);
 	}
@@ -74,12 +73,11 @@ export class TvShowFormViewComponent extends Component<TvShowFormViewComponentPr
 	private episodesField(): ReactNode {
 
 		return (
-			<TextInputFieldComponent
+			<NumericTextInputFieldComponent
 				key='episodesField'
 				name='episodesNumber'
 				placeholder={i18n.t('mediaItem.details.placeholders.episodesNumber')}
 				icon={images.episodesField()}
-				keyboardType='number-pad'
 			/>
 		);
 	}
@@ -91,12 +89,11 @@ export class TvShowFormViewComponent extends Component<TvShowFormViewComponentPr
 	private seasonsField(): ReactNode {
 
 		return (
-			<TextInputFieldComponent
+			<NumericTextInputFieldComponent
 				key='seasonsField'
 				name='seasonsNumber'
 				placeholder={i18n.t('mediaItem.details.placeholders.seasonsNumber')}
 				icon={images.seasonsField()}
-				keyboardType='number-pad'
 			/>
 		);
 	}

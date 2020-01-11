@@ -3,9 +3,9 @@ import { FormikProps } from 'formik';
 import { MediaItemFormViewComponent, MediaItemFormViewComponentCommonInput, MediaItemFormViewComponentCommonOutput } from 'app/components/presentational/media-item/details/form/view/media-item';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
-import { TextInputFieldComponent } from 'app/components/presentational/form/fields/text-input';
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
 import { MultiTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-multiple';
+import { NumericTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-number';
 
 /**
  * Presentational component that contains all movie form input fields, all handled by the Formik container component
@@ -35,12 +35,11 @@ export class MovieFormViewComponent extends Component<MovieFormViewComponentProp
 	private durationField(): ReactNode {
 
 		return (
-			<TextInputFieldComponent
+			<NumericTextInputFieldComponent
 				key='durationField'
 				name='durationMinutes'
 				placeholder={i18n.t('mediaItem.details.placeholders.duration.MOVIE')}
 				icon={images.durationField()}
-				keyboardType='number-pad'
 			/>
 		);
 	}

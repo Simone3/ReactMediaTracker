@@ -3,9 +3,9 @@ import { i18n } from 'app/utilities/i18n';
 import { MediaItemGroupInternal } from 'app/data/models/internal/media-items/media-item';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { GroupInternal } from 'app/data/models/internal/group';
-import { TextInputComponent } from 'app/components/presentational/form/components/text-input';
 import { GenericEntityPickerComponent, GenericEntityPickerComponentLabels, EntityDescriptor } from 'app/components/presentational/form/helpers/entity-picker';
 import { images } from 'app/utilities/images';
+import { NumericTextInputComponent } from 'app/components/presentational/form/components/text-input-number';
 
 /**
  * Presentational component to display a media item group picker
@@ -74,18 +74,17 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 		} = this.state;
 
 		// Selection callback
-		const onTextChange = (order: string): void => {
+		const onValueChange = (order: number | undefined): void => {
 
 			this.setState({
-				currentTemporaryOrder: order ? Number(order) : undefined
+				currentTemporaryOrder: order
 			});
 		};
 
 		return (
-			<TextInputComponent
-				currentText={currentTemporaryOrder ? String(currentTemporaryOrder) : undefined}
-				onTextChange={onTextChange}
-				keyboardType='number-pad'
+			<NumericTextInputComponent
+				currentValue={currentTemporaryOrder}
+				onValueChange={onValueChange}
 				placeholder={i18n.t('group.order.placeholder')}
 				status='DEFAULT'
 				onBlur={() => {
