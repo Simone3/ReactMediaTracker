@@ -134,6 +134,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='description'
 				placeholder={i18n.t('mediaItem.details.placeholders.description')}
 				icon={images.descriptionField()}
+				multiline={true}
 			/>
 		);
 	}
@@ -187,6 +188,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				name='userComment'
 				placeholder={i18n.t('mediaItem.details.placeholders.userComment')}
 				icon={images.userCommentField()}
+				multiline={true}
 			/>
 		);
 	}

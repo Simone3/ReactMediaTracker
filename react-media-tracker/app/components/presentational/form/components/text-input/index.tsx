@@ -20,7 +20,8 @@ export class TextInputComponent extends Component<TextInputComponentProps> {
 			onFocus,
 			onBlur,
 			onTextChange,
-			disabled
+			disabled,
+			multiline
 		} = this.props;
 
 		return (
@@ -33,6 +34,7 @@ export class TextInputComponent extends Component<TextInputComponentProps> {
 					value={currentText ? String(currentText) : ''}
 					placeholder={placeholder}
 					keyboardType={keyboardType}
+					multiline={multiline}
 					style={styles.input}
 				/>
 			</FormInputComponent>
@@ -59,6 +61,11 @@ export type TextInputComponentInput = FormInputComponentInput & {
 	 * The keyboard type
 	 */
 	keyboardType?: KeyboardTypeOptions;
+
+	/**
+	 * If the input is multiline
+	 */
+	multiline?: boolean;
 }
 
 /**
