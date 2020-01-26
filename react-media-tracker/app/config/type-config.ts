@@ -11,6 +11,7 @@ export type Config = {
 			timeoutMilliseconds: number;
 			defaultOwnPlatform: Required<OwnPlatform>;
 		};
+		assumeWellFormedResponse: boolean;
 	};
 	ui: {
 		colors: {

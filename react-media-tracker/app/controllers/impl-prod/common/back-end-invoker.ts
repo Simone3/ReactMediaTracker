@@ -1,3 +1,4 @@
+import { config } from 'app/config/config';
 import { BackEndInvoker } from 'app/controllers/core/common/back-end-invoker';
 import { restJsonInvoker } from 'app/controllers/core/common/rest-json-invoker';
 import { userController } from 'app/controllers/core/entities/user';
@@ -15,6 +16,7 @@ export class BackEndInvokerRestJson implements BackEndInvoker {
 	public async invoke<TRequest extends object, TResponse extends object>(parameters: InvocationParams<TRequest, TResponse>): Promise<TResponse> {
 
 		await this.addAuthorizationHeader(parameters);
+		parameters.assumeWellFormedResponse = config.backEnd.assumeWellFormedResponse;
 		return restJsonInvoker.invoke(parameters);
 	}
 

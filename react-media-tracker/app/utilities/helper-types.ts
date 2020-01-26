@@ -12,6 +12,7 @@ export type InvocationParams<TRequest, TResponse> = {
 	timeoutMilliseconds?: number;
 	queryParams?: QueryParams;
 	headers?: {[key: string]: string};
+	assumeWellFormedResponse?: boolean;
 }
 
 /**

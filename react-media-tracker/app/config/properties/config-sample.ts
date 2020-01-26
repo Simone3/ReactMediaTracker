@@ -11,7 +11,8 @@ const config: Config = {
 				color: '#6e6d66',
 				icon: 'default'
 			}
-		}
+		},
+		assumeWellFormedResponse: true
 	},
 	ui: {
 		colors: {

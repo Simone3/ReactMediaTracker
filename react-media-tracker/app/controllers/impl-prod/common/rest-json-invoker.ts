@@ -50,16 +50,25 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 					const rawResponseBody = axiosResponse.data;
 					this.logSuccessfulResponse(options, rawResponseBody);
 
-					// Parse the raw response
-					parserValidator.parseAndValidate(parameters.responseBodyClass, rawResponseBody)
-						.then((parsedResponse) => {
-	
-							resolve(parsedResponse);
-						})
-						.catch((error) => {
-	
-							reject(AppError.BACKEND_PARSE.withDetails(error));
-						});
+					// Check if we "trust" the API response to be valid...
+					if(parameters.assumeWellFormedResponse) {
+
+						// Skip validation and return the raw response
+						resolve(rawResponseBody);
+					}
+					else {
+
+						// Parse and validate the raw response
+						parserValidator.parseAndValidate(parameters.responseBodyClass, rawResponseBody)
+							.then((parsedResponse) => {
+		
+								resolve(parsedResponse);
+							})
+							.catch((error) => {
+		
+								reject(AppError.BACKEND_PARSE.withDetails(error));
+							});
+					}
 				})
 				.catch((error) => {
 
