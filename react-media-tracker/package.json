@@ -5,9 +5,11 @@
   "scripts": {
     "android-dev": "SET ENVFILE=.env && react-native run-android",
     "android-prod": "SET ENVFILE=.env.production && react-native run-android --variant=release",
+    "ios-dev": "ENVFILE=.env; npx react-native run-ios",
     "clean": "cd android && \"./gradlew\" clean && cd ..",
     "reset": "react-native start -- --reset-cache",
-    "lint": "eslint app/**/*.ts app/**/*.tsx"
+    "lint": "eslint app/**/*.ts app/**/*.tsx",
+    "ios-pod": "cd ios; pod install; cd .."
   },
   "dependencies": {
     "@react-native-community/async-storage": "~1.7.1",
