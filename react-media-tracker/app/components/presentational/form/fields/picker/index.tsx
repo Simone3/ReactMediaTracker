@@ -1,6 +1,7 @@
 import React, { ReactNode, Component } from 'react';
 import { FieldComponent } from 'app/components/presentational/form/fields/generic';
-import { PickerComponent, PickerComponentInput } from 'app/components/presentational/form/components/picker';
+import { PickerComponent } from 'app/components/presentational/form/components/picker';
+import { PickerComponentInput } from 'app/components/presentational/form/components/picker/common';
 
 /**
  * Formik wrapper of PickerComponent

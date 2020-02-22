@@ -1,10 +1,9 @@
-import { styles } from 'app/components/presentational/form/components/picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { ImageRequireSource, Picker } from 'react-native';
-import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { CommonPickerComponent, PickerComponentProps } from 'app/components/presentational/form/components/picker/common';
+import { FormInputComponent } from 'app/components/presentational/form/components/generic';
 
 /**
- * Presentational component to display a picker
+ * Presentational component to display a picker (Android version)
  */
 export class PickerComponent extends Component<PickerComponentProps> {
 	
@@ -15,11 +14,8 @@ export class PickerComponent extends Component<PickerComponentProps> {
 
 		const {
 			icon,
-			prompt,
 			items,
-			currentItem,
-			onSelectItem,
-			disabled
+			currentItem
 		} = this.props;
 
 		const selectedItem = items.find((item) => {
@@ -30,82 +26,8 @@ export class PickerComponent extends Component<PickerComponentProps> {
 
 		return (
 			<FormInputComponent {...this.props} icon={displayedIcon}>
-				<Picker
-					mode='dialog'
-					prompt={prompt}
-					enabled={!disabled}
-					selectedValue={currentItem}
-					style={styles.input}
-					onValueChange={onSelectItem}>
-					{items.map((item, index) => {
-						return (
-							<Picker.Item
-								key={index}
-								label={item.label}
-								value={item.value}
-							/>
-						);
-					})}
-				</Picker>
+				<CommonPickerComponent {...this.props} />
 			</FormInputComponent>
 		);
 	}
-}
-
-/**
- * PickerComponent's input props
- */
-export type PickerComponentInput = FormInputComponentInput & {
-
-	/**
-	 * The current value
-	 */
-	currentItem: string | undefined;
-
-	/**
-	 * The input items
-	 */
-	items: PickerComponentItem[];
-
-	/**
-	 * The modal title
-	 */
-	prompt: string;
-}
-
-/**
- * PickerComponent's output props
- */
-export type PickerComponentOutput = FormInputComponentOutput & {
-
-	/**
-	 * Notifies input value change
-	 */
-	onSelectItem: (value: string | undefined | null) => void;
-}
-
-/**
- * PickerComponent's props
- */
-export type PickerComponentProps = PickerComponentInput & PickerComponentOutput;
-
-/**
- * An item displayed by PickerComponent
- */
-export type PickerComponentItem = {
-
-	/**
-	 * The item value
-	 */
-	value: string | undefined | null;
-
-	/**
-	 * The item label
-	 */
-	label: string;
-
-	/**
-	 * The item icon, that optionally overwrites the default input icon
-	 */
-	icon?: ImageRequireSource;
 }
