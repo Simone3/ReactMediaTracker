@@ -50,7 +50,6 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 			<FormInputComponent {...this.props}>
 				{this.renderInput()}
 				{this.renderMainModal()}
-				{this.renderActionsModal()}
 			</FormInputComponent>
 		);
 	}
@@ -152,6 +151,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 					</View>
 					{this.renderModalConfirmButton()}
 				</View>
+				{this.renderActionsModal()}
 			</ModalComponent>
 		);
 	}
