@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/form/helpers/entity-picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, TouchableOpacity, ImageRequireSource } from 'react-native';
+import { View, TouchableOpacity, ImageRequireSource } from 'react-native';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { PickerComponent } from 'app/components/presentational/form/components/picker';
@@ -11,6 +11,7 @@ import { config } from 'app/config/config';
 import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
+import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 
 /**
  * Presentational component to display a generic entity picker, with fetch, save and delete callbacks
@@ -109,12 +110,11 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 					});
 					onFocus(event);
 				}}>
-				<TextInput
+				<PlaceholderTextComponent
 					style={styles.input}
-					editable={false}
-					value={textValue}
-					placeholder={placeholder}
-				/>
+					placeholder={placeholder}>
+					{textValue}
+				</PlaceholderTextComponent>
 			</TouchableOpacity>
 		);
 	}

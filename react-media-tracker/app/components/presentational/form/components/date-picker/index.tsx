@@ -1,9 +1,10 @@
 import React, { ReactNode, Component } from 'react';
 import { styles } from 'app/components/presentational/form/components/date-picker/styles';
-import { View, TouchableOpacity, TextInput } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { AppError } from 'app/data/models/internal/error';
+import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 
 /**
  * Presentational component to display a date picker
@@ -70,12 +71,11 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 					this.setState({ open: true });
 					onFocus(event);
 				}}>
-				<TextInput
+				<PlaceholderTextComponent
 					style={styles.input}
-					placeholder={placeholder}
-					value={currentDate ? currentDate.toLocaleDateString() : ''}
-					editable={false}>
-				</TextInput>
+					placeholder={placeholder}>
+					{currentDate ? currentDate.toLocaleDateString() : ''}
+				</PlaceholderTextComponent>
 			</TouchableOpacity>
 		);
 	}
@@ -85,6 +85,18 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 	 * @returns the component
 	 */
 	private renderModal(): ReactNode {
+
+		if(this.state.open) {
+
+			return this.renderPicker();
+		}
+	}
+
+	/**
+	 * Helper to render the actual date picker
+	 * @returns the component
+	 */
+	private renderPicker(): ReactNode {
 
 		const {
 			currentDate,

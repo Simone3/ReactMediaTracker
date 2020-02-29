@@ -4,6 +4,7 @@ import { View, TextInput, TouchableOpacity, FlatList, Text } from 'react-native'
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
+import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 
 /**
  * Presentational component to display a multiplegeneric input (result is an array of input values)
@@ -55,12 +56,11 @@ export class GenericMultipleInputComponent<I> extends Component<GenericMultipleI
 					});
 					onFocus(event);
 				}}>
-				<TextInput
+				<PlaceholderTextComponent
 					style={styles.input}
-					editable={false}
-					value={textValue}
-					placeholder={placeholder}
-				/>
+					placeholder={placeholder}>
+					{textValue}
+				</PlaceholderTextComponent>
 			</TouchableOpacity>
 		);
 	}
