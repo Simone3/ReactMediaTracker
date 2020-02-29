@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/form/helpers/multiple-input/styles';
 import React, { ReactNode, Component } from 'react';
-import { View, TextInput, TouchableOpacity, FlatList, Text } from 'react-native';
+import { View, TouchableOpacity, FlatList, Text } from 'react-native';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';

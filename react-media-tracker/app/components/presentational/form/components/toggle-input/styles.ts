@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
 	},
 	placeholder: {
 		flex: 1,
+		alignSelf: 'center',
 		textAlignVertical: 'center',
 		fontSize: 15
 	},
