@@ -1,5 +1,5 @@
 import { config } from 'app/config/config';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	inputContainer: {
@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
 	input: {
 		flex: 1,
 		fontSize: 15,
+		padding: Platform.OS === 'ios' ? 15 : 0,
 		paddingLeft: 10
 	},
 	suggestionsContainer: {

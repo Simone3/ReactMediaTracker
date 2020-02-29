@@ -9,10 +9,10 @@ export const styles = StyleSheet.create({
 		borderTopRightRadius: 10
 	},
 	titleSectionContainer: {
-		marginTop: 25,
-		marginBottom: 25,
+		marginTop: 10,
+		marginBottom: 10,
 
-		height: 25
+		height: 50
 	},
 	list: {
 		marginTop: 20,
