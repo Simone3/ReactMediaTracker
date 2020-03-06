@@ -30,6 +30,9 @@ module.exports = {
 		react: {
 			version: 'detect'
 		},
+	},
+	globals: {
+        "__DEV__": "readonly"
     },
 	rules: {
 

@@ -26,7 +26,8 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 						id: '1',
 						name: 'My Group'
 					}
-				}
+				},
+				imageUrl: 'http://image.tmdb.org/t/p/w780/aHcth2AXzZSjhX7JYh7ie73YVNc.jpg'
 			}, {
 				id: '2',
 				mediaType: 'MOVIE',

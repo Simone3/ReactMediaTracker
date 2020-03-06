@@ -55,7 +55,7 @@ export class MediaItemImageButtonsRowComponent extends Component<MediaItemImageB
 					source={{
 						uri: url
 					}}
-					defaultSource={images.defaultMediaItemImage()}
+					defaultSource={__DEV__ ? undefined : images.defaultMediaItemImage()}
 				/>
 			);
 		}
