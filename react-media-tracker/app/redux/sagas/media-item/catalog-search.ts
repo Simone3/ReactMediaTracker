@@ -1,4 +1,4 @@
-import { call, put, select, takeLatest } from '@redux-saga/core/effects';
+import { call, delay, put, select, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
 import { SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { mediaItemCatalogControllerFactory } from 'app/factories/controller-factories';
@@ -7,6 +7,7 @@ import { SEARCH_MEDIA_ITEMS_CATALOG } from 'app/redux/actions/media-item/const';
 import { completeSearchingMediaItemsCatalog, failSearchingMediaItemsCatalog, startSearchingMediaItemsCatalog } from 'app/redux/actions/media-item/generators';
 import { SearchMediaItemsCatalogAction } from 'app/redux/actions/media-item/types';
 import { State } from 'app/redux/state/state';
+import { Platform } from 'react-native';
 import { SagaIterator } from 'redux-saga';
 
 /**
@@ -33,6 +34,19 @@ const searchMediaItemsCatalogSaga = function * (action: SearchMediaItemsCatalogA
 		// Retrieve catalog results from controller
 		const term = action.term;
 		const catalogResults: SearchMediaItemCatalogResultInternal[] = yield call(catalogController.search.bind(catalogController), term);
+		
+		// TERRIBLE workaround for iOS modal bug: to display two non-nested modals (details screen loading and suggestions list)
+		// one after the other we must first wait for the first to completely hide (animation) otherwise second one does not show up.
+		// This can be removed when modal bug will be fixed.
+		if(Platform.OS === 'ios') {
+			
+			yield put({
+				type: 'TEMP_ACTION_FOR_IOS_MODAL_BUG'
+			});
+			yield delay(500);
+		}
+
+		// Send the results
 		yield put(completeSearchingMediaItemsCatalog(catalogResults));
 	}
 	catch(error) {

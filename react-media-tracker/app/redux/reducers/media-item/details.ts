@@ -121,6 +121,15 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 			};
 		}
 
+		// See comment on catalog-search.ts. This can be removed when modal bug will be fixed.
+		case 'TEMP_ACTION_FOR_IOS_MODAL_BUG': {
+
+			return {
+				...state,
+				catalogStatus: 'IDLE'
+			};
+		}
+
 		// When the app completes searching the media items catalog, the status changes and the results are loaded
 		case COMPLETE_SEARCHING_MEDIA_ITEMS_CATALOG: {
 
