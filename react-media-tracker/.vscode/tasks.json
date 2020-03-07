@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-			"label": "App Build",
+            "label": "App Build",
             "type": "typescript",
             "tsconfig": "tsconfig.json",
             "problemMatcher": [
@@ -12,6 +12,12 @@
                 "kind": "build",
                 "isDefault": true
             }
-		}
+        },
+        {
+            "label": "Copy Firebase Dev",
+            "type": "npm",
+            "script": "cp-firebase-dev",
+            "problemMatcher": []
+        }
     ]
 }

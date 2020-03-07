@@ -10,6 +10,7 @@
 			"type": "reactnative",
 			"request": "launch",
 			"platform": "android",
+			"preLaunchTask": "cp-firebase-dev",
 			"env": {
 				"ENVFILE": ".env"
 			}

@@ -77,4 +77,5 @@ app/config/files/config-*
 
 # Firebase config (loaded dynamically from app/config/files/)
 android/app/google-services.json
+ios/GoogleService-Info.plist
 

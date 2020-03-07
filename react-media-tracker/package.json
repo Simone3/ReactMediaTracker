@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android-dev": "SET ENVFILE=.env && react-native run-android",
-    "android-prod": "SET ENVFILE=.env.production && react-native run-android --variant=release",
-    "ios-dev": "ENVFILE=.env; npx react-native run-ios",
-    "clean": "cd android && \"./gradlew\" clean && cd ..",
+    "android-dev": "SET ENVFILE=.env && npm run cp-firebase-dev && react-native run-android",
+    "android-prod": "SET ENVFILE=.env.production && npm run cp-firebase-prod && react-native run-android --variant=release",
+    "ios-dev": "ENVFILE=.env; npm run cp-firebase-dev; react-native run-ios",
+    "ios-prod": "ENVFILE=.env.production; npm run cp-firebase-prod; react-native run-ios --variant=release",
+    "cp-firebase-dev": "shx cp './app/config/files/config-dev/google-services.json' './android/app/' && shx cp './app/config/files/config-dev/GoogleService-Info.plist' './ios/'",
+    "cp-firebase-prod": "shx cp './app/config/files/config-prod/google-services.json' './android/app/' && shx cp './app/config/files/config-prod/GoogleService-Info.plist' './ios/'",
+    "android-clean": "cd android && \"./gradlew\" clean && cd ..",
+    "ios-pod": "cd ios; pod install --repo-update; cd ..",
     "reset": "react-native start -- --reset-cache",
-    "lint": "eslint app/**/*.ts app/**/*.tsx",
-    "ios-pod": "cd ios; pod install --repo-update; cd .."
+    "lint": "eslint app/**/*.ts app/**/*.tsx"
   },
   "dependencies": {
     "@react-native-community/async-storage": "~1.7.1",
@@ -63,6 +66,7 @@
     "metro-react-native-babel-preset": "~0.57.0",
     "react-test-renderer": "~16.12.0",
     "reflect-metadata": "~0.1.13",
+    "shx": "^0.3.2",
     "typescript": "~3.7.4"
   },
   "jest": {

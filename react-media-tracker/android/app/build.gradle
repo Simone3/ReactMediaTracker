@@ -211,14 +211,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-// Helper task to copy the google-services.json for the current environment
-task copyFirebaseConfiguration(type: Copy) {
-    description = 'Copying google-services.json (Firebase) for ' + project.env.get("MEDIA_TRACKER_APP_ENV") + ' environment...'
-    from file('../../app/config/files/config-' + project.env.get("MEDIA_TRACKER_APP_ENV") + '/google-services.json')
-    into './'
-	if(inputs.sourceFiles.empty) throw new StopExecutionException('copyFirebaseConfiguration: google-services.json not found in app/config-' + project.env.get("MEDIA_TRACKER_APP_ENV") + '/files')
-}
-preBuild.dependsOn copyFirebaseConfiguration
-
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply plugin: 'com.google.gms.google-services'
