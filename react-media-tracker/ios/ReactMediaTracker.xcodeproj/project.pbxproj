@@ -17,6 +17,10 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ReactMediaTrackerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ReactMediaTrackerTests.m */; };
 		650F49E92A12E014BD9BC71C /* libPods-ReactMediaTracker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AFA23DDCEEC194148CA6BCE /* libPods-ReactMediaTracker.a */; };
+		81DB4C712413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */; };
+		81DB4C722413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */; };
+		81DB4C732413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */; };
+		81DB4C742413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */; };
 		DECEF906F8FBCF87887214BD /* libPods-ReactMediaTrackerTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF9C173C3BD43E75E707265 /* libPods-ReactMediaTrackerTests.a */; };
 		E07388DBFCE33E14BB0A0BB0 /* libPods-ReactMediaTracker-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B8697EF00214115B728F77DA /* libPods-ReactMediaTracker-tvOSTests.a */; };
 		ECA7F3A3C5F1BBB7CE05228F /* libPods-ReactMediaTracker-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7816ADC9F19AF85E43C15CD9 /* libPods-ReactMediaTracker-tvOS.a */; };
@@ -60,6 +64,7 @@
 		68BCEDB6213464BC21170CEC /* Pods-ReactMediaTracker-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactMediaTracker-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ReactMediaTracker-tvOS/Pods-ReactMediaTracker-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		7816ADC9F19AF85E43C15CD9 /* libPods-ReactMediaTracker-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactMediaTracker-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F268F3F90E3FFBAE0BE0765 /* Pods-ReactMediaTracker-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactMediaTracker-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ReactMediaTracker-tvOSTests/Pods-ReactMediaTracker-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8AFA23DDCEEC194148CA6BCE /* libPods-ReactMediaTracker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactMediaTracker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF9C173C3BD43E75E707265 /* libPods-ReactMediaTrackerTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ReactMediaTrackerTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9762708A33BB43F5BD8095DA /* Pods-ReactMediaTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactMediaTracker.release.xcconfig"; path = "Target Support Files/Pods-ReactMediaTracker/Pods-ReactMediaTracker.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,7 +153,6 @@
 				FCB64E85942B8C8BE7D7E290 /* Pods-ReactMediaTrackerTests.debug.xcconfig */,
 				3AE50E19E5B6F0428047F754 /* Pods-ReactMediaTrackerTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -175,6 +179,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				81DB4C702413AD9D000AA4F4 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* ReactMediaTracker */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactMediaTrackerTests */,
@@ -309,6 +314,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -330,6 +336,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB4C722413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +346,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				81DB4C712413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				81DB4C732413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +363,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81DB4C742413AD9D000AA4F4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,7 +656,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reactmediatracker.ReactMediaTracker;
 				PRODUCT_NAME = ReactMediaTracker;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -665,7 +675,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.reactmediatracker.ReactMediaTracker;
 				PRODUCT_NAME = ReactMediaTracker;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
