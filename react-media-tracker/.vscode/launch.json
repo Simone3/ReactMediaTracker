@@ -10,7 +10,7 @@
 			"type": "reactnative",
 			"request": "launch",
 			"platform": "android",
-			"preLaunchTask": "Copy Firebase Dev",
+			"preLaunchTask": "Copy Firebase Android Dev",
 			"env": {
 				"ENVFILE": ".env"
 			}
@@ -21,7 +21,7 @@
 			"type": "reactnative",
 			"request": "launch",
 			"platform": "ios",
-			"preLaunchTask": "Copy Firebase Dev",
+			"preLaunchTask": "Copy Firebase iOS Dev",
 			"env": {
 				"ENVFILE": ".env"
 			}
@@ -33,7 +33,7 @@
 			"request": "launch",
 			"platform": "ios",
 			"target": "iPad (7th generation)",
-			"preLaunchTask": "Copy Firebase Dev",
+			"preLaunchTask": "Copy Firebase iOS Dev",
 			"env": {
 				"ENVFILE": ".env"
 			}

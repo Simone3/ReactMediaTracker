@@ -14,9 +14,15 @@
             }
         },
         {
-            "label": "Copy Firebase Dev",
+            "label": "Copy Firebase Android Dev",
             "type": "npm",
-            "script": "cp-firebase-dev",
+            "script": "cp-firebase-android-dev",
+            "problemMatcher": []
+        },
+        {
+            "label": "Copy Firebase iOS Dev",
+            "type": "npm",
+            "script": "cp-firebase-ios-dev",
             "problemMatcher": []
         }
     ]
