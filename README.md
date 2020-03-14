@@ -35,8 +35,10 @@ It has a dedicated NodeJS [back-end server](https://github.com/Simone3/MediaTrac
 - Setup your configuration files and properties:
   - For the following steps mind that you can define the configuration for the *dev* and/or *prod* environments like in the back-end guide.
   - Open *app/config/files* and create *config-dev* and/or *config-prod* folders.
-  - *[Android only]* Copy inside *config-dev* and/or *config-prod* the *google-services.json* that you can download from your corresponding Firebase project (see back-end installation guide) from Project settings -> Your apps -> (Your-Android-App) -> Download the latest config file.
-  - *[iOS only]* Copy inside *config-dev* and/or *config-prod* the *GoogleService-Info.plist* that you can download from your corresponding Firebase project (see back-end installation guide) from Project settings -> Your apps -> (Your-iOS-App) -> Download the latest config file.
+  - *[Android only]* Open the Firebase console (see back-end installation guide) and create an Android app with the `com.reactmediatracker` package (Project settings -> General -> Your apps).
+  - *[Android only]* Copy to *config-dev* and/or *config-prod* the *google-services.json* that you can download from the Firebase console (Project settings -> Your apps -> (Your-Android-App) -> Download the latest config file).
+  - *[iOS only]* Open the Firebase console (see back-end installation guide) and create an iOS app with the `com.reactmediatracker.ReactMediaTracker` bundle ID (Project settings -> General -> Your apps).
+  - *[iOS only]* Copy to *config-dev* and/or *config-prod* the *GoogleService-Info.plist* that you can download from the Firebase console (Project settings -> Your apps -> (Your-iOS-App) -> Download the latest config file).
   - Open *app/config/properties* and clone *config-sample.ts* into *config-dev.ts* and/or *config-prod.ts*.
   - Open and edit *config-dev.ts* and/or *config-prod.ts* with your configuration. You can keep everything as is except for the `backEnd.baseUrl` field, to be defined with your corresponding back-end endpoint (see back-end guide).
 - Execute`npm install` in the root project folder.
