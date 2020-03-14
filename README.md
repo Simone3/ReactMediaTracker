@@ -27,7 +27,7 @@ Main components:
 It has a dedicated NodeJS [back-end server](https://github.com/Simone3/MediaTrackerBackEnd) to persist the media items in a MongoDB database.
 
 
-## Installation (Android only ATM)
+## Installation
 
 - Setup and install your own back-end server following [these instructions](https://github.com/Simone3/MediaTrackerBackEnd).
 - Clone this repository via Git.
@@ -36,6 +36,7 @@ It has a dedicated NodeJS [back-end server](https://github.com/Simone3/MediaTrac
   - For the following steps mind that you can define the configuration for the *dev* and/or *prod* environments like in the back-end guide.
   - Open *app/config/files* and create *config-dev* and/or *config-prod* folders.
   - *[Android only]* Copy inside *config-dev* and/or *config-prod* the *google-services.json* that you can download from your corresponding Firebase project (see back-end installation guide) from Project settings -> Your apps -> (Your-Android-App) -> Download the latest config file.
+  - *[iOS only]* Copy inside *config-dev* and/or *config-prod* the *GoogleService-Info.plist* that you can download from your corresponding Firebase project (see back-end installation guide) from Project settings -> Your apps -> (Your-iOS-App) -> Download the latest config file.
   - Open *app/config/properties* and clone *config-sample.ts* into *config-dev.ts* and/or *config-prod.ts*.
   - Open and edit *config-dev.ts* and/or *config-prod.ts* with your configuration. You can keep everything as is except for the `backEnd.baseUrl` field, to be defined with your corresponding back-end endpoint (see back-end guide).
 - Execute`npm install` in the root project folder.
@@ -44,6 +45,9 @@ It has a dedicated NodeJS [back-end server](https://github.com/Simone3/MediaTrac
   - Dev Android: `npm run android-dev`
   - Dev Android (Debug): use the Visual Studio Code "Debug Android" task (first install the "React Native Tools" extension)
   - Prod Android: `npm run android-prod`
+  - Dev iOS: `npm run ios-dev` or `npm run ios-dev-ipad`
+  - Dev iOS (Debug): use the Visual Studio Code "Debug iOS" or "Debug iOS iPad" tasks (first install the "React Native Tools" extension)
+  - Prod iOS: `npm run ios-prod`
 
 Notes:
 - Run `adb reverse tcp:3000 tcp:3000` after starting the Android emulator to invoke the local back-end APIs.
