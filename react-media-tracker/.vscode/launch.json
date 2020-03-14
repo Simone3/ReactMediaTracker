@@ -10,7 +10,30 @@
 			"type": "reactnative",
 			"request": "launch",
 			"platform": "android",
-			"preLaunchTask": "cp-firebase-dev",
+			"preLaunchTask": "Copy Firebase Dev",
+			"env": {
+				"ENVFILE": ".env"
+			}
+		}, 
+		{
+			"name": "Debug iOS",
+			"cwd": "${workspaceFolder}",
+			"type": "reactnative",
+			"request": "launch",
+			"platform": "ios",
+			"preLaunchTask": "Copy Firebase Dev",
+			"env": {
+				"ENVFILE": ".env"
+			}
+		}, 
+		{
+			"name": "Debug iOS iPad",
+			"cwd": "${workspaceFolder}",
+			"type": "reactnative",
+			"request": "launch",
+			"platform": "ios",
+			"target": "iPad (7th generation)",
+			"preLaunchTask": "Copy Firebase Dev",
 			"env": {
 				"ENVFILE": ".env"
 			}
