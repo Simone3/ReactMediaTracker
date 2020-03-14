@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
 	input: {
 		flex: 1,
 		fontSize: 15,
-		padding: Platform.OS === 'ios' ? 15 : 0,
+		padding: Platform.OS === 'ios' ? 15 : 10,
 		paddingLeft: 10
 	},
 	suggestionsContainer: {
