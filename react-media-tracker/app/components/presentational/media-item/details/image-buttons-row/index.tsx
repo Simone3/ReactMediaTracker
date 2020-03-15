@@ -112,7 +112,8 @@ export class MediaItemImageButtonsRowComponent extends Component<MediaItemImageB
 	 */
 	private onGoogleClick(): void {
 
-		Linking.openURL(config.external.googleSearch(this.props.mediaItem.name));
+		const search = encodeURIComponent(this.props.mediaItem.name);
+		Linking.openURL(config.external.googleSearch(search));
 	}
 
 	/**
@@ -120,7 +121,8 @@ export class MediaItemImageButtonsRowComponent extends Component<MediaItemImageB
 	 */
 	private onWikipediaClick(): void {
 
-		Linking.openURL(config.external.wikipediaSearch(this.props.mediaItem.name));
+		const search = encodeURIComponent(this.props.mediaItem.name);
+		Linking.openURL(config.external.wikipediaSearch(search));
 	}
 
 	/**
