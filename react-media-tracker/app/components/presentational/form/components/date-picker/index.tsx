@@ -6,6 +6,8 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
+import { config } from 'app/config/config';
+import { format } from 'date-fns';
 
 /**
  * Presentational component to display a date picker
@@ -75,7 +77,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 				<PlaceholderTextComponent
 					style={styles.input}
 					placeholder={placeholder}>
-					{currentDate ? currentDate.toLocaleDateString() : ''}
+					{currentDate ? format(currentDate, config.ui.dateFormat) : ''}
 				</PlaceholderTextComponent>
 			</TouchableOpacity>
 		);

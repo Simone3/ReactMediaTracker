@@ -39,7 +39,8 @@ const config: Config = {
 			black: 'black',
 			availableCategoryColors: [],
 			availableOwnPlatformColors: []
-		}
+		},
+		dateFormat: 'dd/MM/yyyy'
 	},
 	mocks: {
 		user: false,

@@ -5,6 +5,8 @@ import React, { ReactNode, Component } from 'react';
 import { i18n } from 'app/utilities/i18n';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { View } from 'react-native';
+import { config } from 'app/config/config';
+import { format } from 'date-fns';
 
 /**
  * Presentational component to display a multiple date input (result is array of user-defined dates)
@@ -38,7 +40,7 @@ export class MultiDateInputComponent extends Component<MultiDateInputComponentPr
 	private onBuildDisplayString(values: (Date | undefined)[]): string {
 
 		return values.map((date) => {
-			return date ? date.toLocaleDateString() : '';
+			return date ? format(date, config.ui.dateFormat) : '';
 		}).join(', ');
 	}
 

@@ -39,6 +39,7 @@ export type Config = {
 			availableCategoryColors: string[];
 			availableOwnPlatformColors: string[];
 		};
+		dateFormat: string;
 	};
 	external: {
 		googleSearch: (term: string) => string;
