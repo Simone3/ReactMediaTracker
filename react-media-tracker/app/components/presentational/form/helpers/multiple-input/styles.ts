@@ -1,5 +1,5 @@
 import { config } from 'app/config/config';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	inputContainer: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
 	},
 	modalInput: {
 		flex: 1,
-		padding: Platform.OS === 'ios' ? 10 : 0
+		padding: 10
 	},
 	modalInputButton: {
 		flex: 0,
