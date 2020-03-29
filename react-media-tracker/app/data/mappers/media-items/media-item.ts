@@ -5,6 +5,7 @@ import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemGroupFilter, Med
 import { AppError } from 'app/data/models/internal/error';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusFilterInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
+import stripHtml from 'string-strip-html';
 
 /**
  * Abstract mapper for media items
@@ -451,7 +452,7 @@ export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal ex
 			catalogId: source.catalogId,
 			name: source.name,
 			genres: source.genres,
-			description: source.description,
+			description: source.description ? stripHtml(source.description) : undefined,
 			releaseDate: dateUtils.toDate(source.releaseDate),
 			imageUrl: source.imageUrl
 		};
