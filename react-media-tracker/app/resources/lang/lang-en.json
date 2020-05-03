@@ -154,6 +154,7 @@
 				"single": "Completed on {{date}}",
 				"multiple": "Completed {{times}} times, last on {{date}}"
 			},
+			"production": "P",
 			"filter": {
 				"title": "Filter",
 				"prompts": {

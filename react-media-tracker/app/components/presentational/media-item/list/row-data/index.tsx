@@ -7,6 +7,7 @@ import { i18n } from 'app/utilities/i18n';
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
 import { config } from 'app/config/config';
 import { format } from 'date-fns';
+import { TvShowInternal } from 'app/data/models/internal/media-items/tv-show';
 
 /**
  * Presentational component to display the textual data portion of the list row
@@ -73,6 +74,16 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 		if(duration) {
 
 			values.push(i18n.t(`mediaItem.list.duration.${mediaType}`, { duration: duration }));
+		}
+
+		if(mediaItem.mediaType === 'TV_SHOW') {
+
+			const tvShow = mediaItem as TvShowInternal;
+
+			if(tvShow.inProduction) {
+
+				values.push(i18n.t(`mediaItem.list.production`));
+			}
 		}
 
 		if(creators && creators.length > 0) {
