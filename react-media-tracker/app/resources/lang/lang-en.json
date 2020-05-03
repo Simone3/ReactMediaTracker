@@ -150,6 +150,10 @@
 				"VIDEOGAME": "Search games..."
 			},
 			"group": "{{groupName}}, #{{order}}",
+			"completed": {
+				"single": "Completed on {{date}}",
+				"multiple": "Completed {{times}} times, last on {{date}}"
+			},
 			"filter": {
 				"title": "Filter",
 				"prompts": {

@@ -5,6 +5,8 @@ import { styles } from 'app/components/presentational/media-item/list/row-data/s
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
 import { i18n } from 'app/utilities/i18n';
 import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
+import { config } from 'app/config/config';
+import { format } from 'date-fns';
 
 /**
  * Presentational component to display the textual data portion of the list row
@@ -103,7 +105,25 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 
 		const values: string[] = [];
 
-		if(mediaItem.genres && mediaItem.genres.length > 0) {
+		if(mediaItem.status === 'COMPLETE') {
+
+			const completionDates = mediaItem.completedOn;
+
+			if(completionDates && completionDates.length > 0) {
+
+				const lastCompletionDate = format(completionDates[completionDates.length - 1], config.ui.dateFormat);
+
+				if(completionDates.length === 1) {
+
+					values.push(i18n.t(`mediaItem.list.completed.single`, { date: lastCompletionDate }));
+				}
+				else {
+
+					values.push(i18n.t(`mediaItem.list.completed.multiple`, { times: completionDates.length, date: lastCompletionDate }));
+				}
+			}
+		}
+		else if(mediaItem.genres && mediaItem.genres.length > 0) {
 
 			values.push(mediaItem.genres.join(', '));
 		}
