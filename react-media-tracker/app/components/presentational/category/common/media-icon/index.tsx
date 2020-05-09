@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { ColoredImage, ColoredImageInput } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent, ImageComponentInput } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 
 /**
@@ -14,12 +14,12 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 	public render(): ReactNode {
 
 		return (
-			<ColoredImage
+			<ImageComponent
 				source={images.mediaType(this.props.category.mediaType)}
 				tintColor={this.props.tintColor}
 				{...this.props}>
 				{this.props.children}
-			</ColoredImage>
+			</ImageComponent>
 		);
 	}
 }
@@ -27,7 +27,7 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 /**
  * Media's input props
  */
-export type MediaIconComponentInput = Omit<ColoredImageInput, 'source'> & {
+export type MediaIconComponentInput = Omit<ImageComponentInput, 'source'> & {
 
 	/**
 	 * The linked category

@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { styles } from 'app/components/presentational/media-item/list/row-icons/styles';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { AppError } from 'app/data/models/internal/error';
@@ -31,7 +31,7 @@ export class MediaItemRowIconsComponent extends Component<MediaItemRowIconsCompo
 		return (
 			<View style={styles.iconsContainer}>
 				<View style={[ styles.statusCircle, colorsStyle ]}>
-					<ColoredImage
+					<ImageComponent
 						style={styles.statusIcon}
 						source={images.mediaItemStatus(mediaItem)}
 						tintColor={colors.icon}
@@ -40,7 +40,7 @@ export class MediaItemRowIconsComponent extends Component<MediaItemRowIconsCompo
 				<TouchableOpacity
 					style={styles.optionsContainer}
 					onPress={showOptionsMenu}>
-					<ColoredImage
+					<ImageComponent
 						style={styles.optionsIcon}
 						source={images.menuButton()}
 						tintColor={config.ui.colors.black}

@@ -2,7 +2,7 @@ import { styles } from 'app/components/presentational/generic/buttons-list/style
 import React, { Component, ReactNode } from 'react';
 import { View, ImageRequireSource, Text, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { HrComponent } from 'app/components/presentational/generic/hr';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { config } from 'app/config/config';
 
 /**
@@ -59,7 +59,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 		return (
 			<View style={styles.rowContainer}>
 				<View style={styles.rowIconContainer}>
-					<ColoredImage
+					<ImageComponent
 						source={icon}
 						tintColor={color}
 						style={styles.rowIcon}

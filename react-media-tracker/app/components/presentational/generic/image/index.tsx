@@ -2,9 +2,9 @@ import React, { Component, ReactNode } from 'react';
 import { Image, ImageProps, ImageRequireSource, StyleSheet, ImageStyle } from 'react-native';
 
 /**
- * Presentational component that wraps the default Image to specify the tint color via prop, plus some default style values
+ * Presentational component that wraps the default Image to optionally specify the tint color via prop, plus some default style values
  */
-export class ColoredImage extends Component<ColoredImageInput> {
+export class ImageComponent extends Component<ImageComponentInput> {
 	
 	/**
 	 * @override
@@ -36,20 +36,20 @@ export class ColoredImage extends Component<ColoredImageInput> {
 }
 
 /**
- * ColoredImage's input props
+ * ImageComponent's input props
  */
-export type ColoredImageInput = ImageProps & {
+export type ImageComponentInput = ImageProps & {
 
 	/**
 	 * The image tint color
 	 */
-	tintColor: string;
+	tintColor?: string;
 }
 
 /**
  * A simple helper type to specify source and tint color of an image, can be spread into the component props
  */
-export type ColoredImageDescriptor = {
+export type ImageComponentDescriptor = {
 
 	/**
 	 * The image path
@@ -59,5 +59,5 @@ export type ColoredImageDescriptor = {
 	/**
 	 * The image color
 	 */
-	tintColor: string;
+	tintColor?: string;
 }

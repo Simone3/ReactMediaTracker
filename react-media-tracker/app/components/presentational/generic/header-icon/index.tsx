@@ -1,7 +1,7 @@
 import { styles } from 'app/components/presentational/generic/header-icon/styles';
 import React, { Component, ReactNode } from 'react';
 import { TouchableOpacity, ImageRequireSource } from 'react-native';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { config } from 'app/config/config';
 
 /**
@@ -26,7 +26,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 		if(clickStatus === 'NOT_CLICKABLE') {
 
 			return (
-				<ColoredImage
+				<ImageComponent
 					source={source}
 					tintColor={iconColor}
 					style={styles.icon}
@@ -42,7 +42,7 @@ export class HeaderIconComponent extends Component<HeaderIconComponentInput & He
 					style={styles.container}
 					onPress={onClick}
 					disabled={!iconClickEnabled}>
-					<ColoredImage
+					<ImageComponent
 						source={source}
 						tintColor={iconColor}
 						style={iconClickEnabled ? styles.icon : [ styles.icon, styles.iconDisabled ]}

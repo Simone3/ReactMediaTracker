@@ -2,7 +2,7 @@ import { styles } from 'app/components/presentational/generic/search-bar/styles'
 import React, { Component, ReactNode } from 'react';
 import { View, TouchableWithoutFeedback, ActivityIndicator, TextInputProps, StyleSheet, TextStyle } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { config } from 'app/config/config';
 import { images } from 'app/utilities/images';
 
@@ -83,7 +83,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 					onPress={() => {
 						this.setState({ term: '' });
 					}}>
-					<ColoredImage
+					<ImageComponent
 						source={images.clearButton()}
 						tintColor={config.ui.colors.colorContrastText}
 						style={styles.clearIcon}

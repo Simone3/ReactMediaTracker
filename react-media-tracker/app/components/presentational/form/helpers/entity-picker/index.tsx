@@ -5,7 +5,7 @@ import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 import { PickerComponent } from 'app/components/presentational/form/components/picker';
 import { PickerComponentItem } from 'app/components/presentational/form/components/picker/common';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { ButtonsListComponent, ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
@@ -223,7 +223,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 			<TouchableOpacity onPress={() => {
 				this.setState({	actionModalOpen: true });
 			}} style={styles.modalActionButton}>
-				<ColoredImage
+				<ImageComponent
 					style={styles.modalActionButtonIcon}
 					source={images.menuButton()}
 					tintColor={config.ui.colors.colorModalContent}

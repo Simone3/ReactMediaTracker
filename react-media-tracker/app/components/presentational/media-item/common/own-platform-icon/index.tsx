@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { styles } from 'app/components/presentational/media-item/common/own-platform-icon/styles';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 
@@ -24,7 +24,7 @@ export class MediaItemOwnPlatformIconComponent extends Component<MediaItemOwnPla
 		
 			return (
 				<View style={styles.container}>
-					<ColoredImage
+					<ImageComponent
 						style={styles.icon}
 						source={images.ownPlatform(ownPlatform.icon)}
 						tintColor={ownPlatform.color}
@@ -36,7 +36,7 @@ export class MediaItemOwnPlatformIconComponent extends Component<MediaItemOwnPla
 
 			return (
 				<View style={styles.container}>
-					<ColoredImage
+					<ImageComponent
 						style={styles.icon}
 						source={images.none()}
 						tintColor={config.ui.colors.grey}

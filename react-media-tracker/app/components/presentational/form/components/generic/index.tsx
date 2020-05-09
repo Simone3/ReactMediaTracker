@@ -1,5 +1,5 @@
 import React, { ReactNode, Component, ChangeEvent } from 'react';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { ImageRequireSource, StyleProp, ViewStyle, View, StyleSheet } from 'react-native';
 import { config } from 'app/config/config';
 import { styles } from 'app/components/presentational/form/components/generic/styles';
@@ -66,7 +66,7 @@ export class FormInputComponent extends Component<FormInputComponentProps> {
 		if(icon) {
 
 			return (
-				<ColoredImage
+				<ImageComponent
 					source={icon}
 					tintColor={config.ui.colors.colorFormInputs}
 					style={styles.icon}

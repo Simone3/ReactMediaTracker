@@ -1,7 +1,7 @@
 import { styles } from 'app/components/presentational/generic/drawer-icon/styles';
 import React, { Component, ReactNode } from 'react';
 import { ImageRequireSource } from 'react-native';
-import { ColoredImage } from 'app/components/presentational/generic/colored-image';
+import { ImageComponent } from 'app/components/presentational/generic/image';
 import { config } from 'app/config/config';
 import { DrawerIconProps } from 'react-navigation-drawer';
 
@@ -23,7 +23,7 @@ export class DrawerIconComponent extends Component<DrawerIconComponentProps> {
 		const iconColor = tintColor ? tintColor : config.ui.colors.black;
 
 		return (
-			<ColoredImage
+			<ImageComponent
 				source={source}
 				tintColor={iconColor}
 				style={styles.icon}
