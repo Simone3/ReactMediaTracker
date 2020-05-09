@@ -236,6 +236,14 @@
 				"result": {
 					"fullLabel": "{{name}} [{{releaseDate}}]"
 				}
+			},
+			"buttons": {
+				"modalTitle": "Actions",
+				"google": "Google Search",
+				"wikipedia": "Wikipedia Search",
+				"justWatch": "Just Watch Search",
+				"howLongToBeat": "How Long To Beat Search",
+				"downloadCatalog": "Reload Catalog"
 			}
 		}
 	},

@@ -31,6 +31,6 @@ export const styles = StyleSheet.create({
 		margin: 10
 	},
 	buttonIconDisabled: {
-		opacity: 0.5
+		opacity: 0.4
 	}
 });

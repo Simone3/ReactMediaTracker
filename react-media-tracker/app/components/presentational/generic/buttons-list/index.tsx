@@ -24,7 +24,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 		return (
 			<View style={[ styles.container, { width: Dimensions.get('window').width }]}>
 				<View style={styles.titleSectionContainer}>
-					{this.renderRow(title, titleIcon, false)}
+					{this.renderRow(title, titleIcon, config.ui.colors.colorModalContent, false)}
 				</View>
 				<HrComponent/>
 				<FlatList
@@ -33,7 +33,7 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 					renderItem={({ item }) => {
 						return (
 							<TouchableOpacity onPress={item.onClick} disabled={item.disabled}>
-								{this.renderRow(item.label, item.icon, item.disabled)}
+								{this.renderRow(item.label, item.icon, item.iconTintColor, item.disabled)}
 							</TouchableOpacity>
 						);
 					}}
@@ -49,25 +49,26 @@ export class ButtonsListComponent extends Component<ButtonsListComponentInput & 
 	 * Helper to render a row
 	 * @param label the text label
 	 * @param icon the icon
+	 * @param iconTintColor the icon tint color
 	 * @param disabled the disabled status
 	 * @returns the rendered component
 	 */
-	private renderRow(label: string, icon: ImageRequireSource, disabled: boolean | undefined): ReactNode {
-
-		const color = disabled ? config.ui.colors.colorModalButtonDisabled : config.ui.colors.colorModalContent;
+	private renderRow(label: string, icon: ImageRequireSource, iconTintColor: string | undefined, disabled: boolean | undefined): ReactNode {
 
 		return (
 			<View style={styles.rowContainer}>
 				<View style={styles.rowIconContainer}>
 					<ImageComponent
 						source={icon}
-						tintColor={color}
-						style={styles.rowIcon}
+						tintColor={iconTintColor}
+						style={disabled ? [ styles.rowIcon, styles.rowIconDisabled ] : styles.rowIcon }
 						resizeMode='center'
 					/>
 				</View>
 				<View style={styles.rowLabelContainer}>
-					<Text style={[ styles.rowLabel, { color: color }]} numberOfLines={1}>
+					<Text
+						style={disabled ? [ styles.rowLabel, styles.rowLabelDisabled ] : styles.rowLabel }
+						numberOfLines={1}>
 						{label}
 					</Text>
 				</View>
@@ -118,6 +119,11 @@ export type ButtonsListComponentButton = {
 	 * Button icon
 	 */
 	icon: ImageRequireSource;
+
+	/**
+	 * Button icon tint color
+	 */
+	iconTintColor?: string;
 
 	/**
 	 * If the button is currently disabled

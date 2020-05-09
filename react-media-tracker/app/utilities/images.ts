@@ -325,6 +325,15 @@ class ImagesHelper {
 
 	/**
 	 * Image getter
+	 * @returns show more button icon
+	 */
+	public more(): ImageRequireSource {
+
+		return require('app/resources/images/ic_more.png');
+	}
+
+	/**
+	 * Image getter
 	 * @returns default media item image (details form)
 	 */
 	public defaultMediaItemImage(): ImageRequireSource {
@@ -348,6 +357,24 @@ class ImagesHelper {
 	public wikipediaIcon(): ImageRequireSource {
 
 		return require('app/resources/images/ic_wikipedia.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns Just Watch icon
+	 */
+	public justWatchIcon(): ImageRequireSource {
+
+		return require('app/resources/images/ic_justwatch.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns How Long To Beat icon
+	 */
+	public howLongToBeatIcon(): ImageRequireSource {
+
+		return require('app/resources/images/ic_howlongtobeat.png');
 	}
 
 	/**

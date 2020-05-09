@@ -39,6 +39,9 @@ export const styles = StyleSheet.create({
 		height: 20,
 		marginRight: 18
 	},
+	rowIconDisabled: {
+		opacity: 0.4
+	},
 	rowLabelContainer: {
 		flex: 1,
 		flexDirection: 'row',
@@ -48,5 +51,8 @@ export const styles = StyleSheet.create({
 		color: config.ui.colors.colorModalContent,
 		flex: 0,
 		fontSize: 15
+	},
+	rowLabelDisabled: {
+		opacity: 0.4
 	}
 });

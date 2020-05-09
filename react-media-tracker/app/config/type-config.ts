@@ -44,6 +44,8 @@ export type Config = {
 	external: {
 		googleSearch: (term: string) => string;
 		wikipediaSearch: (term: string) => string;
+		justWatchSearch: (term: string) => string;
+		howLongToBeatSearch: (term: string) => string;
 	};
 	mocks: {
 		user: boolean;
