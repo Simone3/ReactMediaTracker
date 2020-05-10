@@ -104,6 +104,11 @@ export type OwnPlatformPickerComponentInput = FormInputComponentInput & {
 	 * Flag to tell if the own platforms list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
 	requiresFetch: boolean;
+
+	/**
+	 * Flag to tell if the own platforms list is currently being fetched
+	 */
+	fetching: boolean;
 }
 
 /**

@@ -181,6 +181,11 @@ export type GroupPickerComponentInput = FormInputComponentInput & {
 	 * Flag to tell if the groups list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
 	requiresFetch: boolean;
+
+	/**
+	 * Flag to tell if the groups list is currently being fetched
+	 */
+	fetching: boolean;
 }
 
 /**

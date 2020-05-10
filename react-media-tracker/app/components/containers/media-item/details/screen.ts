@@ -9,9 +9,10 @@ const mapStateToProps = (state: State): MediaItemDetailsScreenComponentInput => 
 	const mediaItemLoading = details.saveStatus === 'SAVING';
 	const catalogLoading = state.mediaItemDetails.catalogStatus === 'FETCHING';
 	const groupsLoading = state.groupsList.status === 'DELETING' || state.groupsList.status === 'FETCHING';
+	const platformsLoading = state.ownPlatformsList.status === 'DELETING' || state.ownPlatformsList.status === 'FETCHING';
 
 	return {
-		isLoading: mediaItemLoading || catalogLoading || groupsLoading
+		isLoading: mediaItemLoading || catalogLoading || groupsLoading || platformsLoading
 	};
 };
 

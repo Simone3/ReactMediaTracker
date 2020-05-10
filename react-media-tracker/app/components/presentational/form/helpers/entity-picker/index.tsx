@@ -126,6 +126,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 
 		const {
 			onBlur,
+			fetching,
 			extraModalFields
 		} = this.props;
 
@@ -135,7 +136,7 @@ export class GenericEntityPickerComponent<E> extends Component<GenericEntityPick
 
 		return (
 			<ModalComponent
-				visible={mainModalOpen}
+				visible={mainModalOpen && !fetching}
 				onClose={() => {
 
 					onBlur('');
@@ -445,6 +446,11 @@ export type GenericEntityPickerComponentInput<E> = FormInputComponentInput & {
 	 * Flag to tell if the entities list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
 	 */
 	requiresFetch: boolean;
+
+	/**
+	 * Flag to tell if the entities list is currently being fetched
+	 */
+	fetching: boolean;
 
 	/**
 	 * The icon for the modal context menu

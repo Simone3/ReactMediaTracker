@@ -10,6 +10,7 @@ const mapStateToProps = (state: State, ownProps: OwnPlatformPickerFieldContainer
 	return {
 		...ownProps,
 		requiresFetch: state.ownPlatformsList.status === 'REQUIRES_FETCH',
+		fetching: state.ownPlatformsList.status === 'FETCHING',
 		ownPlatforms: state.ownPlatformsList.ownPlatforms
 	};
 };

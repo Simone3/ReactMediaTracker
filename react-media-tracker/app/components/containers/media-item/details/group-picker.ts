@@ -10,6 +10,7 @@ const mapStateToProps = (state: State, ownProps: GroupPickerFieldContainerProps)
 	return {
 		...ownProps,
 		requiresFetch: state.groupsList.status === 'REQUIRES_FETCH',
+		fetching: state.groupsList.status === 'FETCHING',
 		groups: state.groupsList.groups
 	};
 };
