@@ -51,6 +51,7 @@ export class CategoriesListComponent extends Component<CategoriesListComponentIn
 			<View style={styles.container}>
 				<FlatList
 					style={styles.list}
+					contentContainerStyle={styles.listContentContainer}
 					data={categories}
 					renderItem={({ item }) => {
 						return (

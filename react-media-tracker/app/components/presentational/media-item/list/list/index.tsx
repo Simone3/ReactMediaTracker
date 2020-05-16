@@ -65,6 +65,7 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 			<View>
 				<FlatList
 					style={[ styles.list, { width: Dimensions.get('window').width }]}
+					contentContainerStyle={styles.listContentContainer}
 					data={mediaItems}
 					renderItem={({ item }) => {
 						return (

@@ -5,6 +5,9 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		width: '100%'
 	},
+	listContentContainer: {
+		paddingBottom: 60
+	},
 	list: {
 		flex: 1
 	},
