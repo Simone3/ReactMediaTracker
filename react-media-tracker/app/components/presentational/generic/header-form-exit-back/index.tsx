@@ -65,10 +65,15 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 	 */
 	public render(): ReactNode {
 
+		const {
+			disabled
+		} = this.props;
+
 		return (
 			<HeaderBackButton
 				onPress={this.onBackButtonPress}
 				tintColor={config.ui.colors.colorContrastText}
+				disabled={disabled}
 			/>
 		);
 	}
@@ -89,9 +94,15 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 	private onBackButtonPress(): void {
 
 		const {
+			disabled,
 			dirtyForm,
 			navigation
 		} = this.props;
+
+		if(disabled) {
+
+			return;
+		}
 
 		if(dirtyForm) {
 
@@ -121,4 +132,9 @@ export type HeaderFormExitBackComponentInput = {
 	 * If the form is dirty, i.e. if the confirmation alert is required
 	 */
 	dirtyForm: boolean;
+
+	/**
+	 * If the button is not currently clickable
+	 */
+	disabled?: boolean;
 }

@@ -37,7 +37,7 @@ export class GroupDetailsScreenComponent extends Component<GroupDetailsScreenCom
 				<GroupFormContainer/>
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
-					fullScreen={true}
+					fullScreen={false}
 				/>
 			</View>
 		);

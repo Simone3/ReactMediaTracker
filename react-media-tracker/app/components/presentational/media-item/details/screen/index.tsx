@@ -37,7 +37,7 @@ export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsS
 				<MediaItemFormContainer/>
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
-					fullScreen={true}
+					fullScreen={false}
 				/>
 			</View>
 		);

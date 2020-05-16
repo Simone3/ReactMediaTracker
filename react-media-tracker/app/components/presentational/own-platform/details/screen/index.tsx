@@ -37,7 +37,7 @@ export class OwnPlatformDetailsScreenComponent extends Component<OwnPlatformDeta
 				<OwnPlatformFormContainer/>
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
-					fullScreen={true}
+					fullScreen={false}
 				/>
 			</View>
 		);

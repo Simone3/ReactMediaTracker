@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 const mapStateToProps = (state: State, ownProps: MediaItemDetailsHeaderBackButtonContainerProps): HeaderFormExitBackComponentInput => {
 	
 	return {
+		disabled: state.mediaItemDetails.saveStatus === 'SAVING',
 		dirtyForm: state.mediaItemDetails.dirty,
 		navigation: ownProps.navigation
 	};

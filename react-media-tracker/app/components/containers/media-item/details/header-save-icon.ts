@@ -9,7 +9,7 @@ const mapStateToProps = (state: State): HeaderIconComponentInput => {
 	
 	return {
 		source: images.saveButton(),
-		clickStatus: state.mediaItemDetails.valid ? 'ENABLED' : 'DISABLED'
+		clickStatus: state.mediaItemDetails.valid && state.mediaItemDetails.saveStatus !== 'SAVING' ? 'ENABLED' : 'DISABLED'
 	};
 };
 

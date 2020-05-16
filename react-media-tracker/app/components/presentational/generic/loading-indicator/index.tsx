@@ -48,6 +48,10 @@ export class LoadingIndicatorComponent extends Component<ModalComponentInput> {
 		}
 	}
 
+	/**
+	 * Renders the main loading icon
+	 * @returns the component
+	 */
 	private renderLoadingIcon(): ReactNode {
 
 		return (

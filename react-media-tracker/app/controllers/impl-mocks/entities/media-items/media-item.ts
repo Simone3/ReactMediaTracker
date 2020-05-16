@@ -188,6 +188,9 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
  */
 export class MediaItemMockedCatalogController<TSearchMediaItemCatalogResultInternal extends SearchMediaItemCatalogResultInternal, TCatalogMediaItemInternal extends CatalogMediaItemInternal> extends MockControllerHelper implements MediaItemCatalogController<TSearchMediaItemCatalogResultInternal, TCatalogMediaItemInternal> {
 
+	protected delay = 0;
+	protected errorProbability = 0;
+	
 	protected readonly catalogList: TSearchMediaItemCatalogResultInternal[] = [];
 	protected readonly catalogDetails: {[catalogId: string]: TCatalogMediaItemInternal} = {};
 	
