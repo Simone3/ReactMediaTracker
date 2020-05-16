@@ -330,7 +330,10 @@
 			"netflix": "Netflix",
 			"origin": "Origin",
 			"steam": "Steam",
-			"uplay": "Uplay"
+			"uplay": "Uplay",
+			"switch": "Nintendo Switch",
+			"android": "Android",
+			"playstation": "PlayStation"
 		}
 	},
 	"common": {

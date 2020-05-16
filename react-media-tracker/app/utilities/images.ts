@@ -502,6 +502,15 @@ class ImagesHelper {
 				
 			case 'uplay':
 				return require('app/resources/images/ic_platform_uplay.png');
+				
+			case 'switch':
+				return require('app/resources/images/ic_platform_switch.png');
+				
+			case 'playstation':
+				return require('app/resources/images/ic_platform_playstation.png');
+				
+			case 'android':
+				return require('app/resources/images/ic_platform_android.png');
 			
 			default:
 				throw AppError.GENERIC.withDetails(`Own platform icon ID ${iconId} is not mapped to an actual image`);
