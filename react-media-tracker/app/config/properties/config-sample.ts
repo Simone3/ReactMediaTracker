@@ -56,6 +56,12 @@ const config: Config = {
 		},
 		wikipediaSearch: (term) => {
 			return `https://en.wikipedia.org/wiki/Special:Search?search=${term}`;
+		},
+		justWatchSearch: (term) => {
+			return `https://www.justwatch.com/us/search?q=${term}`;
+		},
+		howLongToBeatSearch: (term) => {
+			return `https://howlongtobeat.com/?q=${term}#search1`;
 		}
 	},
 	logging: {
