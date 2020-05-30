@@ -6,6 +6,7 @@ import { MovieFormComponent } from 'app/components/presentational/media-item/det
 import { TvShowFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/tv-show';
 import { VideogameFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/videogame';
 import { GroupInternal } from 'app/data/models/internal/group';
+import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
  * Presentational component that switches on the correct media item form component based on its media type.
@@ -51,6 +52,11 @@ export type MediaItemFormComponentInput = {
 	selectedGroup?: GroupInternal;
 
 	/**
+	 * The currently selected own platform, if any
+	 */
+	selectedOwnPlatform?: OwnPlatformInternal;
+
+	/**
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
@@ -84,6 +90,11 @@ export type MediaItemFormComponentOutput = {
 	 * Callback to request the group selection
 	 */
 	requestGroupSelection: () => void;
+
+	/**
+	 * Callback to request the own platform selection
+	 */
+	requestOwnPlatformSelection: () => void;
 }
 
 /**

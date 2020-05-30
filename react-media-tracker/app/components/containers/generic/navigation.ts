@@ -8,6 +8,7 @@ import { GroupsListScreenContainer } from 'app/components/containers/group/list/
 import { MediaItemDetailsScreenContainer } from 'app/components/containers/media-item/details/screen';
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
 import { OwnPlatformDetailsScreenContainer } from 'app/components/containers/own-platform/details/screen';
+import { OwnPlatformsListScreenContainer } from 'app/components/containers/own-platform/list/screen';
 import { UserSettingsScreenContainer } from 'app/components/containers/settings/screen';
 import { CreditsScreenComponent } from 'app/components/presentational/credits/screen';
 import { drawerIconBuilder } from 'app/components/presentational/generic/drawer-icon';
@@ -62,6 +63,7 @@ const MediaStackNavigator = createStackNavigator({
 	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer,
 	[AppScreens.MediaItemsList]: MediaItemsListScreenContainer,
 	[AppScreens.MediaItemDetails]: MediaItemDetailsScreenContainer,
+	[AppScreens.OwnPlatformsList]: OwnPlatformsListScreenContainer,
 	[AppScreens.GroupsList]: GroupsListScreenContainer,
 	[AppScreens.GroupDetails]: GroupDetailsScreenContainer,
 	[AppScreens.OwnPlatformDetails]: OwnPlatformDetailsScreenContainer

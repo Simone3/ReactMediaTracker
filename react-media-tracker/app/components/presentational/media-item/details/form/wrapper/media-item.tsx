@@ -22,6 +22,7 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 		// Check if we need to perform some operations during this render
 		this.checkLoadCatalogDetails();
 		this.checkLoadSelectedGroup();
+		this.checkLoadSelectedOwnPlatform();
 		this.checkAskSameNameConfirmation();
 	}
 
@@ -66,9 +67,6 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 		// If we have new catalog details...
 		if(this.formikProps && loadCatalogDetails && loadCatalogDetails.catalogLoadId && loadCatalogDetails.catalogLoadId !== this.loadedCatalogId) {
 			
-			// TODO remove
-			console.log('!!! CATALOG RELOAD !!!');
-
 			this.loadedCatalogId = loadCatalogDetails.catalogLoadId;
 
 			// Reload EVERY catalog field (even if the current object has an undefined/null value)
@@ -93,9 +91,6 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 
 		if(this.formikProps && selectedGroup?.id !== this.formikProps.values.group?.id) {
 
-			// TODO remove
-			console.log('*** GROUP RELOAD ***');
-
 			const values: MediaItemInternal = {
 				...this.formikProps.values,
 				group: selectedGroup
@@ -105,6 +100,26 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 
 				values.orderInGroup = undefined;
 			}
+
+			this.formikProps.setValues(values);
+		}
+	}
+
+	/**
+	 * Checks if we need to set the current own platform, selected from another screen
+	 */
+	private checkLoadSelectedOwnPlatform(): void {
+
+		const {
+			selectedOwnPlatform
+		} = this.props;
+
+		if(this.formikProps && selectedOwnPlatform?.id !== this.formikProps.values.ownPlatform?.id) {
+
+			const values: MediaItemInternal = {
+				...this.formikProps.values,
+				ownPlatform: selectedOwnPlatform
+			};
 
 			this.formikProps.setValues(values);
 		}

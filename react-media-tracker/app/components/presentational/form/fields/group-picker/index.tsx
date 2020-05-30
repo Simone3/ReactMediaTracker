@@ -1,9 +1,9 @@
 import React, { ReactNode, Component } from 'react';
 import { FieldComponent } from 'app/components/presentational/form/fields/generic';
-import { GroupPickerComponent, GroupPickerComponentInput, GroupPickerComponentOutput } from 'app/components/presentational/form/components/group-picker';
+import { GenericEntityPickerComponent, GenericEntityPickerComponentInput, GenericEntityPickerComponentOutput } from 'app/components/presentational/form/components/entity-picker';
 
 /**
- * Formik wrapper of GroupPickerComponent
+ * Formik wrapper of GenericEntityPickerComponent for groups
  */
 export class GroupPickerFieldComponent extends Component<GroupPickerFieldComponentProps> {
 	
@@ -20,10 +20,10 @@ export class GroupPickerFieldComponent extends Component<GroupPickerFieldCompone
 			<FieldComponent name={name}>
 				{(field, status) => {
 					return (
-						<GroupPickerComponent
+						<GenericEntityPickerComponent
 							{...this.props}
 							status={status}
-							currentGroup={field.value}
+							currentEntity={field.value}
 							onFocus={field.onFocus}
 							onBlur={field.onBlur}
 						/>
@@ -37,7 +37,7 @@ export class GroupPickerFieldComponent extends Component<GroupPickerFieldCompone
 /**
  * GroupPickerFieldComponent's input props
  */
-export type GroupPickerFieldComponentInput = Omit<GroupPickerComponentInput, 'currentGroup' | 'status'> & {
+export type GroupPickerFieldComponentInput = Omit<GenericEntityPickerComponentInput, 'currentEntity' | 'status'> & {
 
 	/**
 	 * The input name (unique in the form)
@@ -48,7 +48,7 @@ export type GroupPickerFieldComponentInput = Omit<GroupPickerComponentInput, 'cu
 /**
  * GroupPickerFieldComponent's output props
  */
-export type GroupPickerFieldComponentOutput = Omit<GroupPickerComponentOutput, 'onFocus' | 'onBlur'>;
+export type GroupPickerFieldComponentOutput = Omit<GenericEntityPickerComponentOutput, 'onFocus' | 'onBlur'>;
 
 /**
  * GroupPickerFieldComponent's props

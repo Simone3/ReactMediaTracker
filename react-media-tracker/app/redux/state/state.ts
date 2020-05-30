@@ -3,7 +3,7 @@ import { ErrorState } from 'app/redux/state/error';
 import { GroupDetailsState, GroupGlobalState, GroupsListState } from 'app/redux/state/group';
 import { ImportExportState } from 'app/redux/state/import-export';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
-import { OwnPlatformDetailsState, OwnPlatformsListState } from 'app/redux/state/own-platform';
+import { OwnPlatformDetailsState, OwnPlatformGlobalState, OwnPlatformsListState } from 'app/redux/state/own-platform';
 import { UserGlobalState, UserOperationsState } from 'app/redux/state/user';
 
 /**
@@ -65,6 +65,11 @@ export class State {
 	 * Portion of the state with the group details information
 	 */
 	public readonly groupDetails!: GroupDetailsState;
+
+	/**
+	 * Portion of the state with the global own platform data
+	 */
+	public readonly ownPlatformGlobal!: OwnPlatformGlobalState;
 
 	/**
 	 * Portion of the state with the own platforms list information

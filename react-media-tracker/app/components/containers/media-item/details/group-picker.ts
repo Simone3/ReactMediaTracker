@@ -1,4 +1,3 @@
-
 import { GroupPickerFieldComponent, GroupPickerFieldComponentInput, GroupPickerFieldComponentOutput } from 'app/components/presentational/form/fields/group-picker';
 import { requestGroupSelection } from 'app/redux/actions/group/generators';
 import { connect } from 'react-redux';
@@ -8,7 +7,7 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContai
 
 	return {
 		...ownProps,
-		requestGroupSelection: () => {
+		requestEntitySelection: () => {
 			dispatch(requestGroupSelection());
 		}
 	};

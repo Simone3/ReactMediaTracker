@@ -1,19 +1,36 @@
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
 /**
+ * Portion of the internal state with the global own platform data
+ */
+export type OwnPlatformGlobalState = {
+
+	/**
+	 * The current own platform, e.g. to show the currently selected own platform for a media item
+	 * Undefined means no own platform has been selected yet
+	 */
+	selectedOwnPlatform: OwnPlatformInternal | undefined;
+}
+
+/**
  * Portion of the internal state with the own platforms list information
  */
 export type OwnPlatformsListState = {
 
 	/**
-	 * The list of available ownPlatforms
+	 * The list of available own platforms
 	 */
 	readonly ownPlatforms: OwnPlatformInternal[];
 
 	/**
-	 * The current status of the ownPlatforms list
+	 * The current status of the own platforms list
 	 */
 	readonly status: OwnPlatformsListStatus;
+
+	/**
+	 * The currently highlighted (e.g. context menu is open) own platform, or undefined if none is highlighted
+	 */
+	readonly highlightedOwnPlatform: OwnPlatformInternal | undefined;
 }
 
 /**
@@ -22,22 +39,22 @@ export type OwnPlatformsListState = {
 export type OwnPlatformDetailsState = {
 
 	/**
-	 * The ownPlatform data
+	 * The own platform data
 	 */
 	readonly ownPlatform?: OwnPlatformInternal;
 
 	/**
-	 * If the currently loaded ownPlatform is valid (no validation error occurred)
+	 * If the currently loaded own platform is valid (no validation error occurred)
 	 */
 	readonly valid: boolean;
 
 	/**
-	 * If the currently loaded ownPlatform is dirty (one or more fields are different from initial values)
+	 * If the currently loaded own platform is dirty (one or more fields are different from initial values)
 	 */
 	readonly dirty: boolean;
 
 	/**
-	 * The current status of the ownPlatform saving process
+	 * The current status of the own platform saving process
 	 */
 	readonly saveStatus: OwnPlatformSaveStatus;
 }

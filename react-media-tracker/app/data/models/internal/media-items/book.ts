@@ -67,6 +67,7 @@ export const DEFAULT_BOOK: BookInternal = {
  */
 export const DEFAULT_CATALOG_BOOK: OptionalToUndefined<CatalogBookInternal> = {
 	catalogId: undefined,
+	catalogLoadId: 'init',
 	name: '',
 	description: undefined,
 	authors: undefined,

@@ -1,51 +1,41 @@
-import { GroupsListComponent, GroupsListComponentInput, GroupsListComponentOutput } from 'app/components/presentational/group/list/list';
+import { SelectionListComponent, SelectionListComponentInput, SelectionListComponentOutput, SelectionListComponentProps } from 'app/components/presentational/generic/selection-list';
+import { GroupInternal } from 'app/data/models/internal/group';
 import { highlightGroup, selectGroup } from 'app/redux/actions/group/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: State, ownProps: GroupsListContainerProps): GroupsListComponentInput => {
+const mapStateToProps = (state: State, ownProps: GroupsListContainerProps): SelectionListComponentInput<GroupInternal> => {
 	
 	return {
 		...ownProps,
-		groups: state.groupsList.groups,
-		currentGroup: state.groupGlobal.selectedGroup
+		entities: state.groupsList.groups,
+		currentEntity: state.groupGlobal.selectedGroup
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): GroupsListComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch): SelectionListComponentOutput<GroupInternal> => {
 
 	return {
-		selectGroup: (group) => {
+		selectRow: (group) => {
 			dispatch(selectGroup(group));
 		},
-		highlightGroup: (group) => {
+		highlightRow: (group) => {
 			dispatch(highlightGroup(group));
 		}
 	};
 };
 
 /**
- * Container component that handles Redux state for GroupsListComponent
+ * Container component that handles Redux state for SelectionListComponent
  */
 export const GroupsListContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(GroupsListComponent);
+)(SelectionListComponent);
 
 /**
  * GroupsListContainer's props
  */
-export type GroupsListContainerProps = {
-	
-	/**
-	 * If true, the list will always have "None" as the first element
-	 */
-	showNone?: boolean;
-
-	/**
-	 * If true, the list will show a radio button for each group
-	 */
-	showRadioButtons?: boolean;
-}
+export type GroupsListContainerProps = Omit<SelectionListComponentProps<GroupInternal>, 'entities' | 'currentEntity' | 'selectRow' | 'highlightRow'>
 

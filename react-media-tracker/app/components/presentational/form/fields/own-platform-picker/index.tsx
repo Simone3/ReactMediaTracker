@@ -1,9 +1,9 @@
 import React, { ReactNode, Component } from 'react';
 import { FieldComponent } from 'app/components/presentational/form/fields/generic';
-import { OwnPlatformPickerComponent, OwnPlatformPickerComponentInput, OwnPlatformPickerComponentOutput } from 'app/components/presentational/form/components/own-platform-picker';
+import { GenericEntityPickerComponent, GenericEntityPickerComponentInput, GenericEntityPickerComponentOutput } from 'app/components/presentational/form/components/entity-picker';
 
 /**
- * Formik wrapper of OwnPlatformPickerComponent
+ * Formik wrapper of GenericEntityPickerComponent for own platforms
  */
 export class OwnPlatformPickerFieldComponent extends Component<OwnPlatformPickerFieldComponentProps> {
 	
@@ -20,11 +20,10 @@ export class OwnPlatformPickerFieldComponent extends Component<OwnPlatformPicker
 			<FieldComponent name={name}>
 				{(field, status) => {
 					return (
-						<OwnPlatformPickerComponent
+						<GenericEntityPickerComponent
 							{...this.props}
 							status={status}
-							currentOwnPlatform={field.value}
-							onSelectOwnPlatform={field.setValue}
+							currentEntity={field.value}
 							onFocus={field.onFocus}
 							onBlur={field.onBlur}
 						/>
@@ -38,7 +37,7 @@ export class OwnPlatformPickerFieldComponent extends Component<OwnPlatformPicker
 /**
  * OwnPlatformPickerFieldComponent's input props
  */
-export type OwnPlatformPickerFieldComponentInput = Omit<OwnPlatformPickerComponentInput, 'currentOwnPlatform' | 'status'> & {
+export type OwnPlatformPickerFieldComponentInput = Omit<GenericEntityPickerComponentInput, 'currentEntity' | 'status'> & {
 
 	/**
 	 * The input name (unique in the form)
@@ -49,7 +48,7 @@ export type OwnPlatformPickerFieldComponentInput = Omit<OwnPlatformPickerCompone
 /**
  * OwnPlatformPickerFieldComponent's output props
  */
-export type OwnPlatformPickerFieldComponentOutput = Omit<OwnPlatformPickerComponentOutput, 'onSelectOwnPlatform' | 'onFocus' | 'onBlur'>;
+export type OwnPlatformPickerFieldComponentOutput = Omit<GenericEntityPickerComponentOutput, 'onFocus' | 'onBlur'>;
 
 /**
  * OwnPlatformPickerFieldComponent's props

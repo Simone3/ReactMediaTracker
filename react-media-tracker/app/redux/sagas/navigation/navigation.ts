@@ -4,7 +4,7 @@ import { COMPLETE_SAVING_CATEGORY, LOAD_CATEGORY_DETAILS, LOAD_NEW_CATEGORY_DETA
 import { setError } from 'app/redux/actions/error/generators';
 import { COMPLETE_SAVING_GROUP, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SELECTION, SELECT_GROUP } from 'app/redux/actions/group/const';
 import { COMPLETE_SAVING_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS } from 'app/redux/actions/media-item/const';
-import { COMPLETE_SAVING_OWN_PLATFORM, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS } from 'app/redux/actions/own-platform/const';
+import { COMPLETE_SAVING_OWN_PLATFORM, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SELECTION, SELECT_OWN_PLATFORM } from 'app/redux/actions/own-platform/const';
 import { COMPLETE_CHECKING_USER_LOGIN_STATUS, COMPLETE_LOGGING_USER_IN, COMPLETE_LOGGING_USER_OUT, COMPLETE_SIGNING_USER_UP } from 'app/redux/actions/user/const';
 import { CompleteCheckingUserLoginStatusAction } from 'app/redux/actions/user/types';
 import { navigationService } from 'app/utilities/navigation-service';
@@ -34,7 +34,9 @@ const navigationActions = [
 	COMPLETE_SAVING_GROUP,
 	COMPLETE_SAVING_OWN_PLATFORM,
 	REQUEST_GROUP_SELECTION,
-	SELECT_GROUP
+	REQUEST_OWN_PLATFORM_SELECTION,
+	SELECT_GROUP,
+	SELECT_OWN_PLATFORM
 ];
 
 /**
@@ -93,7 +95,19 @@ const navigationSaga = function * (action: Action): SagaIterator {
 				break;
 			}
 
+			case REQUEST_OWN_PLATFORM_SELECTION: {
+
+				yield call(navigationService.navigate.bind(navigationService), AppScreens.OwnPlatformsList);
+				break;
+			}
+
 			case SELECT_GROUP: {
+
+				yield call(navigationService.back.bind(navigationService));
+				break;
+			}
+
+			case SELECT_OWN_PLATFORM: {
 
 				yield call(navigationService.back.bind(navigationService));
 				break;

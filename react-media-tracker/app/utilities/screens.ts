@@ -11,6 +11,7 @@ export const AppScreens = {
 	MediaItemDetails: 'MediaItemDetailsScreen',
 	GroupsList: 'GroupsListScreen',
 	GroupDetails: 'GroupDetailsScreen',
+	OwnPlatformsList: 'OwnPlatformsListScreen',
 	OwnPlatformDetails: 'OwnPlatformDetailsScreen',
 	Settings: 'SettingsScreen',
 	Credits: 'CreditsScreen'

@@ -1,7 +1,7 @@
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { COMPLETE_IMPORTING_OLD_APP_EXPORT } from 'app/redux/actions/import-export/const';
-import { COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, INVALIDATE_OWN_PLATFORMS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS } from 'app/redux/actions/own-platform/const';
-import { CompleteFetchingOwnPlatformsAction } from 'app/redux/actions/own-platform/types';
+import { COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, HIGHLIGHT_OWN_PLATFORM, INVALIDATE_OWN_PLATFORMS, REMOVE_OWN_PLATFORM_HIGHTLIGHT, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS } from 'app/redux/actions/own-platform/const';
+import { CompleteFetchingOwnPlatformsAction, HighlightOwnPlatformAction } from 'app/redux/actions/own-platform/types';
 import { OwnPlatformsListState } from 'app/redux/state/own-platform';
 import { Action } from 'redux';
 
@@ -10,7 +10,8 @@ import { Action } from 'redux';
  */
 const initialState: OwnPlatformsListState = {
 	ownPlatforms: [],
-	status: 'REQUIRES_FETCH'
+	status: 'REQUIRES_FETCH',
+	highlightedOwnPlatform: undefined
 };
 
 /**
@@ -88,6 +89,26 @@ export const ownPlatformsList = (state: OwnPlatformsListState = initialState, ac
 			return {
 				...state,
 				status: 'FETCHED'
+			};
+		}
+
+		// When a own platform is highlighted (e.g. to open the context menu), the corresponding state field is set
+		case HIGHLIGHT_OWN_PLATFORM: {
+
+			const highlightOwnPlatformAction = action as HighlightOwnPlatformAction;
+
+			return {
+				...state,
+				highlightedOwnPlatform: highlightOwnPlatformAction.ownPlatform
+			};
+		}
+
+		// When a own platform is no longer highlighted (e.g. to close the context menu), the corresponding state field is reset
+		case REMOVE_OWN_PLATFORM_HIGHTLIGHT: {
+
+			return {
+				...state,
+				highlightedOwnPlatform: undefined
 			};
 		}
 

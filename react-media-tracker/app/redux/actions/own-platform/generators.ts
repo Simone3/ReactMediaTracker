@@ -1,6 +1,6 @@
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
-import { ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM, COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, DELETE_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, FAIL_SAVING_OWN_PLATFORM, FETCH_OWN_PLATFORMS, INVALIDATE_OWN_PLATFORMS, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SAVE, SAVE_OWN_PLATFORM, SET_OWN_PLATFORM_FORM_STATUS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS, START_SAVING_OWN_PLATFORM } from './const';
-import { AskConfirmationBeforeSavingOwnPlatformAction, CompleteDeletingOwnPlatformAction, CompleteFetchingOwnPlatformsAction, CompleteSavingOwnPlatformAction, DeleteOwnPlatformAction, FailDeletingOwnPlatformAction, FailFetchingOwnPlatformsAction, FailSavingOwnPlatformAction, FetchOwnPlatformsAction, InvalidateOwnPlatformsAction, LoadNewOwnPlatformDetailsAction, LoadOwnPlatformDetailsAction, RequestOwnPlatformSaveAction, SaveOwnPlatformAction, SetOwnPlatformFormStatusAction, StartDeletingOwnPlatformAction, StartFetchingOwnPlatformsAction, StartSavingOwnPlatformAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_OWN_PLATFORM, COMPLETE_DELETING_OWN_PLATFORM, COMPLETE_FETCHING_OWN_PLATFORMS, COMPLETE_SAVING_OWN_PLATFORM, DELETE_OWN_PLATFORM, FAIL_DELETING_OWN_PLATFORM, FAIL_FETCHING_OWN_PLATFORMS, FAIL_SAVING_OWN_PLATFORM, FETCH_OWN_PLATFORMS, HIGHLIGHT_OWN_PLATFORM, INVALIDATE_OWN_PLATFORMS, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REMOVE_OWN_PLATFORM_HIGHTLIGHT, REQUEST_OWN_PLATFORM_SAVE, REQUEST_OWN_PLATFORM_SELECTION, SAVE_OWN_PLATFORM, SELECT_OWN_PLATFORM, SET_OWN_PLATFORM_FORM_STATUS, START_DELETING_OWN_PLATFORM, START_FETCHING_OWN_PLATFORMS, START_SAVING_OWN_PLATFORM } from './const';
+import { AskConfirmationBeforeSavingOwnPlatformAction, CompleteDeletingOwnPlatformAction, CompleteFetchingOwnPlatformsAction, CompleteSavingOwnPlatformAction, DeleteOwnPlatformAction, FailDeletingOwnPlatformAction, FailFetchingOwnPlatformsAction, FailSavingOwnPlatformAction, FetchOwnPlatformsAction, HighlightOwnPlatformAction, InvalidateOwnPlatformsAction, LoadNewOwnPlatformDetailsAction, LoadOwnPlatformDetailsAction, RemoveOwnPlatformHighlightAction, RequestOwnPlatformSaveAction, RequestOwnPlatformSelectionAction, SaveOwnPlatformAction, SelectOwnPlatformAction, SetOwnPlatformFormStatusAction, StartDeletingOwnPlatformAction, StartFetchingOwnPlatformsAction, StartSavingOwnPlatformAction } from './types';
 
 /**
  * Generator for the fetch own platforms list action, which causes the request own platforms action, the async own platforms fetch and then the receive own platforms action
@@ -217,5 +217,53 @@ export const failDeletingOwnPlatform = (): FailDeletingOwnPlatformAction => {
 	
 	return {
 		type: FAIL_DELETING_OWN_PLATFORM
+	};
+};
+
+/**
+ * Generator for the highlight own platform action, which marks a own platform as highlighted
+ * @param ownPlatform the own platform
+ * @returns the action
+ */
+export const highlightOwnPlatform = (ownPlatform: OwnPlatformInternal): HighlightOwnPlatformAction => {
+	
+	return {
+		type: HIGHLIGHT_OWN_PLATFORM,
+		ownPlatform: ownPlatform
+	};
+};
+
+/**
+ * Generator for the remove own platform highlight action, which removes any highlighted own platform
+ * @returns the action
+ */
+export const removeOwnPlatformHighlight = (): RemoveOwnPlatformHighlightAction => {
+	
+	return {
+		type: REMOVE_OWN_PLATFORM_HIGHTLIGHT
+	};
+};
+
+/**
+ * Generator for the request own platform selection action, which opens the own platform list
+ * @returns the action
+ */
+export const requestOwnPlatformSelection = (): RequestOwnPlatformSelectionAction => {
+	
+	return {
+		type: REQUEST_OWN_PLATFORM_SELECTION
+	};
+};
+
+/**
+ * Generator for the select own platform action, which sets the own platform into the global state to allow retrieval of the correct media items, etc.
+ * @param ownPlatform the selected own platform or undefined if none
+ * @returns the action
+ */
+export const selectOwnPlatform = (ownPlatform: OwnPlatformInternal | undefined): SelectOwnPlatformAction => {
+	
+	return {
+		type: SELECT_OWN_PLATFORM,
+		ownPlatform: ownPlatform
 	};
 };

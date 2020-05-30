@@ -290,14 +290,10 @@
 				}
 			}
 		},
-		"picker": {
-			"prompt": "Own Platform",
-			"options": {
-				"none": "I don't own it"
-			}
-		},
-		"actions": {
-			"add": "Add new platform",
+		"list": {
+			"title": "Select Own Platform",
+			"empty": "No platforms",
+			"none": "None",
 			"edit": "Edit platform",
 			"delete": "Delete platform"
 		},

@@ -67,6 +67,7 @@ export const DEFAULT_MOVIE: MovieInternal = {
  */
 export const DEFAULT_CATALOG_MOVIE: OptionalToUndefined<CatalogMovieInternal> = {
 	catalogId: undefined,
+	catalogLoadId: 'init',
 	name: '',
 	description: undefined,
 	directors: undefined,

@@ -1,14 +1,13 @@
 import React, { ReactNode, Component } from 'react';
-import { styles } from 'app/components/presentational/form/components/group-picker/styles';
+import { styles } from 'app/components/presentational/form/components/entity-picker/styles';
 import { FormInputComponentInput, FormInputComponentOutput, FormInputComponent } from 'app/components/presentational/form/components/generic';
-import { GroupInternal } from 'app/data/models/internal/group';
 import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 import { TouchableOpacity } from 'react-native';
 
 /**
- * Presentational component to display a media item group picker
+ * Presentational component to display a generic entity picker, with the possibility to open a selection screen on click
  */
-export class GroupPickerComponent extends Component<GroupPickerComponentProps> {
+export class GenericEntityPickerComponent extends Component<GenericEntityPickerComponentProps> {
 	
 	/**
 	 * @override
@@ -29,19 +28,19 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps> {
 	private renderInput(): ReactNode {
 
 		const {
-			currentGroup,
+			currentEntity,
 			disabled,
 			placeholder,
-			requestGroupSelection
+			requestEntitySelection
 		} = this.props;
 
-		const textValue = currentGroup ? currentGroup.name : '';
+		const textValue = currentEntity ? currentEntity.name : '';
 
 		return (
 			<TouchableOpacity
 				style={styles.inputContainer}
 				disabled={disabled}
-				onPress={requestGroupSelection}>
+				onPress={requestEntitySelection}>
 				<PlaceholderTextComponent
 					style={styles.input}
 					placeholder={placeholder}>
@@ -53,14 +52,14 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps> {
 }
 
 /**
- * GroupPickerComponent's input props
+ * GenericEntityPickerComponent's input props
  */
-export type GroupPickerComponentInput = FormInputComponentInput & {
+export type GenericEntityPickerComponentInput = FormInputComponentInput & {
 
 	/**
-	 * The current input values
+	 * The current entity name, if any
 	 */
-	currentGroup: GroupInternal | undefined;
+	currentEntity: { id: string; name: string } | undefined;
 
 	/**
 	 * The input placeholder
@@ -69,18 +68,17 @@ export type GroupPickerComponentInput = FormInputComponentInput & {
 }
 
 /**
- * GroupPickerComponent's output props
+ * GenericEntityPickerComponent's output props
  */
-export type GroupPickerComponentOutput = FormInputComponentOutput & {
+export type GenericEntityPickerComponentOutput = FormInputComponentOutput & {
 
 	/**
-	 * Callback to request the actual group selection screen
+	 * Callback to request the actual entity selection screen
 	 */
-	requestGroupSelection: () => void;
+	requestEntitySelection: () => void;
 }
 
 /**
- * GroupPickerComponent's props
+ * GenericEntityPickerComponent's props
  */
-export type GroupPickerComponentProps = GroupPickerComponentInput & GroupPickerComponentOutput;
-
+export type GenericEntityPickerComponentProps = GenericEntityPickerComponentInput & GenericEntityPickerComponentOutput;

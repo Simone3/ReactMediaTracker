@@ -136,3 +136,33 @@ export type CompleteDeletingOwnPlatformAction = Action & {
 export type FailDeletingOwnPlatformAction = Action & {
 	
 };
+
+/**
+ * The highlight own platform action
+ */
+export type HighlightOwnPlatformAction = Action & {
+	
+	ownPlatform: OwnPlatformInternal;
+};
+
+/**
+ * The remove own platform highlight action
+ */
+export type RemoveOwnPlatformHighlightAction = Action & {
+	
+};
+
+/**
+ * The request own platform selection action
+ */
+export type RequestOwnPlatformSelectionAction = Action & {
+	
+};
+
+/**
+ * The select own platform action
+ */
+export type SelectOwnPlatformAction = Action & {
+	
+	ownPlatform?: OwnPlatformInternal;
+};

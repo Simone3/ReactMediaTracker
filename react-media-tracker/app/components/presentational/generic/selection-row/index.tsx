@@ -1,16 +1,15 @@
 import React, { Component, ReactNode } from 'react';
 import { Text, View, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import { GroupInternal } from 'app/data/models/internal/group';
-import { styles } from 'app/components/presentational/group/list/row/styles';
+import { styles } from 'app/components/presentational/generic/selection-row/styles';
 import { RadioButtonComponent } from 'app/components/presentational/form/components/radio';
 import { ImageComponent } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 
 /**
- * Presentational component to display a generic group row
+ * Presentational component to display a generic selection row, i.e. a clickable label with optional radio button and context menu
  */
-export class GroupRowComponent extends Component<GroupRowComponentInput & GroupRowComponentOutput> {
+export class SelectionRowComponent extends Component<SelectionRowComponentInput & SelectionRowComponentOutput> {
 	
 	/**
 	 * @override
@@ -19,13 +18,13 @@ export class GroupRowComponent extends Component<GroupRowComponentInput & GroupR
 
 		const {
 			select,
-			showOptionsMenu
+			openOptionsMenu
 		} = this.props;
 		
 		return (
 			<TouchableWithoutFeedback
 				onPress={select}
-				onLongPress={showOptionsMenu}>
+				onLongPress={openOptionsMenu}>
 				<View style={styles.container}>
 					{this.renderRadioButton()}
 					{this.renderLabel()}
@@ -42,33 +41,41 @@ export class GroupRowComponent extends Component<GroupRowComponentInput & GroupR
 	private renderRadioButton(): ReactNode {
 
 		const {
-			selected
+			selected,
+			showRadioButton
 		} = this.props;
 
-		return (
-			<RadioButtonComponent
-				selected={selected}
-				onSelect={() => {
-					/* Do nothing here */
-				}}
-			/>
-		);
+		if(showRadioButton) {
+
+			return (
+				<RadioButtonComponent
+					selected={selected}
+					onSelect={() => {
+						/* Do nothing here */
+					}}
+				/>
+			);
+		}
+		else {
+
+			return null;
+		}
 	}
 
 	/**
-	 * Renders the group label
+	 * Renders the row label
 	 * @returns the component
 	 */
 	private renderLabel(): ReactNode {
 
 		const {
-			group
+			label
 		} = this.props;
 
 		return (
 			<View style={styles.nameContainer}>
 				<Text style={styles.name} numberOfLines={1}>
-					{group.name}
+					{label}
 				</Text>
 			</View>
 		);
@@ -81,15 +88,15 @@ export class GroupRowComponent extends Component<GroupRowComponentInput & GroupR
 	private renderContextButton(): ReactNode {
 
 		const {
-			showOptionsMenu
+			openOptionsMenu
 		} = this.props;
 
-		if(showOptionsMenu) {
+		if(openOptionsMenu) {
 
 			return (
 				<TouchableOpacity
 					style={styles.contextButtonContainer}
-					onPress={showOptionsMenu}>
+					onPress={openOptionsMenu}>
 					<ImageComponent
 						style={styles.contextButton}
 						source={images.menuButton()}
@@ -110,17 +117,17 @@ export class GroupRowComponent extends Component<GroupRowComponentInput & GroupR
 }
 
 /**
- * GroupRowComponent's input props
+ * SelectionRowComponent's input props
  */
-export type GroupRowComponentInput = {
+export type SelectionRowComponentInput = {
 
 	/**
-	 * The group to be displayed
+	 * The label to be displayed
 	 */
-	group: GroupInternal;
+	label: string;
 
 	/**
-	 * If the group is the currently selected on
+	 * If the row is the currently selected one
 	 */
 	selected: boolean;
 
@@ -131,19 +138,19 @@ export type GroupRowComponentInput = {
 };
 
 /**
- * GroupRowComponent's output props
+ * SelectionRowComponent's output props
  */
-export type GroupRowComponentOutput = {
+export type SelectionRowComponentOutput = {
 
 	/**
-	 * Callback to select the group
+	 * Callback to select the row
 	 */
 	select: () => void;
 
 	/**
-	 * Callback to open the options context menu (with e.g. the edit button).
-	 * Undefined means row not clickable.
+	 * Callback to open the options context menu.
+	 * Undefined means that no context menu will be shown.
 	 */
-	showOptionsMenu?: () => void;
+	openOptionsMenu?: () => void;
 };
 

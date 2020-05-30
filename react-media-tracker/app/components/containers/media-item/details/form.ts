@@ -3,6 +3,7 @@ import { MediaItemFormComponent, MediaItemFormComponentInput, MediaItemFormCompo
 import { AppError } from 'app/data/models/internal/error';
 import { requestGroupSelection } from 'app/redux/actions/group/generators';
 import { saveMediaItem, setMediaItemFormStatus } from 'app/redux/actions/media-item/generators';
+import { requestOwnPlatformSelection } from 'app/redux/actions/own-platform/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -19,6 +20,7 @@ const mapStateToProps = (state: State): MediaItemFormComponentInput => {
 		saveRequested: state.mediaItemDetails.saveStatus === 'REQUESTED',
 		loadCatalogDetails: state.mediaItemDetails.catalogDetails,
 		selectedGroup: state.groupGlobal.selectedGroup,
+		selectedOwnPlatform: state.ownPlatformGlobal.selectedOwnPlatform,
 		sameNameConfirmationRequested: state.mediaItemDetails.saveStatus === 'REQUIRES_CONFIRMATION'
 	};
 };
@@ -34,6 +36,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemFormComponentOutput =>
 		},
 		requestGroupSelection: () => {
 			dispatch(requestGroupSelection());
+		},
+		requestOwnPlatformSelection: () => {
+			dispatch(requestOwnPlatformSelection());
 		}
 	};
 };

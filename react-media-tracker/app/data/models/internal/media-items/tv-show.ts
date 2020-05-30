@@ -71,6 +71,7 @@ export const DEFAULT_TV_SHOW: TvShowInternal = {
  */
 export const DEFAULT_CATALOG_TV_SHOW: OptionalToUndefined<CatalogTvShowInternal> = {
 	catalogId: undefined,
+	catalogLoadId: 'init',
 	name: '',
 	description: undefined,
 	genres: undefined,

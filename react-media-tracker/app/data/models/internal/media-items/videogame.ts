@@ -69,6 +69,7 @@ export const DEFAULT_VIDEOGAME: VideogameInternal = {
  */
 export const DEFAULT_CATALOG_VIDEOGAME: OptionalToUndefined<CatalogVideogameInternal> = {
 	catalogId: undefined,
+	catalogLoadId: 'init',
 	name: '',
 	description: undefined,
 	genres: undefined,
