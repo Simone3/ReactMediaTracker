@@ -12,55 +12,17 @@ import { ObjectSchema } from 'yup';
 export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormComponentProps> {
 	
 	private formikProps?: FormikProps<MediaItemInternal>;
-	private loadingCatalog = false;
+	private loadedCatalogId?: string;
 
 	/**
 	 * @override
 	 */
 	public componentDidUpdate(): void {
 
-		const {
-			loadCatalogDetails,
-			onCatalogDetailsLoaded,
-			sameNameConfirmationRequested,
-			saveMediaItem,
-			defaultCatalogItem
-		} = this.props;
-
-		// If we have new catalog details...
-		if(loadCatalogDetails && this.formikProps && !this.loadingCatalog) {
-
-			this.loadingCatalog = true;
-
-			const catalogDetails = loadCatalogDetails;
-			
-			// Reload EVERY catalog field (even if the current object has an undefined/null value)
-			const values: MediaItemInternal = {
-				...this.formikProps.values,
-				...defaultCatalogItem,
-				...catalogDetails
-			};
-			this.formikProps.setValues(values);
-
-			// Notify catalog details load completion
-			onCatalogDetailsLoaded();
-
-			this.loadingCatalog = false;
-		}
-
-		// If we need to ask for same-name confirmation...
-		if(sameNameConfirmationRequested && this.formikProps) {
-
-			const title = i18n.t('mediaItem.common.alert.addSameName.title');
-			const message = i18n.t(`mediaItem.common.alert.addSameName.message.${this.formikProps.values.mediaType}`);
-			ConfirmAlert.alert(title, message, () => {
-
-				if(this.formikProps) {
-
-					saveMediaItem(this.formikProps.values, true);
-				}
-			});
-		}
+		// Check if we need to perform some operations during this render
+		this.checkLoadCatalogDetails();
+		this.checkLoadSelectedGroup();
+		this.checkAskSameNameConfirmation();
 	}
 
 	/**
@@ -89,6 +51,87 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 				}}
 			</Formik>
 		);
+	}
+
+	/**
+	 * Checks if we need to (re)load the catalog details, after they have been fetched
+	 */
+	private checkLoadCatalogDetails(): void {
+
+		const {
+			loadCatalogDetails,
+			defaultCatalogItem
+		} = this.props;
+		
+		// If we have new catalog details...
+		if(this.formikProps && loadCatalogDetails && loadCatalogDetails.catalogLoadId && loadCatalogDetails.catalogLoadId !== this.loadedCatalogId) {
+			
+			// TODO remove
+			console.log('!!! CATALOG RELOAD !!!');
+
+			this.loadedCatalogId = loadCatalogDetails.catalogLoadId;
+
+			// Reload EVERY catalog field (even if the current object has an undefined/null value)
+			const values: MediaItemInternal = {
+				...this.formikProps.values,
+				...defaultCatalogItem,
+				...loadCatalogDetails
+			};
+
+			this.formikProps.setValues(values);
+		}
+	}
+
+	/**
+	 * Checks if we need to set the current group, selected from another screen
+	 */
+	private checkLoadSelectedGroup(): void {
+
+		const {
+			selectedGroup
+		} = this.props;
+
+		if(this.formikProps && selectedGroup?.id !== this.formikProps.values.group?.id) {
+
+			// TODO remove
+			console.log('*** GROUP RELOAD ***');
+
+			const values: MediaItemInternal = {
+				...this.formikProps.values,
+				group: selectedGroup
+			};
+
+			if(!selectedGroup) {
+
+				values.orderInGroup = undefined;
+			}
+
+			this.formikProps.setValues(values);
+		}
+	}
+
+	/**
+	 * Checks if wee need to ask for same-name confirmation
+	 */
+	private checkAskSameNameConfirmation(): void {
+
+		const {
+			sameNameConfirmationRequested,
+			saveMediaItem
+		} = this.props;
+
+		if(this.formikProps && sameNameConfirmationRequested) {
+
+			const title = i18n.t('mediaItem.common.alert.addSameName.title');
+			const message = i18n.t(`mediaItem.common.alert.addSameName.message.${this.formikProps.values.mediaType}`);
+			ConfirmAlert.alert(title, message, () => {
+
+				if(this.formikProps) {
+
+					saveMediaItem(this.formikProps.values, true);
+				}
+			});
+		}
 	}
 }
 

@@ -136,3 +136,33 @@ export type CompleteDeletingGroupAction = Action & {
 export type FailDeletingGroupAction = Action & {
 	
 };
+
+/**
+ * The highlight group action
+ */
+export type HighlightGroupAction = Action & {
+	
+	group: GroupInternal;
+};
+
+/**
+ * The remove group highlight action
+ */
+export type RemoveGroupHighlightAction = Action & {
+	
+};
+
+/**
+ * The request group selection action
+ */
+export type RequestGroupSelectionAction = Action & {
+	
+};
+
+/**
+ * The select group action
+ */
+export type SelectGroupAction = Action & {
+	
+	group?: GroupInternal;
+};

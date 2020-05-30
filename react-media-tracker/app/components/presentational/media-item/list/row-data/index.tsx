@@ -162,14 +162,13 @@ export class MediaItemRowDataComponent extends Component<MediaItemRowDataCompone
 	 */
 	private renderFourthRow(mediaItem: MediaItemInternal): ReactNode {
 
-		if(mediaItem.group) {
+		if(mediaItem.group && mediaItem.orderInGroup) {
 
-			const group = mediaItem.group;
 			return (
 				<Text
 					style={styles.fourthRow}
 					numberOfLines={1}>
-					{i18n.t(`mediaItem.list.group`, { order: group.orderInGroup, groupName: group.groupData.name })}
+					{i18n.t(`mediaItem.list.group`, { order: mediaItem.orderInGroup, groupName: mediaItem.group.name })}
 				</Text>
 			);
 		}

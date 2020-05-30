@@ -1,6 +1,6 @@
 import { GroupInternal } from 'app/data/models/internal/group';
-import { ASK_CONFIRMATION_BEFORE_SAVING_GROUP, COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, INVALIDATE_GROUPS, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQUEST_GROUP_SAVE, SAVE_GROUP, SET_GROUP_FORM_STATUS, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
-import { AskConfirmationBeforeSavingGroupAction, CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, InvalidateGroupsAction, LoadGroupDetailsAction, LoadNewGroupDetailsAction, RequestGroupSaveAction, SaveGroupAction, SetGroupFormStatusAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
+import { ASK_CONFIRMATION_BEFORE_SAVING_GROUP, COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, DELETE_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, FAIL_SAVING_GROUP, FETCH_GROUPS, HIGHLIGHT_GROUP, INVALIDATE_GROUPS, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REMOVE_GROUP_HIGHTLIGHT, REQUEST_GROUP_SAVE, REQUEST_GROUP_SELECTION, SAVE_GROUP, SELECT_GROUP, SET_GROUP_FORM_STATUS, START_DELETING_GROUP, START_FETCHING_GROUPS, START_SAVING_GROUP } from './const';
+import { AskConfirmationBeforeSavingGroupAction, CompleteDeletingGroupAction, CompleteFetchingGroupsAction, CompleteSavingGroupAction, DeleteGroupAction, FailDeletingGroupAction, FailFetchingGroupsAction, FailSavingGroupAction, FetchGroupsAction, HighlightGroupAction, InvalidateGroupsAction, LoadGroupDetailsAction, LoadNewGroupDetailsAction, RemoveGroupHighlightAction, RequestGroupSaveAction, RequestGroupSelectionAction, SaveGroupAction, SelectGroupAction, SetGroupFormStatusAction, StartDeletingGroupAction, StartFetchingGroupsAction, StartSavingGroupAction } from './types';
 
 /**
  * Generator for the fetch groups list action, which causes the request groups action, the async groups fetch and then the receive groups action
@@ -217,5 +217,53 @@ export const failDeletingGroup = (): FailDeletingGroupAction => {
 	
 	return {
 		type: FAIL_DELETING_GROUP
+	};
+};
+
+/**
+ * Generator for the highlight group action, which marks a group as highlighted
+ * @param group the group
+ * @returns the action
+ */
+export const highlightGroup = (group: GroupInternal): HighlightGroupAction => {
+	
+	return {
+		type: HIGHLIGHT_GROUP,
+		group: group
+	};
+};
+
+/**
+ * Generator for the remove group highlight action, which removes any highlighted group
+ * @returns the action
+ */
+export const removeGroupHighlight = (): RemoveGroupHighlightAction => {
+	
+	return {
+		type: REMOVE_GROUP_HIGHTLIGHT
+	};
+};
+
+/**
+ * Generator for the request group selection action, which opens the groups list
+ * @returns the action
+ */
+export const requestGroupSelection = (): RequestGroupSelectionAction => {
+	
+	return {
+		type: REQUEST_GROUP_SELECTION
+	};
+};
+
+/**
+ * Generator for the select group action, which sets the group into the global state to allow retrieval of the correct media items, etc.
+ * @param group the selected group or undefined if none
+ * @returns the action
+ */
+export const selectGroup = (group: GroupInternal | undefined): SelectGroupAction => {
+	
+	return {
+		type: SELECT_GROUP,
+		group: group
 	};
 };

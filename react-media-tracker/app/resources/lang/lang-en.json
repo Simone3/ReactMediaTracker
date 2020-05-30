@@ -214,6 +214,7 @@
 				"userComment": "Your notes",
 				"genres": "Genres",
 				"group": "Group",
+				"orderInGroup": "Order in group",
 				"ownPlatform": "Owned at",
 				"creators": {
 					"BOOK": "Authors",
@@ -260,17 +261,10 @@
 				}
 			}
 		},
-		"picker": {
-			"prompt": "Group",
-			"options": {
-				"none": "No group"
-			}
-		},
-		"order": {
-			"placeholder": "Order in group"
-		},
-		"actions": {
-			"add": "Add new group",
+		"list": {
+			"title": "Select Group",
+			"empty": "No groups",
+			"none": "None",
 			"edit": "Edit group",
 			"delete": "Delete group"
 		},

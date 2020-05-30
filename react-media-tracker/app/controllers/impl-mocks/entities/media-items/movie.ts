@@ -21,12 +21,10 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 				genres: [ 'Genre 1', 'Genre 2' ],
 				releaseDate: new Date('2010-01-01'),
 				group: {
-					orderInGroup: 3,
-					groupData: {
-						id: '1',
-						name: 'My Group'
-					}
+					id: '1',
+					name: 'My Group'
 				},
+				orderInGroup: 3,
 				imageUrl: 'http://image.tmdb.org/t/p/w780/aHcth2AXzZSjhX7JYh7ie73YVNc.jpg'
 			}, {
 				id: '2',
@@ -109,6 +107,7 @@ export class MovieMockedCatalogController extends MediaItemMockedCatalogControll
 	protected readonly catalogDetails: {[catalogId: string]: CatalogMovieInternal} = {
 		1: {
 			catalogId: '1',
+			catalogLoadId: '',
 			name: 'Catalog Movie 1',
 			description: 'Some description for catalog movie 1',
 			directors: [ 'Person 1', 'Person 2' ],
@@ -119,11 +118,13 @@ export class MovieMockedCatalogController extends MediaItemMockedCatalogControll
 		},
 		2: {
 			catalogId: '2',
+			catalogLoadId: '',
 			name: 'Catalog Test 1',
 			description: 'Some description for catalog test 1'
 		},
 		3: {
 			catalogId: '3',
+			catalogLoadId: '',
 			name: 'Catalog Test 2',
 			directors: [ 'Person 3', 'Person 4' ],
 			durationMinutes: 100,
@@ -132,6 +133,7 @@ export class MovieMockedCatalogController extends MediaItemMockedCatalogControll
 		},
 		4: {
 			catalogId: '4',
+			catalogLoadId: '',
 			name: 'Some Other Movie',
 			description: 'Some description for some other movie',
 			durationMinutes: 200,

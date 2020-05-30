@@ -9,6 +9,7 @@ export const AppScreens = {
 	CategoryDetails: 'CategoryDetailsScreen',
 	MediaItemsList: 'MediaItemsListScreen',
 	MediaItemDetails: 'MediaItemDetailsScreen',
+	GroupsList: 'GroupsListScreen',
 	GroupDetails: 'GroupDetailsScreen',
 	OwnPlatformDetails: 'OwnPlatformDetailsScreen',
 	Settings: 'SettingsScreen',

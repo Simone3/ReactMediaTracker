@@ -45,7 +45,7 @@ export const OwnPlatformPickerFieldContainer = connect(
 /**
  * OwnPlatformPickerFieldContainer's input props
  */
-export type OwnPlatformPickerFieldContainerInput = Omit<OwnPlatformPickerFieldComponentInput, 'ownPlatforms' | 'requiresFetch'>;
+export type OwnPlatformPickerFieldContainerInput = Omit<OwnPlatformPickerFieldComponentInput, 'ownPlatforms' | 'requiresFetch' | 'fetching'>;
 
 /**
  * OwnPlatformPickerFieldContainer's props

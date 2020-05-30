@@ -5,6 +5,7 @@ import { BookFormComponent } from 'app/components/presentational/media-item/deta
 import { MovieFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/movie';
 import { TvShowFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/tv-show';
 import { VideogameFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/videogame';
+import { GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * Presentational component that switches on the correct media item form component based on its media type.
@@ -45,6 +46,11 @@ export type MediaItemFormComponentInput = {
 	loadCatalogDetails?: CatalogMediaItemInternal;
 
 	/**
+	 * The currently selected group, if any
+	 */
+	selectedGroup?: GroupInternal;
+
+	/**
 	 * If an external component requests the form submission. Triggers form validation and, if OK, its submission.
 	 */
 	saveRequested: boolean;
@@ -75,9 +81,9 @@ export type MediaItemFormComponentOutput = {
 	saveMediaItem: (mediaItem: MediaItemInternal, confirmSameName: boolean) => void;
 
 	/**
-	 * Callback for when the form is done loading the input catalog details
+	 * Callback to request the group selection
 	 */
-	onCatalogDetailsLoaded(): void;
+	requestGroupSelection: () => void;
 }
 
 /**

@@ -1,159 +1,54 @@
 import React, { ReactNode, Component } from 'react';
-import { i18n } from 'app/utilities/i18n';
-import { MediaItemGroupInternal } from 'app/data/models/internal/media-items/media-item';
-import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { styles } from 'app/components/presentational/form/components/group-picker/styles';
+import { FormInputComponentInput, FormInputComponentOutput, FormInputComponent } from 'app/components/presentational/form/components/generic';
 import { GroupInternal } from 'app/data/models/internal/group';
-import { GenericEntityPickerComponent, GenericEntityPickerComponentLabels, EntityDescriptor } from 'app/components/presentational/form/helpers/entity-picker';
-import { images } from 'app/utilities/images';
-import { NumericTextInputComponent } from 'app/components/presentational/form/components/text-input-number';
+import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
+import { TouchableOpacity } from 'react-native';
 
 /**
  * Presentational component to display a media item group picker
  */
-export class GroupPickerComponent extends Component<GroupPickerComponentProps, GroupPickerComponentState> {
-	
-	public state: GroupPickerComponentState = {
-		currentTemporaryOrder: undefined
-	};
-
-	private labels: GenericEntityPickerComponentLabels<GroupInternal> = {
-		optionNone: i18n.t('group.picker.options.none'),
-		pickerPrompt: i18n.t('group.picker.prompt'),
-		addButton: i18n.t('group.actions.add'),
-		editButton: i18n.t('group.actions.edit'),
-		deleteButton: i18n.t('group.actions.delete'),
-		deleteConfirmTitle: i18n.t('group.common.alert.delete.title'),
-		deleteConfirmMessage: (group) => {
-			return i18n.t('group.common.alert.delete.message', { name: group.name });
-		}
-	};
+export class GroupPickerComponent extends Component<GroupPickerComponentProps> {
 	
 	/**
 	 * @override
 	 */
 	public render(): ReactNode {
 
-		const {
-			groups,
-			currentGroup,
-			fetchGroups,
-			loadNewGroupDetails,
-			loadGroupDetails,
-			deleteGroup
-		} = this.props;
-
 		return (
-			<GenericEntityPickerComponent<GroupInternal>
-				{...this.props}
-				entities={groups}
-				currentEntity={currentGroup ? currentGroup.groupData : undefined}
-				labels={this.labels}
-				modalIcon={images.groupField()}
-				extraModalFields={this.renderModalOrderInput()}
-				fetchEntities={fetchGroups}
-				loadNewEntityDetails={loadNewGroupDetails}
-				loadEntityDetails={loadGroupDetails}
-				deleteEntity={deleteGroup}
-				onConfirmEntity={this.onConfirmGroup.bind(this)}
-				checkValidity={this.checkValidity.bind(this)}
-				getInputDisplay={this.getInputDisplay.bind(this)}
-				getEntityValues={this.getEntityValues.bind(this)}
-				onLoadFirstTemporaryValues={this.onLoadFirstTemporaryValues.bind(this)}
-			/>
+			<FormInputComponent {...this.props}>
+				{this.renderInput()}
+			</FormInputComponent>
 		);
 	}
 
 	/**
-	 * Helper to render the modal order in group input
+	 * Helper to render the visibile form field
 	 * @returns the component
 	 */
-	private renderModalOrderInput(): ReactNode {
+	private renderInput(): ReactNode {
 
 		const {
-			currentTemporaryOrder
-		} = this.state;
+			currentGroup,
+			disabled,
+			placeholder,
+			requestGroupSelection
+		} = this.props;
 
-		// Selection callback
-		const onValueChange = (order: number | undefined): void => {
-
-			this.setState({
-				currentTemporaryOrder: order
-			});
-		};
+		const textValue = currentGroup ? currentGroup.name : '';
 
 		return (
-			<NumericTextInputComponent
-				currentValue={currentTemporaryOrder}
-				onValueChange={onValueChange}
-				placeholder={i18n.t('group.order.placeholder')}
-				status='DEFAULT'
-				onBlur={() => {
-					// Do nothing for now
-				}}
-				onFocus={() => {
-					// Do nothing for now
-				}}
-			/>
+			<TouchableOpacity
+				style={styles.inputContainer}
+				disabled={disabled}
+				onPress={requestGroupSelection}>
+				<PlaceholderTextComponent
+					style={styles.input}
+					placeholder={placeholder}>
+					{textValue}
+				</PlaceholderTextComponent>
+			</TouchableOpacity>
 		);
-	}
-	
-	private onLoadFirstTemporaryValues(): void {
-		
-		const {
-			currentGroup
-		} = this.props;
-
-		this.setState({
-			currentTemporaryOrder: currentGroup ? currentGroup.orderInGroup : undefined
-		});
-	}
-
-	private onConfirmGroup(group: GroupInternal | undefined): void {
-		
-		const {
-			onSelectGroup
-		} = this.props;
-		
-		const {
-			currentTemporaryOrder
-		} = this.state;
-
-		if(group && currentTemporaryOrder) {
-
-			// Callback with the selected group
-			onSelectGroup({
-				groupData: group,
-				orderInGroup: currentTemporaryOrder
-			});
-		}
-		else {
-
-			// Callback with empty group
-			onSelectGroup(undefined);
-		}
-	}
-
-	private checkValidity(currentTemporaryGroup: GroupInternal | undefined): boolean {
-
-		const {
-			currentTemporaryOrder
-		} = this.state;
-
-		return Boolean((currentTemporaryGroup && currentTemporaryOrder) || (!currentTemporaryGroup && !currentTemporaryOrder));
-	}
-
-	private getInputDisplay(): string {
-		
-		const {
-			currentGroup
-		} = this.props;
-		
-		return currentGroup ? `${i18n.t(`mediaItem.list.group`, { order: currentGroup.orderInGroup, groupName: currentGroup.groupData.name })}` : '';
-	}
-
-	private getEntityValues(group: GroupInternal): EntityDescriptor {
-		
-		return group;
 	}
 }
 
@@ -163,29 +58,14 @@ export class GroupPickerComponent extends Component<GroupPickerComponentProps, G
 export type GroupPickerComponentInput = FormInputComponentInput & {
 
 	/**
-	 * The list of all available groups
-	 */
-	groups: GroupInternal[];
-
-	/**
 	 * The current input values
 	 */
-	currentGroup: MediaItemGroupInternal | undefined;
+	currentGroup: GroupInternal | undefined;
 
 	/**
-	 * The text placeholder
+	 * The input placeholder
 	 */
 	placeholder: string;
-
-	/**
-	 * Flag to tell if the groups list requires a fetch. If so, on startup or on update the component will invoke the fetch callback.
-	 */
-	requiresFetch: boolean;
-
-	/**
-	 * Flag to tell if the groups list is currently being fetched
-	 */
-	fetching: boolean;
 }
 
 /**
@@ -194,29 +74,9 @@ export type GroupPickerComponentInput = FormInputComponentInput & {
 export type GroupPickerComponentOutput = FormInputComponentOutput & {
 
 	/**
-	 * Notifies input value change
+	 * Callback to request the actual group selection screen
 	 */
-	onSelectGroup: (group: MediaItemGroupInternal | undefined) => void;
-
-	/**
-	 * Callback to request the groups list (re)load
-	 */
-	fetchGroups: () => void;
-
-	/**
-	 * Callback to load a new group details before navigating to the group form
-	 */
-	loadNewGroupDetails: () => void;
-
-	/**
-	 * Callback to load an existing group details before navigating to the group form
-	 */
-	loadGroupDetails: (group: GroupInternal) => void;
-	
-	/**
-	 * Callback to delete a group
-	 */
-	deleteGroup: (group: GroupInternal) => void;
+	requestGroupSelection: () => void;
 }
 
 /**
@@ -224,13 +84,3 @@ export type GroupPickerComponentOutput = FormInputComponentOutput & {
  */
 export type GroupPickerComponentProps = GroupPickerComponentInput & GroupPickerComponentOutput;
 
-/**
- * GroupPickerComponent's state
- */
-type GroupPickerComponentState = {
-
-	/**
-	 * The currently inserted order, to be confirmed by the user
-	 */
-	currentTemporaryOrder: number | undefined;
-}

@@ -218,7 +218,11 @@ export class MediaItemMockedCatalogController<TSearchMediaItemCatalogResultInter
 			
 			if(catalogId in this.catalogDetails) {
 
-				return this.catalogDetails[catalogId];
+				const catalog = this.catalogDetails[catalogId];
+				return {
+					...catalog,
+					catalogLoadId: `${catalog.catalogId}_${Date.now()}`
+				};
 			}
 			else {
 				

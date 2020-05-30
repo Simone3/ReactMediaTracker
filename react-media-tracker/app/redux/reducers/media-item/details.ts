@@ -27,7 +27,7 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 	
 	switch(action.type) {
 
-		// When the details page is started with a new media item, the status is reset and the default media item is loaded
+		// When the details page is started with a new media item, the status and other support fields are reset and the default media item is loaded
 		case LOAD_NEW_MEDIA_ITEM_DETAILS: {
 
 			const loadNewMediaItemAction = action as LoadNewMediaItemDetailsAction;
@@ -36,11 +36,14 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 			return {
 				...state,
 				saveStatus: 'IDLE',
-				mediaItem: definitionsController.getDefaultMediaItem()
+				mediaItem: definitionsController.getDefaultMediaItem(),
+				catalogSearchResults: undefined,
+				catalogDetails: undefined,
+				catalogStatus: 'IDLE'
 			};
 		}
 	
-		// When the details page is started with an existing media item, the status is reset and the given media item is loaded
+		// When the details page is started with an existing media item, the status and other support fields are reset and the given media item is loaded
 		case LOAD_MEDIA_ITEM_DETAILS: {
 
 			const loadMediaItemAction = action as LoadMediaItemDetailsAction;
@@ -48,7 +51,10 @@ export const mediaItemDetails = (state: MediaItemDetailsState = initialState, ac
 			return {
 				...state,
 				saveStatus: 'IDLE',
-				mediaItem: loadMediaItemAction.mediaItem
+				mediaItem: loadMediaItemAction.mediaItem,
+				catalogSearchResults: undefined,
+				catalogDetails: undefined,
+				catalogStatus: 'IDLE'
 			};
 		}
 	

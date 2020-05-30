@@ -1,7 +1,8 @@
 import { MediaTypeInternal, MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
+import { GroupInternal } from 'app/data/models/internal/group';
 import { MediaItemImportanceInternal, MediaItemInternal, MediaItemStatusInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { OwnPlatformIconInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
-import { array, boolean, date, number, object, ObjectSchemaDefinition, string, StringSchema } from 'yup';
+import { array, boolean, date, number, NumberSchema, object, ObjectSchemaDefinition, string, StringSchema } from 'yup';
 
 /**
  * The generic media item form validation schema shape
@@ -17,11 +18,12 @@ export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInter
 	status: string().oneOf(MEDIA_ITEM_STATUS_INTERNAL_VALUES).required() as StringSchema<MediaItemStatusInternal>,
 	importance: string().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES).required() as StringSchema<MediaItemImportanceInternal>,
 	group: object({
-		groupData: object({
-			id: string(),
-			name: string()
-		}),
-		orderInGroup: number()
+		id: string(),
+		name: string()
+	}),
+	orderInGroup: number().when('group', (value: GroupInternal | undefined, schema: NumberSchema<number>) => {
+		
+		return value && value.id ? schema.required() : schema;
 	}),
 	ownPlatform: object({
 		id: string(),

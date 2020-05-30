@@ -35,13 +35,17 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 			imageUrl: source.imageUrl
 		};
 
-		if(source.group) {
+		if(source.group && source.orderInGroup) {
 
 			target.group = {
-				groupId: source.group.groupData.id,
-				groupData: groupMapper.toExternal(source.group.groupData),
-				orderInGroup: source.group.orderInGroup
+				groupId: source.group.id,
+				groupData: groupMapper.toExternal(source.group),
+				orderInGroup: source.orderInGroup
 			};
+		}
+		else if(source.group || source.orderInGroup) {
+
+			throw AppError.GENERIC.withDetails('Should never have "group" and not "orderInGroup" or vice-versa: either both or none');
 		}
 
 		if(source.ownPlatform) {
@@ -84,13 +88,12 @@ export abstract class MediaItemMapper<TMediaItemInternal extends MediaItemIntern
 
 		if(source.group && source.group.groupData) {
 
-			target.group = {
-				groupData: groupMapper.toInternal({
-					...source.group.groupData,
-					uid: source.group.groupId
-				}),
-				orderInGroup: source.group.orderInGroup
-			};
+			target.group = groupMapper.toInternal({
+				...source.group.groupData,
+				uid: source.group.groupId
+			});
+			
+			target.orderInGroup = source.group.orderInGroup;
 		}
 
 		if(source.ownPlatform && source.ownPlatform.ownPlatformData) {
@@ -450,6 +453,7 @@ export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal ex
 		
 		return {
 			catalogId: source.catalogId,
+			catalogLoadId: `${source.catalogId}_${Date.now()}`,
 			name: source.name,
 			genres: source.genres,
 			description: source.description ? stripHtml(source.description) : undefined,

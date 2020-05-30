@@ -1,35 +1,15 @@
 
 import { GroupPickerFieldComponent, GroupPickerFieldComponentInput, GroupPickerFieldComponentOutput } from 'app/components/presentational/form/fields/group-picker';
-import { deleteGroup, fetchGroups, loadGroupDetails, loadNewGroupDetails } from 'app/redux/actions/group/generators';
-import { State } from 'app/redux/state/state';
+import { requestGroupSelection } from 'app/redux/actions/group/generators';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-
-const mapStateToProps = (state: State, ownProps: GroupPickerFieldContainerProps): GroupPickerFieldComponentInput => {
-	
-	return {
-		...ownProps,
-		requiresFetch: state.groupsList.status === 'REQUIRES_FETCH',
-		fetching: state.groupsList.status === 'FETCHING',
-		groups: state.groupsList.groups
-	};
-};
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContainerProps): GroupPickerFieldComponentOutput => {
 
 	return {
 		...ownProps,
-		fetchGroups: () => {
-			dispatch(fetchGroups());
-		},
-		loadNewGroupDetails: () => {
-			dispatch(loadNewGroupDetails());
-		},
-		loadGroupDetails: (group) => {
-			dispatch(loadGroupDetails(group));
-		},
-		deleteGroup: (group) => {
-			dispatch(deleteGroup(group));
+		requestGroupSelection: () => {
+			dispatch(requestGroupSelection());
 		}
 	};
 };
@@ -38,14 +18,14 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContai
  * Container component that handles Redux state for GroupPickerFieldComponent
  */
 export const GroupPickerFieldContainer = connect(
-	mapStateToProps,
+	null,
 	mapDispatchToProps
 )(GroupPickerFieldComponent);
 
 /**
  * GroupPickerFieldContainer's input props
  */
-export type GroupPickerFieldContainerInput = Omit<GroupPickerFieldComponentInput, 'groups' | 'requiresFetch'>;
+export type GroupPickerFieldContainerInput = GroupPickerFieldComponentInput;
 
 /**
  * GroupPickerFieldContainer's props

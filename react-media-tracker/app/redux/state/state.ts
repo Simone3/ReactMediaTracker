@@ -1,6 +1,6 @@
 import { CategoriesListState, CategoryDetailsState, CategoryGlobalState } from 'app/redux/state/category';
 import { ErrorState } from 'app/redux/state/error';
-import { GroupDetailsState, GroupsListState } from 'app/redux/state/group';
+import { GroupDetailsState, GroupGlobalState, GroupsListState } from 'app/redux/state/group';
 import { ImportExportState } from 'app/redux/state/import-export';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
 import { OwnPlatformDetailsState, OwnPlatformsListState } from 'app/redux/state/own-platform';
@@ -50,6 +50,11 @@ export class State {
 	 * Portion of the state with the media item details information
 	 */
 	public readonly mediaItemDetails!: MediaItemDetailsState;
+
+	/**
+	 * Portion of the state with the global group data
+	 */
+	public readonly groupGlobal!: GroupGlobalState;
 
 	/**
 	 * Portion of the state with the groups list information

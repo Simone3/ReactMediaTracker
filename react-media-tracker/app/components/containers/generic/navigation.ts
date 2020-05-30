@@ -4,6 +4,7 @@ import { UserSignupScreenContainer } from 'app/components/containers/auth/signup
 import { CategoryDetailsScreenContainer } from 'app/components/containers/category/details/screen';
 import { CategoriesListScreenContainer } from 'app/components/containers/category/list/screen';
 import { GroupDetailsScreenContainer } from 'app/components/containers/group/details/screen';
+import { GroupsListScreenContainer } from 'app/components/containers/group/list/screen';
 import { MediaItemDetailsScreenContainer } from 'app/components/containers/media-item/details/screen';
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
 import { OwnPlatformDetailsScreenContainer } from 'app/components/containers/own-platform/details/screen';
@@ -61,6 +62,7 @@ const MediaStackNavigator = createStackNavigator({
 	[AppScreens.CategoryDetails]: CategoryDetailsScreenContainer,
 	[AppScreens.MediaItemsList]: MediaItemsListScreenContainer,
 	[AppScreens.MediaItemDetails]: MediaItemDetailsScreenContainer,
+	[AppScreens.GroupsList]: GroupsListScreenContainer,
 	[AppScreens.GroupDetails]: GroupDetailsScreenContainer,
 	[AppScreens.OwnPlatformDetails]: OwnPlatformDetailsScreenContainer
 }, {

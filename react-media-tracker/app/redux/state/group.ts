@@ -1,6 +1,18 @@
 import { GroupInternal } from 'app/data/models/internal/group';
 
 /**
+ * Portion of the internal state with the global group data
+ */
+export type GroupGlobalState = {
+
+	/**
+	 * The current group, e.g. to show the currently selected group for a media item
+	 * Undefined means no group has been selected yet
+	 */
+	selectedGroup: GroupInternal | undefined;
+}
+
+/**
  * Portion of the internal state with the groups list information
  */
 export type GroupsListState = {
@@ -14,6 +26,11 @@ export type GroupsListState = {
 	 * The current status of the groups list
 	 */
 	readonly status: GroupsListStatus;
+
+	/**
+	 * The currently highlighted (e.g. context menu is open) group, or undefined if none is highlighted
+	 */
+	readonly highlightedGroup: GroupInternal | undefined;
 }
 
 /**

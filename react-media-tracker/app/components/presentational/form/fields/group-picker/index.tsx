@@ -24,7 +24,6 @@ export class GroupPickerFieldComponent extends Component<GroupPickerFieldCompone
 							{...this.props}
 							status={status}
 							currentGroup={field.value}
-							onSelectGroup={field.setValue}
 							onFocus={field.onFocus}
 							onBlur={field.onBlur}
 						/>
@@ -49,7 +48,7 @@ export type GroupPickerFieldComponentInput = Omit<GroupPickerComponentInput, 'cu
 /**
  * GroupPickerFieldComponent's output props
  */
-export type GroupPickerFieldComponentOutput = Omit<GroupPickerComponentOutput, 'onSelectGroup' | 'onFocus' | 'onBlur'>;
+export type GroupPickerFieldComponentOutput = Omit<GroupPickerComponentOutput, 'onFocus' | 'onBlur'>;
 
 /**
  * GroupPickerFieldComponent's props

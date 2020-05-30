@@ -17,15 +17,6 @@ type CoreMediaItemDataInternal = {
 }
 
 /**
- * Data about a media item group, internal type just for display purposes
- */
-export type MediaItemGroupInternal = {
-
-	groupData: GroupInternal;
-	orderInGroup: number;
-}
-
-/**
  * Array of all media item importance levels, internal type just for display purposes
  */
 export const MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES: [ '400', '300', '200', '100' ] = [ '400', '300', '200', '100' ];
@@ -54,7 +45,8 @@ export type MediaItemInternal = CoreMediaItemDataInternal & {
 	mediaType: MediaTypeInternal;
 	status: MediaItemStatusInternal;
 	importance: MediaItemImportanceInternal;
-	group?: MediaItemGroupInternal;
+	group?: GroupInternal;
+	orderInGroup?: number;
 	ownPlatform?: OwnPlatformInternal;
 	userComment?: string;
 	completedOn?: Date[];
@@ -117,6 +109,7 @@ export type MediaItemSortByInternal = {
  */
 export type CatalogMediaItemInternal = CoreMediaItemDataInternal & {
 
+	catalogLoadId: string;
 }
 
 /**

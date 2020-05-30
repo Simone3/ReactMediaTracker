@@ -14,6 +14,7 @@ import { MultiDateInputFieldComponent } from 'app/components/presentational/form
 import { GroupPickerFieldContainer } from 'app/components/containers/media-item/details/group-picker';
 import { OwnPlatformPickerFieldContainer } from 'app/components/containers/media-item/details/own-platform-picker';
 import { MediaItemImageButtonsRowContainer } from 'app/components/containers/media-item/details/image-buttons-row';
+import { NumericTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-number';
 
 /**
  * Presentational component that contains all generic media item form input fields, all handled by the Formik container component
@@ -87,6 +88,7 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 					{this.importanceField()}
 					{this.ownPlatformField()}
 					{this.groupField()}
+					{this.orderInGroupField()}
 					{secondarySpecificFields}
 					{this.userCommentField()}
 					{this.completionDatesField()}
@@ -221,6 +223,28 @@ export class MediaItemFormViewComponent extends Component<MediaItemFormViewCompo
 				icon={images.groupField()}
 			/>
 		);
+	}
+
+	/**
+	 * Helper
+	 * @returns the order in group component
+	 */
+	private orderInGroupField(): ReactNode {
+
+		if(this.props.values.group) {
+			
+			return (
+				<NumericTextInputFieldComponent
+					name='orderInGroup'
+					placeholder={i18n.t('mediaItem.details.placeholders.orderInGroup')}
+					icon={images.groupField()}
+				/>
+			);
+		}
+		else {
+
+			return null;
+		}
 	}
 
 	/**
