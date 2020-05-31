@@ -33,7 +33,8 @@ export class MovieFilterFormComponent extends Component<MovieFilterFormComponent
 				}}
 				initialValues={initialValues}
 				initialErrors={{}}
-				validationSchema={movieFilterFormValidationSchema}>
+				validationSchema={movieFilterFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<MovieFilterFormValues>) => {
 					
 					return (

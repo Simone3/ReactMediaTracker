@@ -44,7 +44,8 @@ export class CommonMediaItemFormComponent extends Component<CommonMediaItemFormC
 					saveMediaItem(result, false);
 				}}
 				initialValues={initialValues}
-				validationSchema={validationSchema}>
+				validationSchema={validationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<MediaItemInternal>) => {
 
 					this.formikProps = formikProps;

@@ -33,7 +33,8 @@ export class TvShowFilterFormComponent extends Component<TvShowFilterFormCompone
 				}}
 				initialValues={initialValues}
 				initialErrors={{}}
-				validationSchema={tvShowFilterFormValidationSchema}>
+				validationSchema={tvShowFilterFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<TvShowFilterFormValues>) => {
 					
 					return (

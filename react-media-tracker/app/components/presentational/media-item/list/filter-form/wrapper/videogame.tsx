@@ -33,7 +33,8 @@ export class VideogameFilterFormComponent extends Component<VideogameFilterFormC
 				}}
 				initialValues={initialValues}
 				initialErrors={{}}
-				validationSchema={videogameFilterFormValidationSchema}>
+				validationSchema={videogameFilterFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<VideogameFilterFormValues>) => {
 					
 					return (

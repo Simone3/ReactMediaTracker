@@ -33,7 +33,8 @@ export class BookFilterFormComponent extends Component<BookFilterFormComponentPr
 				}}
 				initialValues={initialValues}
 				initialErrors={{}}
-				validationSchema={bookFilterFormValidationSchema}>
+				validationSchema={bookFilterFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<BookFilterFormValues>) => {
 					
 					return (

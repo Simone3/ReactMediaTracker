@@ -49,7 +49,8 @@ export class OwnPlatformFormComponent extends Component<OwnPlatformFormComponent
 					this.props.saveOwnPlatform(result, false);
 				}}
 				initialValues={this.props.initialValues}
-				validationSchema={ownPlatformFormValidationSchema}>
+				validationSchema={ownPlatformFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<OwnPlatformInternal>) => {
 					
 					this.formikProps = formikProps;

@@ -49,7 +49,8 @@ export class GroupFormComponent extends Component<GroupFormComponentInput & Grou
 					this.props.saveGroup(result, false);
 				}}
 				initialValues={this.props.initialValues}
-				validationSchema={groupFormValidationSchema}>
+				validationSchema={groupFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<GroupInternal>) => {
 					
 					this.formikProps = formikProps;

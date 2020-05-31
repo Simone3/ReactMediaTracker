@@ -49,7 +49,8 @@ export class CategoryFormComponent extends Component<CategoryFormComponentInput 
 					this.props.saveCategory(result, false);
 				}}
 				initialValues={this.props.initialValues}
-				validationSchema={categoryFormValidationSchema}>
+				validationSchema={categoryFormValidationSchema}
+				validateOnMount={true}>
 				{(formikProps: FormikProps<CategoryInternal>) => {
 					
 					this.formikProps = formikProps;
