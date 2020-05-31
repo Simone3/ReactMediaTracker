@@ -274,7 +274,17 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 */
 	private renderShowMoreModal(): ReactNode {
 
-		const buttons = this.getButtons();
+		// Remap button click callbacks so that the modal is closed after the action
+		const buttons = this.getButtons().map((button) => {
+
+			const actualOnClick = button.onClick;
+			button.onClick = () => {
+
+				actualOnClick();
+				this.onShowMoreClick();
+			};
+			return button;
+		});
 
 		return (
 			<ModalComponent
