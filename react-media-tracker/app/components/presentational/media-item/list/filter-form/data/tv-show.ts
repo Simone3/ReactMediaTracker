@@ -14,7 +14,7 @@ export type TvShowFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The TV show filter form validation
  */
-export const tvShowFilterFormValidationSchema: ObjectSchema<TvShowFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
+export const tvShowFilterFormValidationSchema: ObjectSchema<TvShowFilterFormValues> = object().required().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the TV show filter form values

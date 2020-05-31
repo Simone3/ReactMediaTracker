@@ -63,7 +63,7 @@ export class OwnPlatformContextMenuComponent extends Component<OwnPlatformContex
 		return {
 			label: i18n.t('ownPlatform.list.delete'),
 			icon: images.deleteButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				const title = i18n.t('ownPlatform.common.alert.delete.title');
 				const message = i18n.t('ownPlatform.common.alert.delete.message', { name: ownPlatform.name });
@@ -91,7 +91,7 @@ export class OwnPlatformContextMenuComponent extends Component<OwnPlatformContex
 		return {
 			label: i18n.t('ownPlatform.list.edit'),
 			icon: images.editButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				edit(ownPlatform);
 				close();

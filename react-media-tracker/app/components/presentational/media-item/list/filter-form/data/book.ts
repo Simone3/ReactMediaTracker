@@ -14,7 +14,7 @@ export type BookFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The book filter form validation
  */
-export const bookFilterFormValidationSchema: ObjectSchema<BookFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
+export const bookFilterFormValidationSchema: ObjectSchema<BookFilterFormValues> = object().required().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the book filter form values

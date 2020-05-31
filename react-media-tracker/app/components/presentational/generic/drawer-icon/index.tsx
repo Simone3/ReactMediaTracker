@@ -51,7 +51,7 @@ export type DrawerIconComponentProps = DrawerIconProps & {
 export const drawerIconBuilder = (source: ImageRequireSource) => {
 	
 	// eslint-disable-next-line react/display-name
-	return (props: DrawerIconProps) => {
+	return (props: DrawerIconProps): ReactNode => {
 
 		return <DrawerIconComponent {...props} source={source} />;
 	};

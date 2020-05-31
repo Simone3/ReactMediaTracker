@@ -20,12 +20,16 @@ export class OwnPlatformsListScreenComponent extends Component<OwnPlatformsListS
 	 */
 	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
-			headerTitle: <HeaderComponent
-				title={i18n.t('ownPlatform.list.title')}
-				componentsLeft={
-					<HeaderBackComponent />
-				}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<HeaderComponent
+						title={i18n.t('ownPlatform.list.title')}
+						componentsLeft={
+							<HeaderBackComponent />
+						}
+					/>
+				);
+			}
 		};
 	};
 

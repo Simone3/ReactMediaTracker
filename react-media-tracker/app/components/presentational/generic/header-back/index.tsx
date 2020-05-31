@@ -6,7 +6,7 @@ import { HeaderBackButton } from 'react-navigation-stack';
 /**
  * Presentational component to display a standard header back button
  */
-export class HeaderBackComponent extends Component<{}> {
+export class HeaderBackComponent extends Component {
 
 	/**
 	 * @override
@@ -19,6 +19,7 @@ export class HeaderBackComponent extends Component<{}> {
 					navigationService.back();
 				}}
 				tintColor={config.ui.colors.colorContrastText}
+				labelVisible={false}
 			/>
 		);
 	}

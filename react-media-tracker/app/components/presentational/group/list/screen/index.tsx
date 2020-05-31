@@ -20,12 +20,16 @@ export class GroupsListScreenComponent extends Component<GroupsListScreenCompone
 	 */
 	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
-			headerTitle: <HeaderComponent
-				title={i18n.t('group.list.title')}
-				componentsLeft={
-					<HeaderBackComponent />
-				}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<HeaderComponent
+						title={i18n.t('group.list.title')}
+						componentsLeft={
+							<HeaderBackComponent />
+						}
+					/>
+				);
+			}
 		};
 	};
 

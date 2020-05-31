@@ -7,11 +7,11 @@ import { mediaItemFormValidationShape } from './media-item';
  */
 const movieFormValidationShape: ObjectSchemaDefinition<MovieInternal> = {
 	...mediaItemFormValidationShape,
-	directors: array().of(string()),
+	directors: array().of(string().required()),
 	durationMinutes: number()
 };
 
 /**
  * The movie form validation schema
  */
-export const movieFormValidationSchema: ObjectSchema<MovieInternal> = object().shape(movieFormValidationShape);
+export const movieFormValidationSchema: ObjectSchema<MovieInternal> = object().required().shape(movieFormValidationShape);

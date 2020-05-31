@@ -7,11 +7,11 @@ import { mediaItemFormValidationShape } from './media-item';
  */
 const bookFormValidationShape: ObjectSchemaDefinition<BookInternal> = {
 	...mediaItemFormValidationShape,
-	authors: array().of(string()),
+	authors: array().of(string().required()),
 	pagesNumber: number()
 };
 
 /**
  * The book form validation schema
  */
-export const bookFormValidationSchema: ObjectSchema<BookInternal> = object().shape(bookFormValidationShape);
+export const bookFormValidationSchema: ObjectSchema<BookInternal> = object().required().shape(bookFormValidationShape);

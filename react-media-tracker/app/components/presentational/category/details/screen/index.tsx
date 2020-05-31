@@ -20,10 +20,14 @@ export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScr
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <CategoryDetailsHeaderContainer
-				componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-				componentsRight={<CategoryDetailsHeaderSaveIconContainer />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<CategoryDetailsHeaderContainer
+						componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+						componentsRight={<CategoryDetailsHeaderSaveIconContainer />}
+					/>
+				);
+			}
 		};
 	};
 

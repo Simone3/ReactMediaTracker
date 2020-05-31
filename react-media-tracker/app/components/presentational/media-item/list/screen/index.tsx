@@ -23,23 +23,27 @@ export class MediaItemsListScreenComponent extends Component<MediaItemsListScree
 	 */
 	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
-			headerTitle: <MediaItemsListHeaderContainer
-				componentsLeft={
-					<HeaderBackComponent />
-				}
-				componentsRight={[
-					<MediaItemsListHeaderFilterIconContainer
-						key='herader-filter-icon'
-						source={images.filterButton()}
-						clickStatus='ENABLED'
-					/>,
-					<MediaItemsListHeaderSearchIconContainer
-						key='herader-search-icon'
-						source={images.searchButton()}
-						clickStatus='ENABLED'
+			headerTitle: (): ReactNode => {
+				return (
+					<MediaItemsListHeaderContainer
+						componentsLeft={
+							<HeaderBackComponent />
+						}
+						componentsRight={[
+							<MediaItemsListHeaderFilterIconContainer
+								key='herader-filter-icon'
+								source={images.filterButton()}
+								clickStatus='ENABLED'
+							/>,
+							<MediaItemsListHeaderSearchIconContainer
+								key='herader-search-icon'
+								source={images.searchButton()}
+								clickStatus='ENABLED'
+							/>
+						]}
 					/>
-				]}
-			/>
+				);
+			}
 		};
 	};
 

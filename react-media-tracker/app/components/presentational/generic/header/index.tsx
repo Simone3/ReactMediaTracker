@@ -1,6 +1,6 @@
 import { styles } from 'app/components/presentational/generic/header/styles';
 import React, { Component, ReactNode } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Dimensions } from 'react-native';
 
 /**
  * Presentational component to display the header, with a title and optionally one or more icons
@@ -19,7 +19,7 @@ export class HeaderComponent extends Component<HeaderComponentProps> {
 		} = this.props;
 
 		return (
-			<View style={styles.container}>
+			<View style={[ styles.container, { width: Dimensions.get('screen').width }]}>
 				<View style={styles.leftContainer}>
 					{componentsLeft}
 				</View>

@@ -14,7 +14,7 @@ export type MovieFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The movie filter form validation
  */
-export const movieFilterFormValidationSchema: ObjectSchema<MovieFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
+export const movieFilterFormValidationSchema: ObjectSchema<MovieFilterFormValues> = object().required().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the movie filter form values

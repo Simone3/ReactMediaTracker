@@ -5,20 +5,21 @@ export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		justifyContent: 'flex-start',
 		alignContent: 'center'
 	},
 	leftContainer: {
 		flex: 0,
 		flexDirection: 'row',
-		justifyContent: 'center',
-		alignContent: 'center'
+		justifyContent: 'flex-start',
+		alignContent: 'center',
+		marginLeft: 10
 	},
 	titleContainer: {
 		flex: 1,
-		margin: 10,
-		marginLeft: 15,
-		justifyContent: 'center'
+		alignItems: 'flex-start',
+		justifyContent: 'center',
+		paddingLeft: 5
 	},
 	title: {
 		fontSize: 20,
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
 	rightContainer: {
 		flex: 0,
 		flexDirection: 'row',
-		justifyContent: 'center',
+		justifyContent: 'flex-end',
 		alignContent: 'center',
 		marginRight: 10
 	}

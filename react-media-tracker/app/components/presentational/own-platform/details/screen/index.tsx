@@ -20,10 +20,14 @@ export class OwnPlatformDetailsScreenComponent extends Component<OwnPlatformDeta
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <OwnPlatformDetailsHeaderContainer
-				componentsLeft={<OwnPlatformDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-				componentsRight={<OwnPlatformDetailsHeaderSaveIconContainer />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<OwnPlatformDetailsHeaderContainer
+						componentsLeft={<OwnPlatformDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+						componentsRight={<OwnPlatformDetailsHeaderSaveIconContainer />}
+					/>
+				);
+			}
 		};
 	};
 

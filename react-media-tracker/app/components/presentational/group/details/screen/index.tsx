@@ -20,10 +20,14 @@ export class GroupDetailsScreenComponent extends Component<GroupDetailsScreenCom
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <GroupDetailsHeaderContainer
-				componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-				componentsRight={<GroupDetailsHeaderSaveIconContainer />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<GroupDetailsHeaderContainer
+						componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+						componentsRight={<GroupDetailsHeaderSaveIconContainer />}
+					/>
+				);
+			}
 		};
 	};
 

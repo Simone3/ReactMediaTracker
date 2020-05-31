@@ -23,10 +23,14 @@ export class SettingsScreenComponent extends Component<SettingsScreenComponentPr
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <HeaderComponent
-				title={i18n.t('settings.screen.title')}
-				componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation} />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<HeaderComponent
+						title={i18n.t('settings.screen.title')}
+						componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
+					/>
+				);
+			}
 		};
 	};
 	

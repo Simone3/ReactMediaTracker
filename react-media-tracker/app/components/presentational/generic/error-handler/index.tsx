@@ -9,7 +9,7 @@ import { FlashError } from 'app/components/presentational/generic/error-flash';
 /**
  * Simple wrapper presentational component that handles global errors
  */
-export class ErrorHandlerComponent extends Component<ErrorHandlerComponentInput & ErrorHandlerComponentOutput> {
+export class ErrorHandlerComponent extends Component<ErrorHandlerComponentProps> {
 	
 	/**
 	 * @override
@@ -73,6 +73,11 @@ export type ErrorHandlerComponentInput = {
 	 * The error to be displayed, if any
 	 */
 	error?: AppError | string;
+
+	/**
+	 * Single component as child
+	 */
+	children: ReactNode;
 };
 
 /**
@@ -86,3 +91,7 @@ export type ErrorHandlerComponentOutput = {
 	clearError: () => void;
 };
 
+/**
+ * ErrorHandlerComponent's props
+ */
+export type ErrorHandlerComponentProps = ErrorHandlerComponentInput & ErrorHandlerComponentOutput;

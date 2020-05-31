@@ -14,7 +14,7 @@ export type VideogameFilterFormValues = MediaItemFilterFormValues & {
 /**
  * The videogame filter form validation
  */
-export const videogameFilterFormValidationSchema: ObjectSchema<VideogameFilterFormValues> = object().shape(mediaItemFilterFormValidationShape);
+export const videogameFilterFormValidationSchema: ObjectSchema<VideogameFilterFormValues> = object().required().shape(mediaItemFilterFormValidationShape);
 
 /**
  * Mapper for the videogame filter form values

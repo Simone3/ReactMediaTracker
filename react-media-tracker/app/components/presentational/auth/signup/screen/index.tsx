@@ -21,7 +21,7 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 	 */
 	public static readonly navigationOptions = (): NavigationStackOptions => {
 		return {
-			header: null
+			headerShown: false
 		};
 	};
 

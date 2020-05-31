@@ -74,6 +74,7 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 				onPress={this.onBackButtonPress}
 				tintColor={config.ui.colors.colorContrastText}
 				disabled={disabled}
+				labelVisible={false}
 			/>
 		);
 	}
@@ -126,7 +127,7 @@ export type HeaderFormExitBackComponentInput = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationScreenProp<object>;
+	navigation: NavigationScreenProp<unknown>;
 
 	/**
 	 * If the form is dirty, i.e. if the confirmation alert is required

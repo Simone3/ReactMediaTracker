@@ -41,7 +41,9 @@ const defaultScreenOptions: ScreenConfig = {
 	headerTitleStyle: {
 		fontWeight: 'bold'
 	},
-	headerLeft: null
+	headerLeft: () => {
+		return null;
+	}
 };
 
 /**
@@ -86,8 +88,7 @@ const SettingsStackNavigator = createStackNavigator({
  * The navigator for the credits section of the app
  */
 const CreditsStackNavigator = createStackNavigator({
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	[AppScreens.Credits]: CreditsScreenComponent as any
+	[AppScreens.Credits]: CreditsScreenComponent
 }, {
 	initialRouteName: AppScreens.Credits,
 	defaultNavigationOptions: defaultScreenOptions

@@ -2,7 +2,9 @@ import React, { Component, ReactNode } from 'react';
 import { config } from 'app/config/config';
 import { HeaderIconComponent } from 'app/components/presentational/generic/header-icon';
 import { images } from 'app/utilities/images';
-import { NavigationScreenProp } from 'react-navigation';
+import { NavigationDrawerProp } from 'react-navigation-drawer';
+import { ScreenProps } from 'app/components/containers/generic/navigation';
+import { AppError } from 'app/data/models/internal/error';
 
 /**
  * Presentational component to display the header hamburger button to open the side drawer
@@ -19,7 +21,14 @@ export class HeaderHamburgerComponent extends Component<HeaderHamburgerComponent
 				source={images.menu()}
 				tintColor={config.ui.colors.colorContrastText}
 				onClick={() => {
-					this.props.navigation.openDrawer();
+
+					const navigation = this.props.navigationScreenProps.navigation as NavigationDrawerProp;
+					if(typeof navigation.openDrawer === 'undefined') {
+
+						throw AppError.GENERIC.withDetails('Added HeaderHamburgerComponent in a component not inside Drawer Navigation');
+					}
+
+					navigation.openDrawer();
 				}}
 				clickStatus='ENABLED'
 			/>
@@ -33,7 +42,7 @@ export class HeaderHamburgerComponent extends Component<HeaderHamburgerComponent
 export type HeaderHamburgerComponentProps = {
 
 	/**
-	 * The navigation data
+	 * The navigation props
 	 */
-	navigation: NavigationScreenProp<object>;
+	navigationScreenProps: ScreenProps;
 }

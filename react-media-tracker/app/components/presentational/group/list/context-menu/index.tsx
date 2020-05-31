@@ -63,7 +63,7 @@ export class GroupContextMenuComponent extends Component<GroupContextMenuCompone
 		return {
 			label: i18n.t('group.list.delete'),
 			icon: images.deleteButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				const title = i18n.t('group.common.alert.delete.title');
 				const message = i18n.t('group.common.alert.delete.message', { name: group.name });
@@ -91,7 +91,7 @@ export class GroupContextMenuComponent extends Component<GroupContextMenuCompone
 		return {
 			label: i18n.t('group.list.edit'),
 			icon: images.editButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				edit(group);
 				close();

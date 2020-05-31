@@ -3,7 +3,7 @@ import { HeaderComponent, HeaderComponentInput } from 'app/components/presentati
 import { styles } from 'app/components/presentational/generic/header-search/styles';
 import { SearchBarComponent, SearchBarComponentInput, SearchBarComponentOutput } from 'app/components/presentational/generic/search-bar';
 import { HeaderBackButton } from 'react-navigation-stack';
-import { View } from 'react-native';
+import { View, Dimensions } from 'react-native';
 import { config } from 'app/config/config';
 
 /**
@@ -50,16 +50,21 @@ export class SearchHeaderComponent extends Component<SearchHeaderComponentProps>
 		} = this.props;
 
 		return (
-			<View style={styles.searchModeContainer}>
-				<HeaderBackButton
-					onPress={onRequestSearchModeExit}
-					tintColor={config.ui.colors.colorContrastText}
-				/>
-				<SearchBarComponent
-					{...searchHeaderInput}
-					{...searchHeaderOutput}
-					style={styles.searchBarInput}
-				/>
+			<View style={[ styles.searchModeContainer, { width: Dimensions.get('screen').width }]}>
+				<View style={styles.backContainer}>
+					<HeaderBackButton
+						onPress={onRequestSearchModeExit}
+						tintColor={config.ui.colors.colorContrastText}
+						labelVisible={false}
+					/>
+				</View>
+				<View style={styles.searchContainer}>
+					<SearchBarComponent
+						{...searchHeaderInput}
+						{...searchHeaderOutput}
+						style={styles.searchBarInput}
+					/>
+				</View>
 			</View>
 		);
 	}

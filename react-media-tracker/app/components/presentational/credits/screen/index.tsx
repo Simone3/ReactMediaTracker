@@ -2,10 +2,11 @@ import React, { Component, ReactNode } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from 'app/components/presentational/category/list/screen/styles';
 import { HeaderHamburgerComponent } from 'app/components/presentational/generic/header-hamburger';
-import { ScreenProps, ScreenConfig } from 'app/components/containers/generic/navigation';
+import { ScreenProps } from 'app/components/containers/generic/navigation';
 import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
 import { HyperlinkComponent } from 'app/components/presentational/generic/hyperlink';
+import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole credits screen
@@ -15,15 +16,19 @@ export class CreditsScreenComponent extends Component<CreditsScreenComponentProp
 	/**
 	 * @override
 	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): ScreenConfig => {
+	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <HeaderComponent
-				title={i18n.t('credits.screen.title')}
-				componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation} />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<HeaderComponent
+						title={i18n.t('credits.screen.title')}
+						componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
+					/>
+				);
+			}
 		};
 	};
-
+	
 	/**
 	 * @override
 	 */

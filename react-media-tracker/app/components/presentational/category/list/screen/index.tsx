@@ -20,10 +20,14 @@ export class CategoriesListScreenComponent extends Component<CategoriesListScree
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <HeaderComponent
-				title={i18n.t('category.list.title')}
-				componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation} />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<HeaderComponent
+						title={i18n.t('category.list.title')}
+						componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
+					/>
+				);
+			}
 		};
 	};
 

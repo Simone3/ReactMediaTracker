@@ -7,13 +7,13 @@ import { mediaItemFormValidationShape } from './media-item';
  */
 const videogameFormValidationShape: ObjectSchemaDefinition<VideogameInternal> = {
 	...mediaItemFormValidationShape,
-	developers: array().of(string()),
-	publishers: array().of(string()),
-	platforms: array().of(string()),
+	developers: array().of(string().required()),
+	publishers: array().of(string().required()),
+	platforms: array().of(string().required()),
 	averageLengthHours: number()
 };
 
 /**
  * The videogame form validation schema
  */
-export const videogameFormValidationSchema: ObjectSchema<VideogameInternal> = object().shape(videogameFormValidationShape);
+export const videogameFormValidationSchema: ObjectSchema<VideogameInternal> = object().required().shape(videogameFormValidationShape);

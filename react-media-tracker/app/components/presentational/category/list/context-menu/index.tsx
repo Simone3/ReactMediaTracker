@@ -63,7 +63,7 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 		return {
 			label: i18n.t('category.list.delete'),
 			icon: images.deleteButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				const title = i18n.t('category.common.alert.delete.title');
 				const message = i18n.t('category.common.alert.delete.message', { name: category.name });
@@ -91,7 +91,7 @@ export class CategoryContextMenuComponent extends Component<CategoryContextMenuC
 		return {
 			label: i18n.t('category.list.edit'),
 			icon: images.editButton(),
-			onClick: () => {
+			onClick: (): void => {
 
 				edit(category);
 				close();

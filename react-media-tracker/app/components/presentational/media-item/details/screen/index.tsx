@@ -20,10 +20,14 @@ export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsS
 	 */
 	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
 		return {
-			headerTitle: <MediaItemDetailsHeaderContainer
-				componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-				componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
-			/>
+			headerTitle: (): ReactNode => {
+				return (
+					<MediaItemDetailsHeaderContainer
+						componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+						componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
+					/>
+				);
+			}
 		};
 	};
 
