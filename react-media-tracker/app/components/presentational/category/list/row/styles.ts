@@ -10,18 +10,14 @@ export const styles = StyleSheet.create({
 		justifyContent: 'flex-start',
 		alignItems: 'center',
 
-		paddingTop: 10,
-		paddingBottom: 10,
-		paddingLeft: 18,
-		paddingRight: 18,
-		
-		marginTop: 3,
-		marginBottom: 3
+		marginTop: 5,
+		marginBottom: 5
 	},
 	iconContainer: {
 		flex: 0,
 		alignSelf: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		paddingLeft: 18
 	},
 	icon: {
 		width: 30,
@@ -37,5 +33,17 @@ export const styles = StyleSheet.create({
 		color: config.ui.colors.colorContrastText,
 		flex: 0,
 		fontSize: 20
+	},
+	contextButtonContainer: {
+		flex: 0,
+
+		paddingTop: 20,
+		paddingBottom: 20,
+		paddingLeft: 18,
+		paddingRight: 18
+	},
+	contextButton: {
+		width: 15,
+		height: 15
 	}
 });
