@@ -14,7 +14,7 @@
     "cp-firebase-ios-prod": "shx cp \"./app/config/files/config-prod/GoogleService-Info.plist\" \"./ios/\"",
     "android-clean": "cd android && \"./gradlew\" clean && cd ..",
     "ios-pod": "cd ios; pod install --repo-update; cd ..",
-    "reset": "react-native start -- --reset-cache",
+    "reset": "react-native start --reset-cache",
     "lint": "eslint app/**/*.ts app/**/*.tsx"
   },
   "dependencies": {
