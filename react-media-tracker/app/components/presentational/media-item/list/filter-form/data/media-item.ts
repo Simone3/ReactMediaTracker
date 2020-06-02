@@ -10,7 +10,7 @@ import { ObjectSchemaDefinition, string } from 'yup';
 export type MediaItemFilterFormValues = {
 
 	status: MediaItemFilterFormStatus;
-	importanceLevel?: MediaItemImportanceInternal;
+	importanceLevel: MediaItemFilterFormImportance;
 	group: MediaItemFilterFormGroup;
 	ownPlatform: MediaItemFilterFormOwnPlatform;
 	sortBy: MediaItemFilterFormSortBy;
@@ -25,6 +25,16 @@ export const MEDIA_ITEM_FILTER_FORM_STATUS_VALUES: [ 'ALL', 'CURRENT', 'COMPLETE
  * The generic media item status filter options
  */
 export type MediaItemFilterFormStatus = ValuesOf<typeof MEDIA_ITEM_FILTER_FORM_STATUS_VALUES>;
+
+/**
+ * Array of all generic media item importance filter options
+ */
+export const MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES: MediaItemFilterFormImportance[] = [ 'NONE', ...MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES ];
+
+/**
+ * The generic media item importance filter options
+ */
+export type MediaItemFilterFormImportance = 'NONE' | MediaItemImportanceInternal;
 
 /**
  * Array of all generic media item group filter options
@@ -61,7 +71,7 @@ export type MediaItemFilterFormSortBy = ValuesOf<typeof MEDIA_ITEM_FILTER_FORM_S
  */
 export const mediaItemFilterFormValidationShape: ObjectSchemaDefinition<MediaItemFilterFormValues> = {
 	status: string().oneOf(MEDIA_ITEM_FILTER_FORM_STATUS_VALUES).required(),
-	importanceLevel: string().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES),
+	importanceLevel: string().oneOf(MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES).required(),
 	group: string().oneOf(MEDIA_ITEM_FILTER_FORM_GROUP_VALUES).required(),
 	ownPlatform: string().oneOf(MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES).required(),
 	sortBy: string().oneOf(MEDIA_ITEM_FILTER_FORM_SORT_VALUES).required()
@@ -130,9 +140,9 @@ export abstract class MediaItemFilterFormMapper<TMediaItemFilterInternal extends
 	 * @param source the source
 	 * @returns the target
 	 */
-	protected toImportanceFormValue(source: MediaItemImportanceInternal[] | undefined): MediaItemImportanceInternal | undefined {
+	protected toImportanceFormValue(source: MediaItemImportanceInternal[] | undefined): MediaItemFilterFormImportance {
 
-		return source && source.length > 0 ? source[0] : undefined;
+		return source && source.length > 0 ? source[0] : 'NONE';
 	}
 
 	/**
@@ -205,9 +215,9 @@ export abstract class MediaItemFilterFormMapper<TMediaItemFilterInternal extends
 	 * @param source the source
 	 * @returns the target
 	 */
-	protected toImportanceModel(source: MediaItemImportanceInternal | undefined): MediaItemImportanceInternal[] | undefined {
+	protected toImportanceModel(source: MediaItemFilterFormImportance): MediaItemImportanceInternal[] | undefined {
 
-		return source ? [ source ] : undefined;
+		return source === 'NONE' ? undefined : [ source ];
 	}
 
 	/**

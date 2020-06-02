@@ -5,8 +5,7 @@ import { styles } from 'app/components/presentational/media-item/list/filter-for
 import { i18n } from 'app/utilities/i18n';
 import { PickerFieldComponent } from 'app/components/presentational/form/fields/picker';
 import { PickerComponentItem } from 'app/components/presentational/form/components/picker/common';
-import { MEDIA_ITEM_FILTER_FORM_GROUP_VALUES, MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES, MEDIA_ITEM_FILTER_FORM_SORT_VALUES, MEDIA_ITEM_FILTER_FORM_STATUS_VALUES, MediaItemFilterFormValues } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
-import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
+import { MEDIA_ITEM_FILTER_FORM_GROUP_VALUES, MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES, MEDIA_ITEM_FILTER_FORM_SORT_VALUES, MEDIA_ITEM_FILTER_FORM_STATUS_VALUES, MediaItemFilterFormValues, MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES } from 'app/components/presentational/media-item/list/filter-form/data/media-item';
 import { images } from 'app/utilities/images';
 
 /**
@@ -129,18 +128,13 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 	 */
 	private importanceField(): ReactNode {
 
-		let items: PickerComponentItem[] = [{
-			value: undefined,
-			label: i18n.t(`mediaItem.list.filter.values.importance.all`),
-			icon: images.none()
-		}];
-		items = items.concat(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES.map((importance) => {
+		const items: PickerComponentItem[] = MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES.map((importance) => {
 			return {
 				value: importance,
-				label: i18n.t(`mediaItem.common.importance.${importance}`),
-				icon: images.mediaItemImportance(importance)
+				label: importance === 'NONE' ? i18n.t(`mediaItem.list.filter.values.importance.all`) : i18n.t(`mediaItem.common.importance.${importance}`),
+				icon: importance === 'NONE' ? images.none() : images.mediaItemImportance(importance)
 			};
-		}));
+		});
 
 		return (
 			<PickerFieldComponent

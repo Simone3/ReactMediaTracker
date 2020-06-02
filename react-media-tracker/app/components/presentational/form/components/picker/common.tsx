@@ -1,6 +1,7 @@
 import { styles } from 'app/components/presentational/form/components/picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { ImageRequireSource, Picker } from 'react-native';
+import { Picker } from '@react-native-community/picker';
+import { ImageRequireSource } from 'react-native';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
 
 /**
@@ -28,7 +29,10 @@ export class CommonPickerComponent extends Component<PickerComponentProps> {
 				enabled={!disabled}
 				selectedValue={currentItem}
 				style={styles.input}
-				onValueChange={onSelectItem}>
+				onValueChange={(itemValue) => {
+
+					onSelectItem(itemValue.toString());
+				}}>
 				{items.map((item, index) => {
 					return (
 						<Picker.Item
@@ -72,7 +76,7 @@ export type PickerComponentOutput = FormInputComponentOutput & {
 	/**
 	 * Notifies input value change
 	 */
-	onSelectItem: (value: string | undefined | null) => void;
+	onSelectItem: (value: string) => void;
 }
 
 /**
@@ -88,7 +92,7 @@ export type PickerComponentItem = {
 	/**
 	 * The item value
 	 */
-	value: string | undefined | null;
+	value: string;
 
 	/**
 	 * The item label

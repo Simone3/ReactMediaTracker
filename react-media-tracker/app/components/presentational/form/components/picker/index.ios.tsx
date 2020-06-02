@@ -11,7 +11,7 @@ import { ModalInputConfirmComponent } from 'app/components/presentational/form/h
  */
 export class PickerComponent extends Component<PickerComponentProps> {
 	
-	public state: PickerComponentState = { open: false, currentTemporaryItem: undefined };
+	public state: PickerComponentState = { open: false, currentTemporaryItem: '' };
 
 	/**
 	 * @override
@@ -150,5 +150,5 @@ export type PickerComponentState = {
 	/**
 	 * Currently selected value in the modal, not yet confirmed
 	 */
-	currentTemporaryItem: string | undefined;
+	currentTemporaryItem: string;
 }
