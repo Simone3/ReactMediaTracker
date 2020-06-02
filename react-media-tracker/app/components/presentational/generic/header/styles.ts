@@ -6,20 +6,23 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
-		alignContent: 'center'
+		alignContent: 'center',
+
+		marginLeft: -15,
+		marginRight: -15
 	},
 	leftContainer: {
 		flex: 0,
 		flexDirection: 'row',
 		justifyContent: 'flex-start',
 		alignContent: 'center',
-		marginLeft: 10
+		marginLeft: 5
 	},
 	titleContainer: {
 		flex: 1,
 		alignItems: 'flex-start',
 		justifyContent: 'center',
-		paddingLeft: 5
+		paddingLeft: 10
 	},
 	title: {
 		fontSize: 20,
@@ -32,6 +35,6 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'flex-end',
 		alignContent: 'center',
-		marginRight: 10
+		marginRight: 5
 	}
 });

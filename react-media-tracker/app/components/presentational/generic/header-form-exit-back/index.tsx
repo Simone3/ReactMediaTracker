@@ -3,8 +3,7 @@ import { BackHandler } from 'react-native';
 import { NavigationEventSubscription, NavigationScreenProp } from 'react-navigation';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { i18n } from 'app/utilities/i18n';
-import { config } from 'app/config/config';
-import { HeaderBackButton } from 'react-navigation-stack';
+import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
 
 /**
  * Presentational component to display the header back button for a form, with built-in alert on click if the form is dirty.
@@ -70,11 +69,9 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 		} = this.props;
 
 		return (
-			<HeaderBackButton
-				onPress={this.onBackButtonPress}
-				tintColor={config.ui.colors.colorContrastText}
+			<HeaderBackComponent
+				onClick={this.onBackButtonPress}
 				disabled={disabled}
-				labelVisible={false}
 			/>
 		);
 	}

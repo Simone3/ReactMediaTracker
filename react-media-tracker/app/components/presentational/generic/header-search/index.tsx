@@ -2,9 +2,8 @@ import React, { Component, ReactNode } from 'react';
 import { HeaderComponent, HeaderComponentInput } from 'app/components/presentational/generic/header';
 import { styles } from 'app/components/presentational/generic/header-search/styles';
 import { SearchBarComponent, SearchBarComponentInput, SearchBarComponentOutput } from 'app/components/presentational/generic/search-bar';
-import { HeaderBackButton } from 'react-navigation-stack';
 import { View, Dimensions } from 'react-native';
-import { config } from 'app/config/config';
+import { HeaderBackComponent } from 'app/components/presentational/generic//header-back';
 
 /**
  * Presentational component to display an header that supports two modes: normal (title + icons) or search (search input + back button to exit search)
@@ -52,10 +51,8 @@ export class SearchHeaderComponent extends Component<SearchHeaderComponentProps>
 		return (
 			<View style={[ styles.searchModeContainer, { width: Dimensions.get('screen').width }]}>
 				<View style={styles.backContainer}>
-					<HeaderBackButton
-						onPress={onRequestSearchModeExit}
-						tintColor={config.ui.colors.colorContrastText}
-						labelVisible={false}
+					<HeaderBackComponent
+						onClick={onRequestSearchModeExit}
 					/>
 				</View>
 				<View style={styles.searchContainer}>
