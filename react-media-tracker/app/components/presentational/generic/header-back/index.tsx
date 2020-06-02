@@ -21,7 +21,7 @@ export class HeaderBackComponent extends Component<HeaderBackComponentProps> {
 
 		return (
 			<HeaderIconComponent
-				source={images.platformsField()}
+				source={images.back()}
 				tintColor={config.ui.colors.colorContrastText}
 				onClick={onClick ? onClick : this.defaultOnClick}
 				clickStatus={disabled ? 'DISABLED' : 'ENABLED'}

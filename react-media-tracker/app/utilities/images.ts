@@ -2,7 +2,7 @@ import { MediaTypeInternal } from 'app/data/models/internal/category';
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemImportanceInternal, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { OwnPlatformIconInternal } from 'app/data/models/internal/own-platform';
-import { ImageRequireSource } from 'react-native';
+import { ImageRequireSource, Platform } from 'react-native';
 
 /**
  * Centralized component to get images
@@ -560,6 +560,15 @@ class ImagesHelper {
 	public appLogo(): ImageRequireSource {
 
 		return require('app/resources/images/ic_app_logo.png');
+	}
+
+	/**
+	 * Image getter
+	 * @returns back icon
+	 */
+	public back(): ImageRequireSource {
+
+		return Platform.OS === 'ios' ? require('app/resources/images/ic_action_back_ios.png') : require('app/resources/images/ic_action_back_android.png');
 	}
 }
 
