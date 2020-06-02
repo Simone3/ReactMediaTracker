@@ -1,7 +1,6 @@
 import React, { Component, ReactNode } from 'react';
-import { CommonMediaItemImageButtonsRowComponent } from 'app/components/presentational/media-item/details/image-buttons-row/media-item';
+import { CommonMediaItemImageButtonsRowComponent, MediaItemActionButton } from 'app/components/presentational/media-item/details/image-buttons-row/media-item';
 import { MediaItemImageButtonsRowComponentProps } from 'app/components/presentational/media-item/details/image-buttons-row';
-import { ButtonsListComponentButton } from 'app/components/presentational/generic/buttons-list';
 import { images } from 'app/utilities/images';
 import { i18n } from 'app/utilities/i18n';
 import { Linking } from 'react-native';
@@ -31,7 +30,7 @@ export class VideogameImageButtonsRowComponent extends Component<MediaItemImageB
 	 * Defines the Just Watch button
 	 * @returns the button specification
 	 */
-	private getHowLongToBeatButton(): ButtonsListComponentButton {
+	private getHowLongToBeatButton(): MediaItemActionButton {
 
 		const {
 			mediaItem
@@ -47,10 +46,12 @@ export class VideogameImageButtonsRowComponent extends Component<MediaItemImageB
 
 	/**
 	 * Callback for Just Watch icon click
+	 * @param closeModal callback to close the "show more" modal
 	 */
-	private onHowLongToBeatClick(): void {
+	private onHowLongToBeatClick(closeModal: () => void): void {
 
 		const search = encodeURIComponent(this.props.mediaItem.name);
 		Linking.openURL(config.external.howLongToBeatSearch(search));
+		closeModal();
 	}
 }

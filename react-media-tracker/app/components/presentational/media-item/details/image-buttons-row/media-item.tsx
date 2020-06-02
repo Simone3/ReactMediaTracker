@@ -116,11 +116,13 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * @param key the button key
 	 * @returns the component
 	 */
-	private renderButton(button: ButtonsListComponentButton, key: number): ReactNode {
+	private renderButton(button: MediaItemActionButton, key: number): ReactNode {
 		
+		const onClick = button.onClick.bind(this, this.closeShowMoreModal.bind(this));
+
 		return (
 			<TouchableOpacity
-				onPress={button.onClick}
+				onPress={onClick}
 				disabled={button.disabled}
 				key={`image-button-${key}`}>
 				<Image
@@ -135,7 +137,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * Defines all buttons to be displayed next to the image
 	 * @returns the buttons list
 	 */
-	private getButtons(): ButtonsListComponentButton[] {
+	private getButtons(): MediaItemActionButton[] {
 
 		const commonLinkButtons = [
 			this.getGoogleButton(),
@@ -155,7 +157,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * Defines the Google button
 	 * @returns the button specification
 	 */
-	protected getGoogleButton(): ButtonsListComponentButton {
+	protected getGoogleButton(): MediaItemActionButton {
 
 		const {
 			mediaItem
@@ -173,7 +175,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * Defines the Wikipedia button
 	 * @returns the button specification
 	 */
-	protected getWikipediaButton(): ButtonsListComponentButton {
+	protected getWikipediaButton(): MediaItemActionButton {
 
 		const {
 			mediaItem
@@ -191,7 +193,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * Defines the Download Catalog button
 	 * @returns the button specification
 	 */
-	protected getDownloadCatalogButton(): ButtonsListComponentButton {
+	protected getDownloadCatalogButton(): MediaItemActionButton {
 
 		const {
 			mediaItem
@@ -209,7 +211,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * Defines the button to open the full list of buttons
 	 * @returns the button specification
 	 */
-	protected getShowMoreButton(): ButtonsListComponentButton {
+	protected getShowMoreButton(): MediaItemActionButton {
 
 		return {
 			icon: images.more(),
@@ -221,26 +223,31 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 
 	/**
 	 * Callback for Google icon click
+	 * @param closeModal callback to close the "show more" modal
 	 */
-	private onGoogleClick(): void {
+	private onGoogleClick(closeModal: () => void): void {
 
 		const search = encodeURIComponent(this.props.mediaItem.name);
 		Linking.openURL(config.external.googleSearch(search));
+		closeModal();
 	}
 
 	/**
 	 * Callback for Wikipedia icon click
+	 * @param closeModal callback to close the "show more" modal
 	 */
-	private onWikipediaClick(): void {
+	private onWikipediaClick(closeModal: () => void): void {
 
 		const search = encodeURIComponent(this.props.mediaItem.name);
 		Linking.openURL(config.external.wikipediaSearch(search));
+		closeModal();
 	}
 
 	/**
 	 * Callback for download icon click
+	 * @param closeModal callback to close the "show more" modal
 	 */
-	private onCatalogDownloadClick(): void {
+	private onCatalogDownloadClick(closeModal: () => void): void {
 		
 		const {
 			onReloadCatalog,
@@ -256,6 +263,7 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 			ConfirmAlert.alert(title, message, () => {
 				
 				onReloadCatalog(catalogId);
+				closeModal();
 			});
 		}
 	}
@@ -265,7 +273,15 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 */
 	private onShowMoreClick(): void {
 
-		this.setState({ showMoreModalOpen: !this.state.showMoreModalOpen });
+		this.setState({ showMoreModalOpen: true });
+	}
+
+	/**
+	 * Closes the "show more" modal if necessary
+	 */
+	private closeShowMoreModal(): void {
+
+		this.setState({ showMoreModalOpen: false });
 	}
 
 	/**
@@ -273,23 +289,19 @@ export class CommonMediaItemImageButtonsRowComponent extends Component<CommonMed
 	 * @returns the modal
 	 */
 	private renderShowMoreModal(): ReactNode {
+		
+		const buttons: ButtonsListComponentButton[] = this.getButtons().map((button) => {
 
-		// Remap button click callbacks so that the modal is closed after the action
-		const buttons = this.getButtons().map((button) => {
-
-			const actualOnClick = button.onClick;
-			button.onClick = () => {
-
-				actualOnClick();
-				this.onShowMoreClick();
+			return {
+				...button,
+				onClick: button.onClick.bind(this, this.closeShowMoreModal.bind(this))
 			};
-			return button;
 		});
 
 		return (
 			<ModalComponent
 				visible={this.state.showMoreModalOpen}
-				onClose={this.onShowMoreClick.bind(this)}
+				onClose={this.closeShowMoreModal.bind(this)}
 				horizontalPosition='center'
 				verticalPosition='bottom'>
 				<ButtonsListComponent
@@ -310,7 +322,19 @@ export type CommonMediaItemImageButtonsRowComponentProps = MediaItemImageButtons
 	/**
 	 * The additional buttons to be displayed beside the image
 	 */
-	specificButtons?: ButtonsListComponentButton[];
+	specificButtons?: MediaItemActionButton[];
+};
+
+/**
+ * CommonMediaItemImageButtonsRowComponent's action button specifiction
+ */
+export type MediaItemActionButton = Omit<ButtonsListComponentButton, 'onClick'> & {
+	
+	/**
+	 * The button click callback
+	 * @param closeModal callback to close the "show more" modal
+	 */
+	onClick: (closeModal: () => void) => void;
 };
 
 /**
