@@ -16,7 +16,7 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 	/**
 	 * @override
 	 */
-	public invoke<TRequest extends object, TResponse extends object>(parameters: InvocationParams<TRequest, TResponse>): Promise<TResponse> {
+	public invoke<TRequest extends object | undefined, TResponse extends object>(parameters: InvocationParams<TRequest, TResponse>): Promise<TResponse> {
 
 		return new Promise((resolve, reject): void => {
 
