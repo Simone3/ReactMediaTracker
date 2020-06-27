@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
 import { BackHandler } from 'react-native';
-import { NavigationEventSubscription, NavigationScreenProp } from 'react-navigation';
+import { NavigationScreenProp } from 'react-navigation';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { i18n } from 'app/utilities/i18n';
 import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
@@ -11,9 +11,6 @@ import { HeaderBackComponent } from 'app/components/presentational/generic/heade
  */
 export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackComponentInput> {
 	
-	private didFocusSubscription?: NavigationEventSubscription;
-	private willBlurSubscription?: NavigationEventSubscription;
-	
 	/**
 	 * @override
 	 */
@@ -23,12 +20,6 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 
 		this.onPhysicalBackButtonPressAndroid = this.onPhysicalBackButtonPressAndroid.bind(this);
 		this.onBackButtonPress = this.onBackButtonPress.bind(this);
-
-		// Add listener for "physical" back button on Android
-		this.didFocusSubscription = props.navigation.addListener('didFocus', () => {
-
-			BackHandler.addEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
-		});
 	}
 	
 	/**
@@ -37,10 +28,7 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 	public componentDidMount(): void {
 
 		// Add listener for "physical" back button on Android
-		this.willBlurSubscription = this.props.navigation.addListener('willBlur', () => {
-			
-			BackHandler.removeEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
-		});
+		BackHandler.addEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
 	}
 
 	/**
@@ -48,15 +36,8 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 	 */
 	public componentWillUnmount(): void {
 		
-		// Release listeners for "physical" back button on Android
-		if(this.didFocusSubscription) {
-
-			this.didFocusSubscription.remove();
-		}
-		if(this.willBlurSubscription) {
-
-			this.willBlurSubscription.remove();
-		}
+		// Remove listener for "physical" back button on Android
+		BackHandler.removeEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
 	}
 
 	/**
