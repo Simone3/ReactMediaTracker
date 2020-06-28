@@ -141,24 +141,35 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 
 		console.log(`Back-End would filter by ${JSON.stringify(filter)} - mocked implementation is non complete...`);
 
-		if(filter.name) {
+		const nameFilter = filter.name;
+		const groupsIdsFilter = filter.groups ? filter.groups.groupIds : undefined;
+		const importanceFilter = filter.importanceLevels;
 
-			return mediaItems.filter((item) => {
+		if(nameFilter) {
 
-				return filter.name && filter.name.toUpperCase() === item.name.toUpperCase();
+			mediaItems = mediaItems.filter((item) => {
+
+				return nameFilter.toUpperCase() === item.name.toUpperCase();
 			});
 		}
-		else if(filter.importanceLevels) {
+		
+		if(groupsIdsFilter && groupsIdsFilter.length > 0) {
 
-			return mediaItems.filter((item) => {
+			mediaItems = mediaItems.filter((item) => {
 
-				return filter.importanceLevels && filter.importanceLevels.indexOf(item.importance) !== -1;
+				return item.group && groupsIdsFilter.includes(item.group.id);
 			});
 		}
-		else {
 
-			return mediaItems;
+		if(importanceFilter) {
+
+			mediaItems = mediaItems.filter((item) => {
+
+				return importanceFilter.includes(item.importance);
+			});
 		}
+
+		return mediaItems;
 	}
 
 	/**

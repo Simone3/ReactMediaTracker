@@ -81,6 +81,12 @@ export interface MediaItemDefinitionsController<TMediaItemInternal extends Media
 	getDefaultSortBy(): TMediaItemSortByInternal[];
 
 	/**
+	 * Getter for the "view group" media item sort option
+	 * @returns the sort by
+	 */
+	getViewGroupSortBy(): TMediaItemSortByInternal[];
+
+	/**
 	 * Extracts the creator (e.g. author for books) names from a media item
 	 * @param mediaItem the media item
 	 * @returns the author names

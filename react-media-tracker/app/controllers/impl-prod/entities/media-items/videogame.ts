@@ -191,6 +191,17 @@ export class VideogameDefinitionsControllerImpl implements VideogameDefinitionsC
 	/**
 	 * @override
 	 */
+	public getViewGroupSortBy(): VideogameSortByInternal[] {
+
+		return [{
+			field: 'GROUP',
+			ascending: true
+		}];
+	}
+
+	/**
+	 * @override
+	 */
 	public getCreatorNames(mediaItem: VideogameInternal): string[] | undefined {
 
 		return mediaItem.developers;

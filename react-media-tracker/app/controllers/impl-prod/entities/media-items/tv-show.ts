@@ -191,6 +191,17 @@ export class TvShowDefinitionsControllerImpl implements TvShowDefinitionsControl
 	/**
 	 * @override
 	 */
+	public getViewGroupSortBy(): TvShowSortByInternal[] {
+
+		return [{
+			field: 'GROUP',
+			ascending: true
+		}];
+	}
+
+	/**
+	 * @override
+	 */
 	public getCreatorNames(mediaItem: TvShowInternal): string[] | undefined {
 
 		return mediaItem.creators;

@@ -1,3 +1,4 @@
+import { GroupInternal } from 'app/data/models/internal/group';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 
 /**
@@ -19,6 +20,11 @@ export type MediaItemsListState = {
 	 * The current search term
 	 */
 	readonly searchTerm?: string;
+
+	/**
+	 * The current group whose media items are shown
+	 */
+	readonly viewGroup?: GroupInternal;
 
 	/**
 	 * The current media item filter
@@ -90,7 +96,7 @@ export type MediaItemsListStatus = 'REQUIRES_FETCH' | 'FETCHING' | 'FETCHED' | '
 /**
  * The current mode (e.g. allows to toggle between standard and search mode)
  */
-export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS';
+export type MediaItemsListMode = 'NORMAL' | 'SEARCH' | 'SET_FILTERS' | 'VIEW_GROUP';
 
 /**
  * The current status of the media item saving process

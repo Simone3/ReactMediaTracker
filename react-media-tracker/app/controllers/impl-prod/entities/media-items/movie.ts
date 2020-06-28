@@ -191,6 +191,17 @@ export class MovieDefinitionsControllerImpl implements MovieDefinitionsControlle
 	/**
 	 * @override
 	 */
+	public getViewGroupSortBy(): MovieSortByInternal[] {
+
+		return [{
+			field: 'GROUP',
+			ascending: true
+		}];
+	}
+
+	/**
+	 * @override
+	 */
 	public getCreatorNames(mediaItem: MovieInternal): string[] | undefined {
 
 		return mediaItem.directors;

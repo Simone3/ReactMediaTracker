@@ -143,6 +143,7 @@
 				"TV_SHOW": "I could rewatch this",
 				"VIDEOGAME": "I could replay this"
 			},
+			"viewGroup": "View Group",
 			"search": {
 				"BOOK": "Search books...",
 				"MOVIE": "Search movies...",

@@ -1,5 +1,5 @@
 import { MediaItemContextMenuComponent, MediaItemContextMenuComponentInput, MediaItemContextMenuComponentOutput } from 'app/components/presentational/media-item/list/context-menu';
-import { deleteMediaItem, loadMediaItemDetails, markMediaItemAsActive, markMediaItemAsComplete, markMediaItemAsRedo, removeMediaItemHighlight } from 'app/redux/actions/media-item/generators';
+import { deleteMediaItem, loadMediaItemDetails, markMediaItemAsActive, markMediaItemAsComplete, markMediaItemAsRedo, removeMediaItemHighlight, startMediaItemsViewGroupMode } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -28,6 +28,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemContextMenuComponentOu
 		},
 		markAsRedo: (mediaItem) => {
 			dispatch(markMediaItemAsRedo(mediaItem));
+		},
+		viewGroup: (group) => {
+			dispatch(startMediaItemsViewGroupMode(group));
 		},
 		close: () => {
 			dispatch(removeMediaItemHighlight());

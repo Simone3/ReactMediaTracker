@@ -191,6 +191,17 @@ export class BookDefinitionsControllerImpl implements BookDefinitionsController 
 	/**
 	 * @override
 	 */
+	public getViewGroupSortBy(): BookSortByInternal[] {
+
+		return [{
+			field: 'GROUP',
+			ascending: true
+		}];
+	}
+
+	/**
+	 * @override
+	 */
 	public getCreatorNames(mediaItem: BookInternal): string[] | undefined {
 
 		return mediaItem.authors;

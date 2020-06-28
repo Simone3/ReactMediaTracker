@@ -94,7 +94,7 @@ export type SearchHeaderComponentInput = {
 export type SearchHeaderComponentOutput = {
 
 	/**
-	 * Callback for the back button press (i.e. user requests to exit the search mode)
+	 * Callback for the back button press during search (i.e. user requests to exit the mode)
 	 */
 	onRequestSearchModeExit: () => void;
 

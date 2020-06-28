@@ -5,6 +5,7 @@ import { i18n } from 'app/utilities/i18n';
 import { ButtonsListComponentButton, ButtonsListComponent } from 'app/components/presentational/generic/buttons-list';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { images } from 'app/utilities/images';
+import { GroupInternal } from 'app/data/models/internal/group';
 
 /**
  * Presentational component to display a modal dialog with the media item options
@@ -48,6 +49,12 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			if(mediaItem.status === 'REDO' || mediaItem.status === 'NEW' || mediaItem.status === 'ACTIVE') {
 
 				buttons.push(this.getMarkAsCompleteButton(mediaItem));
+			}
+
+			// Media items that belong to a group have the "View Group" button
+			if(mediaItem.group && mediaItem.group.id) {
+
+				buttons.push(this.getViewGroupButton(mediaItem));
 			}
 
 			return (
@@ -189,6 +196,29 @@ export class MediaItemContextMenuComponent extends Component<MediaItemContextMen
 			}
 		};
 	}
+
+	/**
+	 * The "View Group" button
+	 * @param mediaItem the media item
+	 * @returns the button
+	 */
+	private getViewGroupButton(mediaItem: MediaItemInternal): ButtonsListComponentButton {
+
+		const {
+			viewGroup,
+			close
+		} = this.props;
+
+		return {
+			label: i18n.t(`mediaItem.list.viewGroup`),
+			icon: images.groupField(),
+			onClick: (): void => {
+
+				viewGroup(mediaItem.group as GroupInternal);
+				close();
+			}
+		};
+	}
 }
 
 /**
@@ -231,6 +261,11 @@ export type MediaItemContextMenuComponentOutput = {
 	 * Callback to mark the media item as redoing (e.g. rereading)
 	 */
 	markAsRedo: (mediaItem: MediaItemInternal) => void;
+	
+	/**
+	 * Callback to view the media item group
+	 */
+	viewGroup: (group: GroupInternal) => void;
 
 	/**
 	 * Callback when the component requests to be closed

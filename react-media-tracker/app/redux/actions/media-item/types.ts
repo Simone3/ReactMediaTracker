@@ -1,4 +1,5 @@
 import { CategoryInternal } from 'app/data/models/internal/category';
+import { GroupInternal } from 'app/data/models/internal/group';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemInternal, MediaItemSortByInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { Action } from 'redux';
 
@@ -139,6 +140,21 @@ export type StartMediaItemsSearchModeAction = Action & {
  * The stop search media items mode action
  */
 export type StopMediaItemsSearchModeAction = Action & {
+	
+};
+
+/**
+ * The start view group media items mode action
+ */
+export type StartMediaItemsViewGroupModeAction = Action & {
+	
+	group: GroupInternal;
+};
+
+/**
+ * The stop view group media items mode action
+ */
+export type StopMediaItemsViewGroupModeAction = Action & {
 	
 };
 

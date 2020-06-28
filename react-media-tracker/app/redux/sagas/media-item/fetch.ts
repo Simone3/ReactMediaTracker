@@ -1,9 +1,9 @@
 import { call, put, select, takeLatest } from '@redux-saga/core/effects';
 import { AppError } from 'app/data/models/internal/error';
-import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
-import { mediaItemControllerFactory } from 'app/factories/controller-factories';
+import { MediaItemFilterInternal, MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
+import { mediaItemControllerFactory, mediaItemDefinitionsControllerFactory } from 'app/factories/controller-factories';
 import { setError } from 'app/redux/actions/error/generators';
-import { FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS } from 'app/redux/actions/media-item/const';
+import { FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS, START_MEDIA_ITEMS_VIEW_GROUP_MODE } from 'app/redux/actions/media-item/const';
 import { completeFetchingMediaItems, failFetchingMediaItems, startFetchingMediaItems } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { SagaIterator } from 'redux-saga';
@@ -27,7 +27,8 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 			throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find category while fetching media items');
 		}
 
-		// Get the correct controller for the current category
+		// Get the correct controllers for the current category
+		const mediaItemDefinitionsController = mediaItemDefinitionsControllerFactory.get(category);
 		const mediaItemController = mediaItemControllerFactory.get(category);
 
 		// Retrieve media items from controller
@@ -63,6 +64,28 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
 				break;
 			}
 
+			// View group fetching mode allows to list all media items in a group
+			case 'VIEW_GROUP': {
+
+				const viewGroup = state.mediaItemsList.viewGroup;
+				if(!viewGroup) {
+		
+					throw AppError.GENERIC.withDetails('Something went wrong during state initialization: cannot find view group value');
+				}
+
+				const filter: MediaItemFilterInternal = {
+					groups: {
+						groupIds: [ viewGroup.id ]
+					}
+				};
+
+				const sortBy = mediaItemDefinitionsController.getViewGroupSortBy();
+				
+				mediaItems = yield call(mediaItemController.filter.bind(mediaItemController), user.id, category.id, filter, sortBy);
+
+				break;
+			}
+
 			default: {
 				
 				throw AppError.GENERIC.withDetails(`Mode ${mode} is not mapped in fetch saga`);
@@ -85,5 +108,5 @@ const fetchMediaItemsSaga = function * (): SagaIterator {
  */
 export const watchFetchMediaItemsSaga = function * (): SagaIterator {
 
-	yield takeLatest([ FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS ], fetchMediaItemsSaga);
+	yield takeLatest([ FETCH_MEDIA_ITEMS, SEARCH_MEDIA_ITEMS, START_MEDIA_ITEMS_VIEW_GROUP_MODE ], fetchMediaItemsSaga);
 };

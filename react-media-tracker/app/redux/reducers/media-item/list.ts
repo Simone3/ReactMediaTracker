@@ -2,8 +2,8 @@ import { mediaItemDefinitionsControllerFactory } from 'app/factories/controller-
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
 import { SelectCategoryAction } from 'app/redux/actions/category/types';
 import { COMPLETE_IMPORTING_OLD_APP_EXPORT } from 'app/redux/actions/import-export/const';
-import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from 'app/redux/actions/media-item/const';
-import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, SearchMediaItemsAction, SubmitMediaItemsFiltersAction } from 'app/redux/actions/media-item/types';
+import { COMPLETE_DELETING_MEDIA_ITEM, COMPLETE_FETCHING_MEDIA_ITEMS, COMPLETE_INLINE_UPDATING_MEDIA_ITEM, COMPLETE_SAVING_MEDIA_ITEM, FAIL_DELETING_MEDIA_ITEM, FAIL_FETCHING_MEDIA_ITEMS, FAIL_INLINE_UPDATING_MEDIA_ITEM, HIGHLIGHT_MEDIA_ITEM, REMOVE_MEDIA_ITEM_HIGHTLIGHT, SEARCH_MEDIA_ITEMS, START_DELETING_MEDIA_ITEM, START_FETCHING_MEDIA_ITEMS, START_INLINE_UPDATING_MEDIA_ITEM, START_MEDIA_ITEMS_SEARCH_MODE, START_MEDIA_ITEMS_SET_FILTERS_MODE, START_MEDIA_ITEMS_VIEW_GROUP_MODE, STOP_MEDIA_ITEMS_SEARCH_MODE, STOP_MEDIA_ITEMS_SET_FILTERS_MODE, STOP_MEDIA_ITEMS_VIEW_GROUP_MODE, SUBMIT_MEDIA_ITEMS_FILTERS } from 'app/redux/actions/media-item/const';
+import { CompleteFetchingMediaItemsAction, HighlightMediaItemAction, SearchMediaItemsAction, StartMediaItemsViewGroupModeAction, SubmitMediaItemsFiltersAction } from 'app/redux/actions/media-item/types';
 import { MediaItemsListState } from 'app/redux/state/media-item';
 import { Action } from 'redux';
 
@@ -16,6 +16,7 @@ const initialState: MediaItemsListState = {
 	filter: undefined,
 	sortBy: undefined,
 	searchTerm: undefined,
+	viewGroup: undefined,
 	mediaItems: [],
 	highlightedMediaItem: undefined
 };
@@ -190,6 +191,29 @@ export const mediaItemsList = (state: MediaItemsListState = initialState, action
 				mode: 'NORMAL',
 				status: 'REQUIRES_FETCH',
 				searchTerm: undefined
+			};
+		}
+		
+		// When the view group mode is started, the mode field is set and the selected group is set
+		case START_MEDIA_ITEMS_VIEW_GROUP_MODE: {
+
+			const startMediaItemsViewGroupModeAction = action as StartMediaItemsViewGroupModeAction;
+
+			return {
+				...state,
+				mode: 'VIEW_GROUP',
+				viewGroup: startMediaItemsViewGroupModeAction.group
+			};
+		}
+		
+		// When the view group mode is closed, the mode and group fields are reset and the list is marked for reload (i.e. the standard version of the list is fetched)
+		case STOP_MEDIA_ITEMS_VIEW_GROUP_MODE: {
+
+			return {
+				...state,
+				mode: 'NORMAL',
+				status: 'REQUIRES_FETCH',
+				viewGroup: undefined
 			};
 		}
 
