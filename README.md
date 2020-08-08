@@ -49,9 +49,7 @@ It has a dedicated NodeJS [back-end server](https://github.com/Simone3/MediaTrac
   - Prod Android: `npm run android-prod`
   - Dev iOS: `npm run ios-dev` or `npm run ios-dev-ipad`
   - Dev iOS (Debug): use the Visual Studio Code "Debug iOS" or "Debug iOS iPad" tasks (first install the "React Native Tools" extension)
-  - Prod iOS: `npm run ios-prod`
+  - Prod iOS: `npm run ios-prod` (first setup Xcode and the device following [this guide](https://reactnative.dev/docs/running-on-device))
 
 Notes:
 - Run `adb reverse tcp:3000 tcp:3000` after starting the Android emulator to invoke the local back-end APIs.
-
-
