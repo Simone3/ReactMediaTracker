@@ -71,6 +71,7 @@ app/config/properties/config-*.ts
 !app/config/properties/config-sample.ts
 
 # Configuration files
+.env
 app/config/files/config-*
 !app/config/files/config-test
 !app/config/files/config-sample

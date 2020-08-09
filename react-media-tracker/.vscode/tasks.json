@@ -14,15 +14,15 @@
             }
         },
         {
-            "label": "Copy Firebase Android Dev",
+            "label": "Setup Env Android Dev",
             "type": "npm",
-            "script": "cp-firebase-android-dev",
+            "script": "setup-env-android-dev",
             "problemMatcher": []
         },
         {
-            "label": "Copy Firebase iOS Dev",
+            "label": "Setup Env iOS Dev",
             "type": "npm",
-            "script": "cp-firebase-ios-dev",
+            "script": "setup-env-ios-dev",
             "problemMatcher": []
         }
     ]
