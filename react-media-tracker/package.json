@@ -3,25 +3,21 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-
     "android-dev": "npm run setup-env-android-dev && react-native run-android",
     "android-prod": "npm run setup-env-android-prod && react-native run-android --variant=release",
     "ios-dev": "npm run setup-env-ios-dev; react-native run-ios",
     "ios-dev-ipad": "npm run setup-env-ios-dev; react-native run-ios --simulator \"iPad (7th generation)\"",
     "ios-prod": "npm run setup-env-ios-prod; react-native run-ios --device --configuration Release",
-    
     "setup-env-android-dev": "npm run echo-env-dev && npm run cp-firebase-android-dev",
     "setup-env-android-prod": "npm run echo-env-prod && npm run cp-firebase-android-prod",
     "setup-env-ios-dev": "npm run echo-env-dev; npm run cp-firebase-ios-dev",
     "setup-env-ios-prod": "npm run echo-env-prod; npm run cp-firebase-ios-prod",
-
     "cp-firebase-android-dev": "shx cp \"./app/config/files/config-dev/google-services.json\" \"./android/app/\"",
     "cp-firebase-android-prod": "shx cp \"./app/config/files/config-prod/google-services.json\" \"./android/app/\"",
     "cp-firebase-ios-dev": "shx cp \"./app/config/files/config-dev/GoogleService-Info.plist\" \"./ios/\"",
     "cp-firebase-ios-prod": "shx cp \"./app/config/files/config-prod/GoogleService-Info.plist\" \"./ios/\"",
     "echo-env-dev": "shx echo \"MEDIA_TRACKER_APP_ENV=dev\" > .env",
     "echo-env-prod": "shx echo \"MEDIA_TRACKER_APP_ENV=prod\" > .env",
-
     "android-clean": "cd android && \"./gradlew\" clean && cd ..",
     "ios-pod": "cd ios; pod install --repo-update; cd ..",
     "reset": "react-native start --reset-cache",
