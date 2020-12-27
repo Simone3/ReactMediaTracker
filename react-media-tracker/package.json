@@ -18,7 +18,7 @@
     "cp-firebase-ios-prod": "shx cp \"./app/config/files/config-prod/GoogleService-Info.plist\" \"./ios/\"",
     "echo-env-dev": "shx echo \"MEDIA_TRACKER_APP_ENV=dev\" > .env",
     "echo-env-prod": "shx echo \"MEDIA_TRACKER_APP_ENV=prod\" > .env",
-    "android-clean": "cd android && gradlew clean && cd ..",
+    "android-clean": "cd android && ./gradlew clean && cd ..",
     "ios-pod": "cd ios; pod install --repo-update; cd ..",
     "reset": "react-native start --reset-cache",
     "lint": "eslint app/**/*.ts app/**/*.tsx"
