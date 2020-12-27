@@ -456,7 +456,7 @@ export abstract class MediaItemCatalogDetailsMapper<TCatalogMediaItemInternal ex
 			catalogLoadId: `${source.catalogId}_${Date.now()}`,
 			name: source.name,
 			genres: source.genres,
-			description: source.description ? stripHtml(source.description) : undefined,
+			description: source.description ? stripHtml(source.description).result : undefined,
 			releaseDate: dateUtils.toDate(source.releaseDate),
 			imageUrl: source.imageUrl
 		};

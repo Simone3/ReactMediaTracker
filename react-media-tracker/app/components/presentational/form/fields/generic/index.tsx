@@ -23,7 +23,7 @@ export class FieldComponent extends Component<FieldComponentInput, FieldComponen
 			<Field name={name}>
 				{(formikProps: FieldProps) => {
 
-					const field: Field = {
+					const field: FieldData = {
 						onChange: (event) => {
 							formikProps.field.onChange(name)(event);
 						},
@@ -95,7 +95,7 @@ export class FieldComponent extends Component<FieldComponentInput, FieldComponen
 /**
  * Field data that children can access to get or notify form changes
  */
-export type Field = {
+type FieldData = {
 
 	/**
 	 * Allows children to notify input change
@@ -138,7 +138,7 @@ export type FieldComponentInput = {
 	/**
 	 * The component's child must be a function (render prop)
 	 */
-	children: (field: Field, status: FieldComponentStatus) => ReactNode;
+	children: (field: FieldData, status: FieldComponentStatus) => ReactNode;
 }
 
 /**

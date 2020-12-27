@@ -2,7 +2,7 @@ import { MediaItemGroupFilter, MediaItemOwnPlatformFilter } from 'app/data/model
 import { AppError } from 'app/data/models/internal/error';
 import { MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemImportanceInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemStatusFilterInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
 import { ValuesOf } from 'app/utilities/helper-types';
-import { ObjectSchemaDefinition, string } from 'yup';
+import { mixed } from 'yup';
 
 /**
  * The generic media item filter form model
@@ -69,12 +69,12 @@ export type MediaItemFilterFormSortBy = ValuesOf<typeof MEDIA_ITEM_FILTER_FORM_S
 /**
  * The generic media item filter form validation shape
  */
-export const mediaItemFilterFormValidationShape: ObjectSchemaDefinition<MediaItemFilterFormValues> = {
-	status: string().oneOf(MEDIA_ITEM_FILTER_FORM_STATUS_VALUES).required(),
-	importanceLevel: string().oneOf(MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES).required(),
-	group: string().oneOf(MEDIA_ITEM_FILTER_FORM_GROUP_VALUES).required(),
-	ownPlatform: string().oneOf(MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES).required(),
-	sortBy: string().oneOf(MEDIA_ITEM_FILTER_FORM_SORT_VALUES).required()
+export const mediaItemFilterFormValidationShape = {
+	status: mixed<MediaItemFilterFormStatus>().oneOf(MEDIA_ITEM_FILTER_FORM_STATUS_VALUES).required(),
+	importanceLevel: mixed<MediaItemFilterFormImportance>().oneOf(MEDIA_ITEM_FILTER_FORM_IMPORTANCE_VALUES).required(),
+	group: mixed<MediaItemFilterFormGroup>().oneOf(MEDIA_ITEM_FILTER_FORM_GROUP_VALUES).required(),
+	ownPlatform: mixed<MediaItemFilterFormOwnPlatform>().oneOf(MEDIA_ITEM_FILTER_FORM_OWN_PLATFORM_VALUES).required(),
+	sortBy: mixed<MediaItemFilterFormSortBy>().oneOf(MEDIA_ITEM_FILTER_FORM_SORT_VALUES).required()
 };
 
 /**

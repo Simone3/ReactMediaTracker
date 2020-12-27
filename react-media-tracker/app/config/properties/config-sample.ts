@@ -51,16 +51,16 @@ const config: Config = {
 		import: false
 	},
 	external: {
-		googleSearch: (term) => {
+		googleSearch: (term: string): string => {
 			return `https://www.google.com/search?q=${term}`;
 		},
-		wikipediaSearch: (term) => {
+		wikipediaSearch: (term: string): string => {
 			return `https://en.wikipedia.org/wiki/Special:Search?search=${term}`;
 		},
-		justWatchSearch: (term) => {
+		justWatchSearch: (term: string): string => {
 			return `https://www.justwatch.com/us/search?q=${term}`;
 		},
-		howLongToBeatSearch: (term) => {
+		howLongToBeatSearch: (term: string): string => {
 			return `https://howlongtobeat.com/?q=${term}#search1`;
 		}
 	},

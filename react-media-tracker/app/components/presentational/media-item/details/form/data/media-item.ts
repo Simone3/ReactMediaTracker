@@ -1,27 +1,27 @@
-import { MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
+import { MediaTypeInternal, MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
 import { GroupInternal } from 'app/data/models/internal/group';
-import { MediaItemInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
-import { OwnPlatformInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
-import { array, boolean, date, number, NumberSchema, object, ObjectSchema, ObjectSchemaDefinition, string, StringSchema } from 'yup';
+import { MediaItemImportanceInternal, MediaItemStatusInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
+import { OwnPlatformIconInternal, OwnPlatformInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
+import { array, BaseSchema, boolean, date, mixed, number, NumberSchema, object, string, StringSchema } from 'yup';
 
 /**
  * The generic media item form validation schema shape
  */
-export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInternal> = {
+export const mediaItemFormValidationShape = {
 	id: string() as StringSchema<string>,
 	name: string().required(),
-	genres: array().of(string().required()),
+	genres: array().of(string().required()).optional(),
 	description: string(),
 	releaseDate: date(),
 	imageUrl: string(),
-	mediaType: string().oneOf(MEDIA_TYPES_INTERNAL).required(),
-	status: string().oneOf(MEDIA_ITEM_STATUS_INTERNAL_VALUES).required(),
-	importance: string().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES).required(),
+	mediaType: mixed<MediaTypeInternal>().oneOf(MEDIA_TYPES_INTERNAL).required(),
+	status: mixed<MediaItemStatusInternal>().oneOf(MEDIA_ITEM_STATUS_INTERNAL_VALUES).required(),
+	importance: mixed<MediaItemImportanceInternal>().oneOf(MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES).required(),
 	group: object({
 		id: string(),
 		name: string()
-	}) as ObjectSchema<GroupInternal>,
-	orderInGroup: number().when('group', (value: GroupInternal | undefined, schema: NumberSchema<number>) => {
+	}) as BaseSchema<GroupInternal | undefined>,
+	orderInGroup: number().when('group', (value: GroupInternal | undefined, schema: NumberSchema<number | undefined>) => {
 		
 		return value && value.id ? schema.required() : schema;
 	}),
@@ -29,10 +29,10 @@ export const mediaItemFormValidationShape: ObjectSchemaDefinition<MediaItemInter
 		id: string(),
 		name: string(),
 		color: string(),
-		icon: string().oneOf(OWN_PLATFORM_ICON_INTERNAL_VALUES)
-	}) as ObjectSchema<OwnPlatformInternal>,
+		icon: mixed<OwnPlatformIconInternal>().oneOf(OWN_PLATFORM_ICON_INTERNAL_VALUES)
+	}) as BaseSchema<OwnPlatformInternal | undefined>,
 	userComment: string(),
-	completedOn: array().of(date().required()),
+	completedOn: array().of(date().required()).optional(),
 	active: boolean(),
 	markedAsRedo: boolean(),
 	catalogId: string()

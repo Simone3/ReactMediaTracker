@@ -1,8 +1,8 @@
 import { styles } from 'app/components/presentational/form/components/picker/styles';
 import React, { ReactNode, Component } from 'react';
-import { Picker } from '@react-native-community/picker';
 import { ImageRequireSource } from 'react-native';
 import { FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
+import { Picker } from '@react-native-picker/picker';
 
 /**
  * Common component to display a picker (Android and iOS)

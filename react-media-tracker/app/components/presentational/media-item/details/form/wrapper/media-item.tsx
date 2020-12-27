@@ -4,7 +4,7 @@ import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/c
 import { i18n } from 'app/utilities/i18n';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { FormikProps, Formik } from 'formik';
-import { ObjectSchema } from 'yup';
+import { SchemaOf } from 'yup';
 
 /**
  * Presentational component that handles the Formik wrapper component for the generic media item form
@@ -169,7 +169,7 @@ export type CommonMediaItemFormComponentInput = MediaItemFormComponentInput & {
 	/**
 	 * The media item form validation schema
 	 */
-	validationSchema: ObjectSchema<MediaItemInternal>;
+	validationSchema: SchemaOf<MediaItemInternal>;
 }
 
 /**

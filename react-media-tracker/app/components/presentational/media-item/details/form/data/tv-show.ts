@@ -1,13 +1,13 @@
 import { TvShowInternal } from 'app/data/models/internal/media-items/tv-show';
-import { array, boolean, date, number, object, ObjectSchema, ObjectSchemaDefinition, string } from 'yup';
+import { array, boolean, date, number, object, SchemaOf, string } from 'yup';
 import { mediaItemFormValidationShape } from './media-item';
 
 /**
  * The TV show form validation schema shape
  */
-const tvShowFormValidationShape: ObjectSchemaDefinition<TvShowInternal> = {
+const tvShowFormValidationShape = {
 	...mediaItemFormValidationShape,
-	creators: array().of(string().required()),
+	creators: array().of(string().required()).optional(),
 	averageEpisodeRuntimeMinutes: number(),
 	episodesNumber: number(),
 	seasonsNumber: number(),
@@ -18,4 +18,4 @@ const tvShowFormValidationShape: ObjectSchemaDefinition<TvShowInternal> = {
 /**
  * The TV show form validation schema
  */
-export const tvShowFormValidationSchema: ObjectSchema<TvShowInternal> = object().required().shape(tvShowFormValidationShape);
+export const tvShowFormValidationSchema: SchemaOf<TvShowInternal> = object().required().shape(tvShowFormValidationShape);

@@ -28,13 +28,15 @@ export class ClickableSettingsRowComponent extends Component<ClickableSettingsRo
 						{title}
 					</Text>
 				</View>
-				{subtitle ? (
-					<View>
-						<Text style={styles.subtitle}>
-							{subtitle}
-						</Text>
-					</View>
-				) : null}
+				{subtitle ?
+					(
+						<View>
+							<Text style={styles.subtitle}>
+								{subtitle}
+							</Text>
+						</View>
+					) :
+					null}
 			</TouchableOpacity>
 		);
 	}
