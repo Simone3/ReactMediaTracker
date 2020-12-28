@@ -18,11 +18,13 @@ export class SelectionRowComponent extends Component<SelectionRowComponentInput 
 
 		const {
 			select,
-			openOptionsMenu
+			openOptionsMenu,
+			enabled
 		} = this.props;
 		
 		return (
 			<TouchableWithoutFeedback
+				disabled={!enabled}
 				onPress={select}
 				onLongPress={openOptionsMenu}>
 				<View style={styles.container}>
@@ -130,6 +132,11 @@ export type SelectionRowComponentInput = {
 	 * If the row is the currently selected one
 	 */
 	selected: boolean;
+
+	/**
+	 * If the row is the currently enabled
+	 */
+	enabled: boolean;
 
 	/**
 	 * If true, the row will show a radio button

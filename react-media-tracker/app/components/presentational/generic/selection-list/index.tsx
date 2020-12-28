@@ -7,9 +7,11 @@ import { config } from 'app/config/config';
 /**
  * Presentational component to display a generic selection list, with radio buttons and context menu
  */
-export class SelectionListComponent<E extends SelectionListEntity> extends Component<SelectionListComponentProps<E>> {
+export class SelectionListComponent<E extends SelectionListEntity> extends Component<SelectionListComponentProps<E>, SelectionListComponentState> {
 	
 	private static readonly NONE_ID = 'SelectionListComponent.None';
+
+	public state: SelectionListComponentState = { enabled: true };
 
 	/**
 	 * @override
@@ -78,7 +80,11 @@ export class SelectionListComponent<E extends SelectionListEntity> extends Compo
 								label={item.name}
 								selected={Boolean((currentEntity && item.id === currentEntity.id) || (!currentEntity && item.id === SelectionListComponent.NONE_ID))}
 								showRadioButton={showRadioButtons}
+								enabled={this.state.enabled}
 								select={() => {
+
+									// Disable all rows to avoid double tapping and then send the callback
+									this.setState({ enabled: false });
 									selectRow(item.id === SelectionListComponent.NONE_ID ? undefined : item);
 								}}
 								openOptionsMenu={
@@ -164,3 +170,14 @@ type SelectionListEntity = {
 	id: string;
 	name: string;
 }
+
+/**
+ * SelectionListComponent's state
+ */
+type SelectionListComponentState = {
+
+	/**
+	 * If selection is enabled
+	 */
+	enabled: boolean
+};
