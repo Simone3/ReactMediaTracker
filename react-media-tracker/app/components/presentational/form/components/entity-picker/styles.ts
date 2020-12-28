@@ -3,7 +3,8 @@ import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	inputContainer: {
-		flex: 1
+		flex: 1,
+		padding: 5
 	},
 	input: {
 		padding: Platform.OS === 'ios' ? 15 : 10,
