@@ -40,5 +40,5 @@ export const OwnPlatformsListContainer = connect(
 /**
  * OwnPlatformsListContainer's props
  */
-export type OwnPlatformsListContainerProps = Omit<SelectionListComponentProps<OwnPlatformInternal>, 'entities' | 'currentEntity' | 'selectRow' | 'highlightRow'>
+export type OwnPlatformsListContainerProps = Omit<SelectionListComponentProps<OwnPlatformInternal>, 'entities' | 'currentEntity' | 'selectRow' | 'highlightRow' | 'refreshEntities'>
 

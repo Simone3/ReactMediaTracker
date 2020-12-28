@@ -40,5 +40,5 @@ export const GroupsListContainer = connect(
 /**
  * GroupsListContainer's props
  */
-export type GroupsListContainerProps = Omit<SelectionListComponentProps<GroupInternal>, 'entities' | 'currentEntity' | 'selectRow' | 'highlightRow'>
+export type GroupsListContainerProps = Omit<SelectionListComponentProps<GroupInternal>, 'entities' | 'currentEntity' | 'selectRow' | 'highlightRow' | 'refreshEntities'>
 
