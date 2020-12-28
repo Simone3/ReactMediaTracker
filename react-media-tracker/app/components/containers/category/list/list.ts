@@ -1,5 +1,5 @@
 import { CategoriesListComponent, CategoriesListComponentInput, CategoriesListComponentOutput } from 'app/components/presentational/category/list/list';
-import { highlightCategory, selectCategory } from 'app/redux/actions/category/generators';
+import { highlightCategory, invalidateCategories, selectCategory } from 'app/redux/actions/category/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -19,6 +19,9 @@ const mapDispatchToProps = (dispatch: Dispatch): CategoriesListComponentOutput =
 		},
 		highlightCategory: (category) => {
 			dispatch(highlightCategory(category));
+		},
+		refreshCategories: () => {
+			dispatch(invalidateCategories());
 		}
 	};
 };

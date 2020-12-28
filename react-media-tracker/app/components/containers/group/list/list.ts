@@ -1,6 +1,6 @@
 import { SelectionListComponent, SelectionListComponentInput, SelectionListComponentOutput, SelectionListComponentProps } from 'app/components/presentational/generic/selection-list';
 import { GroupInternal } from 'app/data/models/internal/group';
-import { highlightGroup, selectGroup } from 'app/redux/actions/group/generators';
+import { highlightGroup, invalidateGroups, selectGroup } from 'app/redux/actions/group/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch): SelectionListComponentOutput<Gr
 		},
 		highlightRow: (group) => {
 			dispatch(highlightGroup(group));
+		},
+		refreshEntities: () => {
+			dispatch(invalidateGroups());
 		}
 	};
 };

@@ -1,7 +1,8 @@
-import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View } from 'react-native';
+import React, { Component, ReactElement, ReactNode } from 'react';
+import { FlatList, RefreshControl, Text, View } from 'react-native';
 import { styles } from 'app/components/presentational/generic/selection-list/styles';
 import { SelectionRowComponent } from 'app/components/presentational/generic/selection-row';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display a generic selection list, with radio buttons and context menu
@@ -15,26 +16,14 @@ export class SelectionListComponent<E extends SelectionListEntity> extends Compo
 	 */
 	public render(): ReactNode {
 
-		const {
-			entities,
-			noneLabel
-		} = this.props;
-
-		if(entities.length > 0 || noneLabel) {
-
-			return this.renderList();
-		}
-		else {
-
-			return this.renderEmptyList();
-		}
+		return this.renderList();
 	}
 
 	/**
 	 * Helper method to render the no entities message
 	 * @returns the node portion
 	 */
-	private renderEmptyList(): ReactNode {
+	private renderEmptyList(): ReactElement {
 
 		const {
 			emptyLabel
@@ -55,7 +44,8 @@ export class SelectionListComponent<E extends SelectionListEntity> extends Compo
 			noneLabel,
 			showRadioButtons,
 			selectRow,
-			highlightRow
+			highlightRow,
+			refreshEntities
 		} = this.props;
 
 		let entitiesToDisplay = entities;
@@ -73,6 +63,15 @@ export class SelectionListComponent<E extends SelectionListEntity> extends Compo
 					style={styles.list}
 					contentContainerStyle={styles.listContentContainer}
 					data={entitiesToDisplay}
+					refreshControl={
+						<RefreshControl
+							refreshing={false}
+							onRefresh={refreshEntities}
+							colors={[ config.ui.colors.colorPrimaryDark ]}
+							tintColor={config.ui.colors.colorPrimaryDark}
+						/>
+					}
+					ListEmptyComponent={this.renderEmptyList()}
 					renderItem={({ item }) => {
 						return (
 							<SelectionRowComponent
@@ -145,6 +144,11 @@ export type SelectionListComponentOutput<E extends SelectionListEntity> = {
 	 * Callback to set a row as highlighted, e.g. to open its dialog menu
 	 */
 	highlightRow: (entity: E) => void;
+
+	/**
+	 * Callback to relead the entities list
+	 */
+	refreshEntities: () => void;
 }
 
 /**

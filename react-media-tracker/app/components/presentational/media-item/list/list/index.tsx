@@ -1,11 +1,12 @@
-import React, { Component, ReactNode } from 'react';
-import { FlatList, Text, View, Dimensions } from 'react-native';
+import React, { Component, ReactElement, ReactNode } from 'react';
+import { FlatList, Text, View, Dimensions, RefreshControl } from 'react-native';
 import { MediaItemInternal } from 'app/data/models/internal/media-items/media-item';
 import { MediaItemRowComponent } from 'app/components/presentational/media-item/list/row';
 import { i18n } from 'app/utilities/i18n';
 import { styles } from 'app/components/presentational/media-item/list/list/styles';
 import { CategoryInternal } from 'app/data/models/internal/category';
 import { MediaItemContextMenuContainer } from 'app/components/containers/media-item/list/context-menu';
+import { config } from 'app/config/config';
 
 /**
  * Presentational component to display the list of user media items
@@ -30,21 +31,14 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 	 */
 	private renderMediaItems(): ReactNode {
 
-		if(this.props.mediaItems.length > 0) {
-
-			return this.renderList();
-		}
-		else {
-
-			return this.renderNone();
-		}
+		return this.renderList();
 	}
 
 	/**
 	 * Helper method to render the no media items message
 	 * @returns the node portion
 	 */
-	private renderNone(): ReactNode {
+	private renderNone(): ReactElement {
 
 		return <Text style={styles.emptyMessage}>{i18n.t(`mediaItem.list.empty.${this.props.category.mediaType}`)}</Text>;
 	}
@@ -58,7 +52,8 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 		const {
 			mediaItems,
 			highlightMediaItem,
-			selectMediaItem
+			selectMediaItem,
+			refreshMediaItems
 		} = this.props;
 
 		return (
@@ -67,6 +62,15 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 					style={[ styles.list, { width: Dimensions.get('window').width }]}
 					contentContainerStyle={styles.listContentContainer}
 					data={mediaItems}
+					refreshControl={
+						<RefreshControl
+							refreshing={false}
+							onRefresh={refreshMediaItems}
+							colors={[ config.ui.colors.colorPrimaryDark ]}
+							tintColor={config.ui.colors.colorPrimaryDark}
+						/>
+					}
+					ListEmptyComponent={this.renderNone()}
 					renderItem={({ item }) => {
 						return (
 							<MediaItemRowComponent
@@ -120,4 +124,9 @@ export type MediaItemsListComponentOutput = {
 	 * Callback to set a mediaItem as highlighted, e.g. to open its dialog menu
 	 */
 	highlightMediaItem: (mediaItem: MediaItemInternal) => void;
+
+	/**
+	 * Callback to refresh the media items list
+	 */
+	refreshMediaItems: () => void;
 }

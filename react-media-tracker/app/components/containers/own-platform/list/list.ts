@@ -1,6 +1,6 @@
 import { SelectionListComponent, SelectionListComponentInput, SelectionListComponentOutput, SelectionListComponentProps } from 'app/components/presentational/generic/selection-list';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
-import { highlightOwnPlatform, selectOwnPlatform } from 'app/redux/actions/own-platform/generators';
+import { highlightOwnPlatform, invalidateOwnPlatforms, selectOwnPlatform } from 'app/redux/actions/own-platform/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch: Dispatch): SelectionListComponentOutput<Ow
 		},
 		highlightRow: (ownPlatform) => {
 			dispatch(highlightOwnPlatform(ownPlatform));
+		},
+		refreshEntities: () => {
+			dispatch(invalidateOwnPlatforms());
 		}
 	};
 };

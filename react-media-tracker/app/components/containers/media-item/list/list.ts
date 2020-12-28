@@ -1,6 +1,6 @@
 import { MediaItemsListComponent, MediaItemsListComponentInput, MediaItemsListComponentOutput } from 'app/components/presentational/media-item/list/list';
 import { AppError } from 'app/data/models/internal/error';
-import { highlightMediaItem, loadMediaItemDetails } from 'app/redux/actions/media-item/generators';
+import { highlightMediaItem, invalidateMediaItems, loadMediaItemDetails } from 'app/redux/actions/media-item/generators';
 import { State } from 'app/redux/state/state';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -26,6 +26,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemsListComponentOutput =
 		},
 		selectMediaItem: (mediaItem) => {
 			dispatch(loadMediaItemDetails(mediaItem));
+		},
+		refreshMediaItems: () => {
+			dispatch(invalidateMediaItems());
 		}
 	};
 };

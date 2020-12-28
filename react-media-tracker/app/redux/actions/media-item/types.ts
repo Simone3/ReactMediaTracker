@@ -33,6 +33,13 @@ export type FailFetchingMediaItemsAction = Action & {
 };
 
 /**
+ * The invalidate media items action
+ */
+export type InvalidateMediaItemsAction = Action & {
+	
+};
+
+/**
  * The mark media item as active action
  */
 export type MarkMediaItemAsActiveAction = Action & {
