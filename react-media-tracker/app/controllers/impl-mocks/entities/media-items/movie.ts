@@ -25,7 +25,7 @@ export class MovieMockedController extends MediaItemMockedController<MovieIntern
 					name: 'My Group'
 				},
 				orderInGroup: 3,
-				imageUrl: 'http://image.tmdb.org/t/p/w780/aHcth2AXzZSjhX7JYh7ie73YVNc.jpg'
+				imageUrl: 'http://image.tmdb.org/t/p/w780/oQYpa1TKJRR58IrFGhppi9vL7PC.jpg'
 			}, {
 				id: '2',
 				mediaType: 'MOVIE',
@@ -113,7 +113,7 @@ export class MovieMockedCatalogController extends MediaItemMockedCatalogControll
 			directors: [ 'Person 1', 'Person 2' ],
 			durationMinutes: 100,
 			genres: [ 'One', 'Two' ],
-			imageUrl: 'http://image.tmdb.org/t/p/w780/aHcth2AXzZSjhX7JYh7ie73YVNc.jpg',
+			imageUrl: 'http://image.tmdb.org/t/p/w780/xq6hXdBpDPIXWjtmvbFmtLvBFJt.jpg',
 			releaseDate: new Date(2010, 10, 10)
 		},
 		2: {
@@ -137,7 +137,7 @@ export class MovieMockedCatalogController extends MediaItemMockedCatalogControll
 			name: 'Some Other Movie',
 			description: 'Some description for some other movie',
 			durationMinutes: 200,
-			imageUrl: 'http://image.tmdb.org/t/p/w780/6xKCYgH16UuwEGAyroLU6p8HLIn.jpg',
+			imageUrl: 'http://image.tmdb.org/t/p/w780/oQYpa1TKJRR58IrFGhppi9vL7PC.jpg',
 			releaseDate: new Date(2012, 12, 12)
 		}
 	};
