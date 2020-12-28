@@ -12,6 +12,7 @@ import { OwnPlatformsListScreenContainer } from 'app/components/containers/own-p
 import { UserSettingsScreenContainer } from 'app/components/containers/settings/screen';
 import { CreditsScreenComponent } from 'app/components/presentational/credits/screen';
 import { drawerIconBuilder } from 'app/components/presentational/generic/drawer-icon';
+import { drawerLabelBuilder } from 'app/components/presentational/generic/drawer-label';
 import { config } from 'app/config/config';
 import { i18n } from 'app/utilities/i18n';
 import { images } from 'app/utilities/images';
@@ -101,21 +102,21 @@ const AuthenticatedDrawerNavigator = createDrawerNavigator({
 	[AppSections.Media]: {
 		screen: MediaStackNavigator,
 		navigationOptions: {
-			drawerLabel: i18n.t('common.drawer.home'),
+			drawerLabel: drawerLabelBuilder(i18n.t('common.drawer.home')),
 			drawerIcon: drawerIconBuilder(images.home())
 		}
 	},
 	[AppSections.Settings]: {
 		screen: SettingsStackNavigator,
 		navigationOptions: {
-			drawerLabel: i18n.t('common.drawer.settings'),
+			drawerLabel: drawerLabelBuilder(i18n.t('common.drawer.settings')),
 			drawerIcon: drawerIconBuilder(images.settings())
 		}
 	},
 	[AppSections.Credits]: {
 		screen: CreditsStackNavigator,
 		navigationOptions: {
-			drawerLabel: i18n.t('common.drawer.credits'),
+			drawerLabel: drawerLabelBuilder(i18n.t('common.drawer.credits')),
 			drawerIcon: drawerIconBuilder(images.credits())
 		}
 	}

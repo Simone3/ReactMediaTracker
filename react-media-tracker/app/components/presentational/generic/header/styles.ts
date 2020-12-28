@@ -28,7 +28,8 @@ export const styles = StyleSheet.create({
 		fontSize: 20,
 		color: config.ui.colors.colorContrastText,
 		fontWeight: 'bold',
-		textAlignVertical: 'center'
+		textAlignVertical: 'center',
+		width: '100%'
 	},
 	rightContainer: {
 		flex: 0,
