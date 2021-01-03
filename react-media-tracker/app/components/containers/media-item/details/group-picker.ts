@@ -1,9 +1,9 @@
-import { GroupPickerFieldComponent, GroupPickerFieldComponentInput, GroupPickerFieldComponentOutput } from 'app/components/presentational/form/fields/group-picker';
+import { EntityPickerFieldComponent, EntityPickerFieldComponentInput, EntityPickerFieldComponentOutput } from 'app/components/presentational/form/fields/entity-picker';
 import { requestGroupSelection } from 'app/redux/actions/group/generators';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContainerProps): GroupPickerFieldComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContainerProps): EntityPickerFieldComponentOutput => {
 
 	return {
 		...ownProps,
@@ -14,17 +14,17 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: GroupPickerFieldContai
 };
 
 /**
- * Container component that handles Redux state for GroupPickerFieldComponent
+ * Container component that handles Redux state for EntityPickerFieldComponent
  */
 export const GroupPickerFieldContainer = connect(
 	null,
 	mapDispatchToProps
-)(GroupPickerFieldComponent);
+)(EntityPickerFieldComponent);
 
 /**
  * GroupPickerFieldContainer's input props
  */
-export type GroupPickerFieldContainerInput = GroupPickerFieldComponentInput;
+export type GroupPickerFieldContainerInput = EntityPickerFieldComponentInput;
 
 /**
  * GroupPickerFieldContainer's props

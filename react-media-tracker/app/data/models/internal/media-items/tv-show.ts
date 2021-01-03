@@ -8,17 +8,26 @@ type CoreTvShowDataInternal = {
 
 	creators?: string[];
 	averageEpisodeRuntimeMinutes?: number;
-	episodesNumber?: number;
-	seasonsNumber?: number;
 	inProduction?: boolean;
 	nextEpisodeAirDate?: Date;
 };
+
+/**
+ * Model for a TV Show season, internal type just for display purposes
+ */
+export type TvShowSeasonInternal = {
+
+	number: number;
+	episodesNumber?: number;
+	watchedEpisodesNumber?: number;
+}
 
 /**
  * Model for a TV Show, internal type just for display purposes
  */
 export type TvShowInternal = MediaItemInternal & CoreTvShowDataInternal & {
 
+	seasons?: TvShowSeasonInternal[];
 }
 
 /**
@@ -42,14 +51,24 @@ export type TvShowSortByInternal = MediaItemSortByInternal & {
 }
 
 /**
- * Model for a media item with base properties, internal type just for display purposes
+ * Model for a catalog TV Show season, internal type just for display purposes
+ */
+export type CatalogTvShowSeasonInternal = {
+
+	number: number;
+	episodesNumber?: number;
+}
+
+/**
+ * Model for a catalog TV Show, internal type just for display purposes
  */
 export type CatalogTvShowInternal = CatalogMediaItemInternal & CoreTvShowDataInternal & {
 	
+	seasons?: CatalogTvShowSeasonInternal[];
 };
 
 /**
- * Media item catalog search result, internal type just for display purposes
+ * TV Show catalog search result, internal type just for display purposes
  */
 export type SearchTvShowCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
@@ -67,6 +86,15 @@ export const DEFAULT_TV_SHOW: TvShowInternal = {
 };
 
 /**
+ * The default initial TV show season, internal type just for display purposes
+ */
+export const DEFAULT_TV_SHOW_SEASON: TvShowSeasonInternal = {
+	number: undefined as unknown as number,
+	episodesNumber: undefined,
+	watchedEpisodesNumber: undefined
+};
+
+/**
  * The default TV show catalog details (with all fields set), internal type just for display purposes
  */
 export const DEFAULT_CATALOG_TV_SHOW: OptionalToUndefined<CatalogTvShowInternal> = {
@@ -79,9 +107,29 @@ export const DEFAULT_CATALOG_TV_SHOW: OptionalToUndefined<CatalogTvShowInternal>
 	releaseDate: undefined,
 	averageEpisodeRuntimeMinutes: undefined,
 	creators: undefined,
-	episodesNumber: undefined,
 	inProduction: undefined,
 	nextEpisodeAirDate: undefined,
-	seasonsNumber: undefined
+	seasons: undefined
 };
 
+/**
+ * Helper to compare two TV show seasons
+ * @param first the first season
+ * @param second the second season
+ * @returns negative, 0 or positive value based on comparison
+ */
+export const compareTvShowSeasons = (first: TvShowSeasonInternal, second: TvShowSeasonInternal): number => {
+
+	if(first.number < second.number) {
+
+		return -1;
+	}
+	else if(first.number > second.number) {
+
+		return 1;
+	}
+	else {
+		
+		return 0;
+	}
+};

@@ -1,14 +1,16 @@
 
-import { MediaItemFormComponent, MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
+import { CommonMediaItemFormComponentInputMain, CommonMediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { AppError } from 'app/data/models/internal/error';
-import { requestGroupSelection } from 'app/redux/actions/group/generators';
 import { saveMediaItem, setMediaItemFormStatus } from 'app/redux/actions/media-item/generators';
-import { requestOwnPlatformSelection } from 'app/redux/actions/own-platform/generators';
 import { State } from 'app/redux/state/state';
-import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapStateToProps = (state: State): MediaItemFormComponentInput => {
+/**
+ * Common mapStateToProps for all media item forms
+ * @param state the state
+ * @returns the props
+ */
+export const commonMediaItemFormMapStateToProps = (state: State): CommonMediaItemFormComponentInputMain => {
 	
 	if(!state.mediaItemDetails.mediaItem) {
 
@@ -25,7 +27,12 @@ const mapStateToProps = (state: State): MediaItemFormComponentInput => {
 	};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): MediaItemFormComponentOutput => {
+/**
+ * Common mapDispatchToProps for all media item forms
+ * @param dispatch the dispatch
+ * @returns the props
+ */
+export const commonMediaItemFormMapDispatchToProps = (dispatch: Dispatch): CommonMediaItemFormComponentOutput => {
 
 	return {
 		saveMediaItem: (mediaItem, confirmSameName) => {
@@ -33,20 +40,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MediaItemFormComponentOutput =>
 		},
 		notifyFormStatus: (valid, dirty) => {
 			dispatch(setMediaItemFormStatus(valid, dirty));
-		},
-		requestGroupSelection: () => {
-			dispatch(requestGroupSelection());
-		},
-		requestOwnPlatformSelection: () => {
-			dispatch(requestOwnPlatformSelection());
 		}
 	};
 };
-
-/**
- * Container component that handles Redux state for MediaItemFormComponent
- */
-export const MediaItemFormContainer = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(MediaItemFormComponent);

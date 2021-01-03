@@ -1,9 +1,9 @@
-import { OwnPlatformPickerFieldComponent, OwnPlatformPickerFieldComponentInput, OwnPlatformPickerFieldComponentOutput } from 'app/components/presentational/form/fields/own-platform-picker';
+import { EntityPickerFieldComponent, EntityPickerFieldComponentInput, EntityPickerFieldComponentOutput } from 'app/components/presentational/form/fields/entity-picker';
 import { requestOwnPlatformSelection } from 'app/redux/actions/own-platform/generators';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: OwnPlatformPickerFieldContainerProps): OwnPlatformPickerFieldComponentOutput => {
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: OwnPlatformPickerFieldContainerProps): EntityPickerFieldComponentOutput => {
 
 	return {
 		...ownProps,
@@ -14,17 +14,17 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: OwnPlatformPickerField
 };
 
 /**
- * Container component that handles Redux state for OwnPlatformPickerFieldComponent
+ * Container component that handles Redux state for EntityPickerFieldComponent
  */
 export const OwnPlatformPickerFieldContainer = connect(
 	null,
 	mapDispatchToProps
-)(OwnPlatformPickerFieldComponent);
+)(EntityPickerFieldComponent);
 
 /**
  * OwnPlatformPickerFieldContainer's input props
  */
-export type OwnPlatformPickerFieldContainerInput = OwnPlatformPickerFieldComponentInput;
+export type OwnPlatformPickerFieldContainerInput = EntityPickerFieldComponentInput;
 
 /**
  * OwnPlatformPickerFieldContainer's props

@@ -3,9 +3,9 @@ import { FieldComponent } from 'app/components/presentational/form/fields/generi
 import { GenericEntityPickerComponent, GenericEntityPickerComponentInput, GenericEntityPickerComponentOutput } from 'app/components/presentational/form/components/entity-picker';
 
 /**
- * Formik wrapper of GenericEntityPickerComponent for groups
+ * Formik wrapper of GenericEntityPickerComponent
  */
-export class GroupPickerFieldComponent extends Component<GroupPickerFieldComponentProps> {
+export class EntityPickerFieldComponent extends Component<EntityPickerFieldComponentProps> {
 	
 	/**
 	 * @override
@@ -35,9 +35,9 @@ export class GroupPickerFieldComponent extends Component<GroupPickerFieldCompone
 }
 
 /**
- * GroupPickerFieldComponent's input props
+ * EntityPickerFieldComponent's input props
  */
-export type GroupPickerFieldComponentInput = Omit<GenericEntityPickerComponentInput, 'currentEntity' | 'status'> & {
+export type EntityPickerFieldComponentInput = Omit<GenericEntityPickerComponentInput, 'currentEntity' | 'status'> & {
 
 	/**
 	 * The input name (unique in the form)
@@ -46,12 +46,12 @@ export type GroupPickerFieldComponentInput = Omit<GenericEntityPickerComponentIn
 }
 
 /**
- * GroupPickerFieldComponent's output props
+ * EntityPickerFieldComponent's output props
  */
-export type GroupPickerFieldComponentOutput = Omit<GenericEntityPickerComponentOutput, 'onFocus' | 'onBlur'>;
+export type EntityPickerFieldComponentOutput = Omit<GenericEntityPickerComponentOutput, 'onFocus' | 'onBlur'>;
 
 /**
- * GroupPickerFieldComponent's props
+ * EntityPickerFieldComponent's props
  */
-export type GroupPickerFieldComponentProps = GroupPickerFieldComponentInput & GroupPickerFieldComponentOutput;
+export type EntityPickerFieldComponentProps = EntityPickerFieldComponentInput & EntityPickerFieldComponentOutput;
 

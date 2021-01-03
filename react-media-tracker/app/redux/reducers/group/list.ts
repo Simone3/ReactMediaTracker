@@ -1,5 +1,5 @@
 import { SELECT_CATEGORY } from 'app/redux/actions/category/const';
-import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, HIGHLIGHT_GROUP, INVALIDATE_GROUPS, REMOVE_GROUP_HIGHTLIGHT, START_DELETING_GROUP, START_FETCHING_GROUPS } from 'app/redux/actions/group/const';
+import { COMPLETE_DELETING_GROUP, COMPLETE_FETCHING_GROUPS, COMPLETE_SAVING_GROUP, FAIL_DELETING_GROUP, FAIL_FETCHING_GROUPS, HIGHLIGHT_GROUP, INVALIDATE_GROUPS, REMOVE_GROUP_HIGHLIGHT, START_DELETING_GROUP, START_FETCHING_GROUPS } from 'app/redux/actions/group/const';
 import { CompleteFetchingGroupsAction, HighlightGroupAction } from 'app/redux/actions/group/types';
 import { COMPLETE_IMPORTING_OLD_APP_EXPORT } from 'app/redux/actions/import-export/const';
 import { GroupsListState } from 'app/redux/state/group';
@@ -104,7 +104,7 @@ export const groupsList = (state: GroupsListState = initialState, action: Action
 		}
 
 		// When a group is no longer highlighted (e.g. to close the context menu), the corresponding state field is reset
-		case REMOVE_GROUP_HIGHTLIGHT: {
+		case REMOVE_GROUP_HIGHLIGHT: {
 
 			return {
 				...state,

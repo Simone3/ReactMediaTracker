@@ -172,6 +172,15 @@ class ImagesHelper {
 
 	/**
 	 * Image getter
+	 * @returns the complete icon
+	 */
+	public completeButton(): ImageRequireSource {
+		
+		return require('app/resources/images/ic_action_complete.png');
+	}
+
+	/**
+	 * Image getter
 	 * @returns the edit icon
 	 */
 	public editButton(): ImageRequireSource {

@@ -38,14 +38,14 @@ export type BookSortByInternal = MediaItemSortByInternal & {
 }
 
 /**
- * Model for a media item with base properties, internal type just for display purposes
+ * Model for a catalog book, internal type just for display purposes
  */
 export type CatalogBookInternal = CatalogMediaItemInternal & CoreBookDataInternal & {
 
 };
 
 /**
- * Media item catalog search result, internal type just for display purposes
+ * Book catalog search result, internal type just for display purposes
  */
 export type SearchBookCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 

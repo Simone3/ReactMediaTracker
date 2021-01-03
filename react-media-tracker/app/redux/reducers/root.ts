@@ -12,6 +12,8 @@ import { mediaItemsList } from 'app/redux/reducers/media-item/list';
 import { ownPlatformDetails } from 'app/redux/reducers/own-platform/details';
 import { ownPlatformGlobal } from 'app/redux/reducers/own-platform/global';
 import { ownPlatformsList } from 'app/redux/reducers/own-platform/list';
+import { tvShowSeasonDetails } from 'app/redux/reducers/tv-show-season/details';
+import { tvShowSeasonsList } from 'app/redux/reducers/tv-show-season/list';
 import { userGlobal } from 'app/redux/reducers/user/global';
 import { userOperations } from 'app/redux/reducers/user/operations';
 import { State } from 'app/redux/state/state';
@@ -29,6 +31,8 @@ export const allReduces = combineReducers<State, Action>({
 	categoryDetails,
 	mediaItemsList,
 	mediaItemDetails,
+	tvShowSeasonsList,
+	tvShowSeasonDetails,
 	ownPlatformGlobal,
 	groupGlobal,
 	groupsList,

@@ -15,7 +15,19 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 				mediaType: 'TV_SHOW',
 				status: 'NEW',
 				name: 'My First TV Show',
-				importance: '400'
+				importance: '400',
+				seasons: [{
+					number: 1,
+					episodesNumber: 10,
+					watchedEpisodesNumber: 10
+				}, {
+					number: 2,
+					episodesNumber: 12,
+					watchedEpisodesNumber: 10
+				}, {
+					number: 3,
+					episodesNumber: 8
+				}]
 			}, {
 				id: '2',
 				mediaType: 'TV_SHOW',
@@ -47,4 +59,42 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
  */
 export class TvShowMockedCatalogController extends MediaItemMockedCatalogController<SearchTvShowCatalogResultInternal, CatalogTvShowInternal> implements TvShowCatalogController {
 
+	protected readonly catalogList: SearchTvShowCatalogResultInternal[] = [{
+		catalogId: '1',
+		name: 'Catalog TvShow 1',
+		releaseDate: new Date(2010, 10, 10)
+	}, {
+		catalogId: '2',
+		name: 'Catalog TvShow 2'
+	}];
+
+	protected readonly catalogDetails: {[catalogId: string]: CatalogTvShowInternal} = {
+		1: {
+			catalogId: '1',
+			catalogLoadId: '',
+			name: 'Catalog TvShow 1',
+			description: 'Some description for catalog TV show 1',
+			creators: [ 'Person 1', 'Person 2' ],
+			averageEpisodeRuntimeMinutes: 100,
+			genres: [ 'One', 'Two' ],
+			imageUrl: 'http://image.tmdb.org/t/p/w780/xq6hXdBpDPIXWjtmvbFmtLvBFJt.jpg',
+			releaseDate: new Date(2010, 10, 10),
+			seasons: [{
+				number: 1,
+				episodesNumber: 10
+			}, {
+				number: 2,
+				episodesNumber: 12
+			}, {
+				number: 3,
+				episodesNumber: 8
+			}]
+		},
+		2: {
+			catalogId: '2',
+			catalogLoadId: '',
+			name: 'Catalog Test 2',
+			description: 'Some description for catalog test 2'
+		}
+	};
 }

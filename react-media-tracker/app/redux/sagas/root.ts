@@ -16,11 +16,14 @@ import { watchNavigationSaga } from 'app/redux/sagas/navigation/navigation';
 import { watchDeleteOwnPlatformSaga } from 'app/redux/sagas/own-platform/delete';
 import { watchFetchOwnPlatformsSaga } from 'app/redux/sagas/own-platform/fetch';
 import { watchSaveOwnPlatformSaga } from 'app/redux/sagas/own-platform/save';
+import { watchDeleteTvShowSeasonSaga } from 'app/redux/sagas/tv-show-season/delete';
+import { watchSaveTvShowSeasonSaga } from 'app/redux/sagas/tv-show-season/save';
 import { watchCheckUserLoginStatusSaga } from 'app/redux/sagas/user/check-login';
 import { watchUserLoginSaga } from 'app/redux/sagas/user/login';
 import { watchUserLogoutSaga } from 'app/redux/sagas/user/logout';
 import { watchUserSignupSaga } from 'app/redux/sagas/user/signup';
 import { SagaIterator } from 'redux-saga';
+import { watchInlineUpdateTvShowSeasonSaga } from './tv-show-season/inline-update';
 
 /**
  * The root saga to be fed to the ReduxSaga middleware
@@ -45,6 +48,10 @@ export const rootSaga = function * (): SagaIterator {
 		call(watchSearchMediaItemsCatalogSaga),
 		call(watchGetMediaItemCatalogDetailsSaga),
 		call(watchSaveMediaItemSaga),
+
+		call(watchSaveTvShowSeasonSaga),
+		call(watchDeleteTvShowSeasonSaga),
+		call(watchInlineUpdateTvShowSeasonSaga),
 
 		call(watchFetchGroupsSaga),
 		call(watchSaveGroupSaga),

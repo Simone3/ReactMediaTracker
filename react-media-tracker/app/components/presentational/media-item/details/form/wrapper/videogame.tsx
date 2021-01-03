@@ -2,8 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
 import { VideogameFormViewComponent } from 'app/components/presentational/media-item/details/form/view/videogame';
 import { VideogameInternal, DEFAULT_CATALOG_VIDEOGAME } from 'app/data/models/internal/media-items/videogame';
-import { CommonMediaItemFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
-import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
+import { CommonMediaItemFormComponent, CommonMediaItemFormComponentInputMain, CommonMediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { videogameFormValidationSchema } from 'app/components/presentational/media-item/details/form/data/videogame';
 
 /**
@@ -44,12 +43,12 @@ export class VideogameFormComponent extends Component<VideogameFormComponentProp
 /**
  * VideogameFormComponent's input props
  */
-export type VideogameFormComponentInput = MediaItemFormComponentInput;
+export type VideogameFormComponentInput = CommonMediaItemFormComponentInputMain;
 
 /**
  * VideogameFormComponent's output props
  */
-export type VideogameFormComponentOutput = MediaItemFormComponentOutput;
+export type VideogameFormComponentOutput = CommonMediaItemFormComponentOutput;
 
 /**
  * VideogameFormComponent's props

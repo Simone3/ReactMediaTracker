@@ -1,5 +1,4 @@
 import React, { Component, ReactNode } from 'react';
-import { BackHandler } from 'react-native';
 import { NavigationScreenProp } from 'react-navigation';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { i18n } from 'app/utilities/i18n';
@@ -14,35 +13,6 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 	/**
 	 * @override
 	 */
-	public constructor(props: HeaderFormExitBackComponentInput) {
-		
-		super(props);
-
-		this.onPhysicalBackButtonPressAndroid = this.onPhysicalBackButtonPressAndroid.bind(this);
-		this.onBackButtonPress = this.onBackButtonPress.bind(this);
-	}
-	
-	/**
-	 * @override
-	 */
-	public componentDidMount(): void {
-
-		// Add listener for "physical" back button on Android
-		BackHandler.addEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
-	}
-
-	/**
-	 * @override
-	 */
-	public componentWillUnmount(): void {
-		
-		// Remove listener for "physical" back button on Android
-		BackHandler.removeEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
-	}
-
-	/**
-	 * @override
-	 */
 	public render(): ReactNode {
 
 		const {
@@ -51,20 +21,10 @@ export class HeaderFormExitBackComponent extends Component<HeaderFormExitBackCom
 
 		return (
 			<HeaderBackComponent
-				onClick={this.onBackButtonPress}
+				onClick={this.onBackButtonPress.bind(this)}
 				disabled={disabled}
 			/>
 		);
-	}
-
-	/**
-	 * Action on back button press for the "physical" button on Android
-	 * @returns always true: back behaviour always handled internally
-	 */
-	private onPhysicalBackButtonPressAndroid(): boolean {
-
-		this.onBackButtonPress();
-		return true;
 	}
 
 	/**

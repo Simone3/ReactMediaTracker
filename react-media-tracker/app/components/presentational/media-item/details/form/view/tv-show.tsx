@@ -8,6 +8,7 @@ import { MultiTextInputFieldComponent } from 'app/components/presentational/form
 import { DatePickerFieldComponent } from 'app/components/presentational/form/fields/date-picker';
 import { ToggleFieldComponent } from 'app/components/presentational/form/fields/toggle-input';
 import { NumericTextInputFieldComponent } from 'app/components/presentational/form/fields/text-input-number';
+import { TvShowSeasonHandlerFieldContainer } from 'app/components/containers/media-item/details/tv-show-season-handler';
 
 /**
  * Presentational component that contains all TV show form input fields, all handled by the Formik container component
@@ -26,7 +27,6 @@ export class TvShowFormViewComponent extends Component<TvShowFormViewComponentPr
 					this.durationField(),
 					this.creatorsField(),
 					this.seasonsField(),
-					this.episodesField(),
 					this.inProductionField(),
 					this.nextEpisodeDateField()
 				]}
@@ -68,31 +68,15 @@ export class TvShowFormViewComponent extends Component<TvShowFormViewComponentPr
 
 	/**
 	 * Helper
-	 * @returns the episodes component
-	 */
-	private episodesField(): ReactNode {
-
-		return (
-			<NumericTextInputFieldComponent
-				key='episodesField'
-				name='episodesNumber'
-				placeholder={i18n.t('mediaItem.details.placeholders.episodesNumber')}
-				icon={images.episodesField()}
-			/>
-		);
-	}
-
-	/**
-	 * Helper
 	 * @returns the seasons component
 	 */
 	private seasonsField(): ReactNode {
 
 		return (
-			<NumericTextInputFieldComponent
-				key='seasonsField'
-				name='seasonsNumber'
-				placeholder={i18n.t('mediaItem.details.placeholders.seasonsNumber')}
+			<TvShowSeasonHandlerFieldContainer
+				key='seasons'
+				name='seasons'
+				placeholder={i18n.t('mediaItem.details.placeholders.seasons')}
 				icon={images.seasonsField()}
 			/>
 		);

@@ -40,14 +40,14 @@ export type VideogameSortByInternal = MediaItemSortByInternal & {
 }
 
 /**
- * Model for a media item with base properties, internal type just for display purposes
+ * Model for a catalog videogame, internal type just for display purposes
  */
 export type CatalogVideogameInternal = CatalogMediaItemInternal & CoreVideogameDataInternal & {
 
 };
 
 /**
- * Media item catalog search result, internal type just for display purposes
+ * Videogame catalog search result, internal type just for display purposes
  */
 export type SearchVideogameCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 

@@ -10,6 +10,8 @@ import { MediaItemsListScreenContainer } from 'app/components/containers/media-i
 import { OwnPlatformDetailsScreenContainer } from 'app/components/containers/own-platform/details/screen';
 import { OwnPlatformsListScreenContainer } from 'app/components/containers/own-platform/list/screen';
 import { UserSettingsScreenContainer } from 'app/components/containers/settings/screen';
+import { TvShowSeasonDetailsScreenContainer } from 'app/components/containers/tv-show-season/details/screen';
+import { TvShowSeasonsListScreenContainer } from 'app/components/containers/tv-show-season/list/screen';
 import { CreditsScreenComponent } from 'app/components/presentational/credits/screen';
 import { drawerIconBuilder } from 'app/components/presentational/generic/drawer-icon';
 import { drawerLabelBuilder } from 'app/components/presentational/generic/drawer-label';
@@ -69,7 +71,9 @@ const MediaStackNavigator = createStackNavigator({
 	[AppScreens.OwnPlatformsList]: OwnPlatformsListScreenContainer,
 	[AppScreens.GroupsList]: GroupsListScreenContainer,
 	[AppScreens.GroupDetails]: GroupDetailsScreenContainer,
-	[AppScreens.OwnPlatformDetails]: OwnPlatformDetailsScreenContainer
+	[AppScreens.OwnPlatformDetails]: OwnPlatformDetailsScreenContainer,
+	[AppScreens.TvShowSeasonsList]: TvShowSeasonsListScreenContainer,
+	[AppScreens.TvShowSeasonDetails]: TvShowSeasonDetailsScreenContainer
 }, {
 	initialRouteName: AppScreens.CategoriesList,
 	defaultNavigationOptions: defaultScreenOptions

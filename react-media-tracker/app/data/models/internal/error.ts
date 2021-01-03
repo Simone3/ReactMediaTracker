@@ -34,6 +34,8 @@ export class AppError extends Error {
 	public static BACKEND_IMPORT_OLD_APP = new AppError('backend.import.oldApp', 'error.flash.messages.backendOldAppImport');
 	public static IMPORT_FILE = new AppError('import.fileNotValid', 'error.flash.messages.importFileNotValid');
 
+	public static TV_SHOW_SEASON_SAME_NUMBER = new AppError('tvShowSeason.sameNumber', 'error.flash.messages.saveTvShowSeasonNumber');
+
 	private _errorCode: string;
 	private _errorDescription: string;
 	private _errorDetails?: string | AppError;

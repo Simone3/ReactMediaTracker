@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
-import { MediaItemFormContainer } from 'app/components/containers/media-item/details/form';
 import { styles } from 'app/components/presentational/media-item/details/screen/styles';
 import { MediaItemDetailsHeaderContainer } from 'app/components/containers/media-item/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
@@ -8,6 +7,7 @@ import { MediaItemDetailsHeaderBackButtonContainer } from 'app/components/contai
 import { MediaItemDetailsHeaderSaveIconContainer } from 'app/components/containers/media-item/details/header-save-icon';
 import { ScreenProps } from 'app/components/containers/generic/navigation';
 import { NavigationStackOptions } from 'react-navigation-stack';
+import { MediaItemFormSwitcherContainer } from 'app/components/containers/media-item/details/form-container';
 
 /**
  * Presentational component that contains the whole "media item details" screen, that works as the "add new media item", "update media item" and
@@ -38,7 +38,7 @@ export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsS
 	
 		return (
 			<View style={styles.container}>
-				<MediaItemFormContainer/>
+				<MediaItemFormSwitcherContainer />
 				<LoadingIndicatorComponent
 					visible={this.props.isLoading}
 					fullScreen={false}

@@ -26,7 +26,8 @@
 				"backendOwnPlatformSave": "Cannot save the platform to the server",
 				"backendOwnPlatformDelete": "Cannot delete the platform from the server",
 				"backendOldAppImport": "Cannot import the old Media Tracker data",
-				"importFileNotValid": "File is not valid. Make sure it's a valid export from the old Media Tracker app, with .json extension"
+				"importFileNotValid": "File is not valid. Make sure it's a valid export from the old Media Tracker app, with .json extension",
+				"saveTvShowSeasonNumber": "A season with the same number already exists for this TV show"
 			}
 		}
 	},
@@ -224,8 +225,7 @@
 					"VIDEOGAME": "Developers"
 				},
 				"completedOn": "Completed on",
-				"episodesNumber": "Total number of episodes",
-				"seasonsNumber": "Number of seasons",
+				"seasons": "Seasons",
 				"inProduction": "In production",
 				"nextEpisodeAirDate": "Next episode air date",
 				"publishers": "Publishers",
@@ -246,6 +246,42 @@
 				"justWatch": "Just Watch Search",
 				"howLongToBeat": "How Long To Beat Search",
 				"downloadCatalog": "Reload Catalog"
+			},
+			"labels": {
+				"seasons": "{{seasonsNumber}} seasons, watched {{watchedEpisodesNumber}} out of {{episodesNumber}} episodes"
+			}
+		}
+	},
+	"tvShowSeason": {
+		"common": {
+			"alert": {
+				"delete": {
+					"title": "Delete Season",
+					"message": "Are you sure you want to delete season {{seasonNumber}}?"
+				}
+			}
+		},
+		"list": {
+			"title": "Seasons",
+			"empty": "No seasons",
+			"row": {
+				"main": "Season {{seasonNumber}}",
+				"secondary": "Watched {{watchedEpisodesNumber}} out of {{episodesNumber}} episodes"
+			},
+			"contextMenuTitle": "Season {{seasonNumber}}",
+			"edit": "Edit season",
+			"delete": "Delete season",
+			"complete": "Complete season"
+		},
+		"details": {
+			"title": {
+				"new": "New Season",
+				"existing": "Season {{seasonNumber}}"
+			},
+			"placeholders": {
+				"number": "Season number",
+				"episodesNumber": "Number of episodes",
+				"watchedEpisodesNumber": "Number of watched episodes"
 			}
 		}
 	},

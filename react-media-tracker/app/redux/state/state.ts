@@ -5,6 +5,7 @@ import { ImportExportState } from 'app/redux/state/import-export';
 import { MediaItemDetailsState, MediaItemsListState } from 'app/redux/state/media-item';
 import { OwnPlatformDetailsState, OwnPlatformGlobalState, OwnPlatformsListState } from 'app/redux/state/own-platform';
 import { UserGlobalState, UserOperationsState } from 'app/redux/state/user';
+import { TvShowSeasonDetailsState, TvShowSeasonsListState } from './tv-show-season';
 
 /**
  * The global application state (handled by Redux)
@@ -52,19 +53,29 @@ export class State {
 	public readonly mediaItemDetails!: MediaItemDetailsState;
 
 	/**
+	 * Portion of the state with the TV show seasons list information
+	 */
+	public readonly groupsList!: GroupsListState;
+
+	/**
+	 * Portion of the state with the TV shows season details information
+	 */
+	public readonly groupDetails!: GroupDetailsState;
+
+	/**
 	 * Portion of the state with the global group data
 	 */
 	public readonly groupGlobal!: GroupGlobalState;
 
 	/**
-	 * Portion of the state with the groups list information
+	 * Portion of the state with the TV show seasons list information
 	 */
-	public readonly groupsList!: GroupsListState;
+	public readonly tvShowSeasonsList!: TvShowSeasonsListState;
 
 	/**
-	 * Portion of the state with the group details information
+	 * Portion of the state with the TV show season details information
 	 */
-	public readonly groupDetails!: GroupDetailsState;
+	public readonly tvShowSeasonDetails!: TvShowSeasonDetailsState;
 
 	/**
 	 * Portion of the state with the global own platform data

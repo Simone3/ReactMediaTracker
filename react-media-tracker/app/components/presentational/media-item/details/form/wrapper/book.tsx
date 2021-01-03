@@ -2,8 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
 import { BookFormViewComponent } from 'app/components/presentational/media-item/details/form/view/book';
 import { BookInternal, DEFAULT_CATALOG_BOOK } from 'app/data/models/internal/media-items/book';
-import { CommonMediaItemFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
-import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
+import { CommonMediaItemFormComponent, CommonMediaItemFormComponentInputMain, CommonMediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { bookFormValidationSchema } from 'app/components/presentational/media-item/details/form/data/book';
 
 /**
@@ -44,12 +43,12 @@ export class BookFormComponent extends Component<BookFormComponentProps> {
 /**
  * BookFormComponent's input props
  */
-export type BookFormComponentInput = MediaItemFormComponentInput;
+export type BookFormComponentInput = CommonMediaItemFormComponentInputMain;
 
 /**
  * BookFormComponent's output props
  */
-export type BookFormComponentOutput = MediaItemFormComponentOutput;
+export type BookFormComponentOutput = CommonMediaItemFormComponentOutput;
 
 /**
  * BookFormComponent's props

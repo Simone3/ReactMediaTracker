@@ -2,8 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { FormikProps } from 'formik';
 import { MovieFormViewComponent } from 'app/components/presentational/media-item/details/form/view/movie';
 import { MovieInternal, DEFAULT_CATALOG_MOVIE } from 'app/data/models/internal/media-items/movie';
-import { CommonMediaItemFormComponent } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
-import { MediaItemFormComponentInput, MediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper';
+import { CommonMediaItemFormComponent, CommonMediaItemFormComponentInputMain, CommonMediaItemFormComponentOutput } from 'app/components/presentational/media-item/details/form/wrapper/media-item';
 import { movieFormValidationSchema } from 'app/components/presentational/media-item/details/form/data/movie';
 
 /**
@@ -44,12 +43,12 @@ export class MovieFormComponent extends Component<MovieFormComponentProps> {
 /**
  * MovieFormComponent's input props
  */
-export type MovieFormComponentInput = MediaItemFormComponentInput;
+export type MovieFormComponentInput = CommonMediaItemFormComponentInputMain;
 
 /**
  * MovieFormComponent's output props
  */
-export type MovieFormComponentOutput = MediaItemFormComponentOutput;
+export type MovieFormComponentOutput = CommonMediaItemFormComponentOutput;
 
 /**
  * MovieFormComponent's props

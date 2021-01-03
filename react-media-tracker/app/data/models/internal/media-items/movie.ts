@@ -38,14 +38,14 @@ export type MovieSortByInternal = MediaItemSortByInternal & {
 }
 
 /**
- * Model for a media item with base properties, internal type just for display purposes
+ * Model for a catalog movie, internal type just for display purposes
  */
 export type CatalogMovieInternal = CatalogMediaItemInternal & CoreMovieDataInternal & {
 
 };
 
 /**
- * Media item catalog search result, internal type just for display purposes
+ * Movie catalog search result, internal type just for display purposes
  */
 export type SearchMovieCatalogResultInternal = SearchMediaItemCatalogResultInternal & {
 
