@@ -1,18 +1,19 @@
+import { CommonActions } from '@react-navigation/native';
+import { Navigation } from 'app/components/containers/navigation/global';
 import { AppError } from 'app/data/models/internal/error';
-import { NavigationActions, NavigationContainerComponent, NavigationParams } from 'react-navigation';
 
 /**
  * Global class that can be used anywhere to navigate to a different app screen
  */
 class NavigationService {
 
-	private navigator?: NavigationContainerComponent;
+	private navigator?: Navigation;
 
 	/**
 	 * To be used ONLY by the top-level React Navigation component to save the navigator reference
 	 * @param navigator the navigator reference
 	 */
-	public initialize(navigator: NavigationContainerComponent): void {
+	public initialize(navigator: Navigation): void {
 		
 		this.navigator = navigator;
 	}
@@ -22,7 +23,7 @@ class NavigationService {
 	 * @param routeName the screen name
 	 * @param params the optional screen parameters
 	 */
-	public navigate(routeName: string, params?: NavigationParams): void {
+	public navigate(routeName: string, params?: object): void {
 
 		if(!this.navigator) {
 
@@ -30,8 +31,8 @@ class NavigationService {
 		}
 
 		this.navigator.dispatch(
-			NavigationActions.navigate({
-				routeName,
+			CommonActions.navigate({
+				name: routeName,
 				params
 			})
 		);
@@ -48,7 +49,7 @@ class NavigationService {
 		}
 
 		this.navigator.dispatch(
-			NavigationActions.back()
+			CommonActions.goBack()
 		);
 	}
 
@@ -66,7 +67,7 @@ class NavigationService {
 		}
 
 		this.navigator.dispatch(
-			NavigationActions.setParams({
+			CommonActions.setParams({
 				key: route,
 				params: {
 					[key]: value

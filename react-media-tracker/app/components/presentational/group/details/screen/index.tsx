@@ -2,12 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { GroupFormContainer } from 'app/components/containers/group/details/form';
 import { styles } from 'app/components/presentational/group/details/screen/styles';
-import { GroupDetailsHeaderContainer } from 'app/components/containers/group/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { GroupDetailsHeaderBackButtonContainer } from 'app/components/containers/group/details/header-back-button';
-import { GroupDetailsHeaderSaveIconContainer } from 'app/components/containers/group/details/header-save-icon';
-import { ScreenProps } from 'app/components/containers/generic/navigation';
-import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "group details" screen, that works as the "add new group", "update group" and
@@ -15,22 +10,6 @@ import { NavigationStackOptions } from 'react-navigation-stack';
  */
 export class GroupDetailsScreenComponent extends Component<GroupDetailsScreenComponentInput & GroupDetailsScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<GroupDetailsHeaderContainer
-						componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-						componentsRight={<GroupDetailsHeaderSaveIconContainer />}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

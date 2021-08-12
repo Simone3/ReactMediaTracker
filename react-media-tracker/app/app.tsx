@@ -1,10 +1,9 @@
-import React, { Component, ReactNode } from 'react';
-import { Provider } from 'react-redux';
-import { initializeRedux } from 'app/redux/initializer';
-import { AppNavigationContainer } from 'app/components/containers/generic/navigation';
-import { navigationService } from 'app/utilities/navigation-service';
 import { ErrorHandlerContainer } from 'app/components/containers/generic/error-handler';
+import { AppNavigationContainer } from 'app/components/containers/navigation/app-navigator';
+import { initializeRedux } from 'app/redux/initializer';
+import React, { Component, ReactNode } from 'react';
 import { StatusBar } from 'react-native';
+import { Provider } from 'react-redux';
 
 // Initialize app components
 const store = initializeRedux();
@@ -23,13 +22,7 @@ export class App extends Component {
 			<Provider store={store}>
 				<ErrorHandlerContainer>
 					<StatusBar barStyle='light-content' />
-					<AppNavigationContainer
-						ref={(navigatorRef) => {
-							if(!navigatorRef) {
-								return;
-							}
-							navigationService.initialize(navigatorRef);
-						}}/>
+					<AppNavigationContainer />
 				</ErrorHandlerContainer>
 			</Provider>
 		);

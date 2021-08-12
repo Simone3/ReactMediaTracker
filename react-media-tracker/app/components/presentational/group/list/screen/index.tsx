@@ -4,10 +4,7 @@ import { GroupsListContainer } from 'app/components/containers/group/list/list';
 import { styles } from 'app/components/presentational/group/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
-import { NavigationStackOptions } from 'react-navigation-stack';
-import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
 import { GroupContextMenuContainer } from 'app/components/containers/group/list/context-menu';
 
 /**
@@ -15,24 +12,6 @@ import { GroupContextMenuContainer } from 'app/components/containers/group/list/
  */
 export class GroupsListScreenComponent extends Component<GroupsListScreenComponentInput & GroupsListScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<HeaderComponent
-						title={i18n.t('group.list.title')}
-						componentsLeft={
-							<HeaderBackComponent />
-						}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

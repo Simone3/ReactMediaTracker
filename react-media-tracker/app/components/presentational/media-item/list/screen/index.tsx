@@ -4,48 +4,13 @@ import { MediaItemsListContainer } from 'app/components/containers/media-item/li
 import { styles } from 'app/components/presentational/media-item/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { MediaItemsListHeaderContainer } from 'app/components/containers/media-item/list/header';
-import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containers/media-item/list/header-search-icon';
-import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containers/media-item/list/header-filter-icon';
 import { MediaItemFilterModalContainer } from 'app/components/containers/media-item/list/filter-modal';
-import { images } from 'app/utilities/images';
 import { CategoryInternal } from 'app/data/models/internal/category';
-import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
-import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "media items list" screen, that lists all media items of the current category
  */
 export class MediaItemsListScreenComponent extends Component<MediaItemsListScreenComponentInput & MediaItemsListScreenComponentOutput> {
-	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<MediaItemsListHeaderContainer
-						componentsLeft={
-							<HeaderBackComponent />
-						}
-						componentsRight={[
-							<MediaItemsListHeaderFilterIconContainer
-								key='herader-filter-icon'
-								source={images.filterButton()}
-								clickStatus='ENABLED'
-							/>,
-							<MediaItemsListHeaderSearchIconContainer
-								key='herader-search-icon'
-								source={images.searchButton()}
-								clickStatus='ENABLED'
-							/>
-						]}
-					/>
-				);
-			}
-		};
-	};
 
 	/**
 	 * @override

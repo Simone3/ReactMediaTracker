@@ -2,7 +2,7 @@ import React, { ReactNode, Component } from 'react';
 import { styles } from 'app/components/presentational/form/components/date-picker/styles';
 import { View, TouchableOpacity, Platform } from 'react-native';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
@@ -186,7 +186,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 				mode={'date'}
 				is24Hour={true}
 				display='default'
-				onChange={(event, newValue) => {
+				onChange={(event: Event, newValue?: Date) => {
 
 					if(event.type === 'dismissed') {
 						

@@ -4,10 +4,7 @@ import { OwnPlatformsListContainer } from 'app/components/containers/own-platfor
 import { styles } from 'app/components/presentational/own-platform/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { HeaderComponent } from 'app/components/presentational/generic/header';
 import { i18n } from 'app/utilities/i18n';
-import { NavigationStackOptions } from 'react-navigation-stack';
-import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
 import { OwnPlatformContextMenuContainer } from 'app/components/containers/own-platform/list/context-menu';
 
 /**
@@ -15,24 +12,6 @@ import { OwnPlatformContextMenuContainer } from 'app/components/containers/own-p
  */
 export class OwnPlatformsListScreenComponent extends Component<OwnPlatformsListScreenComponentInput & OwnPlatformsListScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<HeaderComponent
-						title={i18n.t('ownPlatform.list.title')}
-						componentsLeft={
-							<HeaderBackComponent />
-						}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

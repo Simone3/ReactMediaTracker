@@ -4,33 +4,12 @@ import { CategoriesListContainer } from 'app/components/containers/category/list
 import { styles } from 'app/components/presentational/category/list/screen/styles';
 import { FABComponent } from 'app/components/presentational/generic/floating-action-button';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { HeaderComponent } from 'app/components/presentational/generic/header';
-import { i18n } from 'app/utilities/i18n';
-import { HeaderHamburgerComponent } from 'app/components/presentational/generic/header-hamburger';
-import { ScreenProps } from 'app/components/containers/generic/navigation';
-import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "categories list" screen, that lists all user categories
  */
 export class CategoriesListScreenComponent extends Component<CategoriesListScreenComponentInput & CategoriesListScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<HeaderComponent
-						title={i18n.t('category.list.title')}
-						componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

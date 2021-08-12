@@ -1,6 +1,6 @@
+import { Navigation } from 'app/components/containers/navigation/global';
 import { HeaderBackComponent, HeaderBackComponentInput, HeaderBackComponentOutput } from 'app/components/presentational/generic/header-back';
 import { completeTvShowSeasonsHandling } from 'app/redux/actions/tv-show-season/generators';
-import { NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
@@ -37,6 +37,6 @@ export type TvShowSeasonsListHeaderBackButtonContainerProps = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationScreenProp<object>;
+	navigation: Navigation;
 }
 

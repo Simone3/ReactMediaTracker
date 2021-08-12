@@ -3,7 +3,6 @@ import React, { Component, ReactNode } from 'react';
 import { ImageRequireSource } from 'react-native';
 import { ImageComponent } from 'app/components/presentational/generic/image';
 import { config } from 'app/config/config';
-import { DrawerIconProps } from 'react-navigation-drawer';
 
 /**
  * Presentational component to display a drawer icon (icon displayed next to each drawer item)
@@ -17,10 +16,10 @@ export class DrawerIconComponent extends Component<DrawerIconComponentProps> {
 
 		const {
 			source,
-			tintColor
+			color
 		} = this.props;
 
-		const iconColor = tintColor ? tintColor : config.ui.colors.black;
+		const iconColor = color ? color : config.ui.colors.black;
 
 		return (
 			<ImageComponent
@@ -31,6 +30,13 @@ export class DrawerIconComponent extends Component<DrawerIconComponentProps> {
 		);
 	}
 }
+
+/**
+ * React Navigation Drawer Icon props
+ */
+export type DrawerIconProps = {
+	color: string;
+};
 
 /**
  * DrawerIconComponent's props

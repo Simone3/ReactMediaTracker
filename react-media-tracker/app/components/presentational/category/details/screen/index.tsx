@@ -2,12 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { CategoryFormContainer } from 'app/components/containers/category/details/form';
 import { styles } from 'app/components/presentational/category/details/screen/styles';
-import { CategoryDetailsHeaderContainer } from 'app/components/containers/category/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { CategoryDetailsHeaderBackButtonContainer } from 'app/components/containers/category/details/header-back-button';
-import { CategoryDetailsHeaderSaveIconContainer } from 'app/components/containers/category/details/header-save-icon';
-import { ScreenProps } from 'app/components/containers/generic/navigation';
-import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the whole "categories details" screen, that works as the "add new category", "update category" and
@@ -15,22 +10,6 @@ import { NavigationStackOptions } from 'react-navigation-stack';
  */
 export class CategoryDetailsScreenComponent extends Component<CategoryDetailsScreenComponentInput & CategoryDetailsScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<CategoryDetailsHeaderContainer
-						componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-						componentsRight={<CategoryDetailsHeaderSaveIconContainer />}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

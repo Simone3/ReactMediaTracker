@@ -6,10 +6,8 @@ import { COMPLETE_SAVING_GROUP, LOAD_GROUP_DETAILS, LOAD_NEW_GROUP_DETAILS, REQU
 import { COMPLETE_SAVING_MEDIA_ITEM, LOAD_MEDIA_ITEM_DETAILS, LOAD_NEW_MEDIA_ITEM_DETAILS } from 'app/redux/actions/media-item/const';
 import { COMPLETE_SAVING_OWN_PLATFORM, LOAD_NEW_OWN_PLATFORM_DETAILS, LOAD_OWN_PLATFORM_DETAILS, REQUEST_OWN_PLATFORM_SELECTION, SELECT_OWN_PLATFORM } from 'app/redux/actions/own-platform/const';
 import { COMPLETE_SAVING_TV_SHOW_SEASON, COMPLETE_TV_SHOW_SEASONS_HANDLING, LOAD_NEW_TV_SHOW_SEASON_DETAILS, LOAD_TV_SHOW_SEASON_DETAILS, START_TV_SHOW_SEASONS_HANDLING } from 'app/redux/actions/tv-show-season/const';
-import { COMPLETE_CHECKING_USER_LOGIN_STATUS, COMPLETE_LOGGING_USER_IN, COMPLETE_LOGGING_USER_OUT, COMPLETE_SIGNING_USER_UP } from 'app/redux/actions/user/const';
-import { CompleteCheckingUserLoginStatusAction } from 'app/redux/actions/user/types';
 import { navigationService } from 'app/utilities/navigation-service';
-import { AppScreens, AppSections } from 'app/utilities/screens';
+import { AppScreens } from 'app/utilities/screens';
 import { Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 
@@ -17,10 +15,6 @@ import { SagaIterator } from 'redux-saga';
  * All actions that trigger navigation
  */
 const navigationActions = [
-	COMPLETE_CHECKING_USER_LOGIN_STATUS,
-	COMPLETE_SIGNING_USER_UP,
-	COMPLETE_LOGGING_USER_IN,
-	COMPLETE_LOGGING_USER_OUT,
 	SELECT_CATEGORY,
 	LOAD_NEW_CATEGORY_DETAILS,
 	LOAD_CATEGORY_DETAILS,
@@ -54,27 +48,7 @@ const navigationSaga = function * (action: Action): SagaIterator {
 	try {
 
 		switch(action.type) {
-
-			case COMPLETE_CHECKING_USER_LOGIN_STATUS: {
-
-				const completeCheckLoginAction = action as CompleteCheckingUserLoginStatusAction;
-				yield call(navigationService.navigate.bind(navigationService), completeCheckLoginAction.user ? AppSections.Authenticated : AppSections.Unauthenticated);
-				break;
-			}
-
-			case COMPLETE_SIGNING_USER_UP:
-			case COMPLETE_LOGGING_USER_IN: {
-
-				yield call(navigationService.navigate.bind(navigationService), AppSections.Authenticated);
-				break;
-			}
-
-			case COMPLETE_LOGGING_USER_OUT: {
-
-				yield call(navigationService.navigate.bind(navigationService), AppSections.Unauthenticated);
-				break;
-			}
-
+			
 			case SELECT_CATEGORY: {
 
 				yield call(navigationService.navigate.bind(navigationService), AppScreens.MediaItemsList);

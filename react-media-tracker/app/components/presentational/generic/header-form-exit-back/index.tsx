@@ -1,5 +1,5 @@
+import { Navigation } from 'app/components/containers/navigation/global';
 import React, { Component, ReactNode } from 'react';
-import { NavigationScreenProp } from 'react-navigation';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { i18n } from 'app/utilities/i18n';
 import { HeaderBackComponent } from 'app/components/presentational/generic/header-back';
@@ -65,7 +65,7 @@ export type HeaderFormExitBackComponentInput = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationScreenProp<unknown>;
+	navigation: Navigation;
 
 	/**
 	 * If the form is dirty, i.e. if the confirmation alert is required

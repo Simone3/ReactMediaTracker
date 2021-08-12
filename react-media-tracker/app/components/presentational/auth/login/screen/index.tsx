@@ -10,21 +10,11 @@ import { AppScreens } from 'app/utilities/screens';
 import { AppTitleComponent } from 'app/components/presentational/auth/common/app-title';
 import { AuthSubmitComponent } from 'app/components/presentational/auth/common/auth-submit';
 import { AuthLinkComponent } from 'app/components/presentational/auth/common/auth-link';
-import { NavigationStackOptions } from 'react-navigation-stack';
 
 /**
  * Presentational component that contains the add new user form
  */
 export class UserLoginScreenComponent extends Component<UserLoginScreenComponentProps, UserSecretInternal> {
-	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (): NavigationStackOptions => {
-		return {
-			headerShown: false
-		};
-	};
 
 	public state: UserSecretInternal = {
 		email: '',

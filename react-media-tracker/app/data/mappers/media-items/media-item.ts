@@ -5,7 +5,7 @@ import { CatalogMediaItem, MediaItem, MediaItemFilter, MediaItemGroupFilter, Med
 import { AppError } from 'app/data/models/internal/error';
 import { CatalogMediaItemInternal, MediaItemFilterInternal, MediaItemGroupFilterInternal, MediaItemInternal, MediaItemOwnPlatformFilterInternal, MediaItemSortByInternal, MediaItemSortFieldInternal, MediaItemStatusFilterInternal, MediaItemStatusInternal, SearchMediaItemCatalogResultInternal } from 'app/data/models/internal/media-items/media-item';
 import { dateUtils } from 'app/utilities/date-utils';
-import stripHtml from 'string-strip-html';
+import { stripHtml } from 'string-strip-html';
 
 /**
  * Abstract mapper for media items

@@ -1,6 +1,5 @@
 import React, { Component, ReactNode } from 'react';
 import { Text } from 'react-native';
-import { DrawerLabelProps } from 'react-navigation-drawer';
 import { styles } from 'app/components/presentational/generic/drawer-label/styles';
 import { config } from 'app/config/config';
 
@@ -16,10 +15,10 @@ export class DrawerLabelComponent extends Component<DrawerLabelComponentProps> {
 
 		const {
 			text,
-			tintColor
+			color
 		} = this.props;
 
-		const textColor = tintColor ? tintColor : config.ui.colors.black;
+		const textColor = color ? color : config.ui.colors.black;
 
 		return (
 			<Text style={[ styles.text, { color: textColor }]}>
@@ -28,6 +27,13 @@ export class DrawerLabelComponent extends Component<DrawerLabelComponentProps> {
 		);
 	}
 }
+
+/**
+ * React Navigation Drawer Label props
+ */
+export type DrawerLabelProps = {
+	color: string;
+};
 
 /**
  * DrawerLabelComponent's props
@@ -47,7 +53,6 @@ export type DrawerLabelComponentProps = DrawerLabelProps & {
  */
 export const drawerLabelBuilder = (text: string) => {
 	
-	// eslint-disable-next-line react/display-name
 	return (props: DrawerLabelProps): ReactNode => {
 
 		return <DrawerLabelComponent {...props} text={text} />;

@@ -370,7 +370,7 @@ module.exports = {
 		'import/exports-last': 'off',
 		'import/no-duplicates': 2,
 		'import/no-namespace': 2,
-		'import/extensions': 2,
+		'import/extensions': [ 2, 'never', { png: 'off' }],
 		'import/order': 2,
 		'import/newline-after-import': 2,
 		'import/prefer-default-export': 'off',
@@ -381,7 +381,11 @@ module.exports = {
 		'import/no-named-export': 'off',
 		'import/no-anonymous-default-export': 2,
 		'import/group-exports': 'off',
-		'import/dynamic-import-chunkname': 'off'
+		'import/dynamic-import-chunkname': 'off',
+
+		/* ************* react ************* */
+
+		'react/display-name': 'off'
 	}
 };
 

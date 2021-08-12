@@ -1,12 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import { View } from 'react-native';
 import { styles } from 'app/components/presentational/media-item/details/screen/styles';
-import { MediaItemDetailsHeaderContainer } from 'app/components/containers/media-item/details/header';
 import { LoadingIndicatorComponent } from 'app/components/presentational/generic/loading-indicator';
-import { MediaItemDetailsHeaderBackButtonContainer } from 'app/components/containers/media-item/details/header-back-button';
-import { MediaItemDetailsHeaderSaveIconContainer } from 'app/components/containers/media-item/details/header-save-icon';
-import { ScreenProps } from 'app/components/containers/generic/navigation';
-import { NavigationStackOptions } from 'react-navigation-stack';
 import { MediaItemFormSwitcherContainer } from 'app/components/containers/media-item/details/form-container';
 
 /**
@@ -15,22 +10,6 @@ import { MediaItemFormSwitcherContainer } from 'app/components/containers/media-
  */
 export class MediaItemDetailsScreenComponent extends Component<MediaItemDetailsScreenComponentInput & MediaItemDetailsScreenComponentOutput> {
 	
-	/**
-	 * @override
-	 */
-	public static readonly navigationOptions = (navigationScreenProps: ScreenProps): NavigationStackOptions => {
-		return {
-			headerTitle: (): ReactNode => {
-				return (
-					<MediaItemDetailsHeaderContainer
-						componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
-						componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
-					/>
-				);
-			}
-		};
-	};
-
 	/**
 	 * @override
 	 */

@@ -1,6 +1,6 @@
+import { Navigation } from 'app/components/containers/navigation/global';
 import { HeaderFormExitBackComponent, HeaderFormExitBackComponentInput } from 'app/components/presentational/generic/header-form-exit-back';
 import { State } from 'app/redux/state/state';
-import { NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: State, ownProps: MediaItemDetailsHeaderBackButtonContainerProps): HeaderFormExitBackComponentInput => {
@@ -27,6 +27,6 @@ export type MediaItemDetailsHeaderBackButtonContainerProps = {
 	/**
 	 * The navigation data
 	 */
-	navigation: NavigationScreenProp<object>;
+	navigation: Navigation;
 }
 
