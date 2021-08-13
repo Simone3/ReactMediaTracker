@@ -2,7 +2,7 @@ import React, { ReactNode, Component } from 'react';
 import { styles } from 'app/components/presentational/form/components/date-picker/styles';
 import { View, TouchableOpacity, Platform } from 'react-native';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
-import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
+import DateTimePicker, { AndroidEvent, Event } from '@react-native-community/datetimepicker';
 import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
@@ -109,7 +109,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 	private renderAndroidModal(): ReactNode {
 
 		// On Android, the picker is natively in a modal, no need for extra components
-		return this.renderPicker();
+		return this.renderPicker('calendar');
 	}
 
 	/**
@@ -130,7 +130,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 					this.setState({ open: false });
 				}}>
 				<View style={styles.iosModalContent}>
-					{this.renderPicker()}
+					{this.renderPicker('spinner')}
 					{this.renderModalConfirmButton()}
 				</View>
 			</ModalComponent>
@@ -167,9 +167,10 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 
 	/**
 	 * Helper to render the actual date picker
+	 * @param display display mode
 	 * @returns the component
 	 */
-	private renderPicker(): ReactNode {
+	private renderPicker(display: 'spinner' | 'default' | 'calendar'): ReactNode {
 
 		const {
 			currentTemporaryDate
@@ -185,19 +186,19 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 				value={currentTemporaryDate || new Date()}
 				mode={'date'}
 				is24Hour={true}
-				display='default'
-				onChange={(event: Event, newValue?: Date) => {
+				display={display}
+				onChange={(event: Event | AndroidEvent, newValue?: Date) => {
 
 					if(event.type === 'dismissed') {
 						
 						this.setState({ open: false });
-						onBlur(event);
+						onBlur(String(event));
 					}
 					else if(event.type === 'set') {
 
 						this.setState({ open: false });
 						onSelectDate(newValue);
-						onBlur(event);
+						onBlur(String(event));
 					}
 					else {
 
