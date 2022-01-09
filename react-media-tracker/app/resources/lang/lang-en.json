@@ -346,9 +346,12 @@
 			}
 		},
 		"icons": {
+			"android": "Android",
+			"apple": "Apple",
 			"book": "Book",
 			"default": "Generic",
 			"disc": "Disc",
+			"disney": "Disney",
 			"download": "Download",
 			"epic": "Epic Games",
 			"gog": "GOG",
@@ -356,11 +359,10 @@
 			"kindle": "Kindle",
 			"netflix": "Netflix",
 			"origin": "Origin",
+			"playstation": "PlayStation",
 			"steam": "Steam",
-			"uplay": "Uplay",
 			"switch": "Nintendo Switch",
-			"android": "Android",
-			"playstation": "PlayStation"
+			"uplay": "Uplay"
 		}
 	},
 	"common": {

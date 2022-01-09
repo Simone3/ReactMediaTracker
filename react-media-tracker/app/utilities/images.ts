@@ -475,6 +475,12 @@ class ImagesHelper {
 	public ownPlatform(iconId: OwnPlatformIconInternal): ImageRequireSource {
 
 		switch(iconId) {
+				
+			case 'android':
+				return require('app/resources/images/ic_platform_android.png');
+				
+			case 'apple':
+				return require('app/resources/images/ic_platform_apple.png');
 
 			case 'book':
 				return require('app/resources/images/ic_platform_book.png');
@@ -484,6 +490,9 @@ class ImagesHelper {
 
 			case 'disc':
 				return require('app/resources/images/ic_platform_disc.png');
+
+			case 'disney':
+				return require('app/resources/images/ic_platform_disney.png');
 
 			case 'download':
 				return require('app/resources/images/ic_platform_download.png');
@@ -506,20 +515,17 @@ class ImagesHelper {
 			case 'origin':
 				return require('app/resources/images/ic_platform_origin.png');
 				
+			case 'playstation':
+				return require('app/resources/images/ic_platform_playstation.png');
+				
 			case 'steam':
 				return require('app/resources/images/ic_platform_steam.png');
-				
-			case 'uplay':
-				return require('app/resources/images/ic_platform_uplay.png');
 				
 			case 'switch':
 				return require('app/resources/images/ic_platform_switch.png');
 				
-			case 'playstation':
-				return require('app/resources/images/ic_platform_playstation.png');
-				
-			case 'android':
-				return require('app/resources/images/ic_platform_android.png');
+			case 'uplay':
+				return require('app/resources/images/ic_platform_uplay.png');
 			
 			default:
 				throw AppError.GENERIC.withDetails(`Own platform icon ID ${iconId} is not mapped to an actual image`);
