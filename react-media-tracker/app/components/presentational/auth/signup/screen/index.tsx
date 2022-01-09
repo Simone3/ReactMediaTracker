@@ -55,7 +55,7 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 						value={this.state.email}
 						placeholder={i18n.t('auth.signup.placeholders.email')}
 						textContentType='username'
-						autoCompleteType='email'
+						autoComplete='email'
 						keyboardType='email-address'
 					/>
 					<AuthTextInputComponent
@@ -68,7 +68,7 @@ export class UserSignupScreenComponent extends Component<UserSignupScreenCompone
 						placeholder={i18n.t('auth.signup.placeholders.password')}
 						secureTextEntry={true}
 						textContentType='password'
-						autoCompleteType='password'
+						autoComplete='password'
 					/>
 				</View>
 				<View style={styles.submitContainer}>

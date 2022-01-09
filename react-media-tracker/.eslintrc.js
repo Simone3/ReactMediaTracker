@@ -318,7 +318,7 @@ module.exports = {
 		/* ************* eslint-plugin-jsdoc ************* */
 
 		'jsdoc/check-alignment': 2,
-		'jsdoc/check-examples': 2,
+		'jsdoc/check-examples': /*2,*/ 'off', /* TEMPORARILY DISABLED, NOT WORKING IN ESLINT8 https://github.com/gajus/eslint-plugin-jsdoc#check-examples */
 		'jsdoc/check-indentation': 2,
 		'jsdoc/check-param-names': 2,
 		'jsdoc/check-syntax': 2,
