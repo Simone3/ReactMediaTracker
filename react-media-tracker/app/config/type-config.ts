@@ -34,6 +34,7 @@ export type Config = {
 			purple: string;
 			cyan: string;
 			grey: string;
+			lightGrey: string;
 			white: string;
 			black: string;
 			availableCategoryColors: string[];

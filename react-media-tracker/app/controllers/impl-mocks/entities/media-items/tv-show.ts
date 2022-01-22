@@ -13,7 +13,7 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 			3: [{
 				id: '1',
 				mediaType: 'TV_SHOW',
-				status: 'NEW',
+				status: 'ACTIVE',
 				name: 'My First TV Show',
 				importance: '400',
 				seasons: [{
@@ -31,22 +31,41 @@ export class TvShowMockedController extends MediaItemMockedController<TvShowInte
 			}, {
 				id: '2',
 				mediaType: 'TV_SHOW',
-				status: 'NEW',
+				status: 'ACTIVE',
 				name: 'My Second TV Show',
-				importance: '100',
-				averageEpisodeRuntimeMinutes: 50
+				importance: '400',
+				seasons: [{
+					number: 1,
+					episodesNumber: 10,
+					watchedEpisodesNumber: 10
+				}, {
+					number: 2,
+					episodesNumber: 12,
+					watchedEpisodesNumber: 12
+				}, {
+					number: 3,
+					episodesNumber: 8,
+					watchedEpisodesNumber: 8
+				}]
 			}, {
 				id: '3',
 				mediaType: 'TV_SHOW',
 				status: 'ACTIVE',
 				name: 'My Third TV Show',
-				importance: '300',
-				active: true
+				importance: '100',
+				averageEpisodeRuntimeMinutes: 50
 			}, {
 				id: '4',
 				mediaType: 'TV_SHOW',
 				status: 'NEW',
 				name: 'My Fourth TV Show',
+				importance: '300',
+				active: true
+			}, {
+				id: '5',
+				mediaType: 'TV_SHOW',
+				status: 'NEW',
+				name: 'My Fifth TV Show',
 				importance: '200'
 			}]
 		}

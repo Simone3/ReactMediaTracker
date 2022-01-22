@@ -6,6 +6,8 @@ import { ImageComponent } from 'app/components/presentational/generic/image';
 import { images } from 'app/utilities/images';
 import { config } from 'app/config/config';
 import { AppError } from 'app/data/models/internal/error';
+import { TvShowInternal } from 'app/data/models/internal/media-items/tv-show';
+import { mediaItemUtils } from 'app/utilities/media-item-utils';
 
 /**
  * Presentational component to display the set of secondary icons portion of the list row
@@ -60,6 +62,19 @@ export class MediaItemRowIconsComponent extends Component<MediaItemRowIconsCompo
 		switch(mediaItem.status) {
 
 			case 'ACTIVE':
+
+				if(mediaItem.mediaType === 'TV_SHOW') {
+
+					const tvShow = mediaItem as TvShowInternal;
+					if(mediaItemUtils.getTvShowCounters(tvShow.seasons).episodesToWatchNumber <= 0) {
+	
+						return {
+							icon: config.ui.colors.white,
+							background: config.ui.colors.lightGrey,
+							border: config.ui.colors.lightGrey
+						};
+					}
+				}
 
 				return {
 					icon: config.ui.colors.white,

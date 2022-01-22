@@ -5,6 +5,7 @@ import { PlaceholderTextComponent } from 'app/components/presentational/generic/
 import { TouchableOpacity } from 'react-native';
 import { TvShowSeasonInternal } from 'app/data/models/internal/media-items/tv-show';
 import { i18n } from 'app/utilities/i18n';
+import { mediaItemUtils } from 'app/utilities/media-item-utils';
 
 /**
  * Presentational component to display a TV show season picker, with the possibility to open a selection screen on click
@@ -39,18 +40,12 @@ export class TvShowSeasonHandlerComponent extends Component<TvShowSeasonHandlerC
 		let textValue = '';
 		if(seasons && seasons.length > 0) {
 
-			let seasonsNumber = 0;
-			let episodesNumber = 0;
-			let watchedEpisodesNumber = 0;
-
-			for(const season of seasons) {
-
-				seasonsNumber += 1;
-				episodesNumber += season.episodesNumber ? season.episodesNumber : 0;
-				watchedEpisodesNumber += season.watchedEpisodesNumber ? season.watchedEpisodesNumber : 0;
-			}
-
-			textValue = i18n.t('mediaItem.details.labels.seasons', { seasonsNumber: seasonsNumber, episodesNumber: episodesNumber, watchedEpisodesNumber: watchedEpisodesNumber });
+			const counters = mediaItemUtils.getTvShowCounters(seasons);
+			textValue = i18n.t('mediaItem.details.labels.seasons', {
+				seasonsNumber: counters.seasonsNumber,
+				episodesNumber: counters.episodesNumber,
+				watchedEpisodesNumber: counters.watchedEpisodesNumber
+			});
 		}
 
 		return (
