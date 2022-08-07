@@ -4,6 +4,7 @@ import { initializeRedux } from 'app/redux/initializer';
 import React, { Component, ReactNode } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
+import { config } from 'app/config/config';
 
 // Initialize app components
 const store = initializeRedux();
@@ -21,7 +22,10 @@ export class App extends Component {
 		return (
 			<Provider store={store}>
 				<ErrorHandlerContainer>
-					<StatusBar barStyle='light-content' />
+					<StatusBar
+						backgroundColor={config.ui.colors.colorPrimaryDark}
+						barStyle='light-content'
+					/>
 					<AppNavigationContainer />
 				</ErrorHandlerContainer>
 			</Provider>
