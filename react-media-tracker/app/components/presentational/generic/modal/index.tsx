@@ -92,6 +92,11 @@ export class ModalComponent extends Component<ModalComponentProps> {
 export type ModalComponentInput = {
 
 	/**
+	 * Child components are the contents of the modal
+	 */
+	children?: React.ReactNode;
+
+	/**
 	 * Modal dialog visibility
 	 */
 	visible: boolean;

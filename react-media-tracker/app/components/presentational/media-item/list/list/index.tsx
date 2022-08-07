@@ -80,8 +80,8 @@ export class MediaItemsListComponent extends Component<MediaItemsListComponentIn
 								}}
 								showOptionsMenu={() => {
 									highlightMediaItem(item);
-								}}>
-							</MediaItemRowComponent>
+								}}
+							/>
 						);
 					}}
 					keyExtractor={(item) => {

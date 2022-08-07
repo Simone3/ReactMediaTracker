@@ -17,9 +17,8 @@ export class MediaIconComponent extends Component<MediaIconComponentInput> {
 			<ImageComponent
 				source={images.mediaType(this.props.category.mediaType)}
 				tintColor={this.props.tintColor}
-				{...this.props}>
-				{this.props.children}
-			</ImageComponent>
+				{...this.props}
+			/>
 		);
 	}
 }

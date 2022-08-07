@@ -86,6 +86,11 @@ export class FormInputComponent extends Component<FormInputComponentProps> {
 export type FormInputComponentInput = {
 
 	/**
+	 * Child components are the input contents
+	 */
+	children?: React.ReactNode;
+	
+	/**
 	 * The input icon
 	 */
 	icon?: ImageRequireSource;
