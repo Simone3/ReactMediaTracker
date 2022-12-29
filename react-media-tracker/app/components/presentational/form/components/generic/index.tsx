@@ -1,6 +1,6 @@
-import React, { ReactNode, Component, ChangeEvent } from 'react';
+import React, { ReactNode, Component } from 'react';
 import { ImageComponent } from 'app/components/presentational/generic/image';
-import { ImageRequireSource, StyleProp, ViewStyle, View, StyleSheet } from 'react-native';
+import { ImageRequireSource, StyleProp, ViewStyle, View, StyleSheet, NativeSyntheticEvent } from 'react-native';
 import { config } from 'app/config/config';
 import { styles } from 'app/components/presentational/form/components/generic/styles';
 
@@ -119,12 +119,12 @@ export type FormInputComponentOutput = {
 	/**
 	 * Notifies input focus (input is currently active)
 	 */
-	onFocus: (event: string | ChangeEvent<unknown>) => void;
+	onFocus: (event: NativeSyntheticEvent<unknown> | undefined) => void;
 	
 	/**
 	 * Notifies input blur (input is no longer active)
 	 */
-	onBlur: (event: string | ChangeEvent<unknown>) => void;
+	onBlur: (event: NativeSyntheticEvent<unknown> | undefined) => void;
 }
 
 /**

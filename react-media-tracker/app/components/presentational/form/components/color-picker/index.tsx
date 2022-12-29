@@ -72,7 +72,7 @@ export class ColorPickerComponent extends Component<ColorPickerComponentProps, C
 			<ModalComponent
 				visible={this.state.open}
 				onClose={() => {
-					onBlur('');
+					onBlur(undefined);
 					this.setState({ open: false });
 				}}>
 				<View style={styles.modalContent}>

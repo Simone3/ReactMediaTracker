@@ -91,7 +91,7 @@ export class PickerComponent extends Component<PickerComponentProps> {
 			<ModalComponent
 				visible={this.state.open}
 				onClose={() => {
-					onBlur('');
+					onBlur(undefined);
 					this.setState({ open: false });
 				}}>
 				<View style={styles.iosModalContent}>

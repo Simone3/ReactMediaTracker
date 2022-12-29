@@ -1,5 +1,6 @@
-import React, { Component, ReactNode, ChangeEvent } from 'react';
+import React, { ChangeEvent, Component, ReactNode } from 'react';
 import { Field, FieldProps } from 'formik';
+import { NativeSyntheticEvent } from 'react-native';
 
 /**
  * Wrapper of Formik <Field> that:
@@ -105,12 +106,12 @@ type FieldData = {
 	/**
 	 * Allows children to notify input focus (input is currently active)
 	 */
-	onFocus: (event: string | ChangeEvent<unknown>) => void;
+	onFocus: (event: NativeSyntheticEvent<unknown> | undefined) => void;
 	
 	/**
 	 * Allows children to notify input blur (input is no longer active)
 	 */
-	onBlur: (event: string | ChangeEvent<unknown>) => void;
+	onBlur: (event: NativeSyntheticEvent<unknown> | undefined) => void;
 
 	/**
 	 * Allows children to get the input value

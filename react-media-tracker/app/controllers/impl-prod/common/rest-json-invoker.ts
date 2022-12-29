@@ -20,8 +20,10 @@ export class RestJsonInvokerAxios implements RestJsonInvoker {
 
 		return new Promise((resolve, reject): void => {
 
-			// Build request options
+			// eslint-disable-next-line import/no-named-as-default-member
 			const cancelTokenSource = axios.CancelToken.source();
+
+			// Build request options
 			const options: AxiosRequestConfig = {
 				url: parameters.url,
 				method: parameters.method,

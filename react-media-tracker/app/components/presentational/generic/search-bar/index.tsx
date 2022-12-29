@@ -113,6 +113,8 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 				/>
 			);
 		}
+
+		return undefined;
 	}
 	
 	/**

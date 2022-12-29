@@ -80,7 +80,7 @@ export class GenericMultipleInputComponent<I> extends Component<GenericMultipleI
 				visible={this.state.open}
 				onClose={() => {
 
-					onBlur('');
+					onBlur(undefined);
 					this.setState({ open: false });
 				}}>
 				<View style={styles.modalContent}>

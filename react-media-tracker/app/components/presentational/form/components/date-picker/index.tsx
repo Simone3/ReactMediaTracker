@@ -100,6 +100,8 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 				return this.renderAndroidModal();
 			}
 		}
+
+		return undefined;
 	}
 
 	/**
@@ -126,7 +128,7 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 			<ModalComponent
 				visible={this.state.open}
 				onClose={() => {
-					onBlur('');
+					onBlur(undefined);
 					this.setState({ open: false });
 				}}>
 				<View style={styles.iosModalContent}>
@@ -192,13 +194,13 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 					if(event.type === 'dismissed') {
 						
 						this.setState({ open: false });
-						onBlur(String(event));
+						onBlur(undefined);
 					}
 					else if(event.type === 'set') {
 
 						this.setState({ open: false });
 						onSelectDate(newValue);
-						onBlur(String(event));
+						onBlur(undefined);
 					}
 					else {
 

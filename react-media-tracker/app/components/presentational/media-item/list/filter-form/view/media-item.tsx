@@ -159,7 +159,9 @@ export class MediaItemFilterFormViewComponent extends Component<MediaItemFilterF
 		return (
 			<View style={styles.submitContainer}>
 				<TouchableOpacity
-					onPress={handleSubmit}
+					onPress={() => {
+						handleSubmit();
+					}}
 					disabled={!isValid}>
 					<Text style={!isValid ? [ styles.submitText, styles.submitTextDisabled ] : styles.submitText }>
 						{i18n.t('common.alert.default.applyButton')}
