@@ -1,5 +1,5 @@
 import { BookInternal } from 'app/data/models/internal/media-items/book';
-import { array, number, object, SchemaOf, string } from 'yup';
+import { array, number, object, ObjectSchema, string } from 'yup';
 import { mediaItemFormValidationShape } from './media-item';
 
 /**
@@ -14,4 +14,4 @@ const bookFormValidationShape = {
 /**
  * The book form validation schema
  */
-export const bookFormValidationSchema: SchemaOf<BookInternal> = object().required().shape(bookFormValidationShape);
+export const bookFormValidationSchema: ObjectSchema<BookInternal> = object().required().shape(bookFormValidationShape);

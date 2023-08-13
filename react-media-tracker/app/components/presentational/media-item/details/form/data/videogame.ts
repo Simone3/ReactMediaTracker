@@ -1,5 +1,5 @@
 import { VideogameInternal } from 'app/data/models/internal/media-items/videogame';
-import { array, number, object, SchemaOf, string } from 'yup';
+import { array, number, object, ObjectSchema, string } from 'yup';
 import { mediaItemFormValidationShape } from './media-item';
 
 /**
@@ -16,4 +16,4 @@ const videogameFormValidationShape = {
 /**
  * The videogame form validation schema
  */
-export const videogameFormValidationSchema: SchemaOf<VideogameInternal> = object().required().shape(videogameFormValidationShape);
+export const videogameFormValidationSchema: ObjectSchema<VideogameInternal> = object().required().shape(videogameFormValidationShape);

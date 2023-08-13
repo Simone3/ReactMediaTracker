@@ -3,7 +3,7 @@ import { MediaItemInternal, CatalogMediaItemInternal } from 'app/data/models/int
 import { i18n } from 'app/utilities/i18n';
 import { ConfirmAlert } from 'app/components/presentational/generic/confirm-alert';
 import { FormikProps, Formik } from 'formik';
-import { SchemaOf } from 'yup';
+import { ObjectSchema } from 'yup';
 import { GroupInternal } from 'app/data/models/internal/group';
 import { OwnPlatformInternal } from 'app/data/models/internal/own-platform';
 
@@ -214,7 +214,7 @@ export type CommonMediaItemFormComponentInputConfig = {
 	/**
 	 * The media item form validation schema
 	 */
-	validationSchema: SchemaOf<MediaItemInternal>;
+	validationSchema: ObjectSchema<MediaItemInternal>;
 }
 
 /**

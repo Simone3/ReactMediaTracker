@@ -31,7 +31,7 @@ export class ModalComponent extends Component<ModalComponentProps> {
 					}
 				}}>
 				<TouchableOpacity
-					style={StyleSheet.compose<ViewStyle>(StyleSheet.compose<ViewStyle>(styles.container, transparentBackground ? null : styles.containerGrayed), this.getContainerPositionStyle())}
+					style={StyleSheet.compose<ViewStyle, ViewStyle, ViewStyle>(StyleSheet.compose<ViewStyle, ViewStyle, ViewStyle>(styles.container, transparentBackground ? null : styles.containerGrayed), this.getContainerPositionStyle())}
 					activeOpacity={1}
 					onPressOut={() => {
 						if(onClose) {

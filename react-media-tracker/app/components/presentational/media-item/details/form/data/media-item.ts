@@ -1,8 +1,8 @@
-import { MediaTypeInternal, MEDIA_TYPES_INTERNAL } from 'app/data/models/internal/category';
+import { MEDIA_TYPES_INTERNAL, MediaTypeInternal } from 'app/data/models/internal/category';
 import { GroupInternal } from 'app/data/models/internal/group';
-import { MediaItemImportanceInternal, MediaItemStatusInternal, MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES } from 'app/data/models/internal/media-items/media-item';
-import { OwnPlatformIconInternal, OwnPlatformInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
-import { array, BaseSchema, boolean, date, mixed, number, NumberSchema, object, string, StringSchema } from 'yup';
+import { MEDIA_ITEM_IMPORTANCE_INTERNAL_VALUES, MEDIA_ITEM_STATUS_INTERNAL_VALUES, MediaItemImportanceInternal, MediaItemStatusInternal } from 'app/data/models/internal/media-items/media-item';
+import { OWN_PLATFORM_ICON_INTERNAL_VALUES, OwnPlatformIconInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { NumberSchema, ObjectSchema, StringSchema, array, boolean, date, mixed, number, object, string } from 'yup';
 
 /**
  * The generic media item form validation schema shape
@@ -20,8 +20,8 @@ export const mediaItemFormValidationShape = {
 	group: object({
 		id: string(),
 		name: string()
-	}) as BaseSchema<GroupInternal | undefined>,
-	orderInGroup: number().when('group', (value: GroupInternal | undefined, schema: NumberSchema<number | undefined>) => {
+	}) as ObjectSchema<GroupInternal | undefined>,
+	orderInGroup: number().when('group', ([ value ]: (GroupInternal | undefined)[], schema: NumberSchema<number | undefined>) => {
 		
 		return value && value.id ? schema.required() : schema;
 	}),
@@ -30,7 +30,7 @@ export const mediaItemFormValidationShape = {
 		name: string(),
 		color: string(),
 		icon: mixed<OwnPlatformIconInternal>().oneOf(OWN_PLATFORM_ICON_INTERNAL_VALUES)
-	}) as BaseSchema<OwnPlatformInternal | undefined>,
+	}) as ObjectSchema<OwnPlatformInternal | undefined>,
 	userComment: string(),
 	completedOn: array().of(date().required()).optional(),
 	active: boolean(),

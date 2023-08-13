@@ -28,7 +28,7 @@ export class ImageComponent extends Component<ImageComponentInput> {
 		return (
 			<Image
 				{...this.props}
-				style={StyleSheet.compose<ImageStyle>(StyleSheet.compose<ImageStyle>(defaultSizeStyle, colorStyle), style)}
+				style={StyleSheet.compose<ImageStyle, ImageStyle, ImageStyle>(StyleSheet.compose<ImageStyle, ImageStyle, ImageStyle>(defaultSizeStyle, colorStyle), style)}
 			/>
 		);
 	}

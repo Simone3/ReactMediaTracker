@@ -15,7 +15,7 @@ export class AuthTextInputComponent extends Component<AuthTextInputComponentProp
 		return (
 			<TextInput
 				{...this.props}
-				style={StyleSheet.compose<TextStyle>(styles.input, this.props.style)}
+				style={StyleSheet.compose<TextStyle, TextStyle, TextStyle>(styles.input, this.props.style)}
 			/>
 		);
 	}

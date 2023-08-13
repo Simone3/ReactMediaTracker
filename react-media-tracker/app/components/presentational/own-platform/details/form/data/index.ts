@@ -1,10 +1,10 @@
-import { OwnPlatformIconInternal, OwnPlatformInternal, OWN_PLATFORM_ICON_INTERNAL_VALUES } from 'app/data/models/internal/own-platform';
-import { mixed, object, SchemaOf, string, StringSchema } from 'yup';
+import { OWN_PLATFORM_ICON_INTERNAL_VALUES, OwnPlatformIconInternal, OwnPlatformInternal } from 'app/data/models/internal/own-platform';
+import { ObjectSchema, StringSchema, mixed, object, string } from 'yup';
 
 /**
  * The own platform form validation schema
  */
-export const ownPlatformFormValidationSchema: SchemaOf<OwnPlatformInternal> = object().required().shape({
+export const ownPlatformFormValidationSchema: ObjectSchema<OwnPlatformInternal> = object().required().shape({
 	id: string() as StringSchema<string>,
 	name: string().required(),
 	color: string().required(),

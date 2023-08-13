@@ -17,7 +17,7 @@ export class AppTitleComponent extends Component<AppTitleComponentProps> {
 		return (
 			<View
 				{...this.props}
-				style={StyleSheet.compose<ViewStyle>(styles.container, this.props.style)}>
+				style={StyleSheet.compose<ViewStyle, ViewStyle, ViewStyle>(styles.container, this.props.style)}>
 				<View style={styles.logoContainer}>
 					<Image
 						source={images.appLogo()}

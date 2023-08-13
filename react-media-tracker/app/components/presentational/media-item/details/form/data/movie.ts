@@ -1,5 +1,5 @@
 import { MovieInternal } from 'app/data/models/internal/media-items/movie';
-import { array, number, object, SchemaOf, string } from 'yup';
+import { array, number, object, ObjectSchema, string } from 'yup';
 import { mediaItemFormValidationShape } from './media-item';
 
 /**
@@ -14,4 +14,4 @@ const movieFormValidationShape = {
 /**
  * The movie form validation schema
  */
-export const movieFormValidationSchema: SchemaOf<MovieInternal> = object().required().shape(movieFormValidationShape);
+export const movieFormValidationSchema: ObjectSchema<MovieInternal> = object().required().shape(movieFormValidationShape);

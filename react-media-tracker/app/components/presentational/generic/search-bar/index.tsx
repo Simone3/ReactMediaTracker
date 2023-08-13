@@ -47,7 +47,7 @@ export class SearchBarComponent extends Component<SearchBarComponentProps, Searc
 			<TextInput
 				{...this.props}
 				value={value ? value : this.state.term}
-				style={StyleSheet.compose<TextStyle>(styles.input, style)}
+				style={StyleSheet.compose<TextStyle, TextStyle, TextStyle>(styles.input, style)}
 				onChangeText={(newValue) => {
 
 					this.setState({ term: newValue });
