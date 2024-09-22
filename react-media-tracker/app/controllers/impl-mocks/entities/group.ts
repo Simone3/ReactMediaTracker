@@ -76,8 +76,10 @@ export class GroupMockedController extends MockControllerHelper implements Group
 			}
 			else {
 
-				group.id = this.randomId();
-				categoryGroups.push(group);
+				categoryGroups.push({
+					...group,
+					id: this.randomId()
+				});
 			}
 			
 			this.groups[userId][categoryId] = categoryGroups;

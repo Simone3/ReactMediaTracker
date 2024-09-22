@@ -86,8 +86,10 @@ export class CategoryMockedController extends MockControllerHelper implements Ca
 			}
 			else {
 	
-				category.id = this.randomId();
-				categories.push(category);
+				categories.push({
+					...category,
+					id: this.randomId()
+				});
 			}
 
 			this.categories[userId] = categories;

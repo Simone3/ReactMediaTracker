@@ -1,4 +1,4 @@
-import { NavigationContainer, NavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainer, NavigationContainerRef, ParamListBase } from '@react-navigation/native';
 import { ConnectedAuthenticationNavigator } from 'app/components/containers/navigation/authentication-navigator';
 import { navigationService } from 'app/utilities/navigation-service';
 import React, { Component, ReactNode } from 'react';
@@ -15,7 +15,7 @@ export class AppNavigationContainer extends Component {
 		
 		return (
 			<NavigationContainer
-				ref={(navigatorRef: NavigationContainerRef<{}>) => {
+				ref={(navigatorRef: NavigationContainerRef<ParamListBase>) => {
 					if(!navigatorRef) {
 						return;
 					}

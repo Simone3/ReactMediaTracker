@@ -10,6 +10,7 @@ export interface OwnPlatformController {
 
 	/**
 	 * Gets all saved own platforms for the given category
+	 * @param userId the user
 	 * @param categoryId the category
 	 * @returns the list of own platforms, as a promise
 	 */

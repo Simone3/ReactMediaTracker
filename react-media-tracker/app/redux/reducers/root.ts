@@ -22,7 +22,7 @@ import { Action, combineReducers } from 'redux';
 /**
  * Combination of all app reducers
  */
-export const allReduces = combineReducers<State, Action>({
+export const allReduces = combineReducers({
 	error,
 	userGlobal,
 	userOperations,

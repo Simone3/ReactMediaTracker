@@ -18,7 +18,7 @@ const inlineMediaItemUpdateSaga = function * (action: MarkMediaItemAsActiveActio
 
 	try {
 
-		const mediaItem = action.mediaItem;
+		const mediaItem = { ...action.mediaItem };
 
 		// Get values from state
 		const state: State = yield select();

@@ -85,8 +85,10 @@ export class OwnPlatformMockedController extends MockControllerHelper implements
 			}
 			else {
 
-				ownPlatform.id = this.randomId();
-				categoryOwnPlatforms.push(ownPlatform);
+				categoryOwnPlatforms.push({
+					...ownPlatform,
+					id: this.randomId()
+				});
 			}
 			
 			this.ownPlatforms[userId][categoryId] = categoryOwnPlatforms;

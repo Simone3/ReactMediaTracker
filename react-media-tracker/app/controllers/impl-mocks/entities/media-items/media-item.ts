@@ -65,8 +65,10 @@ export abstract class MediaItemMockedController<TMediaItemInternal extends Media
 			}
 			else {
 
-				mediaItem.id = this.randomId();
-				categoryMediaItems.push(mediaItem);
+				categoryMediaItems.push({
+					...mediaItem,
+					id: this.randomId()
+				});
 			}
 			
 			this.mediaItems[userId][categoryId] = categoryMediaItems;
