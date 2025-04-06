@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
 		fontSize: 15,
 		color: config.ui.colors.colorFormInputs
 	},
-	iosModalContent: {
+	modalContent: {
 		width: 260,
 		height: 280,
 		backgroundColor: config.ui.colors.colorModalBackground

@@ -6,6 +6,8 @@ import { i18n } from 'app/utilities/i18n';
 import { AppScreens } from 'app/utilities/screens';
 import React, { Component, ReactNode } from 'react';
 import { defaultScreenOptions } from 'app/components/containers/navigation/global';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { ParamListBase } from '@react-navigation/native';
 
 const CreditsStack = createStackNavigator();
 
@@ -32,7 +34,7 @@ export class CreditsNavigator extends Component {
 								return (
 									<HeaderComponent
 										title={i18n.t('credits.screen.title')}
-										componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
+										componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation as unknown as DrawerNavigationProp<ParamListBase>} />}
 									/>
 								);
 							}

@@ -2,7 +2,7 @@ import React, { Component, ReactNode } from 'react';
 import { config } from 'app/config/config';
 import { HeaderIconComponent } from 'app/components/presentational/generic/header-icon';
 import { images } from 'app/utilities/images';
-import { DrawerNavigationProp, DrawerScreenProps } from '@react-navigation/drawer';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { AppError } from 'app/data/models/internal/error';
 import { ParamListBase } from '@react-navigation/native';
 
@@ -22,7 +22,7 @@ export class HeaderHamburgerComponent extends Component<HeaderHamburgerComponent
 				tintColor={config.ui.colors.colorContrastText}
 				onClick={() => {
 
-					const navigation = this.props.navigationScreenProps.navigation as DrawerNavigationProp<ParamListBase>;
+					const navigation = this.props.navigation;
 					if(typeof navigation.openDrawer === 'undefined') {
 
 						throw AppError.GENERIC.withDetails('Added HeaderHamburgerComponent in a component not inside Drawer Navigation');
@@ -44,5 +44,5 @@ export type HeaderHamburgerComponentProps = {
 	/**
 	 * The navigation props
 	 */
-	navigationScreenProps: DrawerScreenProps<ParamListBase>;
+	navigation: DrawerNavigationProp<ParamListBase>;
 }

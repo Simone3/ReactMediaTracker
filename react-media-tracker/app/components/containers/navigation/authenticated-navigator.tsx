@@ -25,8 +25,7 @@ export class AuthenticatedNavigator extends Component {
 			<AuthenticatedDrawer.Navigator
 				initialRouteName={AppSections.Media}
 				screenOptions={{
-					headerShown: false,
-					unmountOnBlur: true
+					headerShown: false
 				}}>
 				<AuthenticatedDrawer.Screen
 					name={AppSections.Media}

@@ -3,13 +3,15 @@ import { config } from 'app/config/config';
 import { navigationService } from 'app/utilities/navigation-service';
 import { HeaderIconComponent } from 'app/components/presentational/generic/header-icon';
 import { images } from 'app/utilities/images';
-import { BackHandler } from 'react-native';
+import { BackHandler, NativeEventSubscription } from 'react-native';
 
 /**
  * Presentational component to display a standard header back button.
  * Also handles "physical" back button on Android with the same callback.
  */
 export class HeaderBackComponent extends Component<HeaderBackComponentProps> {
+
+	private backHandler: NativeEventSubscription | undefined;
 
 	/**
 	 * @override
@@ -28,7 +30,7 @@ export class HeaderBackComponent extends Component<HeaderBackComponentProps> {
 	public componentDidMount(): void {
 
 		// Add listener for "physical" back button on Android
-		BackHandler.addEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
+		this.backHandler = BackHandler.addEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
 	}
 
 	/**
@@ -37,7 +39,9 @@ export class HeaderBackComponent extends Component<HeaderBackComponentProps> {
 	public componentWillUnmount(): void {
 		
 		// Remove listener for "physical" back button on Android
-		BackHandler.removeEventListener('hardwareBackPress', this.onPhysicalBackButtonPressAndroid);
+		if(this.backHandler) {
+			this.backHandler.remove();
+		}
 	}
 
 	/**

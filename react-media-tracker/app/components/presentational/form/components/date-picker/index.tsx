@@ -2,7 +2,7 @@ import React, { ReactNode, Component } from 'react';
 import { styles } from 'app/components/presentational/form/components/date-picker/styles';
 import { View, TouchableOpacity, Platform } from 'react-native';
 import { FormInputComponent, FormInputComponentInput, FormInputComponentOutput } from 'app/components/presentational/form/components/generic';
-import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import DatePicker from 'react-native-date-picker';
 import { PlaceholderTextComponent } from 'app/components/presentational/generic/placeholder-text';
 import { ModalComponent } from 'app/components/presentational/generic/modal';
 import { ModalInputConfirmComponent } from 'app/components/presentational/form/helpers/modal-confirm';
@@ -91,52 +91,26 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 
 		if(this.state.open) {
 
-			if(Platform.OS === 'ios') {
-
-				return this.renderIOSModal();
-			}
-			else {
-				
-				return this.renderAndroidModal();
-			}
+			const {
+				onBlur
+			} = this.props;
+	
+			return (
+				<ModalComponent
+					visible={this.state.open}
+					onClose={() => {
+						onBlur(undefined);
+						this.setState({ open: false });
+					}}>
+					<View style={styles.modalContent}>
+						{this.renderPicker()}
+						{this.renderModalConfirmButton()}
+					</View>
+				</ModalComponent>
+			);
 		}
 
 		return undefined;
-	}
-
-	/**
-	 * Helper to render the Android modal
-	 * @returns the component
-	 */
-	private renderAndroidModal(): ReactNode {
-
-		// On Android, the picker is natively in a modal, no need for extra components
-		return this.renderPicker('calendar');
-	}
-
-	/**
-	 * Helper to render the iOS modal
-	 * @returns the component
-	 */
-	private renderIOSModal(): ReactNode {
-
-		const {
-			onBlur
-		} = this.props;
-
-		return (
-			<ModalComponent
-				visible={this.state.open}
-				onClose={() => {
-					onBlur(undefined);
-					this.setState({ open: false });
-				}}>
-				<View style={styles.iosModalContent}>
-					{this.renderPicker('spinner')}
-					{this.renderModalConfirmButton()}
-				</View>
-			</ModalComponent>
-		);
 	}
 
 	/**
@@ -169,43 +143,22 @@ export class DatePickerComponent extends Component<DatePickerComponentProps, Dat
 
 	/**
 	 * Helper to render the actual date picker
-	 * @param display display mode
 	 * @returns the component
 	 */
-	private renderPicker(display: 'spinner' | 'default' | 'calendar'): ReactNode {
+	private renderPicker(): ReactNode {
 
 		const {
 			currentTemporaryDate
 		} = this.state;
 
-		const {
-			onBlur,
-			onSelectDate
-		} = this.props;
-
 		return (
-			<DateTimePicker
-				value={currentTemporaryDate || new Date()}
+			<DatePicker
+				modal={false}
+				date={currentTemporaryDate || new Date()}
 				mode={'date'}
-				is24Hour={true}
-				display={display}
-				onChange={(event: DateTimePickerEvent, newValue?: Date) => {
+				onDateChange={(newValue: Date) => {
 
-					if(event.type === 'dismissed') {
-						
-						this.setState({ open: false });
-						onBlur(undefined);
-					}
-					else if(event.type === 'set') {
-
-						this.setState({ open: false });
-						onSelectDate(newValue);
-						onBlur(undefined);
-					}
-					else {
-
-						this.setState({ currentTemporaryDate: newValue });
-					}
+					this.setState({ currentTemporaryDate: newValue });
 				}}
 			/>
 		);
@@ -260,7 +213,7 @@ export type DatePickerComponentState = {
 	open: boolean;
 
 	/**
-	 * The current unconfirmed value (used on iOS only at the moment)
+	 * The current unconfirmed value
 	 */
 	currentTemporaryDate: Date | undefined;
 }

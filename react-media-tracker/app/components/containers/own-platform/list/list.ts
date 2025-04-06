@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch: Dispatch): SelectionListComponentOutput<Ow
 export const OwnPlatformsListContainer = connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SelectionListComponent);
+)(SelectionListComponent<OwnPlatformInternal>);
 
 /**
  * OwnPlatformsListContainer's props

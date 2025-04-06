@@ -1,3 +1,5 @@
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { ParamListBase } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { CategoryDetailsHeaderContainer } from 'app/components/containers/category/details/header';
 import { CategoryDetailsHeaderBackButtonContainer } from 'app/components/containers/category/details/header-back-button';
@@ -17,7 +19,7 @@ import { MediaItemsListHeaderContainer } from 'app/components/containers/media-i
 import { MediaItemsListHeaderFilterIconContainer } from 'app/components/containers/media-item/list/header-filter-icon';
 import { MediaItemsListHeaderSearchIconContainer } from 'app/components/containers/media-item/list/header-search-icon';
 import { MediaItemsListScreenContainer } from 'app/components/containers/media-item/list/screen';
-import { defaultScreenOptions } from 'app/components/containers/navigation/global';
+import { defaultScreenOptions, Navigation } from 'app/components/containers/navigation/global';
 import { OwnPlatformDetailsHeaderContainer } from 'app/components/containers/own-platform/details/header';
 import { OwnPlatformDetailsHeaderBackButtonContainer } from 'app/components/containers/own-platform/details/header-back-button';
 import { OwnPlatformDetailsHeaderSaveIconContainer } from 'app/components/containers/own-platform/details/header-save-icon';
@@ -62,7 +64,7 @@ export class MediaNavigator extends Component {
 								return (
 									<HeaderComponent
 										title={i18n.t('category.list.title')}
-										componentsLeft={<HeaderHamburgerComponent navigationScreenProps={navigationScreenProps} />}
+										componentsLeft={<HeaderHamburgerComponent navigation={navigationScreenProps.navigation as unknown as DrawerNavigationProp<ParamListBase>} />}
 									/>
 								);
 							}
@@ -77,7 +79,7 @@ export class MediaNavigator extends Component {
 							headerTitle: (): ReactNode => {
 								return (
 									<CategoryDetailsHeaderContainer
-										componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+										componentsLeft={<CategoryDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation as unknown as Navigation} />}
 										componentsRight={<CategoryDetailsHeaderSaveIconContainer />}
 									/>
 								);
@@ -120,7 +122,7 @@ export class MediaNavigator extends Component {
 							headerTitle: (): ReactNode => {
 								return (
 									<MediaItemDetailsHeaderContainer
-										componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+										componentsLeft={<MediaItemDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation as unknown as Navigation} />}
 										componentsRight={<MediaItemDetailsHeaderSaveIconContainer />}
 									/>
 								);
@@ -168,7 +170,7 @@ export class MediaNavigator extends Component {
 							headerTitle: (): ReactNode => {
 								return (
 									<GroupDetailsHeaderContainer
-										componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+										componentsLeft={<GroupDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation as unknown as Navigation} />}
 										componentsRight={<GroupDetailsHeaderSaveIconContainer />}
 									/>
 								);
@@ -184,7 +186,7 @@ export class MediaNavigator extends Component {
 							headerTitle: (): ReactNode => {
 								return (
 									<OwnPlatformDetailsHeaderContainer
-										componentsLeft={<OwnPlatformDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+										componentsLeft={<OwnPlatformDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation as unknown as Navigation} />}
 										componentsRight={<OwnPlatformDetailsHeaderSaveIconContainer />}
 									/>
 								);
@@ -216,7 +218,7 @@ export class MediaNavigator extends Component {
 							headerTitle: (): ReactNode => {
 								return (
 									<TvShowSeasonDetailsHeaderContainer
-										componentsLeft={<TvShowSeasonDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation} />}
+										componentsLeft={<TvShowSeasonDetailsHeaderBackButtonContainer navigation={navigationScreenProps.navigation as unknown as Navigation} />}
 										componentsRight={<TvShowSeasonDetailsHeaderSaveIconContainer />}
 									/>
 								);

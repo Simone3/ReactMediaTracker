@@ -1,4 +1,4 @@
-import { DocumentPickerResponse, isCancel, pick, types } from 'react-native-document-picker';
+import { DocumentPickerResponse, pick, types } from '@react-native-documents/picker';
 
 /**
  * Helper class to pick files from the user device
@@ -11,36 +11,22 @@ export class FilePicker {
 	 */
 	public static async pickJson(): Promise<DocumentPickerResponse | undefined> {
 
-		try {
+		const pickedDocuments = await pick({
+			type: [ types.allFiles ],
+			allowMultiSelection: false
+		});
 
-			const pickedDocuments = await pick({
-				type: [ types.allFiles ],
-				allowMultiSelection: false
-			});
+		if(!pickedDocuments || pickedDocuments.length === 0 || !pickedDocuments[0]) {
 
-			if(!pickedDocuments || pickedDocuments.length === 0 || !pickedDocuments[0]) {
-
-				return undefined;
-			}
-			else if(pickedDocuments.length > 1) {
-
-				throw new Error('Picking more than one file should not be possible!');
-			}
-			else {
-
-				return pickedDocuments[0];
-			}
+			return undefined;
 		}
-		catch(error) {
-			
-			if(isCancel(error)) {
-				
-				return undefined;
-			}
-			else {
-	
-				throw error;
-			}
+		else if(pickedDocuments.length > 1) {
+
+			throw new Error('Picking more than one file should not be possible!');
+		}
+		else {
+
+			return pickedDocuments[0];
 		}
 	}
 }
